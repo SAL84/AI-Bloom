@@ -6,3 +6,5 @@ dist/
 !.env.example
 *.db
 .DS_Store
+.gstack/
+elements-of-ai-course.md
