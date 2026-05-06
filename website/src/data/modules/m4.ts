@@ -7,6 +7,16 @@ const m4: CourseModule = {
   summary: 'Where AI actually lives in modern security tools — separating real capability from marketing.',
   lessons: [
     {
+      id: 'm4l0',
+      title: 'From SOAR to Agentic SOC',
+      slides: [
+        { heading: 'The SOAR Era: Four Pain Points Still Paying Maintenance On', body: '(1) Connector tax — every tool needs a vendor- or customer-built integration, versioned and broken on each API change, owned by your SOAR team. (2) Playbook brittleness — hard-coded if/then logic, every workflow needs an author, edge cases the author did not anticipate become incidents. (3) Console fragmentation — L1 analysts pivot through 6-10 UIs per investigation; tribal knowledge of where things live becomes a hiring requirement. (4) Per-product copilots — even AI-augmented tools force analysts to go to each product to invoke its assistant. AI without orchestration is just better search.' },
+        { heading: 'The Agentic SOC: Four Wins', body: '(1) MCP collapses connectors — vendor ships one MCP server, every agent uses it, integration tax moves off your team. (2) Reasoning replaces playbooks — agent decides tool sequence per case, no flowchart from 2024 to break in 2026. (3) One UX, every tool — analyst stops navigating, orchestrator delegates, investigation goes from minutes to seconds. (4) Agent Identity as the new IAM — every action attributable to a unique cryptographic ID, audit trail by default, not by integration.' },
+        { heading: 'The Architecture Shift', body: 'Before: Analyst → SIEM → EDR → IAM → Threat Intel → SOAR. Context loss at every hop. No shared state. Brittle connectors gluing it together. After: Analyst → Orchestrator → MCP bus → fans out simultaneously to SecOps, GTI, IAM, EDR. The orchestrator reasons, delegates, and synthesizes. No playbook authored. Agents call agents, humans approve outcomes. The investigation goes from a multi-tool pivot sequence to a single conversation.' },
+        { heading: 'Why This Changes the Sales Conversation', body: 'Do not position Google SecOps as another SIEM. Position Google Cloud as the agent control plane. The customer is buying an operating model change, not a product swap. Discovery question that opens this: "How much engineering headcount do you carry just to maintain SOAR connectors and playbooks?" Most customers have never been asked this directly — and the answer is usually larger than they want to admit.' }
+      ]
+    },
+    {
       id: 'm4l1',
       title: 'The SOC AI Architecture',
       diagram: 'SOCArch',
