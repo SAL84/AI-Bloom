@@ -131,6 +131,101 @@ export const AutonomyLevelsDiagram = () => {
   );
 };
 
+export const SkillsPluginsDiagram = () => (
+  <DiagramFrame viewBox="0 0 800 400" caption="Skills and plugins are the capability layer — the agent knows what it can call, not how it is implemented">
+    <circle cx="400" cy="180" r="55" fill={COLORS.blue} />
+    <text x="400" y="176" textAnchor="middle" fill={COLORS.white} fontSize="14" fontWeight="700">Agent</text>
+    <text x="400" y="194" textAnchor="middle" fill={COLORS.white} fontSize="10">calls by name</text>
+    {[
+      { x: 100, y: 70, label: 'Built-in Tools', sub: 'Code exec · File I/O · Web', color: COLORS.cyan },
+      { x: 100, y: 220, label: 'MCP Tools', sub: 'External servers · SecOps · GTI', color: COLORS.emerald },
+      { x: 560, y: 70, label: 'API Functions', sub: 'REST · GraphQL · Webhooks', color: '#fb923c' },
+      { x: 560, y: 220, label: 'Agent Skills', sub: 'Named capability packages', color: COLORS.amber }
+    ].map((s, i) => (
+      <g key={i}>
+        <rect x={s.x} y={s.y} width="200" height="70" rx="8" fill={COLORS.white} stroke={s.color} strokeWidth="2" />
+        <text x={s.x + 100} y={s.y + 28} textAnchor="middle" fill={COLORS.slate900} fontSize="13" fontWeight="700">{s.label}</text>
+        <text x={s.x + 100} y={s.y + 50} textAnchor="middle" fill={COLORS.slate500} fontSize="10">{s.sub}</text>
+        <line x1={i < 2 ? s.x + 200 : s.x} y1={s.y + 35} x2={i < 2 ? 345 : 455} y2="180" stroke={s.color} strokeWidth="1.5" strokeDasharray="4 3" />
+      </g>
+    ))}
+    <rect x="100" y="330" width="600" height="45" rx="8" fill={COLORS.slate100} stroke={COLORS.slate300} strokeWidth="1.5" />
+    <text x="400" y="351" textAnchor="middle" fill={COLORS.slate700} fontSize="12" fontWeight="700">Capability contract: name · description · input schema · output schema</text>
+    <text x="400" y="367" textAnchor="middle" fill={COLORS.slate500} fontSize="10">Agent never sees implementation — only the interface. Swap implementations without changing agent logic.</text>
+  </DiagramFrame>
+);
+
+export const SubagentsDiagram = () => (
+  <DiagramFrame viewBox="0 0 800 400" caption="Subagents get scoped goals and explicit tool grants — never inherited privileges from the orchestrator">
+    <rect x="290" y="30" width="220" height="60" rx="10" fill={COLORS.amber} />
+    <text x="400" y="57" textAnchor="middle" fill={COLORS.white} fontSize="14" fontWeight="700">Orchestrator Agent</text>
+    <text x="400" y="76" textAnchor="middle" fill={COLORS.white} fontSize="10">full tool access · goal decomposition</text>
+    {[
+      { x: 60, label: 'Triage Subagent', tools: 'alert-read · enrich-ip', color: COLORS.blue },
+      { x: 290, label: 'Investigate Subagent', tools: 'siem-query · edr-query', color: COLORS.cyan },
+      { x: 520, label: 'Report Subagent', tools: 'write-case · notify', color: COLORS.emerald }
+    ].map((sa, i) => (
+      <g key={i}>
+        <line x1="400" y1="90" x2={sa.x + 110} y2="175" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowSA)" />
+        <rect x={sa.x} y="175" width="220" height="80" rx="8" fill={COLORS.white} stroke={sa.color} strokeWidth="2" />
+        <rect x={sa.x} y="175" width="220" height="35" rx="8" fill={sa.color} />
+        <text x={sa.x + 110} y="198" textAnchor="middle" fill={COLORS.white} fontSize="12" fontWeight="700">{sa.label}</text>
+        <text x={sa.x + 110} y="228" textAnchor="middle" fill={COLORS.slate700} fontSize="10" fontWeight="600">Tools granted:</text>
+        <text x={sa.x + 110} y="244" textAnchor="middle" fill={COLORS.slate500} fontSize="10">{sa.tools}</text>
+        <rect x={sa.x + 20} y="275" width="180" height="30" rx="5" fill={COLORS.slate100} />
+        <text x={sa.x + 110} y="295" textAnchor="middle" fill={COLORS.slate700} fontSize="10">Isolated context · no parent scope</text>
+      </g>
+    ))}
+    <defs>
+      <marker id="arrowSA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill={COLORS.slate400} />
+      </marker>
+    </defs>
+    <text x="400" y="370" textAnchor="middle" fill={COLORS.slate500} fontSize="11" fontStyle="italic">Least-privilege principle applied per subagent — lateral movement requires explicit re-grant, not inheritance</text>
+  </DiagramFrame>
+);
+
+export const HooksDiagram = () => (
+  <DiagramFrame viewBox="0 0 800 400" caption="Hooks are the agent control plane — intercept, inspect, and enforce at every step">
+    <rect x="60" y="170" width="140" height="60" rx="8" fill={COLORS.slate700} />
+    <text x="130" y="196" textAnchor="middle" fill={COLORS.white} fontSize="12" fontWeight="700">Event</text>
+    <text x="130" y="214" textAnchor="middle" fill={COLORS.white} fontSize="10">user input · tool call · model response</text>
+    <line x1="200" y1="200" x2="250" y2="200" stroke={COLORS.slate500} strokeWidth="2" markerEnd="url(#arrowH)" />
+    <rect x="250" y="155" width="160" height="90" rx="8" fill={COLORS.blue} />
+    <text x="330" y="190" textAnchor="middle" fill={COLORS.white} fontSize="13" fontWeight="700">Hook Layer</text>
+    <text x="330" y="210" textAnchor="middle" fill={COLORS.white} fontSize="10">before_input</text>
+    <text x="330" y="226" textAnchor="middle" fill={COLORS.white} fontSize="10">before_tool_call · after_model</text>
+    <line x1="410" y1="200" x2="460" y2="200" stroke={COLORS.slate500} strokeWidth="2" markerEnd="url(#arrowH)" />
+    <rect x="460" y="155" width="160" height="90" rx="8" fill={COLORS.white} stroke={COLORS.slate300} strokeWidth="2" />
+    <text x="540" y="190" textAnchor="middle" fill={COLORS.slate900} fontSize="13" fontWeight="700">Policy Check</text>
+    <text x="540" y="210" textAnchor="middle" fill={COLORS.slate500} fontSize="10">DLP · auth · rate limit</text>
+    <text x="540" y="226" textAnchor="middle" fill={COLORS.slate500} fontSize="10">inject context · audit log</text>
+    <line x1="620" y1="180" x2="680" y2="130" stroke={COLORS.emerald} strokeWidth="2" markerEnd="url(#arrowH)" />
+    <rect x="680" y="100" width="100" height="45" rx="6" fill={COLORS.emerald} />
+    <text x="730" y="126" textAnchor="middle" fill={COLORS.white} fontSize="12" fontWeight="700">ALLOW</text>
+    <line x1="620" y1="220" x2="680" y2="270" stroke={COLORS.red} strokeWidth="2" markerEnd="url(#arrowH)" />
+    <rect x="680" y="255" width="100" height="45" rx="6" fill={COLORS.red} />
+    <text x="730" y="281" textAnchor="middle" fill={COLORS.white} fontSize="12" fontWeight="700">BLOCK</text>
+    {[
+      { y: 60, label: 'Sanitize input', desc: 'strip injection patterns' },
+      { y: 305, label: 'Approval gate', desc: 'human-in-loop for high-risk actions' }
+    ].map((h, i) => (
+      <g key={i}>
+        <rect x="250" y={h.y} width="160" height="45" rx="6" fill={COLORS.amber} opacity="0.85" />
+        <text x="330" y={h.y + 22} textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">{h.label}</text>
+        <text x="330" y={h.y + 38} textAnchor="middle" fill={COLORS.white} fontSize="9">{h.desc}</text>
+        <line x1="330" y1={i === 0 ? h.y + 45 : h.y} x2="330" y2={i === 0 ? 155 : 245} stroke={COLORS.amber} strokeWidth="1.5" strokeDasharray="3 2" />
+      </g>
+    ))}
+    <defs>
+      <marker id="arrowH" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill={COLORS.slate500} />
+      </marker>
+    </defs>
+    <text x="400" y="390" textAnchor="middle" fill={COLORS.slate500} fontSize="11" fontStyle="italic">Agent Gateway implements hooks at the infrastructure level — every agent in the fleet governed from one control plane</text>
+  </DiagramFrame>
+);
+
 export const A2AvsMCPDiagram = () => (
   <DiagramFrame viewBox="0 0 800 340" caption="MCP = agent-to-tool bus. A2A = agent-to-agent network. Together they form the agentic substrate.">
     <rect x="80" y="40" width="280" height="260" rx="12" fill={COLORS.white} stroke={COLORS.blue} strokeWidth="2" />

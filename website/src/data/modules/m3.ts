@@ -63,6 +63,7 @@ const m3: CourseModule = {
     {
       id: 'm3l6',
       title: 'Skills and Plugins: The Capability Layer',
+      diagram: 'SkillsPlugins',
       slides: [
         { heading: 'The Vocabulary Problem', body: 'Agent framework documentation uses these terms inconsistently across vendors, causing confusion in customer conversations. A precise working definition for each is a credibility asset — especially with prospect architects and platform engineers who will call out vague usage immediately.' },
         { heading: 'Skills', body: 'A skill is a named, packaged capability that an agent can invoke — a tool with a defined input/output contract, discoverable by the agent at runtime. Unlike a raw API call, a skill is self-describing: the agent knows what it does, what it needs, and what it returns. In Google ADK, skills are the primary building block for reusable agent capabilities. Key distinction for SEs: skills are composable (agents can chain them) and governable (you can grant or revoke skill access per agent identity).' },
@@ -72,6 +73,7 @@ const m3: CourseModule = {
     {
       id: 'm3l7',
       title: 'Subagents: Scoped Execution and Least Privilege',
+      diagram: 'Subagents',
       slides: [
         { heading: 'What a Subagent Is', body: 'A subagent is an agent operating under the direction of an orchestrator, with a scoped goal and delegated (not inherited) privileges. The key security principle: privilege delegation, not inheritance. An orchestrator with broad access should not automatically confer that access to every subagent it spawns. Each subagent should have the minimum privileges required for its specific task. In practice, this means the IOC enrichment subagent gets read access to the TI database — not write access, not access to identity management. This is least privilege applied to autonomous systems.' },
         { heading: 'The Four-Layer Architecture', body: 'Put together: hooks are the enforcement layer, skills are the capability layer, subagents are the execution layer, and plugins/MCP are the integration layer. An SE who can draw this clearly — with hooks sitting across all layers as the cross-cutting control mechanism — has a complete mental model that positions Google ADK and Agent Gateway as the architecture, not just products. Discovery question: "Do you have hooks on your agent pipelines today, or are agents currently running without pre/post execution controls?"' },
@@ -81,6 +83,7 @@ const m3: CourseModule = {
     {
       id: 'm3l8',
       title: 'Hooks: The Agent Control Plane',
+      diagram: 'Hooks',
       slides: [
         { heading: 'What Hooks Are', body: 'Hooks are pre- and post-execution interceptors attached to agent pipeline steps. They fire automatically at defined points: before a tool is called, after a model generates output, before an action is taken. For security, hooks are the control plane: (1) Input hooks — validate or sanitize retrieved content before it enters the model context. (2) Output hooks — filter or constrain model responses before they reach tool calls. (3) Action hooks — require human approval for high-consequence operations. (4) Audit hooks — write immutable logs of every agent decision, tool call, and data access. A customer asking "how do we enforce policy on our agents?" is asking for hooks, even if they do not use the word.' },
         { heading: 'When to Use Hooks', body: 'Use hooks when you need cross-cutting policy enforcement without modifying every agent individually: audit logging, input validation, approval gates, and rate limiting all belong in hooks, not in agent logic. If you find yourself writing the same validation or logging code in multiple agents, you should be writing a hook. Hooks are the difference between security as a product feature and security as an architectural property.' },

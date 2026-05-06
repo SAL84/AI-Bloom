@@ -158,6 +158,77 @@ export const EmailIdentityDiagram = () => (
   </DiagramFrame>
 );
 
+export const SOAREvolutionDiagram = () => (
+  <DiagramFrame viewBox="0 0 800 420" caption="The agentic SOC replaces sequential pivot chains with a parallel, reasoning orchestrator">
+    <text x="195" y="30" textAnchor="middle" fill={COLORS.slate900} fontSize="13" fontWeight="700">Before: SOAR Era</text>
+    <text x="605" y="30" textAnchor="middle" fill={COLORS.slate900} fontSize="13" fontWeight="700">After: Agentic SOC</text>
+    <line x1="400" y1="45" x2="400" y2="400" stroke={COLORS.slate300} strokeWidth="1" strokeDasharray="4 3" />
+    {/* Before: sequential chain */}
+    {['SIEM', 'EDR', 'IAM', 'Threat Intel', 'SOAR'].map((s, i) => (
+      <g key={i}>
+        <rect x="60" y={60 + i * 62} width="130" height="44" rx="6" fill={COLORS.white} stroke={COLORS.slate400} strokeWidth="1.5" />
+        <text x="125" y={87 + i * 62} textAnchor="middle" fill={COLORS.slate700} fontSize="12" fontWeight="600">{s}</text>
+        {i < 4 && <line x1="125" y1={104 + i * 62} x2="125" y2={122 + i * 62} stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowEv)" />}
+      </g>
+    ))}
+    <rect x="60" y="370" width="130" height="30" rx="5" fill="#fef2f2" stroke={COLORS.red} strokeWidth="1.5" />
+    <text x="125" y="390" textAnchor="middle" fill={COLORS.red} fontSize="10">Context lost each hop</text>
+    {/* After: orchestrator fan-out */}
+    <rect x="495" y="60" width="200" height="50" rx="8" fill={COLORS.blue} />
+    <text x="595" y="82" textAnchor="middle" fill={COLORS.white} fontSize="13" fontWeight="700">Orchestrator</text>
+    <text x="595" y="99" textAnchor="middle" fill={COLORS.white} fontSize="10">reasons · delegates · synthesizes</text>
+    {[
+      { x: 440, y: 175, label: 'SecOps' },
+      { x: 530, y: 175, label: 'GTI' },
+      { x: 620, y: 175, label: 'IAM' },
+      { x: 710, y: 175, label: 'EDR' }
+    ].map((t, i) => (
+      <g key={i}>
+        <line x1="595" y1="110" x2={t.x + 40} y2={t.y} stroke={COLORS.cyan} strokeWidth="1.5" markerEnd="url(#arrowEvC)" />
+        <rect x={t.x} y={t.y} width="80" height="40" rx="6" fill={COLORS.white} stroke={COLORS.cyan} strokeWidth="1.5" />
+        <text x={t.x + 40} y={t.y + 25} textAnchor="middle" fill={COLORS.slate700} fontSize="11" fontWeight="600">{t.label}</text>
+      </g>
+    ))}
+    <rect x="460" y="255" width="270" height="40" rx="6" fill={COLORS.white} stroke={COLORS.slate300} strokeWidth="1.5" />
+    <text x="595" y="275" textAnchor="middle" fill={COLORS.slate700} fontSize="11" fontWeight="600">MCP bus · parallel · shared state</text>
+    <rect x="460" y="315" width="270" height="40" rx="6" fill={COLORS.emerald} />
+    <text x="595" y="339" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">Analyst reviews outcome, not pivots</text>
+    <defs>
+      <marker id="arrowEv" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M 0 0 L 10 0 L 5 10 z" fill={COLORS.slate400} />
+      </marker>
+      <marker id="arrowEvC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill={COLORS.cyan} />
+      </marker>
+    </defs>
+  </DiagramFrame>
+);
+
+export const SIEMXDRDiagram = () => (
+  <DiagramFrame viewBox="0 0 800 420" caption="SIEM/XDR AI has two layers — probe which is which before claiming parity">
+    <rect x="60" y="40" width="680" height="60" rx="8" fill={COLORS.amber} />
+    <text x="400" y="65" textAnchor="middle" fill={COLORS.white} fontSize="13" fontWeight="700">GenAI Layer (newer)</text>
+    <text x="400" y="85" textAnchor="middle" fill={COLORS.white} fontSize="11">NL-to-query · Detection authoring assist · Alert summarization · Analyst chat</text>
+    <rect x="60" y="120" width="680" height="60" rx="8" fill={COLORS.blue} />
+    <text x="400" y="145" textAnchor="middle" fill={COLORS.white} fontSize="13" fontWeight="700">Classical ML Layer (mature)</text>
+    <text x="400" y="165" textAnchor="middle" fill={COLORS.white} fontSize="11">Anomaly detection · UEBA · Alert correlation · Behavioral baselines</text>
+    <text x="400" y="210" textAnchor="middle" fill={COLORS.slate700} fontSize="12" fontWeight="700">Evaluation Framework — Three Questions to Probe Any Vendor</text>
+    {[
+      { label: '1. Show me an AI-authored detection', sub: 'Time diff vs manual? Analyst review required?' },
+      { label: '2. Last false negative your rules missed', sub: 'Would the ML layer have caught it?' },
+      { label: '3. Labeling and retraining cadence', sub: 'Who labels? How often are models updated?' }
+    ].map((q, i) => (
+      <g key={i}>
+        <rect x="60" y={230 + i * 60} width="680" height="50" rx="6" fill={COLORS.white} stroke={COLORS.slate300} strokeWidth="1.5" />
+        <rect x="60" y={230 + i * 60} width="6" height="50" fill={COLORS.cyan} />
+        <text x="80" y={253 + i * 60} fill={COLORS.slate900} fontSize="12" fontWeight="700">{q.label}</text>
+        <text x="80" y={271 + i * 60} fill={COLORS.slate500} fontSize="10">{q.sub}</text>
+      </g>
+    ))}
+    <text x="400" y="415" textAnchor="middle" fill={COLORS.slate500} fontSize="11" fontStyle="italic">Separates platforms with real ML investment from those with ML branding on rule engines</text>
+  </DiagramFrame>
+);
+
 export const AIAttackAccelerationDiagram = () => (
   <DiagramFrame viewBox="0 0 800 420" caption="AI shifts the attacker cost curve — capabilities once requiring skilled operators become commodity">
     <text x="400" y="30" textAnchor="middle" fill={COLORS.slate900} fontSize="14" fontWeight="700">Where AI Accelerates Attackers</text>

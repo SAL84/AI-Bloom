@@ -9,6 +9,7 @@ const m4: CourseModule = {
     {
       id: 'm4l0',
       title: 'From SOAR to Agentic SOC',
+      diagram: 'SOAREvolution',
       slides: [
         { heading: 'The SOAR Era: Four Pain Points Still Paying Maintenance On', body: '(1) Connector tax — every tool needs a vendor- or customer-built integration, versioned and broken on each API change, owned by your SOAR team. (2) Playbook brittleness — hard-coded if/then logic, every workflow needs an author, edge cases the author did not anticipate become incidents. (3) Console fragmentation — L1 analysts pivot through 6-10 UIs per investigation; tribal knowledge of where things live becomes a hiring requirement. (4) Per-product copilots — even AI-augmented tools force analysts to go to each product to invoke its assistant. AI without orchestration is just better search.' },
         { heading: 'The Agentic SOC: Four Wins', body: '(1) MCP collapses connectors — vendor ships one MCP server, every agent uses it, integration tax moves off your team. (2) Reasoning replaces playbooks — agent decides tool sequence per case, no flowchart from 2024 to break in 2026. (3) One UX, every tool — analyst stops navigating, orchestrator delegates, investigation goes from minutes to seconds. (4) Agent Identity as the new IAM — every action attributable to a unique cryptographic ID, audit trail by default, not by integration.' },
@@ -28,6 +29,7 @@ const m4: CourseModule = {
     {
       id: 'm4l2',
       title: 'SIEM and XDR',
+      diagram: 'SIEMXDRArch',
       slides: [
         { heading: 'Real Use', body: 'Anomaly detection (statistical + ML), entity behavior analytics, alert correlation, automated triage summarization, natural-language-to-query translation (NL to KQL, SPL, UDM). Detection authoring assist — where the analyst describes a detection in plain English and the system drafts the rule — is increasingly mature.' },
         { heading: 'Hype Watch: SIEM/XDR Edition', body: 'Three claims to probe: (1) "AI-powered correlation" often means sequential rule evaluation with ML anomaly scoring as an add-on — ask which correlation steps involve learned models vs. written rules. (2) "Natural language to query" is real but vendor demos use vendor-crafted schemas; always test against the customer\'s own field names and log sources before claiming parity. (3) "AI-driven alert reduction" — push for reduction methodology: is it suppression, deduplication, or genuine ML triage? Each has a very different false-negative risk profile.' },
@@ -55,6 +57,7 @@ const m4: CourseModule = {
     {
       id: 'm4l5',
       title: 'SOC Copilots and Autonomous Triage',
+      diagram: 'SOCCopilots',
       slides: [
         { heading: 'Where We Actually Are', body: 'SOC copilots (chat-style assistants over your security data) are mature. Autonomous Tier-1 triage — agent receives alert, enriches, decides escalate/close — is shipping in production now. Multi-step investigation agents that pivot across systems are the 2026 frontier.' },
         { heading: 'The Honest Numbers', body: 'Customers are reporting real reductions in time-to-investigate (often 30 minutes to minutes for routine alerts). The wins are largest in high-volume, low-judgment work: phishing triage, basic IOC enrichment, alert deduplication. Complex investigations still need humans driving.' },
@@ -65,6 +68,7 @@ const m4: CourseModule = {
     {
       id: 'm4l6',
       title: 'Threat Intelligence and Hunting',
+      diagram: 'ThreatIntelHunting',
       slides: [
         { heading: 'TI Enrichment', body: 'AI-powered enrichment of indicators with context, attribution likelihood, campaign linking. Natural-language querying of TI graphs has become standard. Underrated: AI-summarized briefings on emerging threats tailored to your environment.' },
         { heading: 'Threat Hunting', body: 'Hypothesis generation from MITRE ATT&CK, query suggestions, anomaly surfacing. Newest wave: agentic hunting — agent generates hypotheses, runs queries, follows leads, reports findings.' },
@@ -75,6 +79,7 @@ const m4: CourseModule = {
     {
       id: 'm4l7',
       title: 'AI Data Governance: What Every CISO Needs to Hear',
+      diagram: 'DataGovernance',
       slides: [
         { heading: 'The Three Trust Prerequisites', body: 'Before any CISO approves an AI deployment in a security context, three questions must be answered credibly: (1) Does my data train the model? (2) Who can access my data within the platform — is my tenant truly isolated? (3) Where does my data live, and can I control it? These are not compliance questions — they are trust prerequisites. An SE who cannot answer all three will not get past a security-mature buyer. Prepare these answers before any CISO-level meeting.' },
         { heading: 'Training Data Policies', body: 'The core fear: that prompts and security data sent to an AI service improve the base model, potentially leaking sensitive context to other customers. The enterprise answer: Google SecOps, Gemini Enterprise, and GTI do not use customer data to train base models under enterprise agreements — this is contractual, not just a policy statement. Know the tier distinction: consumer-grade products may have different terms. Always confirm which tier the customer is licensed under. When a CISO asks, the answer is: "Under your enterprise agreement, your prompts and data are not used to train Google models. Here is the contract language."' },

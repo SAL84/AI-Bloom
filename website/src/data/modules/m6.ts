@@ -20,6 +20,7 @@ const m6: CourseModule = {
     {
       id: 'm6l2',
       title: 'Google Agent Infrastructure',
+      diagram: 'GoogleAgentInfra',
       slides: [
         { heading: 'Agent Registry and Agent Gateway', body: 'Agent Registry is a central library indexing every internal agent, tool, and skill — the agentic equivalent of a service catalog. Agent Gateway is the management plane: enforces policies for all agent-to-agent and agent-to-tool connections, supports MCP and A2A protocols.' },
         { heading: 'Agent Identity', body: 'Each agent gets a SPIFFE-based identity, making AI agents first-class citizens in identity governance — distinct from non-human identities (NHIs) like service accounts. This matters because agents are autonomous and goal-oriented in a way NHIs are not.' },
@@ -52,6 +53,7 @@ const m6: CourseModule = {
     {
       id: 'm6l5',
       title: 'GTI, SCC, and Wiz',
+      diagram: 'GTISCCWiz',
       slides: [
         { heading: 'Google Threat Intelligence (GTI)', body: 'The post-acquisition unification of Mandiant threat intelligence and VirusTotal. Provides actor profiles, campaign tracking, IOC enrichment, vulnerability intelligence (with MVE IDs), and dark web monitoring. New dark web intel feature analyzes millions of daily external events; Google reports 98% accuracy in internal tests.' },
         { heading: 'Mandiant Services Layer', body: 'On top of GTI products, Mandiant Consulting and Managed Defense remain key — Incident Response, Red Team, and 24/7 managed detection backed by frontline expertise. This is a Google differentiator most pure-play platforms cannot match.' },
@@ -66,6 +68,7 @@ const m6: CourseModule = {
     {
       id: 'm6l6',
       title: 'Agentic Defense & Open Security Platform',
+      diagram: 'AgenticDefense',
       slides: [
         { heading: 'What Agentic Defense Is', body: 'Agentic Defense is Google\'s unified cybersecurity platform brand announced at Cloud Next \'26. It combines Google Threat Intelligence, Google SecOps (SIEM + SOAR), and Wiz\'s Cloud and AI Security Platform into one integrated story: detect, prevent, and respond — from code to cloud to runtime, across multicloud, hybrid, and AI environments. The positioning reflects the threat landscape shift: agentic attackers require agentic defenders.' },
         { heading: 'Google\'s Open-Source Security MCP Servers', body: 'Google released an open-source project on GitHub providing production MCP servers for three surfaces: Google SecOps SIEM (search events, get alerts, look up entities, list rules, get IOC matches), Google SecOps SOAR (case management plus integrations for CrowdStrike, Okta, and dozens of other platforms), and Google Threat Intelligence (23 tools for IOC lookups, threat reports, actor profiles). Any MCP-compatible client connects — Cline, Cursor, Roo Code, or custom applications. Auth is handled server-side; clients never touch credentials directly.' },
@@ -90,6 +93,7 @@ const m6: CourseModule = {
     {
       id: 'm6l8',
       title: 'Talk Tracks',
+      diagram: 'TalkTracks',
       slides: [
         { heading: 'Why Google over Microsoft', body: 'Suggested framing: "Microsoft is excellent if your security center of gravity is M365 and your data lives in Sentinel. Where Google differentiates: Mandiant frontline threat intelligence is the data the rest of the industry consumes. Google SecOps offers 12 months of hot retention at predictable economics, and Google has shipped or previewed four production SecOps agents covering triage, hunting, detection engineering, and remediation — the full SOC lifecycle."' },
         { heading: 'Is this just AI hype', body: 'Suggested framing: "Fair pushback. The Triage and Investigation agent is in production today — Google reports 5M+ alerts processed in its first year and 30-minute analyses reduced to about a minute. That is a public reference point, not aspirational. Happy to set up a customer reference call to validate against a similar environment."' },

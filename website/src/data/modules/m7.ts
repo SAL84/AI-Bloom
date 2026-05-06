@@ -20,6 +20,7 @@ const m7: CourseModule = {
     {
       id: 'm7l2',
       title: 'Demoing Without Overpromising',
+      diagram: 'DemoFramework',
       slides: [
         { heading: 'The Three Don\'ts', body: '(1) Do not demo on cherry-picked golden alerts — use one the customer brings. (2) Do not hide latency — show real response times. (3) Do not demo agent autonomy without showing the human-approval gates.' },
         { heading: 'The Honest Demo Script', body: 'Show the agent doing real work. Show where it asks for human input. Show where it makes a wrong call and how you catch it. Counterintuitively, demoing failure modes builds more trust than perfect runs.' },
@@ -30,6 +31,7 @@ const m7: CourseModule = {
     {
       id: 'm7l3',
       title: 'Objection Handling',
+      diagram: 'ObjectionHandling',
       slides: [
         { heading: 'It is just regex with marketing', body: 'Fair skepticism. Here is the difference: our detection layer uses classical ML for pattern recognition, but the agent layer above it is genuinely new — it iterates, pivots across systems, maintains investigation state. I can show you a side-by-side of the same alert handled by rule-based automation vs. our agent.' },
         { heading: 'What about hallucinations', body: 'Real concern. Our mitigation stack: every response is grounded in retrieved evidence with citations, outputs are constrained to validated formats, and irreversible actions require analyst confirmation. The agent is not replacing judgment — it is removing the work that does not need judgment.' },
@@ -42,6 +44,7 @@ const m7: CourseModule = {
     {
       id: 'm7l4',
       title: 'ROI and Compliance Framing',
+      diagram: 'ROICompliance',
       slides: [
         { heading: 'ROI Anchors', body: 'Time-per-alert reduction (often 50-90% on routine alerts), Tier-1 analyst capacity expansion, MTTR improvement, dwell-time reduction. Always tie to the customer own metrics, not vendor benchmarks. The Forrester study citing 240% ROI is a useful anchor for Google SecOps but should never be the lead number.' },
         { heading: 'EU AI Act', body: 'Risk-based framework. Most security AI use cases sit in limited risk or high risk categories. Key obligations: risk management systems, data governance, transparency, human oversight, robustness, and conformity assessment for high-risk systems. SEs should be able to discuss this at a basic level.' },
@@ -52,6 +55,7 @@ const m7: CourseModule = {
     {
       id: 'm7l5',
       title: 'Customer Archetypes: EXPAND, DISPLACE, WIN',
+      diagram: 'CustomerArchetypes',
       slides: [
         { heading: 'Why Archetypes Matter', body: 'The same pitch delivered to an underutilized SecOps customer and a security-mature Microsoft shop will land differently — or fail completely. Matching motion to archetype is the difference between a 2-week free trial close and an 18-month stalled deal. Three archetypes cover the majority of agentic security opportunities in 2026. Identify which archetype before the first call and adjust discovery, demo, and objection priorities accordingly.' },
         { heading: 'EXPAND — Underutilized SecOps Customer', body: 'Who they are: already paying for Google SecOps but using less than half the capability, often stuck on legacy SOAR playbooks, low Gemini-in-SecOps adoption, separate IAM and SOC teams. Motion: lead with a quick win — demonstrate TIN on their own data, show the before/after on a real case, then upsell to Enterprise Plus and Security Tokens. Bridge to Gemini Enterprise as the longer strategic conversation. Key signals: maintenance SOAR playbooks still running, analysts not using the Gemini features, SOC and enterprise AI initiatives living in separate silos. Typical close: 4-8 weeks to expand, 12 months to platform conversation.' },
@@ -63,6 +67,7 @@ const m7: CourseModule = {
     {
       id: 'm7l6',
       title: 'SE Prompting Playbook',
+      diagram: 'SEPromptingPlaybook',
       slides: [
         { heading: 'For RFP Responses', body: 'Template: "You are a senior security architect responding to RFP requirements. For each requirement below, provide: (1) direct answer (yes / partial / no / n-a), (2) capability description in customer-facing language, (3) specific product features that satisfy the requirement, (4) any caveats. Format as a table. Source material: [paste capability docs]. Requirements: [paste requirements list]."' },
         { heading: 'For Discovery Prep', body: 'Template: "You are preparing me for a discovery call with [company name]. Based on this LinkedIn or public profile or recent news [paste source material], generate: (1) likely current security stack, (2) probable AI maturity level, (3) the three highest-probability pain points, (4) five discovery questions tailored to surface them, (5) two likely objections to anticipate."' },

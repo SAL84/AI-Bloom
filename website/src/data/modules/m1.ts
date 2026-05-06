@@ -39,6 +39,7 @@ const m1: CourseModule = {
     {
       id: 'm1l4',
       title: 'Base Rates: Why "99% Accurate" Can Still Drown You',
+      diagram: 'BaseRate',
       slides: [
         { heading: 'The Question Every SE Gets Wrong', body: 'A customer asks: "What is your detection accuracy?" The wrong answer is a number. The right answer is a question back: "What is the base rate of the threat in your environment?" Accuracy without base rate is meaningless — and this is one of the most counterintuitive facts in all of security AI.' },
         { heading: 'The Math That Changes Everything', body: 'Imagine a phishing detector that is 99.9% accurate. Your customer receives 100,000 emails per day. Assume 1 in 1,000 is actually a phishing attempt — that is 100 real threats. The detector catches 99 of them (good). But it also flags 0.1% of the 99,900 legitimate emails as phishing — that is 100 false positives. Result: for every real phishing email caught, there is one false alarm. Now shrink the base rate: if only 1 in 10,000 emails is a real threat, the same "99.9% accurate" detector produces 10 false positives for every true positive. Accuracy stayed the same. The analyst experience got 10x worse.' },

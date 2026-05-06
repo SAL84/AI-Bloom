@@ -39,6 +39,7 @@ const m5: CourseModule = {
     {
       id: 'm5l4',
       title: 'How Defense Reframes',
+      diagram: 'DefenseReframing',
       slides: [
         { heading: 'Speed Over Perfection', body: 'When attackers automate, defenders must too. The traditional review-every-alert model breaks when alert volume scales with attacker automation. AI-assisted triage is not a luxury — it is table stakes for keeping pace.' },
         { heading: 'AIBOM and Agent Identity', body: 'Customers increasingly need to inventory AI systems, models, training data sources, MCP connections, and agent privileges. Emerging requirement, especially under frameworks like the EU AI Act and NIST AI RMF.' },

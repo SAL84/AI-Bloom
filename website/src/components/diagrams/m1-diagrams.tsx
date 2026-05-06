@@ -42,6 +42,43 @@ export const LearningParadigmsDiagram = () => (
   </DiagramFrame>
 );
 
+export const BaseRateDiagram = () => (
+  <DiagramFrame viewBox="0 0 800 460" caption="Base rate fallacy: even 99% accuracy floods the SOC when prevalence is low">
+    <text x="400" y="30" textAnchor="middle" fill={COLORS.slate900} fontSize="14" fontWeight="700">100,000 files scanned · 0.1% actual malware (100 files) · 99% accurate detector</text>
+    {/* Confusion matrix */}
+    <rect x="60" y="60" width="680" height="50" rx="0" fill={COLORS.slate100} />
+    <text x="340" y="90" textAnchor="middle" fill={COLORS.slate700} fontSize="12" fontWeight="700">Actual Malware</text>
+    <text x="620" y="90" textAnchor="middle" fill={COLORS.slate700} fontSize="12" fontWeight="700">Actually Clean</text>
+    <rect x="60" y="110" width="680" height="90" rx="0" fill={COLORS.white} stroke={COLORS.slate300} strokeWidth="1" />
+    <rect x="60" y="200" width="680" height="90" rx="0" fill={COLORS.white} stroke={COLORS.slate300} strokeWidth="1" />
+    <line x1="480" y1="60" x2="480" y2="290" stroke={COLORS.slate300} strokeWidth="1" />
+    <text x="140" y="148" textAnchor="middle" fill={COLORS.slate700} fontSize="12" fontWeight="600">Flagged</text>
+    <text x="140" y="238" textAnchor="middle" fill={COLORS.slate700} fontSize="12" fontWeight="600">Not Flagged</text>
+    {/* TP */}
+    <rect x="200" y="118" width="260" height="74" rx="6" fill={COLORS.emerald} />
+    <text x="330" y="152" textAnchor="middle" fill={COLORS.white} fontSize="22" fontWeight="700">99</text>
+    <text x="330" y="175" textAnchor="middle" fill={COLORS.white} fontSize="11">True Positives ✓</text>
+    {/* FP */}
+    <rect x="490" y="118" width="230" height="74" rx="6" fill={COLORS.red} />
+    <text x="605" y="152" textAnchor="middle" fill={COLORS.white} fontSize="22" fontWeight="700">999</text>
+    <text x="605" y="175" textAnchor="middle" fill={COLORS.white} fontSize="11">False Positives ✗</text>
+    {/* FN */}
+    <rect x="200" y="208" width="260" height="74" rx="6" fill="#fef2f2" stroke={COLORS.red} strokeWidth="1.5" />
+    <text x="330" y="242" textAnchor="middle" fill={COLORS.slate700} fontSize="22" fontWeight="700">1</text>
+    <text x="330" y="265" textAnchor="middle" fill={COLORS.slate500} fontSize="11">False Negative</text>
+    {/* TN */}
+    <rect x="490" y="208" width="230" height="74" rx="6" fill={COLORS.blueLight} />
+    <text x="605" y="242" textAnchor="middle" fill={COLORS.slate700} fontSize="22" fontWeight="700">98,901</text>
+    <text x="605" y="265" textAnchor="middle" fill={COLORS.slate700} fontSize="11">True Negatives ✓</text>
+    {/* Key insight */}
+    <rect x="60" y="305" width="680" height="60" rx="8" fill={COLORS.amber} />
+    <text x="400" y="332" textAnchor="middle" fill={COLORS.white} fontSize="14" fontWeight="700">For every real threat caught, the SOC gets 10× more false positives</text>
+    <text x="400" y="353" textAnchor="middle" fill={COLORS.white} fontSize="11">Alert fatigue is not a workflow problem — it is a base rate problem</text>
+    <text x="400" y="395" textAnchor="middle" fill={COLORS.slate700} fontSize="12">Precision (of alarms) = 99 / (99 + 999) = <tspan fontWeight="700">9%</tspan>  ·  Improving accuracy to 99.9% gives Precision = <tspan fontWeight="700">50%</tspan></text>
+    <text x="400" y="445" textAnchor="middle" fill={COLORS.slate500} fontSize="11" fontStyle="italic">Sales implication: higher detection accuracy alone does not solve alert fatigue — you also need to raise prevalence by focusing on high-risk signals</text>
+  </DiagramFrame>
+);
+
 export const NeuralNetDiagram = () => {
   const layers = [4, 6, 6, 3];
   const w = 700, h = 320, padX = 80;
