@@ -50,7 +50,7 @@ const m7: CourseModule = {
       ]
     },
     {
-      id: 'm7l6',
+      id: 'm7l5',
       title: 'Customer Archetypes: EXPAND, DISPLACE, WIN',
       slides: [
         { heading: 'Why Archetypes Matter', body: 'The same pitch delivered to an underutilized SecOps customer and a security-mature Microsoft shop will land differently — or fail completely. Matching motion to archetype is the difference between a 2-week free trial close and an 18-month stalled deal. Three archetypes cover the majority of agentic security opportunities in 2026. Identify which archetype before the first call and adjust discovery, demo, and objection priorities accordingly.' },
@@ -61,7 +61,7 @@ const m7: CourseModule = {
       ]
     },
     {
-      id: 'm7l5',
+      id: 'm7l6',
       title: 'SE Prompting Playbook',
       slides: [
         { heading: 'For RFP Responses', body: 'Template: "You are a senior security architect responding to RFP requirements. For each requirement below, provide: (1) direct answer (yes / partial / no / n-a), (2) capability description in customer-facing language, (3) specific product features that satisfy the requirement, (4) any caveats. Format as a table. Source material: [paste capability docs]. Requirements: [paste requirements list]."' },

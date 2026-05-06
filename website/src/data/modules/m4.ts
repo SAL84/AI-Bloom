@@ -85,9 +85,14 @@ const m4: CourseModule = {
     }
   ],
   quiz: [
+    { q: 'What is the core positioning shift when selling Google SecOps vs. a legacy SIEM?', options: ['Lower price per GB of data ingested', 'Google Cloud as the agent control plane — the customer is buying an operating model change, not a product swap', 'More connectors out of the box', 'A faster query engine'], correct: 1 },
+    { q: 'In a modern SOC AI architecture, what sits above the classical ML detection layer?', options: ['A second rules engine', 'GenAI for narrative, summarization, and reasoning over the ML signals', 'A SOAR playbook', 'A compliance dashboard'], correct: 1 },
     { q: 'A vendor claims "fully AI-powered detection." Best follow-up question:', options: ['How big is your model?', 'Which detections are AI-driven, and what is your evaluation methodology?', 'What language is it written in?', 'How much GPU does it use?'], correct: 1 },
+    { q: 'What makes NHI (non-human identity) a 2026 priority area in identity security?', options: ['Service accounts and API keys are excluded from existing ITDR coverage but carry high lateral movement risk', 'Human accounts are now fully protected', 'NHI refers to a new compliance standard', 'All identity systems now use biometrics'], correct: 0 },
     { q: 'Where are autonomous AI agents producing the largest current wins in the SOC?', options: ['Strategic threat modeling', 'High-volume, low-judgment work like phishing triage and IOC enrichment', 'Replacing CISOs', 'Compliance audits'], correct: 1 },
-    { q: 'In a modern XDR, the GenAI layer typically:', options: ['Replaces all ML detection', 'Sits on top of classical ML, translating signal into narratives and recommendations', 'Does the actual malware classification', 'Is purely cosmetic'], correct: 1 }
+    { q: 'What changes most when AI is applied to threat hunting?', options: ['Threat actors stop attacking', 'Steps 2-4 (query generation, result evaluation, pivoting) that took 2-4 hours of senior analyst time now take minutes and can run in parallel', 'MITRE ATT&CK is replaced', 'Hunting becomes fully automated with no analyst input'], correct: 1 },
+    { q: 'In a modern XDR, the GenAI layer typically:', options: ['Replaces all ML detection', 'Sits on top of classical ML, translating signal into narratives and recommendations', 'Does the actual malware classification', 'Is purely cosmetic'], correct: 1 },
+    { q: 'Which three architectural controls answer the "our data is too sensitive" CISO objection?', options: ['Firewall, VPN, and MFA', 'VPC Service Controls, Customer-Managed Encryption Keys, and data residency', 'SOC 2, ISO 27001, and GDPR', 'Rate limiting, DLP, and WAF'], correct: 1 }
   ]
 };
 
