@@ -219,6 +219,96 @@ export const SkillsPluginsDiagram = () => (
   </DiagramFrame>
 );
 
+export const PhishingTriageDiagram = () => (
+  <DiagramFrame viewBox="0 0 800 580" caption="Phishing triage walkthrough — each step activates a distinct M3 architectural concept">
+    <defs>
+      <marker id="arrowPT" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M 0 0 L 10 0 L 5 10 z" fill={COLORS.slate400} />
+      </marker>
+      <marker id="arrowPTr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill={COLORS.slate400} />
+      </marker>
+    </defs>
+
+    {/* Alert source */}
+    <rect x="240" y="12" width="320" height="42" rx="7" fill={COLORS.slate700} />
+    <text x="400" y="30" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">Google SecOps: Phishing Alert Fires</text>
+    <text x="400" y="46" textAnchor="middle" fill={COLORS.slate300} fontSize="10">suspicious URL · attachment hash · email body</text>
+    <line x1="400" y1="54" x2="400" y2="72" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPT)" />
+
+    {/* ORCHESTRATOR */}
+    <rect x="220" y="72" width="360" height="52" rx="8" fill={COLORS.blue} />
+    <text x="400" y="93" textAnchor="middle" fill={COLORS.white} fontSize="13" fontWeight="700">Orchestrator Agent</text>
+    <text x="400" y="111" textAnchor="middle" fill={COLORS.white} fontSize="10" opacity="0.9">receives alert · plans workflow · governs subagents</text>
+    <rect x="595" y="82" width="110" height="22" rx="11" fill={COLORS.blue} opacity="0.25" stroke={COLORS.blue} strokeWidth="1" />
+    <text x="650" y="97" textAnchor="middle" fill={COLORS.blue} fontSize="9" fontWeight="700">ORCHESTRATOR</text>
+    <line x1="400" y1="124" x2="400" y2="140" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPT)" />
+
+    {/* INPUT HOOK band */}
+    <rect x="40" y="140" width="720" height="34" rx="6" fill={COLORS.amber} />
+    <text x="400" y="153" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">① INPUT HOOK</text>
+    <text x="400" y="167" textAnchor="middle" fill={COLORS.white} fontSize="10">strip injection payloads from email body before it enters model context</text>
+    <line x1="400" y1="174" x2="400" y2="190" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPT)" />
+
+    {/* SUBAGENT */}
+    <rect x="220" y="190" width="360" height="55" rx="8" fill={COLORS.cyan} />
+    <text x="400" y="212" textAnchor="middle" fill={COLORS.white} fontSize="13" fontWeight="700">IOC Enrichment Subagent</text>
+    <text x="400" y="230" textAnchor="middle" fill={COLORS.white} fontSize="10" opacity="0.9">scope: read-only GTI + VirusTotal · no write access · isolated context</text>
+    <rect x="595" y="200" width="90" height="22" rx="11" fill={COLORS.cyan} opacity="0.25" stroke={COLORS.cyan} strokeWidth="1" />
+    <text x="640" y="215" textAnchor="middle" fill={COLORS.cyan} fontSize="9" fontWeight="700">SUBAGENT</text>
+
+    {/* Lines from subagent to skills */}
+    <line x1="280" y1="245" x2="175" y2="285" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPTr)" />
+    <line x1="520" y1="245" x2="625" y2="285" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPTr)" />
+
+    {/* Skill 1: gtl_lookup */}
+    <rect x="40" y="285" width="230" height="70" rx="8" fill={COLORS.white} stroke={COLORS.emerald} strokeWidth="2" />
+    <rect x="40" y="285" width="230" height="28" rx="8" fill={COLORS.emerald} />
+    <text x="155" y="304" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">SKILL: gtl_lookup</text>
+    <text x="155" y="326" textAnchor="middle" fill={COLORS.slate700} fontSize="10">MCP → Mandiant GTI</text>
+    <text x="155" y="342" textAnchor="middle" fill={COLORS.slate500} fontSize="10">URL verdict · actor attribution · campaign</text>
+    <rect x="95" y="273" width="55" height="18" rx="9" fill={COLORS.emerald} opacity="0.2" stroke={COLORS.emerald} strokeWidth="1" />
+    <text x="122" y="285" textAnchor="middle" fill={COLORS.emerald} fontSize="8" fontWeight="700">SKILL</text>
+
+    {/* Skill 2: vt_scan */}
+    <rect x="530" y="285" width="230" height="70" rx="8" fill={COLORS.white} stroke={COLORS.emerald} strokeWidth="2" />
+    <rect x="530" y="285" width="230" height="28" rx="8" fill={COLORS.emerald} />
+    <text x="645" y="304" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">SKILL: vt_scan</text>
+    <text x="645" y="326" textAnchor="middle" fill={COLORS.slate700} fontSize="10">MCP → VirusTotal</text>
+    <text x="645" y="342" textAnchor="middle" fill={COLORS.slate500} fontSize="10">hash scan · 70+ engine results</text>
+    <rect x="620" y="273" width="55" height="18" rx="9" fill={COLORS.emerald} opacity="0.2" stroke={COLORS.emerald} strokeWidth="1" />
+    <text x="647" y="285" textAnchor="middle" fill={COLORS.emerald} fontSize="8" fontWeight="700">SKILL</text>
+
+    {/* Lines back to orchestrator synthesis */}
+    <line x1="175" y1="355" x2="310" y2="393" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPTr)" />
+    <line x1="625" y1="355" x2="490" y2="393" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPTr)" />
+
+    {/* Orchestrator synthesizes */}
+    <rect x="220" y="393" width="360" height="42" rx="8" fill={COLORS.white} stroke={COLORS.blue} strokeWidth="2" />
+    <text x="400" y="412" textAnchor="middle" fill={COLORS.slate900} fontSize="12" fontWeight="700">Orchestrator synthesizes findings</text>
+    <text x="400" y="428" textAnchor="middle" fill={COLORS.blue} fontSize="11" fontWeight="700">→ Recommends: Isolate Host</text>
+    <line x1="400" y1="435" x2="400" y2="451" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPT)" />
+
+    {/* ACTION HOOK band */}
+    <rect x="40" y="451" width="720" height="34" rx="6" fill={COLORS.amber} />
+    <text x="400" y="464" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">② ACTION HOOK</text>
+    <text x="400" y="478" textAnchor="middle" fill={COLORS.white} fontSize="10">pause execution · notify on-call analyst · wait for approval before tool fires</text>
+    <line x1="400" y1="485" x2="400" y2="501" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPT)" />
+
+    {/* Analyst approval + Audit hook side by side */}
+    <rect x="80" y="501" width="260" height="46" rx="8" fill={COLORS.white} stroke={COLORS.emerald} strokeWidth="2" />
+    <text x="210" y="521" textAnchor="middle" fill={COLORS.slate900} fontSize="11" fontWeight="700">Analyst: APPROVE</text>
+    <text x="210" y="537" textAnchor="middle" fill={COLORS.slate500} fontSize="10">host isolation executes</text>
+
+    {/* AUDIT HOOK */}
+    <rect x="460" y="501" width="260" height="46" rx="8" fill={COLORS.amber} opacity="0.85" />
+    <text x="590" y="519" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">③ AUDIT HOOK</text>
+    <text x="590" y="535" textAnchor="middle" fill={COLORS.white} fontSize="10">immutable trace → Agent Security Dashboard</text>
+
+    <text x="400" y="572" textAnchor="middle" fill={COLORS.slate500} fontSize="10" fontStyle="italic">Every concept plays a distinct role — none is interchangeable with another</text>
+  </DiagramFrame>
+);
+
 export const SubagentsDiagram = () => (
   <DiagramFrame viewBox="0 0 800 400" caption="Subagents get scoped goals and explicit tool grants — never inherited privileges from the orchestrator">
     <rect x="290" y="30" width="220" height="60" rx="10" fill={COLORS.amber} />

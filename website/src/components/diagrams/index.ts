@@ -1,7 +1,7 @@
 import React from 'react';
 import { NestedAIDiagram, BaseRateDiagram, LearningParadigmsDiagram, NeuralNetDiagram } from './m1-diagrams';
 import { TokenizationDiagram, EmbeddingsDiagram, RAGFlowDiagram, FTvsPromptingDiagram, HallucinationMitigationDiagram } from './m2-diagrams';
-import { AIStackDiagram, MCPDiagram, AgentTopologyDiagram, AutonomyLevelsDiagram, A2AvsMCPDiagram, SkillsPluginsDiagram, SubagentsDiagram, HooksDiagram } from './m3-diagrams';
+import { AIStackDiagram, MCPDiagram, AgentTopologyDiagram, AutonomyLevelsDiagram, A2AvsMCPDiagram, SkillsPluginsDiagram, SubagentsDiagram, HooksDiagram, PhishingTriageDiagram } from './m3-diagrams';
 import { SOCArchDiagram, PromptInjectionDiagram, AgentAttackSurfaceDiagram, EDRBehavioralDiagram, EmailIdentityDiagram, AIAttackAccelerationDiagram, SOAREvolutionDiagram, SIEMXDRDiagram } from './m4-diagrams';
 import { GoogleStackDiagram, GoogleSecOpsDiagram, SecOpsAgentsDiagram, CompetitiveQuadrantDiagram, DiscoveryFunnelDiagram } from './m5-diagrams';
 import { SOCCopilotsDiagram, ThreatIntelHuntingDiagram, DataGovernanceDiagram, DefenseReframingDiagram } from './soc-ops-diagrams';
@@ -26,6 +26,7 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   SkillsPlugins: SkillsPluginsDiagram,
   Subagents: SubagentsDiagram,
   Hooks: HooksDiagram,
+  PhishingTriage: PhishingTriageDiagram,
   SOCArch: SOCArchDiagram,
   EDRBehavioral: EDRBehavioralDiagram,
   EmailIdentity: EmailIdentityDiagram,
