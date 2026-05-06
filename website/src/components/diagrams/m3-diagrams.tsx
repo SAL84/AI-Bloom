@@ -132,26 +132,90 @@ export const AutonomyLevelsDiagram = () => {
 };
 
 export const SkillsPluginsDiagram = () => (
-  <DiagramFrame viewBox="0 0 800 400" caption="Skills and plugins are the capability layer — the agent knows what it can call, not how it is implemented">
-    <circle cx="400" cy="180" r="55" fill={COLORS.blue} />
-    <text x="400" y="176" textAnchor="middle" fill={COLORS.white} fontSize="14" fontWeight="700">Agent</text>
-    <text x="400" y="194" textAnchor="middle" fill={COLORS.white} fontSize="10">calls by name</text>
+  <DiagramFrame viewBox="0 0 800 440" caption="Plugin → MCP → Skill: the evolution from proprietary chaos to governed, self-describing capabilities">
+    {/* Three columns: Plugin era, MCP layer, Skill layer */}
+    {/* Column headers */}
+    <rect x="40" y="20" width="220" height="36" rx="6" fill={COLORS.slate400} />
+    <text x="150" y="44" textAnchor="middle" fill={COLORS.white} fontSize="13" fontWeight="700">Plugin Era (2023)</text>
+    <rect x="295" y="20" width="210" height="36" rx="6" fill={COLORS.blue} />
+    <text x="400" y="44" textAnchor="middle" fill={COLORS.white} fontSize="13" fontWeight="700">MCP Standard</text>
+    <rect x="540" y="20" width="220" height="36" rx="6" fill={COLORS.emerald} />
+    <text x="650" y="44" textAnchor="middle" fill={COLORS.white} fontSize="13" fontWeight="700">Skill (what agents call)</text>
+
+    {/* Plugin column */}
     {[
-      { x: 100, y: 70, label: 'Built-in Tools', sub: 'Code exec · File I/O · Web', color: COLORS.cyan },
-      { x: 100, y: 220, label: 'MCP Tools', sub: 'External servers · SecOps · GTI', color: COLORS.emerald },
-      { x: 560, y: 70, label: 'API Functions', sub: 'REST · GraphQL · Webhooks', color: '#fb923c' },
-      { x: 560, y: 220, label: 'Agent Skills', sub: 'Named capability packages', color: COLORS.amber }
-    ].map((s, i) => (
+      { label: 'ChatGPT plugin', color: COLORS.slate300 },
+      { label: 'VS Code extension', color: COLORS.slate300 },
+      { label: 'Custom API wrapper', color: COLORS.slate300 }
+    ].map((p, i) => (
       <g key={i}>
-        <rect x={s.x} y={s.y} width="200" height="70" rx="8" fill={COLORS.white} stroke={s.color} strokeWidth="2" />
-        <text x={s.x + 100} y={s.y + 28} textAnchor="middle" fill={COLORS.slate900} fontSize="13" fontWeight="700">{s.label}</text>
-        <text x={s.x + 100} y={s.y + 50} textAnchor="middle" fill={COLORS.slate500} fontSize="10">{s.sub}</text>
-        <line x1={i < 2 ? s.x + 200 : s.x} y1={s.y + 35} x2={i < 2 ? 345 : 455} y2="180" stroke={s.color} strokeWidth="1.5" strokeDasharray="4 3" />
+        <rect x="60" y={80 + i * 70} width="180" height="50" rx="6" fill={COLORS.white} stroke={COLORS.slate400} strokeWidth="1.5" />
+        <text x="150" y={111 + i * 70} textAnchor="middle" fill={COLORS.slate500} fontSize="11">{p.label}</text>
       </g>
     ))}
-    <rect x="100" y="330" width="600" height="45" rx="8" fill={COLORS.slate100} stroke={COLORS.slate300} strokeWidth="1.5" />
-    <text x="400" y="351" textAnchor="middle" fill={COLORS.slate700} fontSize="12" fontWeight="700">Capability contract: name · description · input schema · output schema</text>
-    <text x="400" y="367" textAnchor="middle" fill={COLORS.slate500} fontSize="10">Agent never sees implementation — only the interface. Swap implementations without changing agent logic.</text>
+    {/* Pain callouts */}
+    <rect x="40" y="300" width="220" height="80" rx="6" fill="#fef2f2" stroke={COLORS.red} strokeWidth="1.5" />
+    <text x="150" y="320" textAnchor="middle" fill={COLORS.red} fontSize="11" fontWeight="700">Problems</text>
+    <text x="150" y="338" textAnchor="middle" fill={COLORS.slate700} fontSize="10">Every ecosystem proprietary</text>
+    <text x="150" y="354" textAnchor="middle" fill={COLORS.slate700} fontSize="10">Auth inconsistent per vendor</text>
+    <text x="150" y="370" textAnchor="middle" fill={COLORS.slate700} fontSize="10">No standard discovery</text>
+
+    {/* Arrow: Plugin → MCP */}
+    <line x1="260" y1="200" x2="295" y2="200" stroke={COLORS.slate400} strokeWidth="2" markerEnd="url(#arrowSP)" />
+    <text x="277" y="192" textAnchor="middle" fill={COLORS.slate500} fontSize="9">evolves</text>
+
+    {/* MCP column */}
+    <rect x="295" y="75" width="210" height="220" rx="8" fill={COLORS.white} stroke={COLORS.blue} strokeWidth="2" />
+    <text x="400" y="105" textAnchor="middle" fill={COLORS.blue} fontSize="12" fontWeight="700">JSON-RPC protocol</text>
+    {[
+      'Standardized discovery',
+      'Auth handled server-side',
+      'Tools · Resources · Prompts',
+      'Any MCP client connects',
+      'Open spec (Anthropic → broad)'
+    ].map((item, i) => (
+      <g key={i}>
+        <circle cx="315" cy={128 + i * 30} r="3" fill={COLORS.blue} />
+        <text x="328" y={133 + i * 30} fill={COLORS.slate700} fontSize="11">{item}</text>
+      </g>
+    ))}
+    <rect x="295" y="300" width="210" height="80" rx="6" fill={COLORS.blueLight} stroke={COLORS.blue} strokeWidth="1.5" />
+    <text x="400" y="320" textAnchor="middle" fill={COLORS.blue} fontSize="11" fontWeight="700">Resolves plugin problems</text>
+    <text x="400" y="338" textAnchor="middle" fill={COLORS.slate700} fontSize="10">One standard, any AI host</text>
+    <text x="400" y="354" textAnchor="middle" fill={COLORS.slate700} fontSize="10">Auditable, governable</text>
+    <text x="400" y="370" textAnchor="middle" fill={COLORS.slate700} fontSize="10">SecOps + GTI MCP servers: live</text>
+
+    {/* Arrow: MCP → Skill */}
+    <line x1="505" y1="200" x2="540" y2="200" stroke={COLORS.slate400} strokeWidth="2" markerEnd="url(#arrowSP)" />
+    <text x="522" y="192" textAnchor="middle" fill={COLORS.slate500} fontSize="9">surfaces as</text>
+
+    {/* Skill column */}
+    <rect x="540" y="75" width="220" height="220" rx="8" fill={COLORS.white} stroke={COLORS.emerald} strokeWidth="2" />
+    <text x="650" y="105" textAnchor="middle" fill={COLORS.emerald} fontSize="12" fontWeight="700">Skill anatomy</text>
+    {[
+      { field: 'name:', val: '"gtl_lookup"' },
+      { field: 'description:', val: 'what it does (agent reads this)' },
+      { field: 'input schema:', val: 'what params it needs' },
+      { field: 'output schema:', val: 'what it returns' },
+      { field: 'auth:', val: 'handled by MCP server' }
+    ].map((f, i) => (
+      <g key={i}>
+        <text x="558" y={130 + i * 30} fill={COLORS.emerald} fontSize="10" fontWeight="700">{f.field}</text>
+        <text x="558" y={145 + i * 30} fill={COLORS.slate600} fontSize="10">{f.val}</text>
+      </g>
+    ))}
+    <rect x="540" y="300" width="220" height="80" rx="6" fill="#ecfdf5" stroke={COLORS.emerald} strokeWidth="1.5" />
+    <text x="650" y="320" textAnchor="middle" fill={COLORS.emerald} fontSize="11" fontWeight="700">SE talking point</text>
+    <text x="650" y="338" textAnchor="middle" fill={COLORS.slate700} fontSize="10">Composable: chain skills</text>
+    <text x="650" y="354" textAnchor="middle" fill={COLORS.slate700} fontSize="10">Governable: grant/revoke per agent</text>
+    <text x="650" y="370" textAnchor="middle" fill={COLORS.slate700} fontSize="10">Self-describing: no hardcoded logic</text>
+
+    <defs>
+      <marker id="arrowSP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill={COLORS.slate400} />
+      </marker>
+    </defs>
+    <text x="400" y="430" textAnchor="middle" fill={COLORS.slate500} fontSize="11" fontStyle="italic">When a prospect says "plugin" — they mean this history. Redirect: MCP is the standard, skills are how agents access it.</text>
   </DiagramFrame>
 );
 
