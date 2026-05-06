@@ -21,8 +21,10 @@ const m7: CourseModule = {
       id: 'm7l2',
       title: 'Demoing Without Overpromising',
       slides: [
-        { heading: 'The Three Don ts', body: '(1) Do not demo on cherry-picked golden alerts — use one the customer brings. (2) Do not hide latency — show real response times. (3) Do not demo agent autonomy without showing the human-approval gates.' },
-        { heading: 'The Honest Demo Script', body: 'Show the agent doing real work. Show where it asks for human input. Show where it makes a wrong call and how you catch it. Counterintuitively, demoing failure modes builds more trust than perfect runs.' }
+        { heading: 'The Three Don\'ts', body: '(1) Do not demo on cherry-picked golden alerts — use one the customer brings. (2) Do not hide latency — show real response times. (3) Do not demo agent autonomy without showing the human-approval gates.' },
+        { heading: 'The Honest Demo Script', body: 'Show the agent doing real work. Show where it asks for human input. Show where it makes a wrong call and how you catch it. Counterintuitively, demoing failure modes builds more trust than perfect runs.' },
+        { heading: 'Pre-Demo Qualification', body: 'Two questions before every demo: (1) What outcome would make this demo successful for you? If the answer is vague, clarify — a demo that ends with "interesting" is a stalled deal. (2) Can you bring a real alert or use case from your environment? Proprietary data often cannot be used, but understanding what they work with daily lets you match the narrative. These questions double as discovery and raise the stakes appropriately — the customer is now a participant, not an audience.' },
+        { heading: 'Reading the Room During Demo', body: 'Engagement signals: they start describing their environment unprompted, they ask "can it handle X" where X is a specific internal workflow, they ask about pricing or deployment. Skepticism signals: arms crossed, checking phone, repeating the word "interesting" without follow-up questions, asking how many customers are in production. Recovery move for skeptics: stop demoing, ask directly — "It seems like I may not be hitting the right use case for you. What would you need to see to believe this was worth a deeper look?" Directness resets the conversation better than continuing through indifference.' }
       ]
     },
     {
