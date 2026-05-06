@@ -38,13 +38,14 @@ const m6: CourseModule = {
     },
     {
       id: 'm6l4',
-      title: 'The Three SecOps Agents',
+      title: 'The Four SecOps Agents',
       diagram: 'SecOpsAgents',
       slides: [
         { heading: 'Triage and Investigation Agent (GA)', body: 'Currently GA in Google SecOps. Per Google, the agent has processed over 5M alerts in its first year and reduced typical 30-minute analyses to roughly 60 seconds on routine cases. This is the agent with the strongest production track record — useful as a lead reference, but pair it with customer-specific stats from your own deployments when you have them.' },
         { heading: 'Threat Hunting Agent (Private Preview)', body: 'Proactive hunting for novel attack patterns and stealthy adversary behaviors that bypass traditional defenses. Generates hypotheses, runs queries against UDM, follows leads, and reports findings. Announced at Cloud Next 26. Positioning angle: shifts hunting from a senior-analyst-only activity to something the broader team can drive.' },
         { heading: 'Detection Engineering Agent (Private Preview)', body: 'Generates and evaluates detection rules. Includes new MCP tools: generate_threat_detection_opportunity, generate_rules, generate_synthetic_events, evaluate_rule_coverage. Currently restricted to private preview. Positioning angle: addresses the chronic detection-engineering bottleneck most SOCs hit at scale.' },
-        { heading: 'Why the Three Together Matter', body: 'These agents collectively cover triage (reactive), hunting (proactive), and detection engineering (preventive) — the three core SOC functions. Most competitors have shipped one agent; Google has shipped or previewed three with distinct charters. That is the differentiated story, not any single statistic.' }
+        { heading: 'Remediation Agent (Announced Cloud Next 26)', body: 'The fourth agent closes the loop from detection to response. Where the Triage agent investigates and the Hunting agent surfaces threats, the Remediation agent takes action — executing response playbooks, coordinating cross-system containment, and closing cases. Announced as part of the Agentic Defense platform at Cloud Next 26. Positioning angle: positions Google as the only vendor with agents covering all four SOC functions end-to-end: triage, hunting, detection engineering, and remediation.' },
+        { heading: 'Why the Four Together Matter', body: 'These agents collectively cover triage (reactive), hunting (proactive), detection engineering (preventive), and remediation (responsive) — the full SOC lifecycle in one platform. Most competitors have shipped one agent; Google has shipped or previewed four with distinct charters and clear handoffs between them. That end-to-end coverage is the differentiated story.' }
       ]
     },
     {
@@ -61,6 +62,17 @@ const m6: CourseModule = {
     },
     {
       id: 'm6l6',
+      title: 'Agentic Defense & Open Security Platform',
+      slides: [
+        { heading: 'What Agentic Defense Is', body: 'Agentic Defense is Google\'s unified cybersecurity platform brand announced at Cloud Next \'26. It combines Google Threat Intelligence, Google SecOps (SIEM + SOAR), and Wiz\'s Cloud and AI Security Platform into one integrated story: detect, prevent, and respond — from code to cloud to runtime, across multicloud, hybrid, and AI environments. The positioning reflects the threat landscape shift: agentic attackers require agentic defenders.' },
+        { heading: 'Google\'s Open-Source Security MCP Servers', body: 'Google released an open-source project on GitHub providing production MCP servers for three surfaces: Google SecOps SIEM (search events, get alerts, look up entities, list rules, get IOC matches), Google SecOps SOAR (case management plus integrations for CrowdStrike, Okta, and dozens of other platforms), and Google Threat Intelligence (23 tools for IOC lookups, threat reports, actor profiles). Any MCP-compatible client connects — Cline, Cursor, Roo Code, or custom applications. Auth is handled server-side; clients never touch credentials directly.' },
+        { heading: 'What This Enables in Practice', body: 'With the MCP servers running, an analyst can: (1) natural-language query SecOps — "find DNS lookup events from host JamesBrownPC in the last 24 hours" — which the agent converts to YARA-L2 and returns UDM events automatically; (2) cross-surface case analysis — take five SOAR cases, pull underlying entities, enrich in GTI, group by campaign, and generate a structured markdown report — all in a single chat session hitting three APIs; (3) use any frontier model (Gemini, or others) as the reasoning layer without changing the security tooling. This is a working demo story, not a roadmap — the GitHub repo is live.' },
+        { heading: 'The SE Positioning Move on Lock-In', body: 'When a customer raises lock-in: "Google\'s MCP server for security is open-source on GitHub. You can connect it to any LLM client — Gemini, GPT, Claude, whatever your organization standardizes on. Auth and API abstraction live server-side. That is not a lock-in architecture — it is the opposite. Competitors\' AI copilots are tightly coupled to their own models and UI. Google\'s approach lets the customer own the AI layer." This is a durable differentiation argument backed by a live artifact they can inspect.' },
+        { heading: 'Reference Stat: UC Riverside', body: 'University of California Riverside is running Google SecOps in production and reported a 90% reduction in incident response time — detection-to-resolution from 20 minutes to under 2 minutes. Use this as the production reference for Agentic Defense discussions, especially with education sector or resource-constrained SOC prospects. Always offer to connect prospects to a customer reference rather than relying solely on published stats.' }
+      ]
+    },
+    {
+      id: 'm6l7',
       title: 'Competitive Landscape',
       diagram: 'CompetitiveQuadrant',
       slides: [
@@ -71,10 +83,10 @@ const m6: CourseModule = {
       ]
     },
     {
-      id: 'm6l7',
+      id: 'm6l8',
       title: 'Talk Tracks',
       slides: [
-        { heading: 'Why Google over Microsoft', body: 'Suggested framing: "Microsoft is excellent if your security center of gravity is M365 and your data lives in Sentinel. Where Google differentiates: Mandiant frontline threat intelligence is the data the rest of the industry consumes. Google SecOps offers 12 months of hot retention at predictable economics, and Google has shipped or previewed three production SecOps agents covering triage, hunting, and detection engineering."' },
+        { heading: 'Why Google over Microsoft', body: 'Suggested framing: "Microsoft is excellent if your security center of gravity is M365 and your data lives in Sentinel. Where Google differentiates: Mandiant frontline threat intelligence is the data the rest of the industry consumes. Google SecOps offers 12 months of hot retention at predictable economics, and Google has shipped or previewed four production SecOps agents covering triage, hunting, detection engineering, and remediation — the full SOC lifecycle."' },
         { heading: 'Is this just AI hype', body: 'Suggested framing: "Fair pushback. The Triage and Investigation agent is in production today — Google reports 5M+ alerts processed in its first year and 30-minute analyses reduced to about a minute. That is a public reference point, not aspirational. Happy to set up a customer reference call to validate against a similar environment."' },
         { heading: 'What about lock-in', body: 'Suggested framing: "Google SecOps uses an open Unified Data Model, supports MCP for agent integrations, and Wiz extends multi-cloud reach. Compared to portfolio-lock plays from competitors, Google is investing in open protocols — A2A is open, MCP is open, agent identity is SPIFFE-based. Lock-in is a fair concern; the architecture specifically addresses it."' },
         { heading: 'Why Talk Tracks Are Suggested, Not Scripted', body: 'Adapt these to your voice and to what you actually know about the prospect. Verbatim recital sounds rehearsed. The point is to internalize the structure: acknowledge the competitor strength, name the Google differentiator with evidence, offer a next step. Same skeleton works for any competitive conversation.' }
@@ -84,6 +96,8 @@ const m6: CourseModule = {
   quiz: [
     { q: "What did Vertex AI evolve into at Cloud Next '26?", options: ['Vertex AI 2.0', 'Gemini Enterprise Agent Platform', 'Google AI Studio', 'Agent Cloud'], correct: 1 },
     { q: 'Which Google SecOps agent is currently GA (not just preview)?', options: ['Threat Hunting Agent', 'Detection Engineering Agent', 'Triage & Investigation Agent', 'None — all are preview'], correct: 2 },
+    { q: 'Agentic Defense combines which three platforms?', options: ['SecOps, ADK, and Gemini', 'Google Threat Intelligence, Google SecOps, and Wiz', 'Chronicle, Siemplify, and VirusTotal', 'SCC, Agent Gateway, and Model Armor'], correct: 1 },
+    { q: 'Google\'s open-source security MCP servers let any MCP client connect to:', options: ['Only Gemini models', 'SecOps SIEM, SecOps SOAR, and Google Threat Intelligence', 'Wiz and SCC only', 'Agent Registry'], correct: 1 },
     { q: 'Google Threat Intelligence is the unification of:', options: ['Chronicle and Siemplify', 'Mandiant and VirusTotal', 'Wiz and SCC', 'Gemini and Vertex'], correct: 1 },
     { q: 'A prospect heavily standardized on M365 and Sentinel asks why Google. Best response:', options: ['Microsoft is bad', 'Lead with Mandiant TI depth, SecOps retention economics, and agentic security leadership — concede the M365 integration ground', 'Refuse to discuss competitors', 'Promise to match every Microsoft feature'], correct: 1 }
   ]
