@@ -220,7 +220,7 @@ export const SkillsPluginsDiagram = () => (
 );
 
 export const PhishingTriageDiagram = () => (
-  <DiagramFrame viewBox="0 0 800 580" caption="Phishing triage walkthrough — each step activates a distinct M3 architectural concept">
+  <DiagramFrame viewBox="0 0 800 600" caption="Phishing triage walkthrough — each step activates a distinct M3 architectural concept">
     <defs>
       <marker id="arrowPT" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="6" markerHeight="6" orient="auto">
         <path d="M 0 0 L 10 0 L 5 10 z" fill={COLORS.slate400} />
@@ -262,50 +262,58 @@ export const PhishingTriageDiagram = () => (
     <line x1="520" y1="245" x2="625" y2="285" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPTr)" />
 
     {/* Skill 1: gtl_lookup */}
-    <rect x="40" y="285" width="230" height="70" rx="8" fill={COLORS.white} stroke={COLORS.emerald} strokeWidth="2" />
-    <rect x="40" y="285" width="230" height="28" rx="8" fill={COLORS.emerald} />
-    <text x="155" y="304" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">SKILL: gtl_lookup</text>
-    <text x="155" y="326" textAnchor="middle" fill={COLORS.slate700} fontSize="10">MCP → Mandiant GTI</text>
-    <text x="155" y="342" textAnchor="middle" fill={COLORS.slate500} fontSize="10">URL verdict · actor attribution · campaign</text>
+    <rect x="40" y="285" width="230" height="55" rx="8" fill={COLORS.white} stroke={COLORS.emerald} strokeWidth="2" />
+    <rect x="40" y="285" width="230" height="24" rx="8" fill={COLORS.emerald} />
+    <text x="155" y="302" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">SKILL: gtl_lookup</text>
+    <text x="155" y="321" textAnchor="middle" fill={COLORS.slate700} fontSize="10">URL verdict · actor attribution · campaign</text>
     <rect x="95" y="273" width="55" height="18" rx="9" fill={COLORS.emerald} opacity="0.2" stroke={COLORS.emerald} strokeWidth="1" />
     <text x="122" y="285" textAnchor="middle" fill={COLORS.emerald} fontSize="8" fontWeight="700">SKILL</text>
+    {/* Connector 1 */}
+    <line x1="155" y1="340" x2="155" y2="355" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPT)" />
+    <rect x="40" y="355" width="230" height="36" rx="6" fill={COLORS.white} stroke="#8b5cf6" strokeWidth="1.5" />
+    <text x="155" y="371" textAnchor="middle" fill="#8b5cf6" fontSize="10" fontWeight="700">CONNECTOR: GTI MCP Server</text>
+    <text x="155" y="384" textAnchor="middle" fill={COLORS.slate500} fontSize="9">auth · API translation → Mandiant GTI</text>
 
     {/* Skill 2: vt_scan */}
-    <rect x="530" y="285" width="230" height="70" rx="8" fill={COLORS.white} stroke={COLORS.emerald} strokeWidth="2" />
-    <rect x="530" y="285" width="230" height="28" rx="8" fill={COLORS.emerald} />
-    <text x="645" y="304" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">SKILL: vt_scan</text>
-    <text x="645" y="326" textAnchor="middle" fill={COLORS.slate700} fontSize="10">MCP → VirusTotal</text>
-    <text x="645" y="342" textAnchor="middle" fill={COLORS.slate500} fontSize="10">hash scan · 70+ engine results</text>
+    <rect x="530" y="285" width="230" height="55" rx="8" fill={COLORS.white} stroke={COLORS.emerald} strokeWidth="2" />
+    <rect x="530" y="285" width="230" height="24" rx="8" fill={COLORS.emerald} />
+    <text x="645" y="302" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">SKILL: vt_scan</text>
+    <text x="645" y="321" textAnchor="middle" fill={COLORS.slate700} fontSize="10">hash scan · 70+ engine results</text>
     <rect x="620" y="273" width="55" height="18" rx="9" fill={COLORS.emerald} opacity="0.2" stroke={COLORS.emerald} strokeWidth="1" />
     <text x="647" y="285" textAnchor="middle" fill={COLORS.emerald} fontSize="8" fontWeight="700">SKILL</text>
+    {/* Connector 2 */}
+    <line x1="645" y1="340" x2="645" y2="355" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPT)" />
+    <rect x="530" y="355" width="230" height="36" rx="6" fill={COLORS.white} stroke="#8b5cf6" strokeWidth="1.5" />
+    <text x="645" y="371" textAnchor="middle" fill="#8b5cf6" fontSize="10" fontWeight="700">CONNECTOR: VT MCP Server</text>
+    <text x="645" y="384" textAnchor="middle" fill={COLORS.slate500} fontSize="9">auth · API translation → VirusTotal</text>
 
     {/* Lines back to orchestrator synthesis */}
-    <line x1="175" y1="355" x2="310" y2="393" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPTr)" />
-    <line x1="625" y1="355" x2="490" y2="393" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPTr)" />
+    <line x1="155" y1="391" x2="310" y2="425" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPTr)" />
+    <line x1="645" y1="391" x2="490" y2="425" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPTr)" />
 
     {/* Orchestrator synthesizes */}
-    <rect x="220" y="393" width="360" height="42" rx="8" fill={COLORS.white} stroke={COLORS.blue} strokeWidth="2" />
-    <text x="400" y="412" textAnchor="middle" fill={COLORS.slate900} fontSize="12" fontWeight="700">Orchestrator synthesizes findings</text>
-    <text x="400" y="428" textAnchor="middle" fill={COLORS.blue} fontSize="11" fontWeight="700">→ Recommends: Isolate Host</text>
-    <line x1="400" y1="435" x2="400" y2="451" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPT)" />
+    <rect x="220" y="425" width="360" height="42" rx="8" fill={COLORS.white} stroke={COLORS.blue} strokeWidth="2" />
+    <text x="400" y="444" textAnchor="middle" fill={COLORS.slate900} fontSize="12" fontWeight="700">Orchestrator synthesizes findings</text>
+    <text x="400" y="460" textAnchor="middle" fill={COLORS.blue} fontSize="11" fontWeight="700">→ Recommends: Isolate Host</text>
+    <line x1="400" y1="467" x2="400" y2="483" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPT)" />
 
     {/* ACTION HOOK band */}
-    <rect x="40" y="451" width="720" height="34" rx="6" fill={COLORS.amber} />
-    <text x="400" y="464" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">② ACTION HOOK</text>
-    <text x="400" y="478" textAnchor="middle" fill={COLORS.white} fontSize="10">pause execution · notify on-call analyst · wait for approval before tool fires</text>
-    <line x1="400" y1="485" x2="400" y2="501" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPT)" />
+    <rect x="40" y="483" width="720" height="34" rx="6" fill={COLORS.amber} />
+    <text x="400" y="496" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">② ACTION HOOK</text>
+    <text x="400" y="510" textAnchor="middle" fill={COLORS.white} fontSize="10">pause execution · notify on-call analyst · wait for approval before tool fires</text>
+    <line x1="400" y1="517" x2="400" y2="530" stroke={COLORS.slate400} strokeWidth="1.5" markerEnd="url(#arrowPT)" />
 
     {/* Analyst approval + Audit hook side by side */}
-    <rect x="80" y="501" width="260" height="46" rx="8" fill={COLORS.white} stroke={COLORS.emerald} strokeWidth="2" />
-    <text x="210" y="521" textAnchor="middle" fill={COLORS.slate900} fontSize="11" fontWeight="700">Analyst: APPROVE</text>
-    <text x="210" y="537" textAnchor="middle" fill={COLORS.slate500} fontSize="10">host isolation executes</text>
+    <rect x="80" y="530" width="260" height="38" rx="8" fill={COLORS.white} stroke={COLORS.emerald} strokeWidth="2" />
+    <text x="210" y="548" textAnchor="middle" fill={COLORS.slate900} fontSize="11" fontWeight="700">Analyst: APPROVE</text>
+    <text x="210" y="562" textAnchor="middle" fill={COLORS.slate500} fontSize="10">host isolation executes</text>
 
     {/* AUDIT HOOK */}
-    <rect x="460" y="501" width="260" height="46" rx="8" fill={COLORS.amber} opacity="0.85" />
-    <text x="590" y="519" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">③ AUDIT HOOK</text>
-    <text x="590" y="535" textAnchor="middle" fill={COLORS.white} fontSize="10">immutable trace → Agent Security Dashboard</text>
+    <rect x="460" y="530" width="260" height="38" rx="8" fill={COLORS.amber} opacity="0.85" />
+    <text x="590" y="548" textAnchor="middle" fill={COLORS.white} fontSize="11" fontWeight="700">③ AUDIT HOOK</text>
+    <text x="590" y="562" textAnchor="middle" fill={COLORS.white} fontSize="10">immutable trace → Agent Security Dashboard</text>
 
-    <text x="400" y="572" textAnchor="middle" fill={COLORS.slate500} fontSize="10" fontStyle="italic">Every concept plays a distinct role — none is interchangeable with another</text>
+    <text x="400" y="590" textAnchor="middle" fill={COLORS.slate500} fontSize="10" fontStyle="italic">Skills define the interface · connectors own the external plumbing · hooks govern the pipeline</text>
   </DiagramFrame>
 );
 
