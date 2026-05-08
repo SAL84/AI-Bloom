@@ -1,6 +1,7 @@
 export interface Slide {
   heading: string;
   body: string;
+  bullets?: string[];
 }
 
 export interface QuizQuestion {

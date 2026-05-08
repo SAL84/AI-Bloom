@@ -69,6 +69,16 @@ export const LessonView = ({ module, lesson, modules, setView, completedLessons,
               <>
                 <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-tight">{slide!.heading}</h2>
                 <p className="text-lg lg:text-xl text-slate-300 leading-relaxed">{slide!.body}</p>
+                {slide!.bullets && (
+                  <ul className="mt-4 space-y-2">
+                    {slide!.bullets.map((b, i) => (
+                      <li key={i} className="flex items-start gap-2 text-lg text-slate-300">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </>
             )}
           </div>
@@ -127,6 +137,16 @@ export const LessonView = ({ module, lesson, modules, setView, completedLessons,
               <h3 className="font-semibold text-slate-900">{s.heading}</h3>
             </div>
             <p className="text-slate-700 leading-relaxed">{s.body}</p>
+            {s.bullets && (
+              <ul className="mt-3 space-y-1.5">
+                {s.bullets.map((b, j) => (
+                  <li key={j} className="flex items-start gap-2 text-slate-700">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
       </div>
