@@ -1,5 +1,5 @@
 import React from 'react';
-import { NestedAIDiagram, BaseRateDiagram, LearningParadigmsDiagram, NeuralNetDiagram } from './m1-diagrams';
+import { AIBasicsOverviewDiagram, NestedAIDiagram, BaseRateDiagram, LearningParadigmsDiagram, NeuralNetDiagram } from './m1-diagrams';
 import { TokenizationDiagram, EmbeddingsDiagram, RAGFlowDiagram, FTvsPromptingDiagram, HallucinationMitigationDiagram } from './m2-diagrams';
 import { AIStackDiagram, MCPDiagram, AgentTopologyDiagram, AutonomyLevelsDiagram, A2AvsMCPDiagram, SkillsPluginsDiagram, SubagentsDiagram, HooksDiagram, PhishingTriageDiagram } from './m3-diagrams';
 import { SOCArchDiagram, PromptInjectionDiagram, AgentAttackSurfaceDiagram, EDRBehavioralDiagram, EmailIdentityDiagram, AIAttackAccelerationDiagram, SOAREvolutionDiagram, SIEMXDRDiagram } from './m4-diagrams';
@@ -9,6 +9,7 @@ import { GoogleAgentInfraDiagram, GTISCCWizDiagram, AgenticDefenseDiagram, TalkT
 import { DemoFrameworkDiagram, ObjectionHandlingDiagram, ROIComplianceDiagram, CustomerArchetypesDiagram, SEPromptingPlaybookDiagram } from './sales-diagrams';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
+  AIBasicsOverview: AIBasicsOverviewDiagram,
   NestedAI: NestedAIDiagram,
   BaseRate: BaseRateDiagram,
   LearningParadigms: LearningParadigmsDiagram,

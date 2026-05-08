@@ -7,6 +7,17 @@ const m1: CourseModule = {
   summary: 'Core concepts in plain language — built for technical SEs who want speed, not hand-holding.',
   lessons: [
     {
+      id: 'm1l0',
+      title: 'The Complete AI Picture',
+      diagram: 'AIBasicsOverview',
+      slides: [
+        { heading: 'The Cognitive Loop', body: 'AI is not magic — it is a loop. Every AI system does the same five things: Perceive (take in data — text, images, sensor feeds, events), Learn (find patterns, adjust weights), Reason (draw conclusions from context), Decide (weigh options and pick the next action), Act (generate output or trigger something in the world). The diagram above shows this cycle. Knowing it lets you cut through any vendor\'s language: ask which of these five steps their product does and how.' },
+        { heading: 'How We Got Here: 70 Years in Five Stops', body: '1950s: Turing proposes machine intelligence; first neural nets conceived. 1980s: expert systems hand-code human rules — first AI winter follows. 2012: AlexNet wins ImageNet; deep learning proven at scale. 2017: "Attention Is All You Need" — the Transformer architecture is published. 2022–now: ChatGPT hits 100M users in two months; Claude, Gemini, Llama follow. The SE implication: customers who say "AI is just hype" are usually referencing a 1980s definition. The Transformer is a qualitative break from everything before it.' },
+        { heading: 'Capability Tiers: Where Products Actually Sit', body: 'Narrow AI (exists today, widely deployed): one task, one domain — superhuman within scope, helpless outside it. Chess engines, spam filters, malware classifiers. Frontier LLMs (today\'s best — Claude, GPT-4, Gemini): trained on one objective but performing across hundreds of domains. No persistent goals or memory. Technically narrow, but blurring the line. AGI (not yet achieved): a machine that reasons, learns, and adapts across any domain at human level — without being retrained per task. Active research goal; no timeline consensus. Superintelligent AI: hypothetical — surpasses human intelligence across every domain. The sales implication: when a customer says "AI" they may mean any tier. Calibrate early.' },
+        { heading: 'The AI Pipeline: What Actually Happens Under the Hood', body: 'Every AI product runs the same pipeline: raw data is collected and cleaned, then used to train (or fine-tune) a model, which is deployed to serve inference — real-time predictions. A feedback loop brings new outcomes back into training. Knowing this exposes where things break: bad data in → bad model out, stale training data → model drift, no feedback loop → the model never improves from production signals. When evaluating any vendor\'s AI claim, ask: where is the feedback loop? If there isn\'t one, it is a frozen snapshot, not a learning system.' }
+      ]
+    },
+    {
       id: 'm1l1',
       title: 'AI vs ML vs DL vs GenAI',
       diagram: 'NestedAI',
