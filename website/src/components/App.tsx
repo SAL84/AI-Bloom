@@ -7,6 +7,7 @@ import { ModuleView } from './course/ModuleView';
 import { LessonView } from './course/LessonView';
 import { QuizView } from './course/QuizView';
 import { GlossaryView } from './course/GlossaryView';
+import { RoadmapView } from './course/RoadmapView';
 import type { View, Progress } from '../types/course';
 
 // ============================================================
@@ -101,13 +102,16 @@ export default function App() {
             <ModuleView module={currentModule} modules={COURSE.modules} setView={setView} completedLessons={completedLessons} quizScores={quizScores} />
           )}
           {view.type === 'lesson' && currentModule && currentLesson && (
-            <LessonView module={currentModule} lesson={currentLesson} modules={COURSE.modules} setView={setView} completedLessons={completedLessons} markComplete={markComplete} />
+            <LessonView key={currentLesson.id} module={currentModule} lesson={currentLesson} modules={COURSE.modules} setView={setView} completedLessons={completedLessons} markComplete={markComplete} />
           )}
           {view.type === 'quiz' && currentModule && (
             <QuizView module={currentModule} modules={COURSE.modules} setView={setView} recordQuizScore={recordQuizScore} />
           )}
           {view.type === 'glossary' && (
             <GlossaryView setView={setView} />
+          )}
+          {view.type === 'roadmap' && (
+            <RoadmapView setView={setView} />
           )}
         </div>
       </main>

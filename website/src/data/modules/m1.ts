@@ -1,6 +1,7 @@
 import type { CourseModule } from '../../types/course';
 import { diagram0a } from '../svgs/diagram0a';
 import { diagram0b } from '../svgs/diagram0b';
+import { diagram1 } from '../svgs/diagram1';
 
 const m1: CourseModule = {
   id: 'm1',
@@ -31,7 +32,8 @@ const m1: CourseModule = {
     {
       id: 'm1l1',
       title: 'AI vs ML vs DL vs GenAI',
-      diagram: 'NestedAI',
+      inlineSvg: diagram1,
+      inlineSvgId: 'd1',
       slides: [
         { heading: 'The Nesting Dolls', body: 'AI is the broadest umbrella — any system that mimics human intelligence. Machine Learning is a subset where systems learn from data instead of being explicitly programmed. Deep Learning is a subset of ML using multi-layer neural networks. Generative AI is a subset of DL focused on producing new content (text, images, code).' },
         { heading: 'Why This Matters in Sales', body: 'Customers conflate these terms constantly. When a prospect says &quot;we want AI,&quot; your follow-up should be: do you mean predictive analytics on existing data (classic ML), pattern recognition in unstructured data (DL), or content/decision generation (GenAI)? Each has different cost, latency, and risk profiles.' },

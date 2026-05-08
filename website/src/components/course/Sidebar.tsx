@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles } from 'lucide-react';
+import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map } from 'lucide-react';
 import type { CourseModule, View } from '../../types/course';
 
 interface SidebarProps {
@@ -76,6 +76,9 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
           <div className="pt-4 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Reference</div>
           <button onClick={() => { setView({ type: 'glossary' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'glossary' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
             <Search className="w-4 h-4" /> Glossary
+          </button>
+          <button onClick={() => { setView({ type: 'roadmap' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'roadmap' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+            <Map className="w-4 h-4" /> Roadmap
           </button>
         </nav>
 

@@ -50,4 +50,5 @@ export type View =
   | { type: 'module'; moduleId: string }
   | { type: 'lesson'; moduleId: string; lessonId: string }
   | { type: 'quiz'; moduleId: string }
-  | { type: 'glossary' };
+  | { type: 'glossary' }
+  | { type: 'roadmap' };

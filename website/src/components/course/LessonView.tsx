@@ -43,7 +43,7 @@ export const LessonView = ({ module, lesson, modules, setView, completedLessons,
   if (slideMode) {
     const totalSlides = (DiagramComponent || hasInlineSvg ? 1 : 0) + lesson.slides.length;
     const isDiagramSlide = (DiagramComponent || hasInlineSvg) && slideIdx === 0;
-    const contentSlideIdx = DiagramComponent ? slideIdx - 1 : slideIdx;
+    const contentSlideIdx = (DiagramComponent || hasInlineSvg) ? slideIdx - 1 : slideIdx;
     const slide = !isDiagramSlide ? lesson.slides[contentSlideIdx] : null;
 
     return (
