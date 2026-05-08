@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle2, FileText, Presentation } from 'lucide-react';
 import type { CourseModule, Lesson, View } from '../../types/course';
 import { DIAGRAM_REGISTRY } from '../diagrams';
+import { InlineSVGDiagram } from '../diagrams/InlineSVGDiagram';
 
 interface LessonViewProps {
   module: CourseModule;
@@ -20,6 +21,7 @@ export const LessonView = ({ module, lesson, modules, setView, completedLessons,
   const moduleIdx = modules.findIndex(m => m.id === module.id);
   const isLast = lessonIdx === module.lessons.length - 1;
   const DiagramComponent = lesson.diagram ? DIAGRAM_REGISTRY[lesson.diagram] : null;
+  const hasInlineSvg = !!lesson.inlineSvg;
 
   const goNext = () => {
     if (!completedLessons[lesson.id]) markComplete(lesson.id);
@@ -39,8 +41,8 @@ export const LessonView = ({ module, lesson, modules, setView, completedLessons,
   };
 
   if (slideMode) {
-    const totalSlides = (DiagramComponent ? 1 : 0) + lesson.slides.length;
-    const isDiagramSlide = DiagramComponent && slideIdx === 0;
+    const totalSlides = (DiagramComponent || hasInlineSvg ? 1 : 0) + lesson.slides.length;
+    const isDiagramSlide = (DiagramComponent || hasInlineSvg) && slideIdx === 0;
     const contentSlideIdx = DiagramComponent ? slideIdx - 1 : slideIdx;
     const slide = !isDiagramSlide ? lesson.slides[contentSlideIdx] : null;
 
@@ -62,7 +64,10 @@ export const LessonView = ({ module, lesson, modules, setView, completedLessons,
               <div>
                 <h2 className="text-2xl lg:text-3xl font-bold mb-4">{lesson.title}</h2>
                 <div className="bg-white rounded-xl p-4">
-                  <DiagramComponent />
+                  {DiagramComponent
+                    ? <DiagramComponent />
+                    : <InlineSVGDiagram svgContent={lesson.inlineSvg!} diagramId={lesson.inlineSvgId ?? lesson.id} />
+                  }
                 </div>
               </div>
             ) : (
@@ -126,6 +131,11 @@ export const LessonView = ({ module, lesson, modules, setView, completedLessons,
       {DiagramComponent && (
         <div className="mb-6">
           <DiagramComponent />
+        </div>
+      )}
+      {hasInlineSvg && (
+        <div className="mb-6">
+          <InlineSVGDiagram svgContent={lesson.inlineSvg!} diagramId={lesson.inlineSvgId ?? lesson.id} />
         </div>
       )}
 

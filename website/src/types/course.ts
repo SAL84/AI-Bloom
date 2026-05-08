@@ -13,7 +13,9 @@ export interface QuizQuestion {
 export interface Lesson {
   id: string;
   title: string;
-  diagram?: string;
+  diagram?: string;    // key in DIAGRAM_REGISTRY (React SVG component)
+  inlineSvg?: string;  // raw SVG string rendered by InlineSVGDiagram
+  inlineSvgId?: string;// short id for arrow marker namespacing
   slides: Slide[];
 }
 

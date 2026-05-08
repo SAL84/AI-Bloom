@@ -1,4 +1,6 @@
 import type { CourseModule } from '../../types/course';
+import { diagram0a } from '../svgs/diagram0a';
+import { diagram0b } from '../svgs/diagram0b';
 
 const m1: CourseModule = {
   id: 'm1',
@@ -7,12 +9,21 @@ const m1: CourseModule = {
   summary: 'Core concepts in plain language — built for technical SEs who want speed, not hand-holding.',
   lessons: [
     {
-      id: 'm1l0',
-      title: 'The Complete AI Picture',
-      diagram: 'AIBasicsOverview',
+      id: 'm1l0a',
+      title: 'What is AI — Definition and the Revolution',
+      inlineSvg: diagram0a,
+      inlineSvgId: 'd0a',
       slides: [
         { heading: 'The Cognitive Loop', body: 'Every AI system does the same five things — this is the loop that underpins every product claim you will encounter:', bullets: ['Perceive — takes in data: text, images, sensor feeds, events', 'Learn — finds patterns in data and adjusts internal weights', 'Reason — draws conclusions by combining knowledge and context', 'Decide — weighs options and chooses the best next action', 'Act — generates output or triggers something in the world'] },
-        { heading: 'How We Got Here: 70 Years in Five Stops', body: 'Customers who say "AI is just hype" are usually referencing a 1980s definition. The Transformer is a qualitative break from everything before it.', bullets: ['1950s: Turing proposes machine intelligence; first neural nets conceived', '1980s: Expert systems hand-code human rules — first AI winter follows', '2012: AlexNet wins ImageNet; deep learning proven at scale', '2017: "Attention Is All You Need" — the Transformer architecture is published', '2022–now: ChatGPT hits 100M users in 2 months; Claude, Gemini, Llama follow'] },
+        { heading: 'How We Got Here: 70 Years in Five Stops', body: 'Customers who say "AI is just hype" are usually referencing a 1980s definition. The Transformer is a qualitative break from everything before it.', bullets: ['1950s: Turing proposes machine intelligence; first neural nets conceived', '1980s: Expert systems hand-code human rules — first AI winter follows', '2012: AlexNet wins ImageNet; deep learning proven at scale', '2017: "Attention Is All You Need" — the Transformer architecture is published', '2022–now: ChatGPT hits 100M users in 2 months; Claude, Gemini, Llama follow'] }
+      ]
+    },
+    {
+      id: 'm1l0b',
+      title: 'AI Capability Tiers and the AI Pipeline',
+      inlineSvg: diagram0b,
+      inlineSvgId: 'd0b',
+      slides: [
         { heading: 'Capability Tiers: Where Products Actually Sit', body: 'When a customer says "AI" they may mean any of these tiers — calibrate early:', bullets: ['Narrow AI (today): one task, one domain — superhuman within scope, helpless outside it. Chess engines, spam filters, malware classifiers.', 'Frontier LLMs (today\'s best — Claude, GPT-4, Gemini): trained on one objective but performing across hundreds of domains. No persistent goals or memory.', 'AGI (not yet achieved): reasons, learns, and adapts across any domain at human level — without retraining per task. No timeline consensus.', 'Superintelligent AI (hypothetical): surpasses human intelligence across every domain. Raises fundamental safety and alignment questions.'] },
         { heading: 'The AI Pipeline: What Actually Happens Under the Hood', body: 'Every AI product runs the same pipeline — knowing it exposes where things break and what vendor claims to probe:', bullets: ['Collect & clean → raw data is gathered and prepared', 'Train → a model learns patterns from the data', 'Deploy → model serves real-time inference', 'Feedback loop → outcomes flow back into future training', 'No feedback loop = a frozen snapshot that never improves from production signals'] }
       ]
