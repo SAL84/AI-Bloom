@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, Users, Code2, Sparkles, Star, ArrowRight, Baby } from 'lucide-react';
+import { Map, Users, Code2, Sparkles, Star, ArrowRight, Baby, FlaskConical, MessageSquare } from 'lucide-react';
 import type { View } from '../../types/course';
 
 interface Props {
@@ -88,6 +88,44 @@ const ITEMS: RoadmapItem[] = [
     textAccent: 'text-blue-600',
     bgAccent: 'bg-blue-50',
     borderAccent: 'border-blue-200',
+  },
+  {
+    status: 'planned',
+    title: 'Deep Dives — Advanced Content for Geeks',
+    subtitle: 'Optional rabbit holes for the technically curious',
+    description:
+      'Optional deep-dive sections attached to existing lessons for learners who want to go further. No hand-holding — papers, math, architecture details, and the reasoning behind design decisions that the fast-pass intentionally skips.',
+    bullets: [
+      'Expandable "Go Deeper" sections inside lessons — hidden by default, opt-in',
+      'Transformer internals: attention heads, positional encoding, KV cache',
+      'Training mechanics: loss functions, gradient descent, backprop intuition',
+      'Security-specific deep dives: embedding attack surfaces, prompt injection mechanics, model extraction',
+      'Links to seminal papers (Attention Is All You Need, InstructGPT, Constitutional AI, etc.)',
+    ],
+    icon: <FlaskConical className="w-6 h-6" />,
+    accent: 'text-rose-700',
+    textAccent: 'text-rose-600',
+    bgAccent: 'bg-rose-50',
+    borderAccent: 'border-rose-200',
+  },
+  {
+    status: 'planned',
+    title: 'AI Chatbot on Diagram Nodes',
+    subtitle: 'Click any SVG node — talk to an AI about it',
+    description:
+      'Replace the static explanation panel on interactive diagrams with a live AI chatbot. Clicking a node opens a conversation — ask follow-up questions, request examples, go deeper, or challenge what you just read. Learning becomes a dialogue, not a tooltip.',
+    bullets: [
+      'Each clickable node seeds the chatbot with its concept and the lesson context',
+      'Ask follow-ups: "Give me a real-world example", "How does this affect a SOC?", "What goes wrong here?"',
+      'Conversation scoped to the course topic — not a general-purpose assistant',
+      'Response streamed inline so the experience feels fast and natural',
+      'Session history kept per lesson so you can pick up where you left off',
+    ],
+    icon: <MessageSquare className="w-6 h-6" />,
+    accent: 'text-cyan-700',
+    textAccent: 'text-cyan-600',
+    bgAccent: 'bg-cyan-50',
+    borderAccent: 'border-cyan-200',
   },
   {
     status: 'planned',
