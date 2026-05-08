@@ -4,7 +4,7 @@ import { DiagramFrame, COLORS } from './shared';
 export const AIBasicsOverviewDiagram = () => (
   <div className="my-4">
     <div className="bg-slate-50 border border-slate-200 rounded-lg p-3">
-      <img src="/diagram0_ai_basics_final_v2.svg" alt="Diagram 0 — The complete basics of AI" className="w-full h-auto" />
+      <img src="/AI-Cybersecurity/diagram0_ai_basics_final_v2.svg" alt="Diagram 0 — The complete basics of AI" className="w-full h-auto" />
     </div>
     <div className="text-xs text-slate-500 mt-1.5 text-center italic">Cognitive loop · AI revolution timeline · capability tiers · real-world AI today · the AI pipeline</div>
   </div>
