@@ -31,6 +31,16 @@ const m1: CourseModule = {
       ]
     },
     {
+      id: 'm1l2',
+      title: 'Learning Paradigms',
+      diagram: 'LearningParadigms',
+      slides: [
+        { heading: 'Supervised Learning', body: 'Model trains on labeled data — &quot;this email is phishing, this one is not.&quot; Accuracy depends on label quality. Most classical security ML (spam filters, malware classifiers) works this way.' },
+        { heading: 'Unsupervised Learning', body: 'Model finds patterns without labels — clustering similar behaviors, detecting anomalies. UEBA and many behavioral analytics features lean here. Strength: catches unknowns. Weakness: high false positive rates without tuning.' },
+        { heading: 'Reinforcement Learning', body: 'Model learns via reward signals from actions taken. Used heavily in agentic systems and post-training of LLMs (RLHF). Less common in shipping security products today, but growing in autonomous response.' }
+      ]
+    },
+    {
       id: 'm1l1',
       title: 'AI vs ML vs DL vs GenAI',
       inlineSvg: diagram1,
@@ -41,16 +51,6 @@ const m1: CourseModule = {
         { heading: 'Deep Learning Domains and the Transformer', body: 'Deep Learning splits into three application domains — all three were supercharged by a single architecture that appeared in 2017.', bullets: ['Natural Language Processing (NLP): text understanding and generation — chatbots, translation, summarisation, and the origin of LLMs', 'Computer Vision: image recognition and object detection — used in malware screenshot analysis, visual phishing detection, and CCTV analytics', 'Robotics and Automation: perception, navigation, and control systems', 'Transformer architecture: the attention mechanism that unified all three domains. Click it in the diagram — it is why everything changed'] },
         { heading: 'LLMs and the Application Layer', body: 'NLP\'s most powerful output is the Large Language Model — a Transformer trained on massive text. From LLMs, four distinct product patterns emerge.', bullets: ['Generative AI: produces text, code, and images on demand — the foundation of copilots and content generation tools', 'Multimodal: processes and generates across text, image, audio, and video simultaneously. Claude, GPT-4o, and Gemini are multimodal', 'Agentic AI: LLM + tools + planning loop — takes sequences of actions to complete multi-step goals autonomously', 'Copilots, classifiers, search: the practical enterprise patterns that sit on top of LLMs and show up in every vendor\'s product pitch'] },
         { heading: 'Why This Matters in Sales', body: 'When a customer says "we want AI," the hierarchy tells you which conversation to have.', bullets: ['"AI" alone is too vague — ask whether they mean classic ML detection, DL-based anomaly detection, or GenAI/LLM capabilities', 'Different layers carry different tradeoffs: cost, latency, explainability, data requirements, and attack surface', 'Not all ML is DL — decision trees, random forests, and SVMs still dominate many security workloads and are often the right answer', 'A vendor claiming "AI-powered" may mean a 10-year-old supervised model or a frontier LLM. The hierarchy gives you the vocabulary to find out which'] }
-      ]
-    },
-    {
-      id: 'm1l2',
-      title: 'Learning Paradigms',
-      diagram: 'LearningParadigms',
-      slides: [
-        { heading: 'Supervised Learning', body: 'Model trains on labeled data — &quot;this email is phishing, this one is not.&quot; Accuracy depends on label quality. Most classical security ML (spam filters, malware classifiers) works this way.' },
-        { heading: 'Unsupervised Learning', body: 'Model finds patterns without labels — clustering similar behaviors, detecting anomalies. UEBA and many behavioral analytics features lean here. Strength: catches unknowns. Weakness: high false positive rates without tuning.' },
-        { heading: 'Reinforcement Learning', body: 'Model learns via reward signals from actions taken. Used heavily in agentic systems and post-training of LLMs (RLHF). Less common in shipping security products today, but growing in autonomous response.' }
       ]
     },
     {
