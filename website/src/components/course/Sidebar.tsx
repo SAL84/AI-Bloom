@@ -1,5 +1,5 @@
-import React from 'react';
-import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map, Library } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map, Library, Lightbulb } from 'lucide-react';
 import type { CourseModule, View } from '../../types/course';
 
 interface SidebarProps {
@@ -13,8 +13,31 @@ interface SidebarProps {
   completedCount: number;
 }
 
+const AI_FACTS = [
+  { label: 'Hot take', text: 'GPT stands for "Generative Pre-trained Transformer." Not "Generally Pretty Terrifying," though both apply depending on the day.' },
+  { label: 'Fun fact', text: 'The attention mechanism in transformers was introduced in 2017. Before that, AI had to read sentences like a toddler — left to right, one word at a time, forgetting the beginning by the end.' },
+  { label: 'Reality check', text: 'LLMs don\'t "know" anything. They\'re very confident pattern-completion machines. Your overconfident colleague is basically a human LLM.' },
+  { label: 'True story', text: 'The term "hallucination" for AI making things up was borrowed from psychology. Turns out the most human thing about AI is its relationship with facts.' },
+  { label: 'Did you know', text: 'A single training run for a frontier model can cost tens of millions of dollars. And it still can\'t reliably count the R\'s in "strawberry."' },
+  { label: 'Perspective', text: 'RAG (Retrieval-Augmented Generation) is essentially giving an AI a cheat sheet during the exam. Somehow this is considered cheating for students but innovation in AI.' },
+  { label: 'Fun fact', text: 'The word "robot" comes from the Czech word "robota," meaning forced labor. We\'ve been worried about this for over 100 years. The robots are still doing the paperwork.' },
+  { label: 'Hot take', text: 'Prompt engineering is the art of asking a very powerful computer the right question. We have spent billions of dollars to create something we have to talk to nicely.' },
+  { label: 'True story', text: 'AI models are trained on internet text, which means they\'ve read more Reddit arguments than any human alive. Make of that what you will.' },
+  { label: 'Reality check', text: 'An "agent" in AI just means a model that can use tools and remember what it did. Congratulations — you\'ve been an agent your whole career.' },
+];
+
 export const Sidebar = ({ open, setOpen, view, setView, modules, completedLessons, totalLessons, completedCount }: SidebarProps) => {
   const pct = totalLessons > 0 ? Math.round((completedCount / totalLessons) * 100) : 0;
+  const [factIndex, setFactIndex] = useState(() => Math.floor(Math.random() * AI_FACTS.length));
+
+  useEffect(() => {
+    if (view.type === 'library') {
+      setFactIndex(Math.floor(Math.random() * AI_FACTS.length));
+    }
+  }, [view.type]);
+
+  const fact = AI_FACTS[factIndex];
+
   return (
     <>
       {open && <div className="lg:hidden fixed inset-0 bg-black/50 z-30" onClick={() => setOpen(false)} />}
@@ -40,7 +63,16 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
           <button onClick={() => { setView({ type: 'library' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'library' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
             <Library className="w-4 h-4" /> Course Library
           </button>
-          {view.type !== 'library' && (
+
+          {view.type === 'library' ? (
+            <div className="mt-6 mx-1 rounded-xl bg-slate-800/60 border border-slate-700 p-4">
+              <div className="flex items-center gap-1.5 mb-2">
+                <Lightbulb className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+                <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider">{fact.label}</span>
+              </div>
+              <p className="text-xs text-slate-300 leading-relaxed">{fact.text}</p>
+            </div>
+          ) : (
             <>
               <button onClick={() => { setView({ type: 'home' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'home' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
                 <BookOpen className="w-4 h-4" /> Course Home
