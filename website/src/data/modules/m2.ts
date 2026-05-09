@@ -1,4 +1,5 @@
 import type { CourseModule } from '../../types/course';
+import { diagram2 } from '../svgs/diagram2';
 
 const m2: CourseModule = {
   id: 'm2',
@@ -6,6 +7,64 @@ const m2: CourseModule = {
   icon: 'brain',
   summary: 'The mechanics behind the magic — tokens, context, embeddings, RAG, fine-tuning, hallucinations.',
   lessons: [
+    {
+      id: 'm2l0',
+      title: 'The LLM Landscape — How It All Fits Together',
+      inlineSvg: diagram2,
+      inlineSvgId: 'd2',
+      slides: [
+        {
+          heading: 'Start With the Map',
+          body: 'Before diving into individual concepts, this diagram gives you the full landscape. Every LLM term you will encounter — and every question a customer will ask — lives somewhere on this map. Knowing where a concept sits tells you its purpose, its limits, and how it connects to everything else.',
+          bullets: [
+            'Left column: how models are built (Pre-training) and used (Inference)',
+            'Centre: what LLMs power — Generative AI, Multimodal, Agentic AI, and other application patterns',
+            'Right column: techniques applied to an existing model — Prompt engineering, RAG, Fine-tuning, RLHF',
+            'Bottom row: the core mechanics inside the model — Context window, Tokenisation, Embeddings, Temperature',
+          ],
+        },
+        {
+          heading: 'Pre-training vs. Inference',
+          body: 'These two phases happen at completely different times and at completely different costs. Pre-training happens once — it is the expensive process where the model learns from hundreds of billions of tokens of text using next-token prediction. Inference happens every time someone uses the model — it is cheaper per call but adds up at scale.',
+          bullets: [
+            'Pre-training cost: tens to hundreds of millions of dollars for frontier models',
+            'Inference cost: fractions of a cent per query — but multiply by millions of daily users',
+            'You cannot change a pre-trained model cheaply — that is why fine-tuning and RAG exist',
+            'When a customer asks "can we train it on our data?" — they almost always mean fine-tuning or RAG, not pre-training from scratch',
+          ],
+        },
+        {
+          heading: 'LLM Application Patterns',
+          body: 'The centre of the diagram shows the four main patterns for building products on top of LLMs. Each has a different capability profile and security implication.',
+          bullets: [
+            'Generative AI: creates text, code, images — the most common pattern; underpins copilots, summarisation, drafting',
+            'Multimodal: processes and generates across text, image, audio, and video — used in document analysis, deepfake detection, video triage',
+            'Agentic AI: LLM + tools + planning loop — the model takes sequences of actions, not just single responses; highest capability, highest risk surface',
+            'Other app patterns: copilots, classifiers, semantic search — often simpler and more predictable than pure generation',
+          ],
+        },
+        {
+          heading: 'Techniques Applied Externally',
+          body: 'The right column shows what you can do to shape or extend a model\'s behaviour without touching its weights. This is where most enterprise use cases live — and where most SE conversations happen.',
+          bullets: [
+            'Prompt engineering: changes what the model sees at runtime — cheapest, fastest, most reversible',
+            'RAG: injects external knowledge at query time — the standard pattern for grounding answers in customer data',
+            'Fine-tuning: retrains the model on domain-specific examples — appropriate when prompt engineering cannot achieve consistent behavior',
+            'RLHF: aligns outputs via human feedback — used during model development, not typically something customers do themselves',
+          ],
+        },
+        {
+          heading: 'Core Mechanics',
+          body: 'The bottom row shows the fundamental mechanics inside every LLM. These come up constantly in technical conversations — understanding them lets you answer the "how does it actually work?" question without overpromising.',
+          bullets: [
+            'Context window: all text the model sees at once — input plus output, measured in tokens; determines what the model can reason over in a single call',
+            'Tokenisation: text is split into model units before processing — affects cost, speed, and how the model handles unusual strings like code or CVE identifiers',
+            'Embeddings: semantic vector representations — the basis for similarity search, RAG retrieval, and anomaly detection',
+            'Temperature and sampling: controls output randomness — low temperature for deterministic outputs (classification, structured extraction), higher for creative tasks',
+          ],
+        },
+      ],
+    },
     {
       id: 'm2l1',
       title: 'Tokens, Context Windows, and Why Size Matters',
