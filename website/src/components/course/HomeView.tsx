@@ -27,7 +27,7 @@ export const HomeView = ({ setView, modules, completedLessons }: HomeViewProps) 
         <ul className="space-y-1.5 text-sm text-slate-700">
           <li className="flex gap-2"><span className="text-blue-600">▸</span> Explain AI/ML/LLM/agent concepts in customer language without hand-waving</li>
           <li className="flex gap-2"><span className="text-blue-600">▸</span> Whiteboard the AI stack — including MCP, A2A, and agent identity</li>
-          <li className="flex gap-2"><span className="text-blue-600">▸</span> Position Google AI and security portfolio against Microsoft, CrowdStrike, and Palo Alto</li>
+          <li className="flex gap-2"><span className="text-blue-600">▸</span> Understand how major security vendors are embedding AI into their products — and what that actually means under the hood</li>
           <li className="flex gap-2"><span className="text-blue-600">▸</span> Run discovery, demos, and objection handling that distinguish you from product-pitchers</li>
           <li className="flex gap-2"><span className="text-blue-600">▸</span> Use AI tools effectively in your own SE workflows</li>
         </ul>
