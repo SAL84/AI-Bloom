@@ -66,6 +66,106 @@ const m2: CourseModule = {
       ],
     },
     {
+      id: 'm2l1',
+      title: 'Tokens, Context Windows, and Why Size Matters',
+      diagram: 'Tokenization',
+      slides: [
+        { heading: 'Tokens, Not Words', body: 'LLMs read and write in tokens — typically 3-4 characters of English text. Cybersecurity might be 2-3 tokens. Pricing, throughput, and limits are all measured in tokens, not words. Rule of thumb: 750 words ≈ 1,000 tokens.' },
+        { heading: 'Tokens for Non-Text Inputs', body: 'Tokens extend beyond text. Images are tokenized as patches — a single 1024×1024 image typically costs hundreds to a few thousand tokens depending on the model. Video is tokenized as frames over time, which is why 30 seconds of video can consume tens of thousands of tokens. Audio is tokenized as discrete sound units. The unit varies, but the principle holds: every modality maps to tokens, every token has a cost.' },
+        { heading: 'Context Windows', body: 'The maximum tokens a model can see at once — input plus output. Modern frontier models offer 200K to 2M+ tokens. But longer context does not equal better answers; models often degrade in the middle of very long contexts (lost in the middle).' },
+        { heading: 'Security Incidents in Token Terms', body: 'Concrete examples for SE conversations: a typical phishing email plus headers ≈ 500-1,500 tokens. A SIEM alert with enrichment ≈ 200-800 tokens. A 10-page incident report ≈ 4,000-6,000 tokens. A 500-page IR engagement document ≈ 200,000+ tokens. A 30-second deepfake video sample for analysis can exceed 50,000 tokens. This is why batch alert analysis, video forensics, and long-document review have very different cost profiles.' },
+        { heading: 'Sales Implication', body: 'When a prospect asks can it analyze our 500-page incident report — yes, technically. But the right answer is often retrieving the relevant slice of the document at query time rather than stuffing everything in the prompt. We will cover that retrieval pattern (RAG) in Lesson 4. This is a credibility marker — push back gently on context-window-as-magic-bullet thinking.' }
+      ]
+    },
+    {
+      id: 'm2l2',
+      title: 'Embeddings and Vector Search',
+      diagram: 'Embeddings',
+      slides: [
+        { heading: 'What Embeddings Are', body: 'Numerical representations of text (or images, code, audio) where semantically similar items end up near each other in high-dimensional space. Each item becomes a vector — a long list of numbers — and similarity is measured by distance between vectors. Phishing email and credential harvesting message cluster together even with no shared words, because their meanings are close.' },
+        { heading: 'Vector Search: Finding Similar Things', body: 'Once content is embedded as vectors, you can ask: what items are closest to this query in vector space? That is vector search — also called semantic search. Unlike keyword search (which matches literal words), it matches meaning. A query for credential theft will surface documents about phishing, password dumps, and token harvesting even when those exact words do not appear.' },
+        { heading: 'Why SEs Care', body: 'Embeddings power semantic search, similarity matching, and a lot of modern security ML. When customers describe wanting to find similar incidents, detect novel variants of known attacks, or surface related threat intel — embeddings are usually the underlying technique. They are also the foundation for the retrieval pattern we cover in the next lesson, so this concept compounds.' }
+      ]
+    },
+    {
+      id: 'm2l3',
+      title: 'RAG: Retrieval-Augmented Generation',
+      diagram: 'RAGFlow',
+      slides: [
+        { heading: 'The Pattern', body: 'Step 1: Embed the user query. Step 2: Find the most relevant chunks from a private knowledge base via vector search. Step 3: Stuff those chunks into the LLM prompt as context. Step 4: Generate an answer grounded in retrieved data.' },
+        { heading: 'Why It Dominates Enterprise', body: 'Cheaper than fine-tuning. Updates instantly when source data changes. Provides citations. Keeps proprietary data out of the base model. For security: lets a SecOps copilot answer about your environment, your runbooks, your past incidents — without retraining anything.' },
+        { heading: 'Where RAG Fails', body: 'If retrieval is bad, generation is bad. Garbage in, garbage out applies. Chunk strategy, embedding model choice, and reranking matter enormously. A common pilot failure is shipping naive RAG and blaming the LLM when retrieval was the actual problem.' }
+      ]
+    },
+    {
+      id: 'm2l4',
+      title: 'Fine-Tuning vs. Prompting',
+      diagram: 'FTvsPrompting',
+      slides: [
+        { heading: 'Prompting', body: 'You change behavior by changing instructions. Cheap, instant, reversible. Modern frontier models follow nuanced prompts well. Should be the default for 80%+ of use cases.' },
+        { heading: 'Fine-Tuning', body: 'You change behavior by further training on examples. Expensive, slower, harder to update. Useful for specialized domains, fixed output formats, or when you need to bake style/tone into the weights themselves.' },
+        { heading: 'The Honest Take', body: 'Most we need a fine-tuned model on our security data requests are actually RAG requests in disguise. Fine-tuning is the right answer when you need behavioral consistency that prompting cannot reliably achieve — far rarer than prospects assume.' }
+      ]
+    },
+    {
+      id: 'm2l5',
+      title: 'Hallucinations: What They Actually Are',
+      diagram: 'HallucinationMitigation',
+      slides: [
+        { heading: "Not Lying", body: "Hallucination is the model producing fluent, confident output that isn't grounded in reality. The model isn't deceiving — it's sampling probable next-tokens, and probable doesn't mean true. This framing matters because customers often anthropomorphize the failure mode." },
+        { heading: 'Mitigation Stack', body: "Grounding (RAG with citations), constrained output formats, retrieval verification, model-as-judge approaches, human-in-the-loop checkpoints. No single technique eliminates hallucinations; defense is layered. The diagram above shows how the layers compose — each catches what the one below missed." },
+        { heading: 'Talk Track for Skeptics', body: "Suggested framing: \"You're right that LLMs hallucinate. That's why every response is grounded in retrieved evidence with citations, outputs are constrained to validated formats, and analyst confirmation stays in the loop for high-impact actions. The system isn't replacing human judgment — it's removing the work that doesn't need human judgment.\"" }
+      ]
+    },
+    {
+      id: 'm2l6',
+      title: 'LLM Infrastructure — How Models Get to Users',
+      sectionLabel: 'Advanced',
+      inlineSvg: diagram2c,
+      inlineSvgId: 'd2c',
+      slides: [
+        {
+          heading: 'Three Layers Between the Model and the User',
+          body: 'A trained model sitting on disk does nothing. Getting it to users reliably — at speed, at scale, and within cost — requires three distinct layers of infrastructure. Each layer solves a different problem, and each adds cost and complexity. Understanding this helps when customers ask why enterprise AI is expensive, or why on-premise deployment is harder than it sounds.',
+          bullets: [
+            'Hardware layer: the physical compute that trains and runs the model',
+            'Optimisation layer: techniques that make models smaller, faster, and cheaper to run',
+            'Serving layer: the infrastructure that gets model responses to users reliably at scale',
+          ],
+        },
+        {
+          heading: 'Hardware — The Physical Compute',
+          body: 'LLMs are computationally intense. The hardware needed to train and run them is specialised, expensive, and in short supply. Most enterprises never own this layer — they rent it through cloud providers. But knowing what it is helps when procurement or IT security asks about the underlying infrastructure.',
+          bullets: [
+            'GPUs and TPUs: the chips that power AI — NVIDIA H100 and A100 for general AI workloads, Google TPUv4 clusters for Google\'s own models',
+            'Distributed training: training splits across many nodes in parallel — a frontier model cannot fit on a single machine, so hundreds or thousands of chips work together',
+            'CUDA and GPU frameworks: software that parallelises matrix operations and makes GPUs useful for AI — most AI training runs on CUDA',
+            'Cloud vs on-premise: AWS, Azure, and GCP provide GPU compute on demand; on-premise means buying or leasing the hardware yourself — higher control, much higher cost and complexity',
+          ],
+        },
+        {
+          heading: 'Optimisation — Making Models Smaller and Cheaper',
+          body: 'Frontier models are too large and slow to run efficiently as-is. A set of techniques compresses and accelerates them without destroying their capability. This layer is what makes it practical to run powerful models at enterprise scale — and it directly affects the cost and latency numbers in any commercial conversation.',
+          bullets: [
+            'Quantisation: reduces model precision to save memory and cost — a model stored in lower numerical precision runs faster and uses less GPU memory with minimal quality loss',
+            'Distillation: a smaller model learns from a larger teacher model — produces a compact model that behaves like the original at a fraction of the size',
+            'Pruning: removes low-impact weights to reduce model size — the model gets leaner without losing most of its capability',
+            'KV caching and speculative decoding: speeds up token generation at inference time — caching avoids recomputing attention for repeated context; speculative decoding predicts multiple tokens ahead to reduce latency',
+          ],
+        },
+        {
+          heading: 'Serving — Getting the Model to Users Reliably',
+          body: 'The serving layer is everything between the optimised model and the end user. It handles traffic, manages cost, and keeps the system running when demand spikes or something goes wrong. For enterprise deployments, this is where SLAs live.',
+          bullets: [
+            'API gateway: rate limiting, authentication, routing, and load balancing — every request to an LLM goes through a gateway that controls access and distributes traffic',
+            'Request batching: groups concurrent requests for GPU efficiency — running multiple requests together is significantly cheaper than running them one at a time',
+            'Autoscaling: scales compute dynamically with demand — adds capacity when traffic spikes, reduces it when idle to control cost',
+            'Model versioning and canary deployments: safe rollout of model updates using canary and blue-green deployment patterns — new model versions go to a small percentage of traffic first before full rollout',
+          ],
+        },
+      ],
+    },
+    {
       id: 'm2l0b',
       title: 'LLM Governance & Safety — When Each Layer Applies',
       inlineSvg: diagram2b,
@@ -119,106 +219,6 @@ const m2: CourseModule = {
             'Human preference eval: humans rank and compare model outputs — the most direct signal for whether the model is actually good, not just technically correct',
             'LLM-as-judge: a model scores and ranks other models\' outputs — scales human evaluation to volumes no human team can cover manually',
             'Eval harnesses: automated regression suites that run on every model update — catches regressions before they reach users',
-          ],
-        },
-      ],
-    },
-    {
-      id: 'm2l1',
-      title: 'Tokens, Context Windows, and Why Size Matters',
-      diagram: 'Tokenization',
-      slides: [
-        { heading: 'Tokens, Not Words', body: 'LLMs read and write in tokens — typically 3-4 characters of English text. Cybersecurity might be 2-3 tokens. Pricing, throughput, and limits are all measured in tokens, not words. Rule of thumb: 750 words ≈ 1,000 tokens.' },
-        { heading: 'Tokens for Non-Text Inputs', body: 'Tokens extend beyond text. Images are tokenized as patches — a single 1024×1024 image typically costs hundreds to a few thousand tokens depending on the model. Video is tokenized as frames over time, which is why 30 seconds of video can consume tens of thousands of tokens. Audio is tokenized as discrete sound units. The unit varies, but the principle holds: every modality maps to tokens, every token has a cost.' },
-        { heading: 'Context Windows', body: 'The maximum tokens a model can see at once — input plus output. Modern frontier models offer 200K to 2M+ tokens. But longer context does not equal better answers; models often degrade in the middle of very long contexts (lost in the middle).' },
-        { heading: 'Security Incidents in Token Terms', body: 'Concrete examples for SE conversations: a typical phishing email plus headers ≈ 500-1,500 tokens. A SIEM alert with enrichment ≈ 200-800 tokens. A 10-page incident report ≈ 4,000-6,000 tokens. A 500-page IR engagement document ≈ 200,000+ tokens. A 30-second deepfake video sample for analysis can exceed 50,000 tokens. This is why batch alert analysis, video forensics, and long-document review have very different cost profiles.' },
-        { heading: 'Sales Implication', body: 'When a prospect asks can it analyze our 500-page incident report — yes, technically. But the right answer is often retrieving the relevant slice of the document at query time rather than stuffing everything in the prompt. We will cover that retrieval pattern (RAG) in Lesson 4. This is a credibility marker — push back gently on context-window-as-magic-bullet thinking.' }
-      ]
-    },
-    {
-      id: 'm2l2',
-      title: 'Embeddings and Vector Search',
-      diagram: 'Embeddings',
-      slides: [
-        { heading: 'What Embeddings Are', body: 'Numerical representations of text (or images, code, audio) where semantically similar items end up near each other in high-dimensional space. Each item becomes a vector — a long list of numbers — and similarity is measured by distance between vectors. Phishing email and credential harvesting message cluster together even with no shared words, because their meanings are close.' },
-        { heading: 'Vector Search: Finding Similar Things', body: 'Once content is embedded as vectors, you can ask: what items are closest to this query in vector space? That is vector search — also called semantic search. Unlike keyword search (which matches literal words), it matches meaning. A query for credential theft will surface documents about phishing, password dumps, and token harvesting even when those exact words do not appear.' },
-        { heading: 'Why SEs Care', body: 'Embeddings power semantic search, similarity matching, and a lot of modern security ML. When customers describe wanting to find similar incidents, detect novel variants of known attacks, or surface related threat intel — embeddings are usually the underlying technique. They are also the foundation for the retrieval pattern we cover in the next lesson, so this concept compounds.' }
-      ]
-    },
-    {
-      id: 'm2l3',
-      title: 'RAG: Retrieval-Augmented Generation',
-      diagram: 'RAGFlow',
-      slides: [
-        { heading: 'The Pattern', body: 'Step 1: Embed the user query. Step 2: Find the most relevant chunks from a private knowledge base via vector search. Step 3: Stuff those chunks into the LLM prompt as context. Step 4: Generate an answer grounded in retrieved data.' },
-        { heading: 'Why It Dominates Enterprise', body: 'Cheaper than fine-tuning. Updates instantly when source data changes. Provides citations. Keeps proprietary data out of the base model. For security: lets a SecOps copilot answer about your environment, your runbooks, your past incidents — without retraining anything.' },
-        { heading: 'Where RAG Fails', body: 'If retrieval is bad, generation is bad. Garbage in, garbage out applies. Chunk strategy, embedding model choice, and reranking matter enormously. A common pilot failure is shipping naive RAG and blaming the LLM when retrieval was the actual problem.' }
-      ]
-    },
-    {
-      id: 'm2l4',
-      title: 'Fine-Tuning vs. Prompting',
-      diagram: 'FTvsPrompting',
-      slides: [
-        { heading: 'Prompting', body: 'You change behavior by changing instructions. Cheap, instant, reversible. Modern frontier models follow nuanced prompts well. Should be the default for 80%+ of use cases.' },
-        { heading: 'Fine-Tuning', body: 'You change behavior by further training on examples. Expensive, slower, harder to update. Useful for specialized domains, fixed output formats, or when you need to bake style/tone into the weights themselves.' },
-        { heading: 'The Honest Take', body: 'Most we need a fine-tuned model on our security data requests are actually RAG requests in disguise. Fine-tuning is the right answer when you need behavioral consistency that prompting cannot reliably achieve — far rarer than prospects assume.' }
-      ]
-    },
-    {
-      id: 'm2l5',
-      title: 'Hallucinations: What They Actually Are',
-      sectionLabel: 'Advanced',
-      diagram: 'HallucinationMitigation',
-      slides: [
-        { heading: "Not Lying", body: "Hallucination is the model producing fluent, confident output that isn't grounded in reality. The model isn't deceiving — it's sampling probable next-tokens, and probable doesn't mean true. This framing matters because customers often anthropomorphize the failure mode." },
-        { heading: 'Mitigation Stack', body: "Grounding (RAG with citations), constrained output formats, retrieval verification, model-as-judge approaches, human-in-the-loop checkpoints. No single technique eliminates hallucinations; defense is layered. The diagram above shows how the layers compose — each catches what the one below missed." },
-        { heading: 'Talk Track for Skeptics', body: "Suggested framing: \"You're right that LLMs hallucinate. That's why every response is grounded in retrieved evidence with citations, outputs are constrained to validated formats, and analyst confirmation stays in the loop for high-impact actions. The system isn't replacing human judgment — it's removing the work that doesn't need human judgment.\"" }
-      ]
-    },
-    {
-      id: 'm2l6',
-      title: 'LLM Infrastructure — How Models Get to Users',
-      inlineSvg: diagram2c,
-      inlineSvgId: 'd2c',
-      slides: [
-        {
-          heading: 'Three Layers Between the Model and the User',
-          body: 'A trained model sitting on disk does nothing. Getting it to users reliably — at speed, at scale, and within cost — requires three distinct layers of infrastructure. Each layer solves a different problem, and each adds cost and complexity. Understanding this helps when customers ask why enterprise AI is expensive, or why on-premise deployment is harder than it sounds.',
-          bullets: [
-            'Hardware layer: the physical compute that trains and runs the model',
-            'Optimisation layer: techniques that make models smaller, faster, and cheaper to run',
-            'Serving layer: the infrastructure that gets model responses to users reliably at scale',
-          ],
-        },
-        {
-          heading: 'Hardware — The Physical Compute',
-          body: 'LLMs are computationally intense. The hardware needed to train and run them is specialised, expensive, and in short supply. Most enterprises never own this layer — they rent it through cloud providers. But knowing what it is helps when procurement or IT security asks about the underlying infrastructure.',
-          bullets: [
-            'GPUs and TPUs: the chips that power AI — NVIDIA H100 and A100 for general AI workloads, Google TPUv4 clusters for Google\'s own models',
-            'Distributed training: training splits across many nodes in parallel — a frontier model cannot fit on a single machine, so hundreds or thousands of chips work together',
-            'CUDA and GPU frameworks: software that parallelises matrix operations and makes GPUs useful for AI — most AI training runs on CUDA',
-            'Cloud vs on-premise: AWS, Azure, and GCP provide GPU compute on demand; on-premise means buying or leasing the hardware yourself — higher control, much higher cost and complexity',
-          ],
-        },
-        {
-          heading: 'Optimisation — Making Models Smaller and Cheaper',
-          body: 'Frontier models are too large and slow to run efficiently as-is. A set of techniques compresses and accelerates them without destroying their capability. This layer is what makes it practical to run powerful models at enterprise scale — and it directly affects the cost and latency numbers in any commercial conversation.',
-          bullets: [
-            'Quantisation: reduces model precision to save memory and cost — a model stored in lower numerical precision runs faster and uses less GPU memory with minimal quality loss',
-            'Distillation: a smaller model learns from a larger teacher model — produces a compact model that behaves like the original at a fraction of the size',
-            'Pruning: removes low-impact weights to reduce model size — the model gets leaner without losing most of its capability',
-            'KV caching and speculative decoding: speeds up token generation at inference time — caching avoids recomputing attention for repeated context; speculative decoding predicts multiple tokens ahead to reduce latency',
-          ],
-        },
-        {
-          heading: 'Serving — Getting the Model to Users Reliably',
-          body: 'The serving layer is everything between the optimised model and the end user. It handles traffic, manages cost, and keeps the system running when demand spikes or something goes wrong. For enterprise deployments, this is where SLAs live.',
-          bullets: [
-            'API gateway: rate limiting, authentication, routing, and load balancing — every request to an LLM goes through a gateway that controls access and distributes traffic',
-            'Request batching: groups concurrent requests for GPU efficiency — running multiple requests together is significantly cheaper than running them one at a time',
-            'Autoscaling: scales compute dynamically with demand — adds capacity when traffic spikes, reduces it when idle to control cost',
-            'Model versioning and canary deployments: safe rollout of model updates using canary and blue-green deployment patterns — new model versions go to a small percentage of traffic first before full rollout',
           ],
         },
       ],
