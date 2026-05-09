@@ -60,9 +60,9 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
         <div className="p-5 border-b border-slate-800">
           <div className="flex items-center gap-2 mb-1">
             <Sparkles className="w-5 h-5 text-blue-400" />
-            <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold">SE Course</span>
+            <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold">{inCourse ? 'SE Course' : 'AI Literacy'}</span>
           </div>
-          <h1 className="text-lg font-bold leading-tight">AI for Cybersecurity Sales Engineers</h1>
+          <h1 className="text-lg font-bold leading-tight">{inCourse ? 'AI for Cybersecurity Sales Engineers' : 'Free Courses for Every Level'}</h1>
         </div>
 
         <nav className="flex-1 p-3 space-y-1">
