@@ -9,6 +9,8 @@ import { QuizView } from './course/QuizView';
 import { GlossaryView } from './course/GlossaryView';
 import { RoadmapView } from './course/RoadmapView';
 import { CourseLibraryView } from './course/CourseLibraryView';
+import { ThemeToggle } from './course/ThemeToggle';
+import type { Theme } from './course/ThemeToggle';
 import type { View, Progress } from '../types/course';
 
 // ============================================================
@@ -40,7 +42,13 @@ const saveProgress = (progress: Progress): void => {
 export default function App() {
   const [view, setView] = useState<View>({ type: 'library' });
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [theme, setThemeState] = useState<Theme>(() => (typeof window !== 'undefined' ? (localStorage.getItem('theme') as Theme) : null) || 'light');
   const mainScrollRef = useRef<HTMLDivElement>(null);
+
+  const setTheme = (t: Theme) => {
+    setThemeState(t);
+    localStorage.setItem('theme', t);
+  };
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
   const [quizScores, setQuizScores] = useState<Record<string, number>>({});
   const [loaded, setLoaded] = useState(false);
@@ -91,7 +99,12 @@ export default function App() {
         completedCount={completedCount}
       />
 
-      <main className="flex-1 min-w-0 flex flex-col">
+      <main className="flex-1 min-w-0 flex flex-col relative" data-theme={theme === 'light' ? undefined : theme}>
+        {/* Theme toggle — fixed top-right, always visible */}
+        <div className="absolute top-4 right-4 z-30">
+          <ThemeToggle theme={theme} setTheme={setTheme} />
+        </div>
+
         <header className="lg:hidden flex items-center justify-between p-4 bg-white border-b border-slate-200 sticky top-0 z-20">
           <button onClick={() => setSidebarOpen(true)} className="p-1.5 rounded hover:bg-slate-100">
             <Menu className="w-5 h-5" />

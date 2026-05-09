@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+/* ============================================================
+   THEMES — override Tailwind v4 CSS color variables per theme
+   Scoped to <main> so the sidebar is never affected
+   ============================================================ */
+
+/* Dark theme */
+main[data-theme="dark"] {
+  --color-white:     #1e293b;
+  --color-slate-50:  #0f172a;
+  --color-slate-100: #1e293b;
+  --color-slate-200: #334155;
+  --color-slate-300: #475569;
+  --color-slate-400: #64748b;
+  --color-slate-500: #94a3b8;
+  --color-slate-600: #94a3b8;
+  --color-slate-700: #cbd5e1;
+  --color-slate-800: #e2e8f0;
+  --color-slate-900: #f8fafc;
+  /* Accent light shades → dark equivalents */
+  --color-blue-50:   #1e2d40;
+  --color-blue-100:  #1e3a5f;
+  --color-cyan-50:   #0c2a33;
+  --color-cyan-100:  #0c3340;
+  --color-emerald-50:#0d2018;
+  --color-violet-50: #1a1030;
+  --color-orange-50: #2a1500;
+  --color-amber-50:  #1f1200;
+  --color-rose-50:   #250d0d;
+}
+
+/* Midnight theme — deep blue-indigo */
+main[data-theme="midnight"] {
+  --color-white:     #0d1b2e;
+  --color-slate-50:  #080f1c;
+  --color-slate-100: #0d1b2e;
+  --color-slate-200: #162540;
+  --color-slate-300: #1e3255;
+  --color-slate-400: #4a7aab;
+  --color-slate-500: #6a9acb;
+  --color-slate-600: #8ab4db;
+  --color-slate-700: #b0cce8;
+  --color-slate-800: #d0e4f5;
+  --color-slate-900: #e8f2fb;
+  /* Accent light shades */
+  --color-blue-50:   #0d1b2e;
+  --color-blue-100:  #162540;
+  --color-cyan-50:   #071824;
+  --color-cyan-100:  #0c2030;
+  --color-emerald-50:#071a14;
+  --color-violet-50: #130d25;
+  --color-orange-50: #1f1208;
+  --color-amber-50:  #1a1005;
+  --color-rose-50:   #1c0a0a;
+}
