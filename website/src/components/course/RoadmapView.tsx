@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, Users, Code2, Sparkles, Star, ArrowRight, Baby, FlaskConical, MessageSquare, Briefcase } from 'lucide-react';
+import { Map, Users, Code2, Sparkles, Star, ArrowRight, Baby, FlaskConical, MessageSquare, Briefcase, BookOpen, Zap } from 'lucide-react';
 import type { View } from '../../types/course';
 
 interface Props {
@@ -33,7 +33,7 @@ const STATUS_STYLE: Record<Status, string> = {
   planned: 'bg-slate-100 text-slate-600 border border-slate-200',
 };
 
-const ITEMS: RoadmapItem[] = [
+const COURSES: RoadmapItem[] = [
   {
     status: 'live',
     title: 'AI for Cybersecurity Sales Engineers',
@@ -55,7 +55,7 @@ const ITEMS: RoadmapItem[] = [
   {
     status: 'building',
     title: 'Building & Transforming Business with AI',
-    subtitle: 'What you need to do — a practitioner\'s playbook',
+    subtitle: "What you need to do — a practitioner's playbook",
     description:
       'A practical course for business leaders, managers, and teams who want to move from AI curiosity to AI action. Covers how to identify real AI opportunities, lead transformation initiatives, manage AI projects, and build the organizational capabilities that make AI stick.',
     bullets: [
@@ -110,6 +110,28 @@ const ITEMS: RoadmapItem[] = [
   },
   {
     status: 'planned',
+    title: 'AI Basics for Kids',
+    subtitle: 'A standalone visual-first website for young learners',
+    description:
+      'A separate, purpose-built website that teaches children how AI works through stories, games, and visual metaphors. No code, no math — just curiosity. Designed for ages 8–14, usable in classrooms or at home.',
+    bullets: [
+      'Separate site with a child-friendly design and navigation',
+      'AI concepts taught through relatable characters and storylines',
+      'Interactive "train your own" mini-games to build intuition',
+      'Parent and teacher guide with discussion prompts',
+      'Covers: what AI is, how it learns, when it makes mistakes, and why fairness matters',
+    ],
+    icon: <Baby className="w-6 h-6" />,
+    accent: 'text-amber-700',
+    textAccent: 'text-amber-600',
+    bgAccent: 'bg-amber-50',
+    borderAccent: 'border-amber-200',
+  },
+];
+
+const FEATURES: RoadmapItem[] = [
+  {
+    status: 'planned',
     title: 'Deep Dives — Advanced Content for Geeks',
     subtitle: 'Optional rabbit holes for the technically curious',
     description:
@@ -146,26 +168,43 @@ const ITEMS: RoadmapItem[] = [
     bgAccent: 'bg-cyan-50',
     borderAccent: 'border-cyan-200',
   },
-  {
-    status: 'planned',
-    title: 'AI Basics for Kids',
-    subtitle: 'A standalone visual-first website for young learners',
-    description:
-      'A separate, purpose-built website that teaches children how AI works through stories, games, and visual metaphors. No code, no math — just curiosity. Designed for ages 8–14, usable in classrooms or at home.',
-    bullets: [
-      'Separate site with a child-friendly design and navigation',
-      'AI concepts taught through relatable characters and storylines',
-      'Interactive "train your own" mini-games to build intuition',
-      'Parent and teacher guide with discussion prompts',
-      'Covers: what AI is, how it learns, when it makes mistakes, and why fairness matters',
-    ],
-    icon: <Baby className="w-6 h-6" />,
-    accent: 'text-amber-700',
-    textAccent: 'text-amber-600',
-    bgAccent: 'bg-amber-50',
-    borderAccent: 'border-amber-200',
-  },
 ];
+
+const RoadmapCard = ({ item, setView }: { item: RoadmapItem; setView: (view: View) => void }) => (
+  <div className={`rounded-xl border ${item.borderAccent} ${item.bgAccent} p-6`}>
+    <div className="flex items-start gap-4">
+      <div className={`flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center ${item.bgAccent} border ${item.borderAccent} ${item.accent}`}>
+        {item.icon}
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 flex-wrap mb-1">
+          <h2 className="font-bold text-slate-900 text-lg leading-tight">{item.title}</h2>
+          <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${STATUS_STYLE[item.status]}`}>
+            {STATUS_LABEL[item.status]}
+          </span>
+        </div>
+        <p className={`text-xs font-medium mb-3 ${item.textAccent}`}>{item.subtitle}</p>
+        <p className="text-slate-700 text-sm leading-relaxed mb-4">{item.description}</p>
+        <ul className="space-y-1.5">
+          {item.bullets.map((b, j) => (
+            <li key={j} className="flex items-start gap-2 text-sm text-slate-600">
+              <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${item.textAccent.replace('text-', 'bg-')}`} />
+              {b}
+            </li>
+          ))}
+        </ul>
+        {item.status === 'live' && (
+          <button
+            onClick={() => setView({ type: 'home' })}
+            className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-900"
+          >
+            Go to course <ArrowRight className="w-4 h-4" />
+          </button>
+        )}
+      </div>
+    </div>
+  </div>
+);
 
 export const RoadmapView = ({ setView }: Props) => {
   return (
@@ -181,45 +220,33 @@ export const RoadmapView = ({ setView }: Props) => {
         </p>
       </div>
 
-      <div className="space-y-6">
-        {ITEMS.map((item, i) => (
-          <div key={i} className={`rounded-xl border ${item.borderAccent} ${item.bgAccent} p-6`}>
-            <div className="flex items-start gap-4">
-              <div className={`flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center ${item.bgAccent} border ${item.borderAccent} ${item.accent}`}>
-                {item.icon}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 flex-wrap mb-1">
-                  <h2 className="font-bold text-slate-900 text-lg leading-tight">{item.title}</h2>
-                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${STATUS_STYLE[item.status]}`}>
-                    {STATUS_LABEL[item.status]}
-                  </span>
-                </div>
-                <p className={`text-xs font-medium mb-3 ${item.textAccent}`}>{item.subtitle}</p>
-                <p className="text-slate-700 text-sm leading-relaxed mb-4">{item.description}</p>
-                <ul className="space-y-1.5">
-                  {item.bullets.map((b, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-slate-600">
-                      <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${item.textAccent.replace('text-', 'bg-')}`} />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-                {item.status === 'live' && (
-                  <button
-                    onClick={() => setView({ type: 'home' })}
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-900"
-                  >
-                    Go to course <ArrowRight className="w-4 h-4" />
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
+      {/* Courses section */}
+      <div className="mb-10">
+        <div className="flex items-center gap-2 mb-4">
+          <BookOpen className="w-4 h-4 text-slate-400" />
+          <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Courses</h2>
+        </div>
+        <div className="space-y-6">
+          {COURSES.map((item, i) => (
+            <RoadmapCard key={i} item={item} setView={setView} />
+          ))}
+        </div>
       </div>
 
-      <div className="mt-10 rounded-xl border border-slate-200 bg-slate-50 p-6 flex items-start gap-4">
+      {/* Features section */}
+      <div className="mb-10">
+        <div className="flex items-center gap-2 mb-4">
+          <Zap className="w-4 h-4 text-slate-400" />
+          <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Platform Features</h2>
+        </div>
+        <div className="space-y-6">
+          {FEATURES.map((item, i) => (
+            <RoadmapCard key={i} item={item} setView={setView} />
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 flex items-start gap-4">
         <Star className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
         <div>
           <p className="text-sm font-semibold text-slate-800 mb-1">Have feedback or a request?</p>

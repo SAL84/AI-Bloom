@@ -8,6 +8,7 @@ import { LessonView } from './course/LessonView';
 import { QuizView } from './course/QuizView';
 import { GlossaryView } from './course/GlossaryView';
 import { RoadmapView } from './course/RoadmapView';
+import { CourseLibraryView } from './course/CourseLibraryView';
 import type { View, Progress } from '../types/course';
 
 // ============================================================
@@ -37,7 +38,7 @@ const saveProgress = (progress: Progress): void => {
 // ============================================================
 
 export default function App() {
-  const [view, setView] = useState<View>({ type: 'home' });
+  const [view, setView] = useState<View>({ type: 'library' });
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
   const [quizScores, setQuizScores] = useState<Record<string, number>>({});
@@ -95,6 +96,9 @@ export default function App() {
         </header>
 
         <div className="flex-1 overflow-y-auto">
+          {view.type === 'library' && (
+            <CourseLibraryView setView={setView} />
+          )}
           {view.type === 'home' && (
             <HomeView setView={setView} modules={COURSE.modules} completedLessons={completedLessons} />
           )}

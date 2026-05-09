@@ -46,6 +46,7 @@ export interface Progress {
 }
 
 export type View =
+  | { type: 'library' }
   | { type: 'home' }
   | { type: 'module'; moduleId: string }
   | { type: 'lesson'; moduleId: string; lessonId: string }
