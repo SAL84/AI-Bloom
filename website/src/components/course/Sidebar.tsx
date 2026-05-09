@@ -123,10 +123,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
                   <Rocket className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" />
                   <span className="text-xs font-semibold text-blue-400 uppercase tracking-wider">Your move</span>
                 </div>
-                <p className="text-xs text-slate-300 leading-relaxed mb-3">Every expert you admire started exactly where you are. Pick a course and begin — right now.</p>
-                <button onClick={() => { setView({ type: 'library' }); setOpen(false); }} className="text-xs font-semibold text-blue-400 hover:text-blue-300 transition">
-                  Browse courses →
-                </button>
+                <p className="text-xs text-slate-300 leading-relaxed">Every expert you admire started exactly where you are. Pick a course and begin — right now.</p>
               </div>
 
               <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Other Sections</div>
