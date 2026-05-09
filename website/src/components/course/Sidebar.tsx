@@ -112,7 +112,21 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
                   Browse courses →
                 </button>
               </div>
+
+              <button onClick={() => { setView({ type: 'glossary' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'glossary' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+                <Search className="w-4 h-4" /> Glossary
+              </button>
+              <button onClick={() => { setView({ type: 'roadmap' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'roadmap' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+                <Map className="w-4 h-4" /> Roadmap
+              </button>
             </>
+          )}
+
+          {/* Glossary always accessible when inside a course */}
+          {inCourse && (
+            <button onClick={() => { setView({ type: 'glossary' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'glossary' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+              <Search className="w-4 h-4" /> Glossary
+            </button>
           )}
 
           {/* Course navigation — only when inside a course */}
@@ -159,17 +173,8 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
           )}
         </nav>
 
-        {/* Sticky bottom links — always visible */}
-        <div className="p-3 border-t border-slate-800 space-y-1">
-          <button onClick={() => { setView({ type: 'glossary' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'glossary' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
-            <Search className="w-4 h-4" /> Glossary
-          </button>
-          {!inCourse && (
-            <button onClick={() => { setView({ type: 'roadmap' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'roadmap' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
-              <Map className="w-4 h-4" /> Roadmap
-            </button>
-          )}
-          <p className="px-3 pt-1 text-xs text-slate-600">Content current through early 2026.</p>
+        <div className="p-3 border-t border-slate-800 text-xs text-slate-600">
+          Content current through early 2026.
         </div>
       </aside>
     </>
