@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu } from 'lucide-react';
+import { Menu, Library, BookOpen } from 'lucide-react';
 import { COURSE } from '../data/modules';
 import { Sidebar } from './course/Sidebar';
 import { HomeView } from './course/HomeView';
@@ -100,8 +100,22 @@ export default function App() {
       />
 
       <main className="flex-1 min-w-0 flex flex-col relative" data-theme={theme === 'light' ? undefined : theme}>
-        {/* Theme toggle — fixed top-right, always visible */}
-        <div className="absolute top-4 right-4 z-30">
+        {/* Top-right controls — always visible */}
+        <div className="absolute top-4 right-4 z-30 flex items-center gap-2">
+          <button
+            onClick={() => setView({ type: 'library' })}
+            title="Course Library"
+            className="w-8 h-8 rounded-full flex items-center justify-center bg-white/80 hover:bg-white border border-slate-200 shadow-sm transition text-slate-500 hover:text-slate-900"
+          >
+            <Library className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => setView({ type: 'home' })}
+            title="Course Home"
+            className="w-8 h-8 rounded-full flex items-center justify-center bg-white/80 hover:bg-white border border-slate-200 shadow-sm transition text-slate-500 hover:text-slate-900"
+          >
+            <BookOpen className="w-4 h-4" />
+          </button>
           <ThemeToggle theme={theme} setTheme={setTheme} />
         </div>
 
@@ -135,6 +149,11 @@ export default function App() {
           {view.type === 'roadmap' && (
             <RoadmapView setView={setView} />
           )}
+
+          <footer className="mt-auto border-t border-slate-200 px-6 py-4 flex items-center justify-between text-xs text-slate-400">
+            <span>Built by <span className="font-semibold text-slate-500">Salih A</span></span>
+            <span className="italic text-right max-w-xs">Knowledge is only useful if it spreads. Consider this my contribution to the cause.</span>
+          </footer>
         </div>
       </main>
     </div>
