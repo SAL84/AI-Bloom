@@ -169,10 +169,15 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
                     {view.type === 'module' && view.moduleId === m.id && (
                       <div className="ml-3 pl-3 border-l border-slate-700 my-1 space-y-0.5">
                         {m.lessons.map((l, li) => (
-                          <button key={l.id} onClick={() => { setView({ type: 'lesson', moduleId: m.id, lessonId: l.id }); setOpen(false); }} className={`w-full text-left px-2 py-1.5 rounded text-xs flex items-center gap-2 transition ${view.type === 'lesson' && view.lessonId === l.id ? 'bg-blue-600/20 text-blue-300' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'}`}>
-                            {completedLessons[l.id] ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" /> : <Circle className="w-3.5 h-3.5 flex-shrink-0" />}
-                            <span className="truncate">{li + 1}. {l.title}</span>
-                          </button>
+                          <React.Fragment key={l.id}>
+                            {l.sectionLabel && (
+                              <div className="pt-2 pb-0.5 px-1 text-xs font-semibold uppercase tracking-wider text-slate-500">{l.sectionLabel}</div>
+                            )}
+                            <button onClick={() => { setView({ type: 'lesson', moduleId: m.id, lessonId: l.id }); setOpen(false); }} className={`w-full text-left px-2 py-1.5 rounded text-xs flex items-center gap-2 transition ${view.type === 'lesson' && view.lessonId === l.id ? 'bg-blue-600/20 text-blue-300' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'}`}>
+                              {completedLessons[l.id] ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" /> : <Circle className="w-3.5 h-3.5 flex-shrink-0" />}
+                              <span className="truncate">{li + 1}. {l.title}</span>
+                            </button>
+                          </React.Fragment>
                         ))}
                         <button onClick={() => { setView({ type: 'quiz', moduleId: m.id }); setOpen(false); }} className={`w-full text-left px-2 py-1.5 rounded text-xs flex items-center gap-2 transition ${view.type === 'quiz' && view.moduleId === m.id ? 'bg-amber-600/20 text-amber-300' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'}`}>
                           <Award className="w-3.5 h-3.5 flex-shrink-0" />

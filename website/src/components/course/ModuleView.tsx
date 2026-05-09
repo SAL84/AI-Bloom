@@ -30,7 +30,15 @@ export const ModuleView = ({ module, modules, setView, completedLessons, quizSco
 
       <div className="space-y-2 mb-6">
         {module.lessons.map((l, li) => (
-          <button key={l.id} onClick={() => setView({ type: 'lesson', moduleId: module.id, lessonId: l.id })} className="w-full text-left bg-white border border-slate-200 hover:border-blue-300 rounded-lg p-4 transition flex items-center gap-3 group">
+          <React.Fragment key={l.id}>
+            {l.sectionLabel && (
+              <div className="flex items-center gap-3 pt-3 pb-1">
+                <div className="flex-1 h-px bg-slate-200" />
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 px-1">{l.sectionLabel}</span>
+                <div className="flex-1 h-px bg-slate-200" />
+              </div>
+            )}
+          <button onClick={() => setView({ type: 'lesson', moduleId: module.id, lessonId: l.id })} className="w-full text-left bg-white border border-slate-200 hover:border-blue-300 rounded-lg p-4 transition flex items-center gap-3 group">
             <div className="flex-shrink-0">
               {completedLessons[l.id] ? <CheckCircle2 className="w-5 h-5 text-emerald-500" /> : <Circle className="w-5 h-5 text-slate-300" />}
             </div>
@@ -40,6 +48,7 @@ export const ModuleView = ({ module, modules, setView, completedLessons, quizSco
             </div>
             <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-blue-600" />
           </button>
+          </React.Fragment>
         ))}
 
         <button onClick={() => setView({ type: 'quiz', moduleId: module.id })} className="w-full text-left bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 hover:border-amber-400 rounded-lg p-4 transition flex items-center gap-3 group">

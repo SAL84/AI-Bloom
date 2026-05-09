@@ -13,9 +13,10 @@ export interface QuizQuestion {
 export interface Lesson {
   id: string;
   title: string;
-  diagram?: string;    // key in DIAGRAM_REGISTRY (React SVG component)
-  inlineSvg?: string;  // raw SVG string rendered by InlineSVGDiagram
-  inlineSvgId?: string;// short id for arrow marker namespacing
+  diagram?: string;        // key in DIAGRAM_REGISTRY (React SVG component)
+  inlineSvg?: string;      // raw SVG string rendered by InlineSVGDiagram
+  inlineSvgId?: string;    // short id for arrow marker namespacing
+  sectionLabel?: string;   // optional divider label rendered before this lesson
   slides: Slide[];
 }
 

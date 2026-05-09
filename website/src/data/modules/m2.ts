@@ -168,6 +168,7 @@ const m2: CourseModule = {
     {
       id: 'm2l5',
       title: 'Hallucinations: What They Actually Are',
+      sectionLabel: 'Advanced',
       diagram: 'HallucinationMitigation',
       slides: [
         { heading: "Not Lying", body: "Hallucination is the model producing fluent, confident output that isn't grounded in reality. The model isn't deceiving — it's sampling probable next-tokens, and probable doesn't mean true. This framing matters because customers often anthropomorphize the failure mode." },
