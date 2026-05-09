@@ -8,6 +8,7 @@ import { LessonView } from './course/LessonView';
 import { QuizView } from './course/QuizView';
 import { GlossaryView } from './course/GlossaryView';
 import { RoadmapView } from './course/RoadmapView';
+import { AIPlaygroundsView } from './course/AIPlaygroundsView';
 import { CourseLibraryView } from './course/CourseLibraryView';
 import { ThemeToggle } from './course/ThemeToggle';
 import type { Theme } from './course/ThemeToggle';
@@ -157,6 +158,9 @@ export default function App() {
           )}
           {view.type === 'roadmap' && (
             <RoadmapView setView={setView} />
+          )}
+          {view.type === 'playground' && (
+            <AIPlaygroundsView setView={setView} />
           )}
 
           <footer className="mt-auto border-t border-slate-200 px-6 py-4 flex items-center justify-between text-xs text-slate-400">

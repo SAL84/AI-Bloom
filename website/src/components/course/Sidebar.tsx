@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map, Library, Lightbulb, Flame, Zap, Brain, Layers, Shield, ShieldAlert, Building2, Rocket } from 'lucide-react';
+import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map, Library, Lightbulb, Flame, Zap, Brain, Layers, Shield, ShieldAlert, Building2, Rocket, FlaskConical } from 'lucide-react';
 
 const MODULE_ICONS: Record<string, React.ReactNode> = {
   zap: <Zap className="w-4 h-4" />,
@@ -127,6 +127,9 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
               </div>
 
               <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Other Sections</div>
+              <button onClick={() => { setView({ type: 'playground' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'playground' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+                <FlaskConical className="w-4 h-4" /> AI Playgrounds
+              </button>
               <button onClick={() => { setView({ type: 'glossary' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'glossary' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
                 <Search className="w-4 h-4" /> Glossary
               </button>
@@ -136,11 +139,16 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
             </>
           )}
 
-          {/* Glossary always accessible when inside a course */}
+          {/* Playgrounds and Glossary always accessible when inside a course */}
           {inCourse && (
-            <button onClick={() => { setView({ type: 'glossary' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'glossary' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
-              <Search className="w-4 h-4" /> Glossary
-            </button>
+            <>
+              <button onClick={() => { setView({ type: 'playground' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'playground' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+                <FlaskConical className="w-4 h-4" /> AI Playgrounds
+              </button>
+              <button onClick={() => { setView({ type: 'glossary' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'glossary' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+                <Search className="w-4 h-4" /> Glossary
+              </button>
+            </>
           )}
 
           {/* Course navigation — only when inside a course */}
