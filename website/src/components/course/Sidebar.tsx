@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map, Library, Lightbulb, Flame, Zap, Brain, Layers, Shield, ShieldAlert, Building2, Rocket, FlaskConical } from 'lucide-react';
+import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map, Library, Lightbulb, Flame, Zap, Brain, Layers, Shield, ShieldAlert, Building2, Rocket, FlaskConical, Bot } from 'lucide-react';
 
 const MODULE_ICONS: Record<string, React.ReactNode> = {
   zap: <Zap className="w-4 h-4" />,
@@ -126,6 +126,11 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
                 <p className="text-xs text-slate-300 leading-relaxed">Every expert you admire started exactly where you are. Pick a course and begin — right now.</p>
               </div>
 
+              <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Cybersecurity Agentic AI</div>
+              <button onClick={() => { setView({ type: 'agentic-ai' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'agentic-ai' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+                <Bot className="w-4 h-4" /> Agentic AI
+              </button>
+
               <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Other Sections</div>
               <button onClick={() => { setView({ type: 'playground' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'playground' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
                 <FlaskConical className="w-4 h-4" /> AI Playgrounds
@@ -139,9 +144,12 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
             </>
           )}
 
-          {/* Playgrounds and Glossary always accessible when inside a course */}
+          {/* Agentic AI, Playgrounds, and Glossary always accessible when inside a course */}
           {inCourse && (
             <>
+              <button onClick={() => { setView({ type: 'agentic-ai' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'agentic-ai' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+                <Bot className="w-4 h-4" /> Agentic AI
+              </button>
               <button onClick={() => { setView({ type: 'playground' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'playground' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
                 <FlaskConical className="w-4 h-4" /> AI Playgrounds
               </button>

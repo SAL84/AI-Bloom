@@ -54,4 +54,5 @@ export type View =
   | { type: 'quiz'; moduleId: string }
   | { type: 'glossary' }
   | { type: 'roadmap' }
-  | { type: 'playground' };
+  | { type: 'playground' }
+  | { type: 'agentic-ai' };
