@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map, Library, Lightbulb } from 'lucide-react';
+import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map, Library, Lightbulb, Flame } from 'lucide-react';
 import type { CourseModule, View } from '../../types/course';
 
 interface SidebarProps {
@@ -84,9 +84,13 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
           {!inCourse && (
             <>
               {/* Inspirational nudge */}
-              <p className="mx-1 mt-3 mb-1 px-2 text-xs text-slate-400 leading-relaxed italic">
-                {INSPIRATIONAL[inspIndex]}
-              </p>
+              <div className="mx-1 mt-3 mb-1 rounded-xl bg-slate-800/60 border border-slate-700 p-4">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <Flame className="w-3.5 h-3.5 text-orange-400 flex-shrink-0" />
+                  <span className="text-xs font-semibold text-orange-400 uppercase tracking-wider">Think about it</span>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed italic">{INSPIRATIONAL[inspIndex]}</p>
+              </div>
 
               {/* Rotating AI fact */}
               <div className="mx-1 mt-2 mb-1 rounded-xl bg-slate-800/60 border border-slate-700 p-4">
