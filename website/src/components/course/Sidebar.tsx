@@ -37,6 +37,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
   }, [view.type]);
 
   const fact = AI_FACTS[factIndex];
+  const inCourse = view.type !== 'library';
 
   return (
     <>
@@ -60,25 +61,37 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
         </div>
 
         <nav className="flex-1 p-3 space-y-1">
+          {/* Top-level navigation — always visible */}
           <button onClick={() => { setView({ type: 'library' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'library' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
             <Library className="w-4 h-4" /> Course Library
           </button>
 
-          {view.type === 'library' ? (
-            <div className="mt-6 mx-1 rounded-xl bg-slate-800/60 border border-slate-700 p-4">
-              <div className="flex items-center gap-1.5 mb-2">
-                <Lightbulb className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
-                <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider">{fact.label}</span>
-              </div>
-              <p className="text-xs text-slate-300 leading-relaxed">{fact.text}</p>
+          {/* Rotating AI fact */}
+          <div className="mx-1 mt-2 mb-1 rounded-xl bg-slate-800/60 border border-slate-700 p-4">
+            <div className="flex items-center gap-1.5 mb-2">
+              <Lightbulb className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+              <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider">{fact.label}</span>
             </div>
-          ) : (
+            <p className="text-xs text-slate-300 leading-relaxed">{fact.text}</p>
+          </div>
+
+          <button onClick={() => { setView({ type: 'glossary' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'glossary' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+            <Search className="w-4 h-4" /> Glossary
+          </button>
+          <button onClick={() => { setView({ type: 'roadmap' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'roadmap' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+            <Map className="w-4 h-4" /> Roadmap
+          </button>
+
+          {/* Course navigation — only when inside a course */}
+          {inCourse && (
             <>
+              <div className="pt-4 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Course</div>
+
               <button onClick={() => { setView({ type: 'home' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'home' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
                 <BookOpen className="w-4 h-4" /> Course Home
               </button>
 
-              <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Modules</div>
+              <div className="pt-2 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Modules</div>
 
               {modules.map((m, mi) => {
                 const moduleLessonsCompleted = m.lessons.filter(l => completedLessons[l.id]).length;
@@ -109,14 +122,6 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
                   </div>
                 );
               })}
-
-              <div className="pt-4 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Reference</div>
-              <button onClick={() => { setView({ type: 'glossary' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'glossary' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
-                <Search className="w-4 h-4" /> Glossary
-              </button>
-              <button onClick={() => { setView({ type: 'roadmap' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'roadmap' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
-                <Map className="w-4 h-4" /> Roadmap
-              </button>
             </>
           )}
         </nav>
