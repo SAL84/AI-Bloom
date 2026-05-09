@@ -13,6 +13,19 @@ interface SidebarProps {
   completedCount: number;
 }
 
+const INSPIRATIONAL = [
+  'The best time to understand AI was five years ago. The second best time is right now.',
+  'Everyone around you is already using AI. The question is whether you\'re shaping it or just reacting to it.',
+  'AI won\'t replace you. Someone who understands AI might. Choose which side of that sentence you\'re on.',
+  'You don\'t need to build AI to master it. You just need to understand it well enough to ask better questions than anyone else in the room.',
+  'The people who thrive in the next decade won\'t be the ones who feared AI — they\'ll be the ones who got curious first.',
+  'Every expert was once a beginner who decided not to stay one.',
+  'Understanding AI is not a technical skill anymore. It\'s a leadership skill.',
+  'The most powerful thing you can learn today is how to think alongside machines — and know when not to trust them.',
+  'AI is moving fast. The gap between those who understand it and those who don\'t is widening every month. Which side are you on?',
+  'Curiosity about how things work has always been the unfair advantage. AI is just the latest frontier.',
+];
+
 const AI_FACTS = [
   { label: 'Hot take', text: 'GPT stands for "Generative Pre-trained Transformer." Not "Generally Pretty Terrifying," though both apply depending on the day.' },
   { label: 'Fun fact', text: 'The attention mechanism in transformers was introduced in 2017. Before that, AI had to read sentences like a toddler — left to right, one word at a time, forgetting the beginning by the end.' },
@@ -29,10 +42,12 @@ const AI_FACTS = [
 export const Sidebar = ({ open, setOpen, view, setView, modules, completedLessons, totalLessons, completedCount }: SidebarProps) => {
   const pct = totalLessons > 0 ? Math.round((completedCount / totalLessons) * 100) : 0;
   const [factIndex, setFactIndex] = useState(() => Math.floor(Math.random() * AI_FACTS.length));
+  const [inspIndex, setInspIndex] = useState(() => Math.floor(Math.random() * INSPIRATIONAL.length));
 
   useEffect(() => {
     if (view.type === 'library') {
       setFactIndex(Math.floor(Math.random() * AI_FACTS.length));
+      setInspIndex(Math.floor(Math.random() * INSPIRATIONAL.length));
     }
   }, [view.type]);
 
@@ -65,6 +80,11 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
           <button onClick={() => { setView({ type: 'library' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'library' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
             <Library className="w-4 h-4" /> Course Library
           </button>
+
+          {/* Inspirational nudge */}
+          <p className="mx-1 mt-3 mb-1 px-2 text-xs text-slate-400 leading-relaxed italic">
+            {INSPIRATIONAL[inspIndex]}
+          </p>
 
           {/* Rotating AI fact */}
           <div className="mx-1 mt-2 mb-1 rounded-xl bg-slate-800/60 border border-slate-700 p-4">
