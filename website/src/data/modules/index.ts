@@ -9,7 +9,7 @@ import type { Course } from '../../types/course';
 
 export const COURSE: Course = {
   title: 'AI for Cybersecurity Sales Engineers',
-  subtitle: 'V2 — From foundational concepts to Google-aligned positioning, with architectural diagrams',
+  subtitle: 'From foundational concepts to practical positioning, with architectural diagrams',
   modules: [m1, m2, m3, m4, m5, m6],
   glossary: GLOSSARY,
 };

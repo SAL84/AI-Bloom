@@ -40,7 +40,6 @@ const AI_FACTS = [
 ];
 
 export const Sidebar = ({ open, setOpen, view, setView, modules, completedLessons, totalLessons, completedCount }: SidebarProps) => {
-  const pct = totalLessons > 0 ? Math.round((completedCount / totalLessons) * 100) : 0;
   const [factIndex, setFactIndex] = useState(() => Math.floor(Math.random() * AI_FACTS.length));
   const [inspIndex, setInspIndex] = useState(() => Math.floor(Math.random() * INSPIRATIONAL.length));
 
@@ -52,7 +51,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
   }, [view.type]);
 
   const fact = AI_FACTS[factIndex];
-  const inCourse = view.type !== 'library';
+  const inCourse = view.type === 'home' || view.type === 'module' || view.type === 'lesson' || view.type === 'quiz';
 
   return (
     <>
@@ -61,18 +60,9 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
         <div className="p-5 border-b border-slate-800">
           <div className="flex items-center gap-2 mb-1">
             <Sparkles className="w-5 h-5 text-blue-400" />
-            <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold">SE Course · V2</span>
+            <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold">SE Course</span>
           </div>
           <h1 className="text-lg font-bold leading-tight">AI for Cybersecurity Sales Engineers</h1>
-          <div className="mt-3">
-            <div className="flex justify-between text-xs text-slate-400 mb-1">
-              <span>Progress</span>
-              <span>{pct}%</span>
-            </div>
-            <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500" style={{ width: `${pct}%` }} />
-            </div>
-          </div>
         </div>
 
         <nav className="flex-1 p-3 space-y-1">
@@ -158,7 +148,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
         </nav>
 
         <div className="p-3 border-t border-slate-800 text-xs text-slate-500">
-          V2 includes architectural diagrams. Content current through early 2026.
+          Includes architectural diagrams. Content current through early 2026.
         </div>
       </aside>
     </>

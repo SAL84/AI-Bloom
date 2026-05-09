@@ -129,7 +129,7 @@ export default function App() {
           <button onClick={() => setSidebarOpen(true)} className="p-1.5 rounded hover:bg-slate-100">
             <Menu className="w-5 h-5" />
           </button>
-          <span className="text-sm font-semibold">AI for Cybersec SEs · V2</span>
+          <span className="text-sm font-semibold">AI for Cybersec SEs</span>
           <div className="w-7" />
         </header>
 

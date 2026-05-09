@@ -16,7 +16,7 @@ export const HomeView = ({ setView, modules, completedLessons }: HomeViewProps) 
     <div className="max-w-4xl mx-auto p-6 lg:p-10">
       <div className="mb-8">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold mb-4">
-          <Sparkles className="w-3.5 h-3.5" /> V2 · Google-aligned · 7 modules · ~26 lessons · 18 diagrams
+          <Sparkles className="w-3.5 h-3.5" /> 7 modules · ~26 lessons · 18 diagrams
         </div>
         <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-3">{COURSE.title}</h1>
         <p className="text-lg text-slate-600">{COURSE.subtitle}</p>
