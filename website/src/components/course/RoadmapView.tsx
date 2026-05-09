@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, Users, Code2, Sparkles, Star, ArrowRight, Baby, FlaskConical, MessageSquare } from 'lucide-react';
+import { Map, Users, Code2, Sparkles, Star, ArrowRight, Baby, FlaskConical, MessageSquare, Briefcase } from 'lucide-react';
 import type { View } from '../../types/course';
 
 interface Props {
@@ -51,6 +51,25 @@ const ITEMS: RoadmapItem[] = [
     textAccent: 'text-emerald-600',
     bgAccent: 'bg-emerald-50',
     borderAccent: 'border-emerald-200',
+  },
+  {
+    status: 'building',
+    title: 'Building & Transforming Business with AI',
+    subtitle: 'What you need to do — a practitioner\'s playbook',
+    description:
+      'A practical course for business leaders, managers, and teams who want to move from AI curiosity to AI action. Covers how to identify real AI opportunities, lead transformation initiatives, manage AI projects, and build the organizational capabilities that make AI stick.',
+    bullets: [
+      'Spot high-value AI opportunities in your business — beyond the obvious use cases',
+      'Build the business case: ROI framing, risk assessment, and stakeholder alignment',
+      'AI project lifecycle: scoping, vendor evaluation, piloting, and scaling',
+      'Org readiness: data strategy, talent gaps, governance, and change management',
+      'Avoid the failure modes: hype traps, vendor lock-in, and initiative drift',
+    ],
+    icon: <Briefcase className="w-6 h-6" />,
+    accent: 'text-orange-700',
+    textAccent: 'text-orange-600',
+    bgAccent: 'bg-orange-50',
+    borderAccent: 'border-orange-200',
   },
   {
     status: 'planned',
