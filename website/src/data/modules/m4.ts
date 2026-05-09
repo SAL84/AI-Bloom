@@ -3,7 +3,7 @@ import type { CourseModule } from '../../types/course';
 const m4: CourseModule = {
   id: 'm4',
   title: 'AI in the Security Stack',
-  icon: '🛡️',
+  icon: 'shield',
   summary: 'Where AI actually lives in modern security tools — separating real capability from marketing.',
   lessons: [
     {

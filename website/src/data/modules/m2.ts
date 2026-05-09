@@ -3,7 +3,7 @@ import type { CourseModule } from '../../types/course';
 const m2: CourseModule = {
   id: 'm2',
   title: 'LLMs & Generative AI',
-  icon: '🧠',
+  icon: 'brain',
   summary: 'The mechanics behind the magic — tokens, context, embeddings, RAG, fine-tuning, hallucinations.',
   lessons: [
     {

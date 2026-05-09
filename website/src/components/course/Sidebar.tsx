@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map, Library, Lightbulb, Flame } from 'lucide-react';
+import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map, Library, Lightbulb, Flame, Zap, Brain, Layers, Shield, ShieldAlert, Building2 } from 'lucide-react';
+
+const MODULE_ICONS: Record<string, React.ReactNode> = {
+  zap: <Zap className="w-4 h-4" />,
+  brain: <Brain className="w-4 h-4" />,
+  layers: <Layers className="w-4 h-4" />,
+  shield: <Shield className="w-4 h-4" />,
+  'shield-alert': <ShieldAlert className="w-4 h-4" />,
+  'building-2': <Building2 className="w-4 h-4" />,
+};
 import type { CourseModule, View } from '../../types/course';
 
 interface SidebarProps {
@@ -120,7 +129,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
                 return (
                   <div key={m.id}>
                     <button onClick={() => { setView({ type: 'module', moduleId: m.id }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg text-sm transition flex items-start gap-2 ${view.type === 'module' && view.moduleId === m.id ? 'bg-slate-800' : 'hover:bg-slate-800/60'}`}>
-                      <span className="text-base leading-none mt-0.5 w-5 text-center">{m.icon}</span>
+                      <span className="w-5 flex items-center justify-center text-slate-400">{MODULE_ICONS[m.icon] ?? m.icon}</span>
                       <span className="flex-1 min-w-0">
                         <span className="block font-medium truncate">{mi + 1}. {m.title}</span>
                         <span className="text-xs text-slate-400">{moduleLessonsCompleted}/{m.lessons.length} lessons {allDone && '✓'}</span>

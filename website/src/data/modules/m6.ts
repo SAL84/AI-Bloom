@@ -2,9 +2,9 @@ import type { CourseModule } from '../../types/course';
 
 const m6: CourseModule = {
   id: 'm6',
-  title: "Google Deep-Dive: AI & Security Portfolio",
-  icon: 'G',
-  summary: 'Google-aligned positioning with current product names, capabilities, and competitive context.',
+  title: "Vendors and AI",
+  icon: 'building-2',
+  summary: 'How major security vendors are embedding AI into their products — and what it actually means under the hood.',
   lessons: [
     {
       id: 'm6l1',

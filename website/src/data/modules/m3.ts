@@ -3,7 +3,7 @@ import type { CourseModule } from '../../types/course';
 const m3: CourseModule = {
   id: 'm3',
   title: 'AI Architecture: Models, MCP, Agents',
-  icon: '🏗️',
+  icon: 'layers',
   summary: 'The full stack literacy module — the layer cake every SE must be able to whiteboard.',
   lessons: [
     {

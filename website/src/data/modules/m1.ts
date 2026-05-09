@@ -6,7 +6,7 @@ import { diagram1 } from '../svgs/diagram1';
 const m1: CourseModule = {
   id: 'm1',
   title: 'AI Fundamentals (Fast Pass)',
-  icon: '⚡',
+  icon: 'zap',
   summary: 'Core concepts in plain language — built for technical SEs who want speed, not hand-holding.',
   lessons: [
     {

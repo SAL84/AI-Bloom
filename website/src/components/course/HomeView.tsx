@@ -1,5 +1,14 @@
 import React from 'react';
-import { ChevronRight, Sparkles } from 'lucide-react';
+import { ChevronRight, Sparkles, Zap, Brain, Layers, Shield, ShieldAlert, Building2, CheckCircle2 } from 'lucide-react';
+
+const MODULE_ICONS: Record<string, React.ReactNode> = {
+  zap: <Zap className="w-6 h-6" />,
+  brain: <Brain className="w-6 h-6" />,
+  layers: <Layers className="w-6 h-6" />,
+  shield: <Shield className="w-6 h-6" />,
+  'shield-alert': <ShieldAlert className="w-6 h-6" />,
+  'building-2': <Building2 className="w-6 h-6" />,
+};
 import type { CourseModule, View } from '../../types/course';
 import { COURSE } from '../../data/modules';
 
@@ -41,8 +50,8 @@ export const HomeView = ({ setView, modules, completedLessons }: HomeViewProps) 
           return (
             <button key={m.id} onClick={() => setView({ type: 'module', moduleId: m.id })} className="w-full text-left bg-white border border-slate-200 hover:border-blue-300 hover:shadow-md rounded-xl p-5 transition group">
               <div className="flex items-start gap-4">
-                <div className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center text-xl font-bold ${allDone ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}`}>
-                  {allDone ? '✓' : m.icon}
+                <div className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center ${allDone ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}`}>
+                  {allDone ? <CheckCircle2 className="w-6 h-6" /> : (MODULE_ICONS[m.icon] ?? <span className="text-xl">{m.icon}</span>)}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">

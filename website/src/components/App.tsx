@@ -76,6 +76,7 @@ export default function App() {
     setQuizScores(prev => ({ ...prev, [moduleId]: score }));
   };
 
+  const inCourse = view.type === 'home' || view.type === 'module' || view.type === 'lesson' || view.type === 'quiz';
   const totalLessons = COURSE.modules.reduce((s, m) => s + m.lessons.length, 0);
   const completedCount = Object.values(completedLessons).filter(Boolean).length;
 
@@ -115,13 +116,15 @@ export default function App() {
           >
             <Library className="w-4 h-4" />
           </button>
-          <button
-            onClick={() => setView({ type: 'home' })}
-            title="Course Home"
-            className="w-8 h-8 rounded-full flex items-center justify-center bg-white/80 hover:bg-white border border-slate-200 shadow-sm transition text-slate-500 hover:text-slate-900"
-          >
-            <BookOpen className="w-4 h-4" />
-          </button>
+          {inCourse && (
+            <button
+              onClick={() => setView({ type: 'home' })}
+              title="Course Home"
+              className="w-8 h-8 rounded-full flex items-center justify-center bg-white/80 hover:bg-white border border-slate-200 shadow-sm transition text-slate-500 hover:text-slate-900"
+            >
+              <BookOpen className="w-4 h-4" />
+            </button>
+          )}
           <ThemeToggle theme={theme} setTheme={setTheme} />
         </div>
 

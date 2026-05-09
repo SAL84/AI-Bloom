@@ -3,7 +3,7 @@ import type { CourseModule } from '../../types/course';
 const m5: CourseModule = {
   id: 'm5',
   title: 'The Adversarial Side',
-  icon: '⚔️',
+  icon: 'shield-alert',
   summary: 'AI as offensive weapon and AI systems as targets — both reframe the defense conversation.',
   lessons: [
     {
