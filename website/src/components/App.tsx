@@ -86,8 +86,14 @@ export default function App() {
     ? currentModule.lessons.find(l => l.id === view.lessonId) ?? null
     : null;
 
+  const outerBg = theme === 'dark' ? '#0f172a' : theme === 'midnight' ? '#080f1c' : '';
+
   return (
-    <div className="flex min-h-screen bg-slate-50 text-slate-900" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+    <div
+      className="flex min-h-screen bg-slate-50 text-slate-900"
+      style={{ fontFamily: 'system-ui, -apple-system, sans-serif', ...(outerBg ? { backgroundColor: outerBg } : {}) }}
+      data-theme={theme === 'light' ? undefined : theme}
+    >
       <Sidebar
         open={sidebarOpen}
         setOpen={setSidebarOpen}
@@ -99,7 +105,7 @@ export default function App() {
         completedCount={completedCount}
       />
 
-      <main className="flex-1 min-w-0 flex flex-col relative" data-theme={theme === 'light' ? undefined : theme}>
+      <main className="flex-1 min-w-0 flex flex-col relative">
         {/* Top-right controls — always visible */}
         <div className="absolute top-4 right-4 z-30 flex items-center gap-2">
           <button
@@ -152,7 +158,10 @@ export default function App() {
 
           <footer className="mt-auto border-t border-slate-200 px-6 py-4 flex items-center justify-between text-xs text-slate-400">
             <span>Built by <span className="font-semibold text-slate-500">Salih A</span></span>
-            <span className="italic text-right max-w-xs">Knowledge is only useful if it spreads. Consider this my contribution to the cause.</span>
+            <span className="italic text-right max-w-xs leading-relaxed">
+              AI literacy shouldn't be a privilege.<br />
+              So I made it free. You're welcome.
+            </span>
           </footer>
         </div>
       </main>

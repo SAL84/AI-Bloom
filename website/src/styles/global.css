@@ -1,56 +1,59 @@
 @import "tailwindcss";
 
 /* ============================================================
-   THEMES — override Tailwind v4 CSS color variables per theme
-   Scoped to <main> so the sidebar is never affected
+   THEMES
+   data-theme lives on the root <div>.
+   CSS variable overrides are scoped to [data-theme] main so the
+   sidebar (always dark) is never affected by theme changes.
    ============================================================ */
 
-/* Dark theme */
-main[data-theme="dark"] {
+/* --- DARK --- */
+[data-theme="dark"] main {
   --color-white:     #1e293b;
   --color-slate-50:  #0f172a;
   --color-slate-100: #1e293b;
   --color-slate-200: #334155;
   --color-slate-300: #475569;
-  --color-slate-400: #64748b;
-  --color-slate-500: #94a3b8;
-  --color-slate-600: #94a3b8;
-  --color-slate-700: #cbd5e1;
-  --color-slate-800: #e2e8f0;
-  --color-slate-900: #f8fafc;
-  /* Accent light shades → dark equivalents */
+  /* Accent light shades */
   --color-blue-50:   #1e2d40;
   --color-blue-100:  #1e3a5f;
   --color-cyan-50:   #0c2a33;
   --color-cyan-100:  #0c3340;
   --color-emerald-50:#0d2018;
+  --color-emerald-100:#0d2820;
   --color-violet-50: #1a1030;
   --color-orange-50: #2a1500;
   --color-amber-50:  #1f1200;
   --color-rose-50:   #250d0d;
 }
+/* Text overrides scoped to main so sidebar text is untouched */
+[data-theme="dark"] main .text-slate-900 { color: #f8fafc; }
+[data-theme="dark"] main .text-slate-800 { color: #e2e8f0; }
+[data-theme="dark"] main .text-slate-700 { color: #cbd5e1; }
+[data-theme="dark"] main .text-slate-600 { color: #94a3b8; }
+[data-theme="dark"] main .text-slate-500 { color: #64748b; }
 
-/* Midnight theme — deep blue-indigo */
-main[data-theme="midnight"] {
+/* --- MIDNIGHT --- */
+[data-theme="midnight"] main {
   --color-white:     #0d1b2e;
   --color-slate-50:  #080f1c;
   --color-slate-100: #0d1b2e;
   --color-slate-200: #162540;
   --color-slate-300: #1e3255;
-  --color-slate-400: #4a7aab;
-  --color-slate-500: #6a9acb;
-  --color-slate-600: #8ab4db;
-  --color-slate-700: #b0cce8;
-  --color-slate-800: #d0e4f5;
-  --color-slate-900: #e8f2fb;
   /* Accent light shades */
   --color-blue-50:   #0d1b2e;
   --color-blue-100:  #162540;
   --color-cyan-50:   #071824;
   --color-cyan-100:  #0c2030;
   --color-emerald-50:#071a14;
+  --color-emerald-100:#091f18;
   --color-violet-50: #130d25;
   --color-orange-50: #1f1208;
   --color-amber-50:  #1a1005;
   --color-rose-50:   #1c0a0a;
 }
+[data-theme="midnight"] main .text-slate-900 { color: #e8f2fb; }
+[data-theme="midnight"] main .text-slate-800 { color: #d0e4f5; }
+[data-theme="midnight"] main .text-slate-700 { color: #b0cce8; }
+[data-theme="midnight"] main .text-slate-600 { color: #8ab4db; }
+[data-theme="midnight"] main .text-slate-500 { color: #4a7aab; }
