@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map, Library, Lightbulb, Flame, Zap, Brain, Layers, Shield, ShieldAlert, Building2 } from 'lucide-react';
+import { BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map, Library, Lightbulb, Flame, Zap, Brain, Layers, Shield, ShieldAlert, Building2, Rocket } from 'lucide-react';
 
 const MODULE_ICONS: Record<string, React.ReactNode> = {
   zap: <Zap className="w-4 h-4" />,
@@ -65,7 +65,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
   return (
     <>
       {open && <div className="lg:hidden fixed inset-0 bg-black/50 z-30" onClick={() => setOpen(false)} />}
-      <aside className={`${open ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-40 w-72 bg-slate-900 text-slate-100 overflow-y-auto transition-transform duration-200 flex flex-col`}>
+      <aside className={`${open ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-40 w-72 bg-slate-900 text-slate-100 transition-transform duration-200 flex flex-col`}>
         <div className="p-5 border-b border-slate-800">
           <div className="flex items-center gap-2 mb-1">
             <Sparkles className="w-5 h-5 text-blue-400" />
@@ -74,7 +74,8 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
           <h1 className="text-lg font-bold leading-tight">{inCourse ? 'AI for Cybersecurity Sales Engineers' : 'Free Courses for Every Level'}</h1>
         </div>
 
-        <nav className="flex-1 p-3 space-y-1">
+        {/* Scrollable middle section */}
+        <nav className="flex-1 overflow-y-auto p-3 space-y-1">
           {/* Top-level navigation — always visible */}
           <button onClick={() => { setView({ type: 'library' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'library' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
             <Library className="w-4 h-4" /> Course Library
@@ -99,17 +100,19 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed">{fact.text}</p>
               </div>
+
+              {/* CTA */}
+              <div className="mx-1 mt-2 mb-1 rounded-xl bg-blue-600/15 border border-blue-500/30 p-4">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <Rocket className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" />
+                  <span className="text-xs font-semibold text-blue-400 uppercase tracking-wider">Your move</span>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed mb-3">Every expert you admire started exactly where you are. Pick a course and begin — right now.</p>
+                <button onClick={() => { setView({ type: 'library' }); setOpen(false); }} className="text-xs font-semibold text-blue-400 hover:text-blue-300 transition">
+                  Browse courses →
+                </button>
+              </div>
             </>
-          )}
-
-          <button onClick={() => { setView({ type: 'glossary' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'glossary' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
-            <Search className="w-4 h-4" /> Glossary
-          </button>
-
-          {!inCourse && (
-            <button onClick={() => { setView({ type: 'roadmap' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'roadmap' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
-              <Map className="w-4 h-4" /> Roadmap
-            </button>
           )}
 
           {/* Course navigation — only when inside a course */}
@@ -156,8 +159,17 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
           )}
         </nav>
 
-        <div className="p-3 border-t border-slate-800 text-xs text-slate-500">
-          Includes architectural diagrams. Content current through early 2026.
+        {/* Sticky bottom links — always visible */}
+        <div className="p-3 border-t border-slate-800 space-y-1">
+          <button onClick={() => { setView({ type: 'glossary' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'glossary' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+            <Search className="w-4 h-4" /> Glossary
+          </button>
+          {!inCourse && (
+            <button onClick={() => { setView({ type: 'roadmap' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'roadmap' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+              <Map className="w-4 h-4" /> Roadmap
+            </button>
+          )}
+          <p className="px-3 pt-1 text-xs text-slate-600">Content current through early 2026.</p>
         </div>
       </aside>
     </>
