@@ -102,7 +102,7 @@ const STATUS_LABEL: Record<Status, string> = {
 
 export const CourseLibraryView = ({ setView }: Props) => {
   return (
-    <div className="max-w-4xl mx-auto p-6 lg:p-10">
+    <div className="p-6 lg:p-10">
       <div className="mb-10">
         <div className="flex items-center gap-2 mb-1">
           <Library className="w-5 h-5 text-blue-600" />
@@ -114,36 +114,37 @@ export const CourseLibraryView = ({ setView }: Props) => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="flex flex-col gap-4">
         {COURSES.map((course, i) => (
           <div
             key={i}
-            className={`rounded-2xl border ${course.borderAccent} ${course.bgAccent} p-6 flex flex-col`}
+            className={`rounded-2xl border ${course.borderAccent} ${course.bgAccent} p-6 flex items-center gap-6`}
           >
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${course.bgAccent} border ${course.borderAccent} ${course.accent}`}>
+            <div className={`flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center ${course.bgAccent} border ${course.borderAccent} ${course.accent}`}>
               {course.icon}
             </div>
 
-            <div className="flex items-center gap-2 mb-2">
-              <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${STATUS_BADGE[course.status]}`}>
-                {STATUS_LABEL[course.status]}
-              </span>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-1 flex-wrap">
+                <h2 className="text-base font-bold text-slate-900 leading-snug">{course.title}</h2>
+                <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${STATUS_BADGE[course.status]}`}>
+                  {STATUS_LABEL[course.status]}
+                </span>
+              </div>
+              <p className={`text-xs font-medium mb-1 ${course.textAccent}`}>{course.tagline}</p>
+              <p className="text-sm text-slate-600 leading-relaxed">{course.description}</p>
             </div>
 
-            <h2 className="text-base font-bold text-slate-900 mb-1 leading-snug">{course.title}</h2>
-            <p className={`text-xs font-medium mb-3 ${course.textAccent}`}>{course.tagline}</p>
-            <p className="text-sm text-slate-600 leading-relaxed flex-1">{course.description}</p>
-
-            <div className="mt-5">
+            <div className="flex-shrink-0 pl-4">
               {course.status === 'live' ? (
                 <button
                   onClick={() => setView({ type: 'home' })}
-                  className={`inline-flex items-center gap-1.5 text-sm font-semibold ${course.accent} hover:opacity-80 transition`}
+                  className={`inline-flex items-center gap-1.5 text-sm font-semibold whitespace-nowrap ${course.accent} hover:opacity-80 transition`}
                 >
                   Enter Course <ArrowRight className="w-4 h-4" />
                 </button>
               ) : (
-                <div className="flex items-center gap-2 text-slate-400">
+                <div className="flex items-center gap-2 text-slate-400 max-w-[180px]">
                   <Lock className="w-3.5 h-3.5 flex-shrink-0" />
                   <span className="text-xs italic">{course.funnyLocked}</span>
                 </div>

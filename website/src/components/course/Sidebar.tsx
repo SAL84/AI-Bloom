@@ -40,49 +40,53 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
           <button onClick={() => { setView({ type: 'library' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'library' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
             <Library className="w-4 h-4" /> Course Library
           </button>
-          <button onClick={() => { setView({ type: 'home' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'home' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
-            <BookOpen className="w-4 h-4" /> Course Home
-          </button>
+          {view.type !== 'library' && (
+            <>
+              <button onClick={() => { setView({ type: 'home' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'home' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+                <BookOpen className="w-4 h-4" /> Course Home
+              </button>
 
-          <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Modules</div>
+              <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Modules</div>
 
-          {modules.map((m, mi) => {
-            const moduleLessonsCompleted = m.lessons.filter(l => completedLessons[l.id]).length;
-            const allDone = moduleLessonsCompleted === m.lessons.length;
-            return (
-              <div key={m.id}>
-                <button onClick={() => { setView({ type: 'module', moduleId: m.id }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg text-sm transition flex items-start gap-2 ${view.type === 'module' && view.moduleId === m.id ? 'bg-slate-800' : 'hover:bg-slate-800/60'}`}>
-                  <span className="text-base leading-none mt-0.5 w-5 text-center">{m.icon}</span>
-                  <span className="flex-1 min-w-0">
-                    <span className="block font-medium truncate">{mi + 1}. {m.title}</span>
-                    <span className="text-xs text-slate-400">{moduleLessonsCompleted}/{m.lessons.length} lessons {allDone && '✓'}</span>
-                  </span>
-                </button>
-                {view.type === 'module' && view.moduleId === m.id && (
-                  <div className="ml-3 pl-3 border-l border-slate-700 my-1 space-y-0.5">
-                    {m.lessons.map((l, li) => (
-                      <button key={l.id} onClick={() => { setView({ type: 'lesson', moduleId: m.id, lessonId: l.id }); setOpen(false); }} className={`w-full text-left px-2 py-1.5 rounded text-xs flex items-center gap-2 transition ${view.type === 'lesson' && view.lessonId === l.id ? 'bg-blue-600/20 text-blue-300' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'}`}>
-                        {completedLessons[l.id] ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" /> : <Circle className="w-3.5 h-3.5 flex-shrink-0" />}
-                        <span className="truncate">{li + 1}. {l.title}</span>
-                      </button>
-                    ))}
-                    <button onClick={() => { setView({ type: 'quiz', moduleId: m.id }); setOpen(false); }} className={`w-full text-left px-2 py-1.5 rounded text-xs flex items-center gap-2 transition ${view.type === 'quiz' && view.moduleId === m.id ? 'bg-amber-600/20 text-amber-300' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'}`}>
-                      <Award className="w-3.5 h-3.5 flex-shrink-0" />
-                      <span>Module Quiz</span>
+              {modules.map((m, mi) => {
+                const moduleLessonsCompleted = m.lessons.filter(l => completedLessons[l.id]).length;
+                const allDone = moduleLessonsCompleted === m.lessons.length;
+                return (
+                  <div key={m.id}>
+                    <button onClick={() => { setView({ type: 'module', moduleId: m.id }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg text-sm transition flex items-start gap-2 ${view.type === 'module' && view.moduleId === m.id ? 'bg-slate-800' : 'hover:bg-slate-800/60'}`}>
+                      <span className="text-base leading-none mt-0.5 w-5 text-center">{m.icon}</span>
+                      <span className="flex-1 min-w-0">
+                        <span className="block font-medium truncate">{mi + 1}. {m.title}</span>
+                        <span className="text-xs text-slate-400">{moduleLessonsCompleted}/{m.lessons.length} lessons {allDone && '✓'}</span>
+                      </span>
                     </button>
+                    {view.type === 'module' && view.moduleId === m.id && (
+                      <div className="ml-3 pl-3 border-l border-slate-700 my-1 space-y-0.5">
+                        {m.lessons.map((l, li) => (
+                          <button key={l.id} onClick={() => { setView({ type: 'lesson', moduleId: m.id, lessonId: l.id }); setOpen(false); }} className={`w-full text-left px-2 py-1.5 rounded text-xs flex items-center gap-2 transition ${view.type === 'lesson' && view.lessonId === l.id ? 'bg-blue-600/20 text-blue-300' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'}`}>
+                            {completedLessons[l.id] ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" /> : <Circle className="w-3.5 h-3.5 flex-shrink-0" />}
+                            <span className="truncate">{li + 1}. {l.title}</span>
+                          </button>
+                        ))}
+                        <button onClick={() => { setView({ type: 'quiz', moduleId: m.id }); setOpen(false); }} className={`w-full text-left px-2 py-1.5 rounded text-xs flex items-center gap-2 transition ${view.type === 'quiz' && view.moduleId === m.id ? 'bg-amber-600/20 text-amber-300' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'}`}>
+                          <Award className="w-3.5 h-3.5 flex-shrink-0" />
+                          <span>Module Quiz</span>
+                        </button>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            );
-          })}
+                );
+              })}
 
-          <div className="pt-4 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Reference</div>
-          <button onClick={() => { setView({ type: 'glossary' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'glossary' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
-            <Search className="w-4 h-4" /> Glossary
-          </button>
-          <button onClick={() => { setView({ type: 'roadmap' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'roadmap' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
-            <Map className="w-4 h-4" /> Roadmap
-          </button>
+              <div className="pt-4 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Reference</div>
+              <button onClick={() => { setView({ type: 'glossary' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'glossary' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+                <Search className="w-4 h-4" /> Glossary
+              </button>
+              <button onClick={() => { setView({ type: 'roadmap' }); setOpen(false); }} className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-sm transition ${view.type === 'roadmap' ? 'bg-blue-600 text-white' : 'hover:bg-slate-800'}`}>
+                <Map className="w-4 h-4" /> Roadmap
+              </button>
+            </>
+          )}
         </nav>
 
         <div className="p-3 border-t border-slate-800 text-xs text-slate-500">

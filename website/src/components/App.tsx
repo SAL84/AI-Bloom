@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu } from 'lucide-react';
 import { COURSE } from '../data/modules';
 import { Sidebar } from './course/Sidebar';
@@ -40,6 +40,7 @@ const saveProgress = (progress: Progress): void => {
 export default function App() {
   const [view, setView] = useState<View>({ type: 'library' });
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const mainScrollRef = useRef<HTMLDivElement>(null);
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
   const [quizScores, setQuizScores] = useState<Record<string, number>>({});
   const [loaded, setLoaded] = useState(false);
@@ -54,6 +55,10 @@ export default function App() {
   useEffect(() => {
     if (loaded) saveProgress({ completedLessons, quizScores });
   }, [completedLessons, quizScores, loaded]);
+
+  useEffect(() => {
+    mainScrollRef.current?.scrollTo({ top: 0 });
+  }, [view]);
 
   const markComplete = (lessonId: string) => {
     setCompletedLessons(prev => ({ ...prev, [lessonId]: true }));
@@ -95,7 +100,7 @@ export default function App() {
           <div className="w-7" />
         </header>
 
-        <div className="flex-1 overflow-y-auto">
+        <div ref={mainScrollRef} className="flex-1 overflow-y-auto">
           {view.type === 'library' && (
             <CourseLibraryView setView={setView} />
           )}
