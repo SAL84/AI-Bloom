@@ -59,8 +59,8 @@ const DIAGRAM_CSS = `
   .idg-wrap .c-purple{ fill: #ede9fe; stroke: var(--purple); }
   .idg-wrap .c-slate { fill: var(--bg2); stroke: var(--bd); }
 
-  /* Responsive SVG */
-  .idg-wrap svg { width: 100%; height: auto; display: block; }
+  /* Responsive SVG — fills container on desktop, scrollable on mobile */
+  .idg-wrap svg { width: 100%; min-width: 560px; height: auto; display: block; }
 `;
 
 function preprocessSVG(raw: string, id: string): string {
