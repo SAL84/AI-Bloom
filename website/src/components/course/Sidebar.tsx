@@ -83,6 +83,20 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, completedLesson
 
           {!inCourse && (
             <>
+              {/* Course nav item */}
+              <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Courses</div>
+              <button
+                onClick={() => { setView({ type: 'home' }); setOpen(false); }}
+                className="w-full text-left px-3 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition bg-emerald-600/15 border border-emerald-500/25 hover:bg-emerald-600/25"
+              >
+                <Sparkles className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <span className="flex-1 min-w-0">
+                  <span className="block font-semibold text-emerald-300 leading-tight">AI for Cybersecurity SEs</span>
+                  <span className="text-xs text-slate-400">6 modules · Live now</span>
+                </span>
+                <span className="text-xs font-bold text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded">GO</span>
+              </button>
+
               {/* Inspirational nudge */}
               <div className="mx-1 mt-3 mb-1 rounded-xl bg-slate-800/60 border border-slate-700 p-4">
                 <div className="flex items-center gap-1.5 mb-2">
