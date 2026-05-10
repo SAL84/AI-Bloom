@@ -239,6 +239,7 @@ const aiKids: Course = {
         {
           id: 'ak1l1',
           title: 'AI Is Like a Very Fast Learner',
+          imageUrl: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&auto=format&fit=crop&q=80',
           inlineSvg: SVG_ROBOT_LEARNER,
           inlineSvgId: 'ak1l1',
           slides: [{
@@ -255,6 +256,7 @@ const aiKids: Course = {
         {
           id: 'ak1l2',
           title: 'AI Through the Ages',
+          imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80',
           slides: [{
             heading: 'A Quick Tour of AI History',
             body: 'People have dreamed about thinking machines for a long time. Let\'s take a quick trip through the highlights — from robots in stories to the AI assistants you can talk to today.',
@@ -270,6 +272,7 @@ const aiKids: Course = {
         {
           id: 'ak1l3',
           title: 'How Does AI Actually Learn?',
+          imageUrl: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&auto=format&fit=crop&q=80',
           slides: [{
             heading: 'Learning Like You — But Very Different',
             body: 'When you learn to ride a bike, you practice, fall down, and get better. AI learns in a similar way — but instead of bikes, it practices with data. Millions and millions of examples.',
@@ -284,6 +287,7 @@ const aiKids: Course = {
         {
           id: 'ak1l4',
           title: 'AI, ML, and Deep Learning',
+          imageUrl: 'https://images.unsplash.com/photo-1655635643617-72e0b62b9278?w=800&auto=format&fit=crop&q=80',
           slides: [{
             heading: 'What\'s the Difference?',
             body: 'You\'ve probably heard these words used interchangeably. But they\'re actually different things — like how "sport" is different from "football" which is different from "penalty kicks."',
@@ -310,6 +314,7 @@ const aiKids: Course = {
         {
           id: 'ak2l1',
           title: 'What Is a Chatbot?',
+          imageUrl: 'https://images.unsplash.com/photo-1655720408254-7e32b93fdbcb?w=800&auto=format&fit=crop&q=80',
           inlineSvg: SVG_CHATBOT,
           inlineSvgId: 'ak2l1',
           slides: [{
@@ -326,6 +331,7 @@ const aiKids: Course = {
         {
           id: 'ak2l2',
           title: 'Why AI Sometimes Makes Things Up',
+          imageUrl: 'https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?w=800&auto=format&fit=crop&q=80',
           slides: [{
             heading: 'When AI Gets It Wrong',
             body: 'AI chatbots are designed to always give you a response. The problem is: sometimes they don\'t know the answer — but instead of saying "I don\'t know," they make up something that sounds right. This is called a "hallucination."',
@@ -340,6 +346,7 @@ const aiKids: Course = {
         {
           id: 'ak2l3',
           title: 'Prompting: Talk to AI Like a Pro',
+          imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=80',
           slides: [{
             heading: 'The Better You Ask, the Better the Answer',
             body: 'The words you use when talking to AI really matter. A vague question gets a vague answer. A clear, detailed question gets a much better one. This skill is called "prompting" — and it\'s one of the most useful things you can learn.',
@@ -354,6 +361,7 @@ const aiKids: Course = {
         {
           id: 'ak2l4',
           title: 'AI Art, Music & Videos',
+          imageUrl: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&auto=format&fit=crop&q=80',
           slides: [{
             heading: 'AI Gets Creative',
             body: 'AI isn\'t just for text. Today\'s AI can generate stunning images from a description, compose music, and even create video. This raises exciting questions — and tricky ones too.',
@@ -380,6 +388,7 @@ const aiKids: Course = {
         {
           id: 'ak3l1',
           title: 'What Is an AI Agent?',
+          imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80',
           inlineSvg: SVG_AGENT_LOOP,
           inlineSvgId: 'ak3l1',
           slides: [{
@@ -396,6 +405,7 @@ const aiKids: Course = {
         {
           id: 'ak3l2',
           title: 'The Agent Loop: Think, Try, Learn',
+          imageUrl: 'https://images.unsplash.com/photo-1633281256183-c0f106f70d76?w=800&auto=format&fit=crop&q=80',
           slides: [{
             heading: 'How Agents Solve Problems Step by Step',
             body: 'AI agents don\'t just guess once — they work through problems in a loop: think about what to do, try an action, see what happens, then think again. This is called the "agent loop."',
@@ -411,6 +421,7 @@ const aiKids: Course = {
         {
           id: 'ak3l3',
           title: 'Should AI Make Decisions for Us?',
+          imageUrl: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&auto=format&fit=crop&q=80',
           slides: [{
             heading: 'The Big Question About Autonomy',
             body: 'When AI agents can take actions in the world, we have to decide: how much should they do on their own? Some decisions are fine to delegate. Others should always have a human in charge.',
@@ -438,6 +449,7 @@ const aiKids: Course = {
         {
           id: 'ak4l1',
           title: 'AI That Sees and Hears',
+          imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80',
           slides: [{
             heading: 'Beyond Words',
             body: 'AI isn\'t just about text and chat. Modern AI can look at a photo and describe what\'s in it, listen to music and identify the artist, or watch a video and summarise what happened. This is called multimodal AI.',
@@ -452,6 +464,7 @@ const aiKids: Course = {
         {
           id: 'ak4l2',
           title: 'Being Fair with AI',
+          imageUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&auto=format&fit=crop&q=80',
           slides: [{
             heading: 'AI Can Be Biased — Here\'s Why',
             body: 'AI learns from data created by humans. And humans aren\'t always fair. So sometimes AI picks up unfair patterns from the data and repeats them. This is called bias — and fixing it is one of the most important challenges in AI.',
@@ -466,6 +479,7 @@ const aiKids: Course = {
         {
           id: 'ak4l3',
           title: 'Careers with AI — What Will You Build?',
+          imageUrl: 'https://images.unsplash.com/photo-1534665482403-a909d0d97c67?w=800&auto=format&fit=crop&q=80',
           inlineSvg: SVG_CAREERS,
           inlineSvgId: 'ak4l3',
           slides: [{
@@ -495,6 +509,7 @@ const aiKids: Course = {
         {
           id: 'ak5l1',
           title: 'Your Personal Info Is Precious',
+          imageUrl: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop&q=80',
           inlineSvg: SVG_CYBERSAFETY,
           inlineSvgId: 'ak5l1',
           slides: [{
@@ -512,6 +527,7 @@ const aiKids: Course = {
         {
           id: 'ak5l2',
           title: 'Deepfakes: When Seeing Isn\'t Believing',
+          imageUrl: 'https://images.unsplash.com/photo-1560186640-e1e086054c25?w=800&auto=format&fit=crop&q=80',
           inlineSvg: SVG_DEEPFAKE,
           inlineSvgId: 'ak5l2',
           slides: [{
@@ -529,6 +545,7 @@ const aiKids: Course = {
         {
           id: 'ak5l3',
           title: 'AI Trying to Trick You',
+          imageUrl: 'https://images.unsplash.com/photo-1504197832061-98356e3dcdcf?w=800&auto=format&fit=crop&q=80',
           slides: [{
             heading: 'Scams, Manipulation, and AI-Powered Tricks',
             body: 'Some people use AI to create fake messages, fake voices, or fake urgency to trick you into doing something. This is called social engineering — and AI makes it much easier for bad actors to do.',
@@ -544,6 +561,7 @@ const aiKids: Course = {
         {
           id: 'ak5l4',
           title: 'Your AI Safety Rules',
+          imageUrl: 'https://images.unsplash.com/photo-1566341013475-5a3244e59e1d?w=800&auto=format&fit=crop&q=80',
           slides: [{
             heading: 'Five Rules Every Digital Kid Should Know',
             body: 'Just like there are rules for crossing the road safely, there are rules for using AI safely. These five rules will protect you — today and as AI gets even more powerful.',

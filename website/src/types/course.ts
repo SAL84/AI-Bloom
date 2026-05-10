@@ -23,6 +23,7 @@ export interface Lesson {
   diagram?: string;
   inlineSvg?: string;
   inlineSvgId?: string;
+  imageUrl?: string;
   sectionLabel?: string;
   slides: Slide[];
   roleContent?: RoleContent[];

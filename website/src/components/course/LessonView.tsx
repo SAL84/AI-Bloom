@@ -43,10 +43,11 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
   };
 
   if (slideMode) {
-    const totalSlides = (DiagramComponent || hasInlineSvg ? 1 : 0) + lesson.slides.length;
-    const isDiagramSlide = (DiagramComponent || hasInlineSvg) && slideIdx === 0;
-    const contentSlideIdx = (DiagramComponent || hasInlineSvg) ? slideIdx - 1 : slideIdx;
-    const slide = !isDiagramSlide ? lesson.slides[contentSlideIdx] : null;
+    const hasVisual = !!(DiagramComponent || hasInlineSvg || lesson.imageUrl);
+    const totalSlides = (hasVisual ? 1 : 0) + lesson.slides.length;
+    const isVisualSlide = hasVisual && slideIdx === 0;
+    const contentSlideIdx = hasVisual ? slideIdx - 1 : slideIdx;
+    const slide = !isVisualSlide ? lesson.slides[contentSlideIdx] : null;
 
     return (
       <div className="min-h-full bg-slate-900 text-white flex flex-col">
@@ -62,15 +63,24 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
         <div className="flex-1 flex items-center justify-center p-8 lg:p-16">
           <div className="max-w-4xl w-full">
             <div className="text-xs uppercase tracking-widest text-blue-400 font-semibold mb-3">Slide {slideIdx + 1} of {totalSlides}</div>
-            {isDiagramSlide ? (
+            {isVisualSlide ? (
               <div>
                 <h2 className="text-2xl lg:text-3xl font-bold mb-4">{lesson.title}</h2>
-                <div className="bg-white rounded-xl p-4">
-                  {DiagramComponent
-                    ? <DiagramComponent />
-                    : <InlineSVGDiagram svgContent={lesson.inlineSvg!} diagramId={lesson.inlineSvgId ?? lesson.id} />
-                  }
-                </div>
+                {lesson.imageUrl ? (
+                  <img
+                    src={lesson.imageUrl}
+                    alt={lesson.title}
+                    className="w-full max-h-72 object-cover rounded-xl"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                ) : (
+                  <div className="bg-white rounded-xl p-4">
+                    {DiagramComponent
+                      ? <DiagramComponent />
+                      : <InlineSVGDiagram svgContent={lesson.inlineSvg!} diagramId={lesson.inlineSvgId ?? lesson.id} />
+                    }
+                  </div>
+                )}
               </div>
             ) : (
               <>
@@ -132,6 +142,18 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
           </button>
         </div>
       </div>
+
+      {/* Photo — shown for all lessons that have an imageUrl */}
+      {lesson.imageUrl && (
+        <div className="max-w-3xl mx-auto mb-6">
+          <img
+            src={lesson.imageUrl}
+            alt={lesson.title}
+            className="w-full h-52 lg:h-64 object-cover rounded-xl shadow-sm"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+          />
+        </div>
+      )}
 
       {/* Diagram — wider container so it scales up on large screens */}
       {DiagramComponent && (
