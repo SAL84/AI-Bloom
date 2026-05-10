@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, CheckCircle2, FileText, Presentation } from 
 import type { CourseModule, CourseId, Lesson, View } from '../../types/course';
 import { DIAGRAM_REGISTRY } from '../diagrams';
 import { InlineSVGDiagram } from '../diagrams/InlineSVGDiagram';
+import { RoleTabPanel } from './RoleTabPanel';
 
 interface LessonViewProps {
   module: CourseModule;
@@ -168,7 +169,11 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
           ))}
         </div>
 
-        <div className="flex items-center justify-between gap-3 pt-4 border-t border-slate-200">
+        {lesson.roleContent && lesson.roleContent.length > 0 && (
+          <RoleTabPanel roleContent={lesson.roleContent} />
+        )}
+
+        <div className="flex items-center justify-between gap-3 pt-6 mt-6 border-t border-slate-200">
           <button onClick={goPrev} className="px-4 py-2 text-slate-600 hover:text-slate-900 flex items-center gap-1.5 text-sm">
             <ChevronLeft className="w-4 h-4" /> {lessonIdx === 0 ? 'Module' : 'Previous'}
           </button>

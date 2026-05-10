@@ -24,6 +24,48 @@ const aiEssentials: Course = {
               'The goal is not to copy humans — it\'s to do useful things at scale',
             ],
           }],
+          roleContent: [
+            {
+              role: 'general',
+              label: 'General User',
+              body: 'AI is already part of your daily life — from Netflix recommendations to email spam filters. Understanding what AI is helps you use these tools more intentionally and know when to trust them.',
+              bullets: [
+                'Your phone uses AI for face unlock, autocomplete, and photo sorting',
+                'The key insight: AI is pattern matching at scale, not magic',
+                'You don\'t need to be technical — you just need to know when to verify',
+              ],
+            },
+            {
+              role: 'security-se',
+              label: 'Security SE',
+              body: 'When customers ask "how does AI work?" your answer sets the tone for the whole conversation. A clear, jargon-free explanation builds trust and positions you as a guide, not a vendor.',
+              bullets: [
+                'Use the narrow AI framing: "excellent at specific tasks, not general thinking"',
+                'Bridge to their world: "the same technology that filters spam now drives your SIEM\'s anomaly detection"',
+                'The goal isn\'t to impress — it\'s to give them a mental model they can actually use',
+              ],
+            },
+            {
+              role: 'developer',
+              label: 'Developer',
+              body: 'As a developer, you\'ll mostly work with AI through APIs and frameworks — not raw research. But understanding the conceptual layers (AI → ML → DL) helps you choose the right tool and avoid over-engineering.',
+              bullets: [
+                'Most problems don\'t need a frontier model — know when a smaller, cheaper model is enough',
+                'The "narrow AI" principle applies to your features too: scope tightly',
+                'API-based AI (OpenAI, Anthropic, Google) is the fastest path to production for most teams',
+              ],
+            },
+            {
+              role: 'consultant',
+              label: 'AI Consultant',
+              body: 'Clients often conflate AI with either magic or sci-fi risk. Your job is to calibrate expectations in both directions — AI is more capable than they think in some areas, and more limited than they fear in others.',
+              bullets: [
+                'The narrow AI framing defuses both hype and existential fear in one sentence',
+                'The gap between "AI in the news" and "AI in the enterprise" is still large — be honest about it',
+                'Your value is mapping specific client problems to the right AI capabilities',
+              ],
+            },
+          ],
         },
         {
           id: 'ae1l2',
@@ -39,6 +81,48 @@ const aiEssentials: Course = {
               '2022+: Generative AI goes mainstream — ChatGPT, Claude, Gemini',
             ],
           }],
+          roleContent: [
+            {
+              role: 'general',
+              label: 'General User',
+              body: 'The AI you interact with today didn\'t appear overnight. It took 70 years of research, several failed attempts, and three specific ingredients converging at once. Knowing this history helps you appreciate why the current wave feels different — and why it\'s unlikely to fizzle like the others did.',
+              bullets: [
+                'The 1980s AI "winter" happened because systems couldn\'t scale — today\'s systems can',
+                'The smartphone era created the data that makes modern AI possible',
+                '2022 was a threshold moment, not the beginning of the story',
+              ],
+            },
+            {
+              role: 'security-se',
+              label: 'Security SE',
+              body: 'Customers often ask "is this another AI hype cycle?" The timeline is your answer. This wave has structural differences from previous ones — data scale, compute economics, and foundation models create a self-reinforcing cycle that didn\'t exist before.',
+              bullets: [
+                'The 2012 ImageNet moment is a useful reference: "that\'s when deep learning proved it could beat humans at recognising images"',
+                'Position 2017 (transformers) as the infrastructure breakthrough, 2022 as the application layer arriving',
+                'Use this to explain why security vendors are investing now, not waiting',
+              ],
+            },
+            {
+              role: 'developer',
+              label: 'Developer',
+              body: 'The transformer architecture (2017) is the most important moment in this timeline for you. Everything you build on today — GPT, Claude, Gemini, embeddings, agents — runs on variants of that architecture.',
+              bullets: [
+                'Pre-transformer: AI required task-specific model design for every problem',
+                'Post-transformer: one architecture, trained at scale, adapts to almost anything',
+                'Understanding the transformer\'s "attention" mechanism unlocks intuition about context windows and token limits',
+              ],
+            },
+            {
+              role: 'consultant',
+              label: 'AI Consultant',
+              body: 'The timeline reframes the "is AI overhyped?" question. Previous hype cycles peaked and crashed because the underlying capability wasn\'t there. This time the capability arrived first — the hype followed. That\'s an important distinction when advising on AI strategy.',
+              bullets: [
+                'Frame past AI winters as infrastructure problems, not intelligence problems',
+                'The foundation model shift (train once, deploy everywhere) changes the economics of AI adoption permanently',
+                'Clients who waited in previous cycles and missed out are now at risk of repeating that mistake',
+              ],
+            },
+          ],
         },
         {
           id: 'ae1l3',
@@ -122,6 +206,48 @@ const aiEssentials: Course = {
               'Size matters: more parameters = more capacity to encode patterns',
             ],
           }],
+          roleContent: [
+            {
+              role: 'general',
+              label: 'General User',
+              body: 'Knowing that LLMs work by "predicting likely next words" explains a lot about their behaviour. It\'s why they sound so fluent, why they can write in any style, and also why they sometimes make things up confidently — fluency and accuracy are not the same thing.',
+              bullets: [
+                'When an LLM answers a question, it\'s generating the most likely response, not looking it up',
+                'This is why the same question can get slightly different answers each time',
+                'Always verify important facts — fluency is not a signal of accuracy',
+              ],
+            },
+            {
+              role: 'security-se',
+              label: 'Security SE',
+              body: 'Understanding next-token prediction gives you a powerful analogy for customer conversations: "the model doesn\'t look things up, it generates what\'s statistically likely to come next." This single insight explains hallucination, context sensitivity, and why prompting matters.',
+              bullets: [
+                'Analogy: "It\'s like autocomplete — but trained on everything ever written"',
+                'This reframes hallucination: not a bug, an emergent property of how it works',
+                'Use it to explain why the same prompt can produce different results — and why that matters for security use cases',
+              ],
+            },
+            {
+              role: 'developer',
+              label: 'Developer',
+              body: 'The key engineering implication of next-token prediction: the model\'s behaviour is entirely determined by what\'s in the context window. Everything you put in the prompt — system instructions, examples, retrieved documents — shapes the output. This is the foundation of prompt engineering and RAG.',
+              bullets: [
+                'The model has no persistent memory between calls — every API call is stateless',
+                'Temperature controls randomness in the next-token sampling process',
+                'More context = better output, but also more tokens = higher cost and latency',
+              ],
+            },
+            {
+              role: 'consultant',
+              label: 'AI Consultant',
+              body: 'Clients often ask "does the AI understand what I\'m saying?" The honest answer from next-token prediction: it processes statistical relationships between words, not meaning in the human sense. This distinction shapes appropriate use cases — and appropriate trust levels.',
+              bullets: [
+                'Reframe "understanding" as "pattern completion at scale" — more accurate and less anthropomorphic',
+                'This insight is critical for scoping where LLMs add value vs where they create risk',
+                'The strongest LLM use cases are those where statistical plausibility aligns with correctness — structured documents, code, summarisation',
+              ],
+            },
+          ],
         },
         {
           id: 'ae2l3',
