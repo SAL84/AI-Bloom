@@ -1,5 +1,14 @@
 import React from 'react';
-import { ChevronLeft, ChevronRight, CheckCircle2, Circle, Award } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckCircle2, Circle, Award, Zap, Brain, Layers, Shield, ShieldAlert, Building2 } from 'lucide-react';
+
+const MODULE_ICONS: Record<string, React.ReactNode> = {
+  zap: <Zap className="w-8 h-8" />,
+  brain: <Brain className="w-8 h-8" />,
+  layers: <Layers className="w-8 h-8" />,
+  shield: <Shield className="w-8 h-8" />,
+  'shield-alert': <ShieldAlert className="w-8 h-8" />,
+  'building-2': <Building2 className="w-8 h-8" />,
+};
 import type { CourseModule, CourseId, View } from '../../types/course';
 
 interface ModuleViewProps {
@@ -24,7 +33,7 @@ export const ModuleView = ({ module, modules, courseId, setView, completedLesson
       <div className="mb-6">
         <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider">Module {moduleIndex + 1}</span>
         <h1 className="text-3xl font-bold text-slate-900 mt-1 flex items-center gap-3">
-          <span className="text-3xl">{module.icon}</span> {module.title}
+          {MODULE_ICONS[module.icon] ?? <span className="text-3xl">{module.icon}</span>} {module.title}
         </h1>
         <p className="text-slate-600 mt-2">{module.summary}</p>
       </div>

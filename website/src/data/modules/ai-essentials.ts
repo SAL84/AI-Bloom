@@ -11,7 +11,7 @@ const aiEssentials: Course = {
   modules: [
     {
       id: 'ae-m1',
-      title: 'The AI Story',
+      title: 'AI Basics & Journey',
       icon: 'zap',
       summary: 'How artificial intelligence evolved from rule-based systems to the models reshaping every industry today.',
       lessons: [
