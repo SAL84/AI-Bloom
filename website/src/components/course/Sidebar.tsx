@@ -28,9 +28,11 @@ interface SidebarProps {
 }
 
 
-const COURSE_NAV: Array<{ id: CourseId; label: string; sub: string; icon: React.ReactNode; color: string }> = [
-  { id: 'ai-essentials', label: 'AI Essentials', sub: 'Foundations · 4 modules', icon: <Star className="w-4 h-4 text-emerald-400 flex-shrink-0" />, color: 'bg-emerald-600/15 border-emerald-500/25 hover:bg-emerald-600/25' },
-  { id: 'ai-deep-dive', label: 'AI Deep Dive', sub: 'Advanced · 4 modules', icon: <Cpu className="w-4 h-4 text-purple-400 flex-shrink-0" />, color: 'bg-purple-600/15 border-purple-500/25 hover:bg-purple-600/25' },
+const UNIFIED = 'bg-blue-600/15 border-blue-500/25 hover:bg-blue-600/25';
+
+const COURSE_NAV: Array<{ id: CourseId; label: string; sub: string; icon: React.ReactNode }> = [
+  { id: 'ai-essentials', label: 'AI Essentials', sub: 'Foundations · 4 modules', icon: <Star className="w-4 h-4 text-blue-400 flex-shrink-0" /> },
+  { id: 'ai-deep-dive', label: 'AI Deep Dive', sub: 'Advanced · 4 modules', icon: <Cpu className="w-4 h-4 text-blue-400 flex-shrink-0" /> },
 ];
 
 export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId, completedLessons, totalLessons, completedCount }: SidebarProps) => {
@@ -87,7 +89,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId,
               className={`w-full text-left px-3 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition border ${
                 activeCourseId === c.id && inCourse
                   ? 'bg-blue-600 text-white border-transparent'
-                  : `${c.color} border`
+                  : `${UNIFIED} border`
               }`}
             >
               {c.icon}
@@ -102,10 +104,10 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId,
             className={`w-full text-left px-3 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition border ${
               view.type === 'industry'
                 ? 'bg-blue-600 text-white border-transparent'
-                : 'bg-slate-700/30 border-slate-600/30 hover:bg-slate-700/50'
+                : `${UNIFIED} border`
             }`}
           >
-            <Briefcase className="w-4 h-4 text-slate-400 flex-shrink-0" />
+            <Briefcase className="w-4 h-4 text-blue-400 flex-shrink-0" />
             <span className="flex-1 min-w-0">
               <span className="block font-semibold leading-tight">AI in the Industry</span>
               <span className="text-xs text-slate-400">Products · providers · use cases</span>

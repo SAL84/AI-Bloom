@@ -79,6 +79,7 @@ export const HomeView = ({ setView, course, completedLessons }: HomeViewProps) =
             <li className="flex gap-2"><span className="text-orange-500">▸</span> Why chatbots sometimes get things completely wrong</li>
             <li className="flex gap-2"><span className="text-orange-500">▸</span> What AI agents are and why they\'re such a big deal</li>
             <li className="flex gap-2"><span className="text-orange-500">▸</span> What kinds of jobs exist in the AI world — and which one might be for you</li>
+            <li className="flex gap-2"><span className="text-orange-500">▸</span> How to stay safe online — deepfakes, scams, and what never to share with AI</li>
           </ul>
         </div>
       )}
