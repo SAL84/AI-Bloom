@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Home, CheckCircle2, Circle, Award, Search, Sparkles, Map,
   Zap, Brain, Layers, Shield, ShieldAlert,
-  Building2, FlaskConical, Bot, Star, Cpu, Baby, GraduationCap, Briefcase
+  Building2, FlaskConical, Bot, Star, Cpu, Baby, GraduationCap, Briefcase, ChevronDown
 } from 'lucide-react';
 import type { CourseModule, CourseId, View } from '../../types/course';
 
@@ -35,8 +35,29 @@ const COURSE_NAV: Array<{ id: CourseId; label: string; sub: string; icon: React.
 ];
 
 export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId, completedLessons, totalLessons, completedCount }: SidebarProps) => {
-  // show module list only when inside a module/lesson/quiz — not on the course home page
-  const showModules = view.type === 'module' || view.type === 'lesson' || view.type === 'quiz';
+  const courseViewCourseId = (['home', 'module', 'lesson', 'quiz'] as string[]).includes(view.type) && 'courseId' in view
+    ? (view as { courseId: CourseId }).courseId
+    : null;
+
+  const [expandedCourseId, setExpandedCourseId] = React.useState<CourseId | null>(courseViewCourseId);
+
+  // Auto-expand when navigating into a course from outside the sidebar
+  React.useEffect(() => {
+    if (courseViewCourseId) setExpandedCourseId(courseViewCourseId);
+  }, [courseViewCourseId]);
+
+  const toggleCourse = (courseId: CourseId) => {
+    if (expandedCourseId === courseId) {
+      setExpandedCourseId(null);
+    } else {
+      setExpandedCourseId(courseId);
+      setView({ type: 'home', courseId });
+      setOpen(false);
+    }
+  };
+
+  const isCourseActive = (courseId: CourseId) =>
+    activeCourseId === courseId && (['home', 'module', 'lesson', 'quiz'] as string[]).includes(view.type);
 
   const navBtn = (label: string, icon: React.ReactNode, active: boolean, onClick: () => void) => (
     <button
@@ -47,11 +68,8 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId,
     </button>
   );
 
-  const isCourseActive = (courseId: CourseId) =>
-    activeCourseId === courseId && (view.type === 'home' || showModules);
-
   const ModuleList = ({ courseId }: { courseId: CourseId }) => {
-    if (!showModules || activeCourseId !== courseId) return null;
+    if (expandedCourseId !== courseId) return null;
     return (
       <div className="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5 pb-1">
         {modules.map((m, mi) => {
@@ -123,7 +141,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId,
           {/* ── AI FOR KIDS ── */}
           <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">For Kids</div>
           <button
-            onClick={() => { setView({ type: 'home', courseId: 'ai-kids' }); setOpen(false); }}
+            onClick={() => toggleCourse('ai-kids')}
             className={`w-full text-left px-3 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition border ${
               isCourseActive('ai-kids')
                 ? 'bg-orange-600 text-white border-transparent'
@@ -135,6 +153,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId,
               <span className="block font-semibold text-orange-300 leading-tight">AI for Kids</span>
               <span className="text-xs text-slate-400">Foundations + career game</span>
             </span>
+            <ChevronDown className={`w-4 h-4 flex-shrink-0 text-slate-400 transition-transform duration-200 ${expandedCourseId === 'ai-kids' ? 'rotate-180' : ''}`} />
           </button>
           <ModuleList courseId="ai-kids" />
 
@@ -143,7 +162,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId,
           {COURSE_NAV.map(c => (
             <React.Fragment key={c.id}>
               <button
-                onClick={() => { setView({ type: 'home', courseId: c.id }); setOpen(false); }}
+                onClick={() => toggleCourse(c.id)}
                 className={`w-full text-left px-3 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition border ${
                   isCourseActive(c.id)
                     ? 'bg-blue-600 text-white border-transparent'
@@ -155,6 +174,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId,
                   <span className="block font-semibold leading-tight">{c.label}</span>
                   <span className="text-xs text-slate-400">{c.sub}</span>
                 </span>
+                <ChevronDown className={`w-4 h-4 flex-shrink-0 text-slate-400 transition-transform duration-200 ${expandedCourseId === c.id ? 'rotate-180' : ''}`} />
               </button>
               <ModuleList courseId={c.id} />
             </React.Fragment>
@@ -177,7 +197,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId,
           {/* ── AI FOR CYBERSECURITY ── */}
           <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">AI for Cybersecurity</div>
           <button
-            onClick={() => { setView({ type: 'home', courseId: 'ai-cybersec-se' }); setOpen(false); }}
+            onClick={() => toggleCourse('ai-cybersec-se')}
             className={`w-full text-left px-3 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition border ${
               isCourseActive('ai-cybersec-se')
                 ? 'bg-blue-600 text-white border-transparent'
@@ -189,6 +209,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId,
               <span className="block font-semibold text-sky-300 leading-tight">AI for Cybersecurity Sales</span>
               <span className="text-xs text-slate-400">6 modules · Live now</span>
             </span>
+            <ChevronDown className={`w-4 h-4 flex-shrink-0 text-slate-400 transition-transform duration-200 ${expandedCourseId === 'ai-cybersec-se' ? 'rotate-180' : ''}`} />
           </button>
           <ModuleList courseId="ai-cybersec-se" />
 

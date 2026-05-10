@@ -167,11 +167,13 @@ const aiEssentials: Course = {
             ],
           }],
         },
+        ...m1.lessons,
       ],
       quiz: [
         { q: 'What does "narrow AI" mean?', options: ['AI that only runs on small devices', 'AI designed for one specific task domain', 'AI with limited network access', 'AI that cannot be fine-tuned'], correct: 1 },
         { q: 'Which architecture enabled modern LLMs?', options: ['Recurrent Neural Networks', 'Convolutional Neural Networks', 'Transformer', 'Expert Systems'], correct: 2 },
         { q: 'Which three factors converged to make modern AI possible?', options: ['Data, compute, algorithms', 'Data, funding, regulation', 'Compute, cloud, APIs', 'Algorithms, startups, researchers'], correct: 0 },
+        ...m1.quiz,
       ],
     },
     {
@@ -503,7 +505,5 @@ const aiEssentials: Course = {
     },
   ],
 };
-
-aiEssentials.modules.push(m1);
 
 export default aiEssentials;
