@@ -2,7 +2,8 @@ import React from 'react';
 import {
   Home, CheckCircle2, Circle, Award, Search, Sparkles, Map,
   Zap, Brain, Layers, Shield, ShieldAlert,
-  Building2, FlaskConical, Bot, Star, Cpu, Baby, GraduationCap, Briefcase, ChevronDown
+  Building2, FlaskConical, Bot, Star, Cpu, Baby, GraduationCap, Briefcase, ChevronDown,
+  Gamepad2, Rocket
 } from 'lucide-react';
 import type { CourseModule, CourseId, View } from '../../types/course';
 
@@ -156,6 +157,24 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId,
             <ChevronDown className={`w-4 h-4 flex-shrink-0 text-slate-400 transition-transform duration-200 ${expandedCourseId === 'ai-kids' ? 'rotate-180' : ''}`} />
           </button>
           <ModuleList courseId="ai-kids" />
+          {expandedCourseId === 'ai-kids' && (
+            <div className="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5 pb-1">
+              <button
+                onClick={() => { setView({ type: 'kids-games' }); setOpen(false); }}
+                className={`w-full text-left px-2 py-1.5 rounded-lg text-xs transition flex items-center gap-2 ${view.type === 'kids-games' ? 'bg-slate-800 text-slate-100' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'}`}
+              >
+                <Gamepad2 className="w-3.5 h-3.5 flex-shrink-0" />
+                <span className="font-medium">AI Games</span>
+              </button>
+              <button
+                onClick={() => { setView({ type: 'kids-careers' }); setOpen(false); }}
+                className={`w-full text-left px-2 py-1.5 rounded-lg text-xs transition flex items-center gap-2 ${view.type === 'kids-careers' ? 'bg-slate-800 text-slate-100' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'}`}
+              >
+                <Rocket className="w-3.5 h-3.5 flex-shrink-0" />
+                <span className="font-medium">Career Explorer</span>
+              </button>
+            </div>
+          )}
 
           {/* ── AI LITERACY ── */}
           <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">AI Literacy</div>

@@ -68,4 +68,6 @@ export type View =
   | { type: 'roadmap' }
   | { type: 'playground' }
   | { type: 'agentic-ai' }
-  | { type: 'industry' };
+  | { type: 'industry' }
+  | { type: 'kids-games' }
+  | { type: 'kids-careers' };

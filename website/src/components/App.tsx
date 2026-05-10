@@ -12,6 +12,8 @@ import { AIPlaygroundsView } from './course/AIPlaygroundsView';
 import { AgenticAIView } from './course/AgenticAIView';
 import { IndustryView } from './course/IndustryView';
 import { CourseLibraryView } from './course/CourseLibraryView';
+import { KidsGamesView } from './course/kids/KidsGamesView';
+import { KidsCareersView } from './course/kids/KidsCareersView';
 import { ThemeToggle } from './course/ThemeToggle';
 import type { Theme } from './course/ThemeToggle';
 import type { View, Progress } from '../types/course';
@@ -172,6 +174,12 @@ export default function App() {
           )}
           {view.type === 'industry' && (
             <IndustryView setView={setView} />
+          )}
+          {view.type === 'kids-games' && (
+            <KidsGamesView setView={setView} />
+          )}
+          {view.type === 'kids-careers' && (
+            <KidsCareersView setView={setView} />
           )}
 
           <footer className="mt-auto border-t border-slate-200 px-6 py-4 flex items-center justify-between text-xs text-slate-400">
