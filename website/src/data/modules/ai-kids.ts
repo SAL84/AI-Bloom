@@ -272,19 +272,22 @@ const SVG_HOW_AI_LEARNS = `<svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2
   <text x="280" y="200" text-anchor="middle" font-size="10" fill="#64748b">After billions of examples, AI gets very good at recognising patterns</text>
 </svg>`;
 
-const SVG_AI_ML_DL = `<svg viewBox="0 0 560 230" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
-  <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">AI contains ML contains Deep Learning</text>
-  <ellipse cx="280" cy="120" rx="250" ry="95" fill="#fef3c7" stroke="#f59e0b" stroke-width="2.5"/>
-  <text x="100" y="48" font-size="12" font-weight="700" fill="#92400e">🤖 Artificial Intelligence</text>
-  <text x="100" y="62" font-size="10" fill="#78350f">Anything that makes a machine seem smart</text>
-  <ellipse cx="280" cy="130" rx="185" ry="70" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
-  <text x="130" y="82" font-size="12" font-weight="700" fill="#1d4ed8">📊 Machine Learning</text>
-  <text x="130" y="96" font-size="10" fill="#1e40af">AI that learns from examples</text>
-  <ellipse cx="280" cy="140" rx="115" ry="46" fill="#d1fae5" stroke="#10b981" stroke-width="2.5"/>
-  <text x="220" y="124" font-size="12" font-weight="700" fill="#065f46">🧠 Deep Learning</text>
-  <text x="220" y="138" font-size="10" fill="#047857">Uses layers of</text>
-  <text x="220" y="150" font-size="10" fill="#047857">virtual neurons</text>
-  <text x="280" y="215" text-anchor="middle" font-size="10" fill="#64748b">ChatGPT, Claude and Gemini are all inside Deep Learning</text>
+const SVG_AI_ML_DL = `<svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="16" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">AI contains ML contains Deep Learning</text>
+  <!-- All ellipses drawn first so text always renders on top -->
+  <ellipse cx="280" cy="130" rx="255" ry="108" fill="#fef3c7" stroke="#f59e0b" stroke-width="2.5"/>
+  <ellipse cx="280" cy="150" rx="185" ry="78" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
+  <ellipse cx="280" cy="168" rx="110" ry="48" fill="#d1fae5" stroke="#10b981" stroke-width="2.5"/>
+  <!-- AI label — yellow ring above ML top (150−78=72) -->
+  <text x="280" y="42" text-anchor="middle" font-size="12" font-weight="700" fill="#92400e">🤖 Artificial Intelligence</text>
+  <text x="280" y="57" text-anchor="middle" font-size="10" fill="#78350f">Anything that makes a machine seem smart</text>
+  <!-- ML label — blue ring above DL top (168−48=120) -->
+  <text x="280" y="88" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">📊 Machine Learning</text>
+  <text x="280" y="103" text-anchor="middle" font-size="10" fill="#1e40af">AI that learns from examples</text>
+  <!-- DL label — inside green ellipse -->
+  <text x="280" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">🧠 Deep Learning</text>
+  <text x="280" y="165" text-anchor="middle" font-size="10" fill="#047857">Uses layers of virtual neurons</text>
+  <text x="280" y="252" text-anchor="middle" font-size="10" fill="#64748b">ChatGPT, Claude and Gemini are all inside Deep Learning</text>
 </svg>`;
 
 const SVG_HALLUCINATION = `<svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
@@ -483,6 +486,44 @@ const SVG_SAFETY_RULES = `<svg viewBox="0 0 560 210" xmlns="http://www.w3.org/20
   <text x="320" y="175" font-size="15">💝</text><text x="342" y="175" font-size="11" font-weight="700" fill="#9d174d">Rule 5: </text><text x="388" y="175" font-size="11" fill="#be185d">Be kind — AI learns from us</text>
 </svg>`;
 
+const SVG_GENAI_LLM = `<svg viewBox="0 0 560 240" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="18" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">Generative AI — AI that creates brand-new content</text>
+  <!-- Input -->
+  <rect x="20" y="35" width="140" height="88" rx="12" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="90" y="57" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">📝 Your prompt</text>
+  <text x="90" y="74" text-anchor="middle" font-size="10" fill="#1e40af">"Write a poem</text>
+  <text x="90" y="88" text-anchor="middle" font-size="10" fill="#1e40af">about the ocean"</text>
+  <text x="90" y="110" text-anchor="middle" font-size="9" fill="#3b82f6">(text · question · idea)</text>
+  <!-- Arrow → -->
+  <path d="M163 79 L190 79" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr-g)"/>
+  <!-- LLM Brain -->
+  <rect x="193" y="25" width="174" height="118" rx="16" fill="#ede9fe" stroke="#7c3aed" stroke-width="2.5"/>
+  <text x="280" y="47" text-anchor="middle" font-size="12" font-weight="700" fill="#6d28d9">🧠 Large Language Model</text>
+  <rect x="212" y="56" width="136" height="11" rx="4" fill="#c4b5fd"/>
+  <rect x="212" y="71" width="136" height="11" rx="4" fill="#a78bfa"/>
+  <rect x="212" y="86" width="136" height="11" rx="4" fill="#8b5cf6"/>
+  <text x="280" y="111" text-anchor="middle" font-size="9" fill="#4c1d95">Trained on billions of texts</text>
+  <text x="280" y="125" text-anchor="middle" font-size="9" fill="#4c1d95">Predicts next word, again and again</text>
+  <!-- Arrow → -->
+  <path d="M370 79 L397 79" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr-g)"/>
+  <!-- Output -->
+  <rect x="400" y="35" width="140" height="88" rx="12" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="470" y="57" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">✨ New content!</text>
+  <text x="470" y="74" text-anchor="middle" font-size="10" fill="#047857">"Waves of silver</text>
+  <text x="470" y="88" text-anchor="middle" font-size="10" fill="#047857">crash on the shore..."</text>
+  <text x="470" y="110" text-anchor="middle" font-size="9" fill="#059669">Never existed before!</text>
+  <!-- What GenAI creates -->
+  <rect x="20" y="158" width="520" height="48" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="280" y="178" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">GenAI can create:</text>
+  <text x="280" y="197" text-anchor="middle" font-size="12" fill="#64748b">📝 Text · 🎨 Images · 🎵 Music · 💻 Code · 🎬 Video</text>
+  <defs>
+    <marker id="arr-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <text x="280" y="232" text-anchor="middle" font-size="10" fill="#64748b">ChatGPT, Claude, Gemini — all powered by LLMs</text>
+</svg>`;
+
 // ─────────────────────────────────────────────────────────────────────────────
 
 const aiKids: Course = {
@@ -570,10 +611,27 @@ const aiKids: Course = {
     },
     {
       id: 'ak-m2',
-      title: 'Talking AI',
+      title: 'Generative AI & LLMs',
       icon: 'brain',
-      summary: 'ChatGPT, Claude, Gemini — how do they work? And why do they sometimes make things up?',
+      summary: 'What is generative AI, how do large language models work, and why do chatbots sometimes make things up?',
       lessons: [
+        {
+          id: 'ak2l0',
+          title: 'What Is Generative AI?',
+          inlineSvg: SVG_GENAI_LLM,
+          inlineSvgId: 'ak2l0',
+          slides: [{
+            heading: 'AI That Creates — Not Just Answers',
+            body: 'Most software gives you back information it already stored. Generative AI does something different — it creates brand-new content that never existed before. It\'s the technology behind ChatGPT, Claude, Gemini, DALL-E, and many more.',
+            bullets: [
+              'Generative AI (GenAI) = AI that generates new content: text, images, music, code, video',
+              'Large Language Models (LLMs) are the type of GenAI trained on text — they power chatbots',
+              'LLMs work by predicting what word comes next, over and over — at enormous scale',
+              'The "large" in LLM means the model saw billions of examples during training',
+              'Unlike a search engine (which finds existing pages), GenAI creates something new each time',
+            ],
+          }],
+        },
         {
           id: 'ak2l1',
           title: 'What Is a Chatbot?',
@@ -640,15 +698,16 @@ const aiKids: Course = {
         },
       ],
       quiz: [
+        { q: 'What does LLM stand for?', options: ['Logic Learning Machine', 'Large Language Model', 'Layered Logic Module', 'Language Learning Mechanism'], correct: 1 },
         { q: 'What is an AI "hallucination"?', options: ['When the AI sees images that aren\'t there', 'When the AI makes up a confident-sounding but incorrect answer', 'When the AI refuses to answer a question', 'When the AI generates weird images'], correct: 1 },
         { q: 'What is "prompting" when talking to AI?', options: ['Restarting the AI when it gets stuck', 'Choosing how to ask your question to get a better answer', 'Giving the AI a personality', 'Uploading files to the AI'], correct: 1 },
       ],
     },
     {
       id: 'ak-m3',
-      title: 'AI Agents',
+      title: 'Agentic AI',
       icon: 'layers',
-      summary: 'When AI stops just talking and starts actually doing things in the world — what changes?',
+      summary: 'When AI stops just chatting and starts taking real-world actions — searching, coding, booking, deciding — what changes?',
       lessons: [
         {
           id: 'ak3l1',
