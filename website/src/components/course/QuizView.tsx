@@ -1,15 +1,16 @@
 import React, { useState, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle2, Award } from 'lucide-react';
-import type { CourseModule, View } from '../../types/course';
+import type { CourseModule, CourseId, View } from '../../types/course';
 
 interface QuizViewProps {
   module: CourseModule;
   modules: CourseModule[];
+  courseId: CourseId;
   setView: (view: View) => void;
   recordQuizScore: (moduleId: string, score: number) => void;
 }
 
-export const QuizView = ({ module, modules, setView, recordQuizScore }: QuizViewProps) => {
+export const QuizView = ({ module, modules, courseId, setView, recordQuizScore }: QuizViewProps) => {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [submitted, setSubmitted] = useState(false);
   const moduleIdx = modules.findIndex(m => m.id === module.id);
@@ -28,15 +29,15 @@ export const QuizView = ({ module, modules, setView, recordQuizScore }: QuizView
 
   const handleNext = () => {
     if (moduleIdx < modules.length - 1) {
-      setView({ type: 'module', moduleId: modules[moduleIdx + 1].id });
+      setView({ type: 'module', courseId, moduleId: modules[moduleIdx + 1].id });
     } else {
-      setView({ type: 'home' });
+      setView({ type: 'home', courseId });
     }
   };
 
   return (
     <div className="max-w-3xl mx-auto p-6 lg:p-10">
-      <button onClick={() => setView({ type: 'module', moduleId: module.id })} className="text-sm text-slate-500 hover:text-slate-900 mb-4 flex items-center gap-1">
+      <button onClick={() => setView({ type: 'module', courseId, moduleId: module.id })} className="text-sm text-slate-500 hover:text-slate-900 mb-4 flex items-center gap-1">
         <ChevronLeft className="w-4 h-4" /> {module.title}
       </button>
 

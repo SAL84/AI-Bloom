@@ -1,22 +1,23 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle2, Circle, Award } from 'lucide-react';
-import type { CourseModule, View } from '../../types/course';
+import type { CourseModule, CourseId, View } from '../../types/course';
 
 interface ModuleViewProps {
   module: CourseModule;
   modules: CourseModule[];
+  courseId: CourseId;
   setView: (view: View) => void;
   completedLessons: Record<string, boolean>;
   quizScores: Record<string, number>;
 }
 
-export const ModuleView = ({ module, modules, setView, completedLessons, quizScores }: ModuleViewProps) => {
+export const ModuleView = ({ module, modules, courseId, setView, completedLessons, quizScores }: ModuleViewProps) => {
   const moduleIndex = modules.findIndex(m => m.id === module.id);
   const moduleLessonsCompleted = module.lessons.filter(l => completedLessons[l.id]).length;
 
   return (
     <div className="max-w-4xl mx-auto p-6 lg:p-10">
-      <button onClick={() => setView({ type: 'home' })} className="text-sm text-slate-500 hover:text-slate-900 mb-4 flex items-center gap-1">
+      <button onClick={() => setView({ type: 'home', courseId })} className="text-sm text-slate-500 hover:text-slate-900 mb-4 flex items-center gap-1">
         <ChevronLeft className="w-4 h-4" /> Course Home
       </button>
 
@@ -38,7 +39,7 @@ export const ModuleView = ({ module, modules, setView, completedLessons, quizSco
                 <div className="flex-1 h-px bg-slate-200" />
               </div>
             )}
-          <button onClick={() => setView({ type: 'lesson', moduleId: module.id, lessonId: l.id })} className="w-full text-left bg-white border border-slate-200 hover:border-blue-300 rounded-lg p-4 transition flex items-center gap-3 group">
+          <button onClick={() => setView({ type: 'lesson', courseId, moduleId: module.id, lessonId: l.id })} className="w-full text-left bg-white border border-slate-200 hover:border-blue-300 rounded-lg p-4 transition flex items-center gap-3 group">
             <div className="flex-shrink-0">
               {completedLessons[l.id] ? <CheckCircle2 className="w-5 h-5 text-emerald-500" /> : <Circle className="w-5 h-5 text-slate-300" />}
             </div>
@@ -51,7 +52,7 @@ export const ModuleView = ({ module, modules, setView, completedLessons, quizSco
           </React.Fragment>
         ))}
 
-        <button onClick={() => setView({ type: 'quiz', moduleId: module.id })} className="w-full text-left bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 hover:border-amber-400 rounded-lg p-4 transition flex items-center gap-3 group">
+        <button onClick={() => setView({ type: 'quiz', courseId, moduleId: module.id })} className="w-full text-left bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 hover:border-amber-400 rounded-lg p-4 transition flex items-center gap-3 group">
           <Award className="w-5 h-5 text-amber-600 flex-shrink-0" />
           <div className="flex-1">
             <div className="text-xs text-amber-700 font-semibold">MODULE QUIZ</div>

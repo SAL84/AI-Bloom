@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle2, FileText, Presentation } from 'lucide-react';
-import type { CourseModule, Lesson, View } from '../../types/course';
+import type { CourseModule, CourseId, Lesson, View } from '../../types/course';
 import { DIAGRAM_REGISTRY } from '../diagrams';
 import { InlineSVGDiagram } from '../diagrams/InlineSVGDiagram';
 
@@ -8,12 +8,13 @@ interface LessonViewProps {
   module: CourseModule;
   lesson: Lesson;
   modules: CourseModule[];
+  courseId: CourseId;
   setView: (view: View) => void;
   completedLessons: Record<string, boolean>;
   markComplete: (lessonId: string) => void;
 }
 
-export const LessonView = ({ module, lesson, modules, setView, completedLessons, markComplete }: LessonViewProps) => {
+export const LessonView = ({ module, lesson, modules, courseId, setView, completedLessons, markComplete }: LessonViewProps) => {
   const [slideMode, setSlideMode] = useState(false);
   const [slideIdx, setSlideIdx] = useState(0);
 
@@ -26,17 +27,17 @@ export const LessonView = ({ module, lesson, modules, setView, completedLessons,
   const goNext = () => {
     if (!completedLessons[lesson.id]) markComplete(lesson.id);
     if (isLast) {
-      setView({ type: 'quiz', moduleId: module.id });
+      setView({ type: 'quiz', courseId, moduleId: module.id });
     } else {
-      setView({ type: 'lesson', moduleId: module.id, lessonId: module.lessons[lessonIdx + 1].id });
+      setView({ type: 'lesson', courseId, moduleId: module.id, lessonId: module.lessons[lessonIdx + 1].id });
     }
   };
 
   const goPrev = () => {
     if (lessonIdx > 0) {
-      setView({ type: 'lesson', moduleId: module.id, lessonId: module.lessons[lessonIdx - 1].id });
+      setView({ type: 'lesson', courseId, moduleId: module.id, lessonId: module.lessons[lessonIdx - 1].id });
     } else {
-      setView({ type: 'module', moduleId: module.id });
+      setView({ type: 'module', courseId, moduleId: module.id });
     }
   };
 
@@ -116,7 +117,7 @@ export const LessonView = ({ module, lesson, modules, setView, completedLessons,
     <div className="p-6 lg:p-10">
       {/* Header — constrained */}
       <div className="max-w-3xl mx-auto">
-        <button onClick={() => setView({ type: 'module', moduleId: module.id })} className="text-sm text-slate-500 hover:text-slate-900 mb-4 flex items-center gap-1">
+        <button onClick={() => setView({ type: 'module', courseId, moduleId: module.id })} className="text-sm text-slate-500 hover:text-slate-900 mb-4 flex items-center gap-1">
           <ChevronLeft className="w-4 h-4" /> {module.title}
         </button>
 

@@ -4,6 +4,13 @@ export interface Slide {
   bullets?: string[];
 }
 
+export interface RoleContent {
+  role: 'general' | 'security-se' | 'developer' | 'consultant';
+  label: string;
+  body: string;
+  bullets?: string[];
+}
+
 export interface QuizQuestion {
   q: string;
   options: string[];
@@ -13,11 +20,12 @@ export interface QuizQuestion {
 export interface Lesson {
   id: string;
   title: string;
-  diagram?: string;        // key in DIAGRAM_REGISTRY (React SVG component)
-  inlineSvg?: string;      // raw SVG string rendered by InlineSVGDiagram
-  inlineSvgId?: string;    // short id for arrow marker namespacing
-  sectionLabel?: string;   // optional divider label rendered before this lesson
+  diagram?: string;
+  inlineSvg?: string;
+  inlineSvgId?: string;
+  sectionLabel?: string;
   slides: Slide[];
+  roleContent?: RoleContent[];
 }
 
 export interface CourseModule {
@@ -34,7 +42,10 @@ export interface GlossaryEntry {
   def: string;
 }
 
+export type CourseId = 'ai-essentials' | 'ai-deep-dive' | 'ai-kids' | 'ai-cybersec-se';
+
 export interface Course {
+  id: CourseId;
   title: string;
   subtitle: string;
   modules: CourseModule[];
@@ -48,11 +59,12 @@ export interface Progress {
 
 export type View =
   | { type: 'library' }
-  | { type: 'home' }
-  | { type: 'module'; moduleId: string }
-  | { type: 'lesson'; moduleId: string; lessonId: string }
-  | { type: 'quiz'; moduleId: string }
+  | { type: 'home'; courseId?: CourseId }
+  | { type: 'module'; courseId?: CourseId; moduleId: string }
+  | { type: 'lesson'; courseId?: CourseId; moduleId: string; lessonId: string }
+  | { type: 'quiz'; courseId?: CourseId; moduleId: string }
   | { type: 'glossary' }
   | { type: 'roadmap' }
   | { type: 'playground' }
-  | { type: 'agentic-ai' };
+  | { type: 'agentic-ai' }
+  | { type: 'industry' };

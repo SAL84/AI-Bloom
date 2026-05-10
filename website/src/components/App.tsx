@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, Library, BookOpen } from 'lucide-react';
-import { COURSE } from '../data/modules';
+import { COURSES, COURSE } from '../data/modules';
 import { Sidebar } from './course/Sidebar';
 import { HomeView } from './course/HomeView';
 import { ModuleView } from './course/ModuleView';
@@ -10,6 +10,7 @@ import { GlossaryView } from './course/GlossaryView';
 import { RoadmapView } from './course/RoadmapView';
 import { AIPlaygroundsView } from './course/AIPlaygroundsView';
 import { AgenticAIView } from './course/AgenticAIView';
+import { IndustryView } from './course/IndustryView';
 import { CourseLibraryView } from './course/CourseLibraryView';
 import { ThemeToggle } from './course/ThemeToggle';
 import type { Theme } from './course/ThemeToggle';
@@ -79,11 +80,13 @@ export default function App() {
   };
 
   const inCourse = view.type === 'home' || view.type === 'module' || view.type === 'lesson' || view.type === 'quiz';
-  const totalLessons = COURSE.modules.reduce((s, m) => s + m.lessons.length, 0);
+  const activeCourseId = ('courseId' in view && view.courseId) ? view.courseId : 'ai-cybersec-se';
+  const activeCourse = COURSES[activeCourseId] ?? COURSE;
+  const totalLessons = activeCourse.modules.reduce((s, m) => s + m.lessons.length, 0);
   const completedCount = Object.values(completedLessons).filter(Boolean).length;
 
-  const currentModule = view.type !== 'home' && view.type !== 'glossary' && 'moduleId' in view
-    ? COURSE.modules.find(m => m.id === view.moduleId) ?? null
+  const currentModule = ('moduleId' in view && inCourse)
+    ? activeCourse.modules.find(m => m.id === view.moduleId) ?? null
     : null;
   const currentLesson = view.type === 'lesson' && currentModule
     ? currentModule.lessons.find(l => l.id === view.lessonId) ?? null
@@ -102,7 +105,8 @@ export default function App() {
         setOpen={setSidebarOpen}
         view={view}
         setView={setView}
-        modules={COURSE.modules}
+        modules={activeCourse.modules}
+        activeCourseId={activeCourseId}
         completedLessons={completedLessons}
         totalLessons={totalLessons}
         completedCount={completedCount}
@@ -143,16 +147,16 @@ export default function App() {
             <CourseLibraryView setView={setView} />
           )}
           {view.type === 'home' && (
-            <HomeView setView={setView} modules={COURSE.modules} completedLessons={completedLessons} />
+            <HomeView setView={setView} course={activeCourse} completedLessons={completedLessons} />
           )}
           {view.type === 'module' && currentModule && (
-            <ModuleView module={currentModule} modules={COURSE.modules} setView={setView} completedLessons={completedLessons} quizScores={quizScores} />
+            <ModuleView module={currentModule} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} completedLessons={completedLessons} quizScores={quizScores} />
           )}
           {view.type === 'lesson' && currentModule && currentLesson && (
-            <LessonView key={currentLesson.id} module={currentModule} lesson={currentLesson} modules={COURSE.modules} setView={setView} completedLessons={completedLessons} markComplete={markComplete} />
+            <LessonView key={currentLesson.id} module={currentModule} lesson={currentLesson} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} completedLessons={completedLessons} markComplete={markComplete} />
           )}
           {view.type === 'quiz' && currentModule && (
-            <QuizView module={currentModule} modules={COURSE.modules} setView={setView} recordQuizScore={recordQuizScore} />
+            <QuizView module={currentModule} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} recordQuizScore={recordQuizScore} />
           )}
           {view.type === 'glossary' && (
             <GlossaryView setView={setView} />
@@ -165,6 +169,9 @@ export default function App() {
           )}
           {view.type === 'agentic-ai' && (
             <AgenticAIView setView={setView} />
+          )}
+          {view.type === 'industry' && (
+            <IndustryView setView={setView} />
           )}
 
           <footer className="mt-auto border-t border-slate-200 px-6 py-4 flex items-center justify-between text-xs text-slate-400">
