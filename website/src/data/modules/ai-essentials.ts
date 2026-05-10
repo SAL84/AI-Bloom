@@ -1,4 +1,5 @@
 import type { Course } from '../../types/course';
+import m1 from './m1';
 
 const aiEssentials: Course = {
   id: 'ai-essentials',
@@ -502,5 +503,7 @@ const aiEssentials: Course = {
     },
   ],
 };
+
+aiEssentials.modules.push(m1);
 
 export default aiEssentials;

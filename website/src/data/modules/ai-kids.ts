@@ -222,6 +222,267 @@ const SVG_DEEPFAKE = `<svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/s
   <text x="280" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">Real vs Deepfake — can you tell the difference?</text>
 </svg>`;
 
+const SVG_TIMELINE = `<svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">AI through the decades</text>
+  <line x1="40" y1="100" x2="520" y2="100" stroke="#cbd5e1" stroke-width="3"/>
+  <circle cx="80" cy="100" r="22" fill="#fef3c7" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="80" y="96" text-anchor="middle" font-size="16">💡</text>
+  <text x="80" y="108" text-anchor="middle" font-size="8" fill="#92400e" font-weight="700">1950s</text>
+  <text x="80" y="140" text-anchor="middle" font-size="9" fill="#64748b">First ideas</text>
+  <circle cx="200" cy="100" r="22" fill="#fee2e2" stroke="#f87171" stroke-width="2.5"/>
+  <text x="200" y="96" text-anchor="middle" font-size="16">♟️</text>
+  <text x="200" y="108" text-anchor="middle" font-size="8" fill="#991b1b" font-weight="700">1980s</text>
+  <text x="200" y="140" text-anchor="middle" font-size="9" fill="#64748b">Chess AI</text>
+  <circle cx="310" cy="100" r="22" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="310" y="96" text-anchor="middle" font-size="16">👁️</text>
+  <text x="310" y="108" text-anchor="middle" font-size="8" fill="#1d4ed8" font-weight="700">2012</text>
+  <text x="310" y="140" text-anchor="middle" font-size="9" fill="#64748b">Sees images!</text>
+  <circle cx="410" cy="100" r="22" fill="#d1fae5" stroke="#10b981" stroke-width="2.5"/>
+  <text x="410" y="96" text-anchor="middle" font-size="16">📖</text>
+  <text x="410" y="108" text-anchor="middle" font-size="8" fill="#065f46" font-weight="700">2017</text>
+  <text x="410" y="140" text-anchor="middle" font-size="9" fill="#64748b">Reads text!</text>
+  <circle cx="500" cy="100" r="22" fill="#ede9fe" stroke="#7c3aed" stroke-width="2.5"/>
+  <text x="500" y="96" text-anchor="middle" font-size="16">🤖</text>
+  <text x="500" y="108" text-anchor="middle" font-size="8" fill="#6d28d9" font-weight="700">2022</text>
+  <text x="500" y="140" text-anchor="middle" font-size="9" fill="#64748b">ChatGPT!</text>
+  <text x="80" y="65" text-anchor="middle" font-size="8" fill="#94a3b8">Start</text>
+  <text x="500" y="65" text-anchor="middle" font-size="8" fill="#94a3b8">Now</text>
+  <text x="280" y="180" text-anchor="middle" font-size="10" fill="#64748b">Each era brought a new breakthrough that changed everything</text>
+</svg>`;
+
+const SVG_HOW_AI_LEARNS = `<svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">How AI learns: show it enough examples!</text>
+  <rect x="20" y="40" width="130" height="140" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="85" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#92400e">Lots of pictures</text>
+  <text x="45" y="90" font-size="22">🐱</text><text x="85" y="90" font-size="22">🐱</text><text x="125" y="90" font-size="22">🐱</text>
+  <text x="45" y="120" font-size="22">🐱</text><text x="85" y="120" font-size="22">🐱</text><text x="125" y="120" font-size="22">🐱</text>
+  <text x="85" y="155" text-anchor="middle" font-size="10" fill="#78350f">All labelled "cat"</text>
+  <path d="M158 110 L200 110" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr-learn)"/>
+  <rect x="208" y="60" width="144" height="100" rx="16" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <circle cx="262" cy="100" r="12" fill="#1d4ed8"/><circle cx="298" cy="100" r="12" fill="#1d4ed8"/>
+  <circle cx="265" cy="97" r="4" fill="#fff"/><circle cx="301" cy="97" r="4" fill="#fff"/>
+  <path d="M256 118 Q280 130 304 118" stroke="#1d4ed8" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="280" y="145" text-anchor="middle" font-size="10" fill="#1e40af">AI brain learning…</text>
+  <path d="M360 110 L402 110" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr-learn)"/>
+  <rect x="408" y="60" width="132" height="100" rx="12" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="474" y="95" text-anchor="middle" font-size="30">🐱</text>
+  <text x="474" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">"That's a cat!"</text>
+  <text x="474" y="140" text-anchor="middle" font-size="10" fill="#047857">✅ Correct!</text>
+  <defs><marker id="arr-learn" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/></marker></defs>
+  <text x="280" y="200" text-anchor="middle" font-size="10" fill="#64748b">After billions of examples, AI gets very good at recognising patterns</text>
+</svg>`;
+
+const SVG_AI_ML_DL = `<svg viewBox="0 0 560 230" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">AI contains ML contains Deep Learning</text>
+  <ellipse cx="280" cy="120" rx="250" ry="95" fill="#fef3c7" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="100" y="48" font-size="12" font-weight="700" fill="#92400e">🤖 Artificial Intelligence</text>
+  <text x="100" y="62" font-size="10" fill="#78350f">Anything that makes a machine seem smart</text>
+  <ellipse cx="280" cy="130" rx="185" ry="70" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="130" y="82" font-size="12" font-weight="700" fill="#1d4ed8">📊 Machine Learning</text>
+  <text x="130" y="96" font-size="10" fill="#1e40af">AI that learns from examples</text>
+  <ellipse cx="280" cy="140" rx="115" ry="46" fill="#d1fae5" stroke="#10b981" stroke-width="2.5"/>
+  <text x="220" y="124" font-size="12" font-weight="700" fill="#065f46">🧠 Deep Learning</text>
+  <text x="220" y="138" font-size="10" fill="#047857">Uses layers of</text>
+  <text x="220" y="150" font-size="10" fill="#047857">virtual neurons</text>
+  <text x="280" y="215" text-anchor="middle" font-size="10" fill="#64748b">ChatGPT, Claude and Gemini are all inside Deep Learning</text>
+</svg>`;
+
+const SVG_HALLUCINATION = `<svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">Why AI sometimes makes things up</text>
+  <rect x="30" y="45" width="220" height="70" rx="14" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="140" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">😊 You ask:</text>
+  <text x="140" y="86" text-anchor="middle" font-size="11" fill="#1e40af">"Who invented</text>
+  <text x="140" y="100" text-anchor="middle" font-size="11" fill="#1e40af">the telephone?"</text>
+  <rect x="30" y="135" width="220" height="60" rx="14" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="140" y="157" text-anchor="middle" font-size="11" font-weight="700" fill="#065f46">✅ Confident answer:</text>
+  <text x="140" y="173" text-anchor="middle" font-size="11" fill="#047857">"Alexander Graham Bell"</text>
+  <text x="140" y="188" text-anchor="middle" font-size="9" fill="#047857">(This is actually correct!)</text>
+  <rect x="310" y="45" width="220" height="70" rx="14" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="420" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">😊 You ask:</text>
+  <text x="420" y="86" text-anchor="middle" font-size="11" fill="#1e40af">"What books did</text>
+  <text x="420" y="100" text-anchor="middle" font-size="11" fill="#1e40af">Einstein write?"</text>
+  <rect x="310" y="135" width="220" height="60" rx="14" fill="#fee2e2" stroke="#f87171" stroke-width="2"/>
+  <text x="420" y="157" text-anchor="middle" font-size="11" font-weight="700" fill="#991b1b">❌ Still confident:</text>
+  <text x="420" y="173" text-anchor="middle" font-size="11" fill="#b91c1c">"The Theory of Everything"</text>
+  <text x="420" y="188" text-anchor="middle" font-size="9" fill="#9f1239">(That book doesn't exist!)</text>
+  <text x="280" y="210" text-anchor="middle" font-size="10" fill="#64748b">AI always sounds confident — even when it's wrong. Always check important facts!</text>
+</svg>`;
+
+const SVG_PROMPTING = `<svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">Better question = better answer</text>
+  <rect x="20" y="40" width="240" height="70" rx="12" fill="#fee2e2" stroke="#f87171" stroke-width="2"/>
+  <text x="140" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#991b1b">😐 Vague prompt</text>
+  <text x="140" y="76" text-anchor="middle" font-size="12" font-weight="600" fill="#b91c1c">"Tell me about space"</text>
+  <rect x="20" y="125" width="240" height="60" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="140" y="145" text-anchor="middle" font-size="10" fill="#78350f">AI gives a very general, long</text>
+  <text x="140" y="159" text-anchor="middle" font-size="10" fill="#78350f">answer about everything in space.</text>
+  <text x="140" y="174" text-anchor="middle" font-size="9" fill="#92400e">Not very useful 😕</text>
+  <rect x="300" y="40" width="240" height="70" rx="12" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="420" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#065f46">🌟 Good prompt</text>
+  <text x="420" y="74" text-anchor="middle" font-size="10" font-weight="600" fill="#047857">"Explain black holes in 3</text>
+  <text x="420" y="88" text-anchor="middle" font-size="10" font-weight="600" fill="#047857">simple steps for a 12-year-old"</text>
+  <rect x="300" y="125" width="240" height="60" rx="12" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="420" y="145" text-anchor="middle" font-size="10" fill="#047857">AI gives exactly 3 clear steps,</text>
+  <text x="420" y="159" text-anchor="middle" font-size="10" fill="#047857">perfectly matched to your level!</text>
+  <text x="420" y="174" text-anchor="middle" font-size="9" fill="#065f46">Super useful! 🎉</text>
+  <text x="280" y="200" text-anchor="middle" font-size="10" fill="#64748b">Add: who you are · what format · how long · what level</text>
+</svg>`;
+
+const SVG_AI_CREATIVE = `<svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">AI can be creative too!</text>
+  <rect x="160" y="40" width="240" height="50" rx="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
+  <text x="280" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">You type a description...</text>
+  <text x="280" y="79" text-anchor="middle" font-size="11" fill="#64748b">"a cat in space wearing a crown"</text>
+  <path d="M230 96 L190 126" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr-cr)"/>
+  <path d="M280 96 L280 126" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr-cr)"/>
+  <path d="M330 96 L370 126" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr-cr)"/>
+  <rect x="20" y="130" width="140" height="65" rx="12" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+  <text x="90" y="152" text-anchor="middle" font-size="22">🎨</text>
+  <text x="90" y="172" text-anchor="middle" font-size="11" font-weight="700" fill="#9d174d">AI Image</text>
+  <text x="90" y="186" text-anchor="middle" font-size="9" fill="#be185d">Generates a picture!</text>
+  <rect x="210" y="130" width="140" height="65" rx="12" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="280" y="152" text-anchor="middle" font-size="22">🎵</text>
+  <text x="280" y="172" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">AI Music</text>
+  <text x="280" y="186" text-anchor="middle" font-size="9" fill="#1e40af">Composes a song!</text>
+  <rect x="400" y="130" width="140" height="65" rx="12" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="470" y="152" text-anchor="middle" font-size="22">🎬</text>
+  <text x="470" y="172" text-anchor="middle" font-size="11" font-weight="700" fill="#065f46">AI Video</text>
+  <text x="470" y="186" text-anchor="middle" font-size="9" fill="#047857">Creates a clip!</text>
+  <defs><marker id="arr-cr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/></marker></defs>
+</svg>`;
+
+const SVG_STEP_LOOP = `<svg viewBox="0 0 560 190" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">How an agent solves a problem — step by step</text>
+  <rect x="20" y="45" width="108" height="110" rx="12" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="74" y="78" text-anchor="middle" font-size="24">🎯</text>
+  <text x="74" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">Step 1</text>
+  <text x="74" y="119" text-anchor="middle" font-size="10" fill="#1e40af">Understand</text>
+  <text x="74" y="133" text-anchor="middle" font-size="10" fill="#1e40af">the goal</text>
+  <path d="M130 100 L152 100" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr-step)"/>
+  <rect x="155" y="45" width="108" height="110" rx="12" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="209" y="78" text-anchor="middle" font-size="24">🔍</text>
+  <text x="209" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="#065f46">Step 2</text>
+  <text x="209" y="119" text-anchor="middle" font-size="10" fill="#047857">Plan the</text>
+  <text x="209" y="133" text-anchor="middle" font-size="10" fill="#047857">next action</text>
+  <path d="M265 100 L287 100" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr-step)"/>
+  <rect x="290" y="45" width="108" height="110" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="344" y="78" text-anchor="middle" font-size="24">⚡</text>
+  <text x="344" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="#92400e">Step 3</text>
+  <text x="344" y="119" text-anchor="middle" font-size="10" fill="#78350f">Do the action</text>
+  <text x="344" y="133" text-anchor="middle" font-size="10" fill="#78350f">(search, write…)</text>
+  <path d="M400 100 L422 100" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr-step)"/>
+  <rect x="425" y="45" width="115" height="110" rx="12" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="482" y="78" text-anchor="middle" font-size="24">🔁</text>
+  <text x="482" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">Step 4</text>
+  <text x="482" y="119" text-anchor="middle" font-size="10" fill="#5b21b6">Check result,</text>
+  <text x="482" y="133" text-anchor="middle" font-size="10" fill="#5b21b6">repeat or done!</text>
+  <defs><marker id="arr-step" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/></marker></defs>
+  <text x="280" y="180" text-anchor="middle" font-size="10" fill="#64748b">Agents keep looping until the job is finished!</text>
+</svg>`;
+
+const SVG_AI_DECISIONS = `<svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">When should AI decide — and when should YOU?</text>
+  <line x1="280" y1="50" x2="280" y2="80" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="100" y1="80" x2="460" y2="80" stroke="#94a3b8" stroke-width="2"/>
+  <text x="140" y="72" text-anchor="middle" font-size="11" fill="#94a3b8">AI can handle</text>
+  <text x="420" y="72" text-anchor="middle" font-size="11" fill="#94a3b8">Human needed</text>
+  <rect x="20" y="90" width="230" height="110" rx="12" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="60" y="115" font-size="13">✅</text><text x="80" y="115" font-size="10" fill="#065f46">Sort your playlist</text>
+  <text x="60" y="135" font-size="13">✅</text><text x="80" y="135" font-size="10" fill="#065f46">Summarise an article</text>
+  <text x="60" y="155" font-size="13">✅</text><text x="80" y="155" font-size="10" fill="#065f46">Set a reminder</text>
+  <text x="60" y="175" font-size="13">✅</text><text x="80" y="175" font-size="10" fill="#065f46">Translate a sentence</text>
+  <rect x="310" y="90" width="230" height="110" rx="12" fill="#fee2e2" stroke="#f87171" stroke-width="2"/>
+  <text x="350" y="115" font-size="13">⚠️</text><text x="373" y="115" font-size="10" fill="#991b1b">Medical decisions</text>
+  <text x="350" y="135" font-size="13">⚠️</text><text x="373" y="135" font-size="10" fill="#991b1b">Hiring someone</text>
+  <text x="350" y="155" font-size="13">⚠️</text><text x="373" y="155" font-size="10" fill="#991b1b">Sending important emails</text>
+  <text x="350" y="175" font-size="13">⚠️</text><text x="373" y="175" font-size="10" fill="#991b1b">Anything that hurts people</text>
+  <text x="280" y="212" text-anchor="middle" font-size="10" fill="#64748b">Rule: bigger consequences = more human involvement needed</text>
+</svg>`;
+
+const SVG_AI_SENSES = `<svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">AI can see, hear, and understand the world</text>
+  <rect x="200" y="60" width="160" height="110" rx="20" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
+  <circle cx="252" cy="100" r="12" fill="#1d4ed8"/><circle cx="308" cy="100" r="12" fill="#1d4ed8"/>
+  <circle cx="255" cy="97" r="5" fill="#fff"/><circle cx="311" cy="97" r="5" fill="#fff"/>
+  <path d="M245 122 Q280 136 315 122" stroke="#1d4ed8" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <text x="280" y="155" text-anchor="middle" font-size="10" fill="#1e40af">Multimodal AI</text>
+  <rect x="20" y="70" width="130" height="50" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="85" y="90" text-anchor="middle" font-size="18">📷</text>
+  <text x="85" y="108" text-anchor="middle" font-size="10" font-weight="700" fill="#92400e">Vision — sees photos</text>
+  <rect x="20" y="140" width="130" height="50" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="85" y="160" text-anchor="middle" font-size="18">🎤</text>
+  <text x="85" y="178" text-anchor="middle" font-size="10" font-weight="700" fill="#065f46">Hearing — voice AI</text>
+  <rect x="410" y="70" width="130" height="50" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="475" y="90" text-anchor="middle" font-size="18">💬</text>
+  <text x="475" y="108" text-anchor="middle" font-size="10" font-weight="700" fill="#6d28d9">Reading — text AI</text>
+  <rect x="410" y="140" width="130" height="50" rx="10" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+  <text x="475" y="160" text-anchor="middle" font-size="18">🏥</text>
+  <text x="475" y="178" text-anchor="middle" font-size="10" font-weight="700" fill="#9d174d">X-rays — medical AI</text>
+  <line x1="152" y1="95" x2="198" y2="103" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="152" y1="165" x2="198" y2="140" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="362" y1="103" x2="408" y2="95" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="362" y1="140" x2="408" y2="165" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="280" y="210" text-anchor="middle" font-size="10" fill="#64748b">AI is already in your life: face unlock, voice assistants, photo search</text>
+</svg>`;
+
+const SVG_FAIR_AI = `<svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">AI learns from humans — so it can inherit our biases</text>
+  <circle cx="280" cy="110" r="55" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
+  <circle cx="262" cy="95" r="10" fill="#1d4ed8"/><circle cx="298" cy="95" r="10" fill="#1d4ed8"/>
+  <circle cx="265" cy="92" r="3.5" fill="#fff"/><circle cx="301" cy="92" r="3.5" fill="#fff"/>
+  <path d="M258 110 Q280 122 302 110" stroke="#1d4ed8" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="280" y="140" text-anchor="middle" font-size="9" fill="#1e40af">AI trained on data</text>
+  <circle cx="90" cy="80" r="22" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+  <text x="90" y="86" text-anchor="middle" font-size="18">👧</text>
+  <circle cx="90" cy="150" r="22" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="90" y="156" text-anchor="middle" font-size="18">👦</text>
+  <circle cx="470" cy="80" r="22" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="470" y="86" text-anchor="middle" font-size="18">🧑</text>
+  <circle cx="470" cy="150" r="22" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="470" y="156" text-anchor="middle" font-size="18">👩</text>
+  <circle cx="150" cy="40" r="22" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="150" y="46" text-anchor="middle" font-size="18">🧒</text>
+  <circle cx="410" cy="40" r="22" fill="#fee2e2" stroke="#f87171" stroke-width="2"/>
+  <text x="410" y="46" text-anchor="middle" font-size="18">👴</text>
+  <text x="280" y="185" text-anchor="middle" font-size="10" fill="#64748b">If training data isn't diverse, AI treats some people unfairly</text>
+  <text x="280" y="200" text-anchor="middle" font-size="10" fill="#64748b">Fix: use diverse data + test for fairness + have humans check</text>
+</svg>`;
+
+const SVG_TRICK = `<svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">AI-powered tricks — how to spot them</text>
+  <rect x="20" y="40" width="240" height="80" rx="12" fill="#fee2e2" stroke="#f87171" stroke-width="2"/>
+  <text x="130" y="62" text-anchor="middle" font-size="12" font-weight="700" fill="#991b1b">🎣 Fake urgent message</text>
+  <text x="130" y="80" text-anchor="middle" font-size="10" fill="#b91c1c">"Your account is locked!</text>
+  <text x="130" y="94" text-anchor="middle" font-size="10" fill="#b91c1c">Click NOW to fix it!!!"</text>
+  <text x="130" y="110" text-anchor="middle" font-size="9" fill="#991b1b">⚠ AI can write these in seconds</text>
+  <rect x="300" y="40" width="240" height="80" rx="12" fill="#fee2e2" stroke="#f87171" stroke-width="2"/>
+  <text x="420" y="62" text-anchor="middle" font-size="12" font-weight="700" fill="#991b1b">🎭 Fake voice call</text>
+  <text x="420" y="80" text-anchor="middle" font-size="10" fill="#b91c1c">"Hi, it's Mum — I need</text>
+  <text x="420" y="94" text-anchor="middle" font-size="10" fill="#b91c1c">money urgently, please help!"</text>
+  <text x="420" y="110" text-anchor="middle" font-size="9" fill="#991b1b">⚠ AI can clone any voice</text>
+  <rect x="110" y="140" width="340" height="55" rx="12" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="280" y="160" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">🛡 Your protection</text>
+  <text x="280" y="176" text-anchor="middle" font-size="10" fill="#047857">Slow down · Verify directly · Never act from panic</text>
+  <text x="280" y="190" text-anchor="middle" font-size="10" fill="#047857">If it feels urgent and scary — it's probably a trick!</text>
+</svg>`;
+
+const SVG_SAFETY_RULES = `<svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+  <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">Your 5 AI safety rules</text>
+  <rect x="20" y="35" width="520" height="34" rx="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="50" y="49" font-size="15">⏸️</text><text x="72" y="49" font-size="11" font-weight="700" fill="#1d4ed8">Rule 1: </text><text x="118" y="49" font-size="11" fill="#1e40af">Pause before sharing — does this AI really need this info?</text>
+  <text x="50" y="62" font-size="9" fill="#3b82f6">Never share: your address, school name, passwords, or phone number</text>
+  <rect x="20" y="77" width="520" height="34" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="50" y="91" font-size="15">🔎</text><text x="72" y="91" font-size="11" font-weight="700" fill="#065f46">Rule 2: </text><text x="118" y="91" font-size="11" fill="#047857">Verify before trusting — check important AI facts elsewhere</text>
+  <text x="50" y="104" font-size="9" fill="#10b981">AI can sound very confident while being completely wrong</text>
+  <rect x="20" y="119" width="520" height="34" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="50" y="133" font-size="15">🤔</text><text x="72" y="133" font-size="11" font-weight="700" fill="#92400e">Rule 3: </text><text x="118" y="133" font-size="11" fill="#78350f">Question what you see — photos, videos and voices can be AI-made</text>
+  <text x="50" y="146" font-size="9" fill="#f59e0b">Deepfakes are getting harder to spot every year</text>
+  <rect x="20" y="161" width="250" height="34" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="50" y="175" font-size="15">🙋</text><text x="72" y="175" font-size="11" font-weight="700" fill="#6d28d9">Rule 4: </text><text x="118" y="175" font-size="11" fill="#5b21b6">Tell a trusted adult if anything feels wrong</text>
+  <rect x="290" y="161" width="250" height="34" rx="10" fill="#fce7f3" stroke="#ec4899" stroke-width="1.5"/>
+  <text x="320" y="175" font-size="15">💝</text><text x="342" y="175" font-size="11" font-weight="700" fill="#9d174d">Rule 5: </text><text x="388" y="175" font-size="11" fill="#be185d">Be kind — AI learns from us</text>
+</svg>`;
+
 // ─────────────────────────────────────────────────────────────────────────────
 
 const aiKids: Course = {
@@ -239,7 +500,6 @@ const aiKids: Course = {
         {
           id: 'ak1l1',
           title: 'AI Is Like a Very Fast Learner',
-          imageUrl: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&auto=format&fit=crop&q=80',
           inlineSvg: SVG_ROBOT_LEARNER,
           inlineSvgId: 'ak1l1',
           slides: [{
@@ -256,7 +516,8 @@ const aiKids: Course = {
         {
           id: 'ak1l2',
           title: 'AI Through the Ages',
-          imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80',
+          inlineSvg: SVG_TIMELINE,
+          inlineSvgId: 'ak1l2',
           slides: [{
             heading: 'A Quick Tour of AI History',
             body: 'People have dreamed about thinking machines for a long time. Let\'s take a quick trip through the highlights — from robots in stories to the AI assistants you can talk to today.',
@@ -272,7 +533,8 @@ const aiKids: Course = {
         {
           id: 'ak1l3',
           title: 'How Does AI Actually Learn?',
-          imageUrl: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&auto=format&fit=crop&q=80',
+          inlineSvg: SVG_HOW_AI_LEARNS,
+          inlineSvgId: 'ak1l3',
           slides: [{
             heading: 'Learning Like You — But Very Different',
             body: 'When you learn to ride a bike, you practice, fall down, and get better. AI learns in a similar way — but instead of bikes, it practices with data. Millions and millions of examples.',
@@ -287,7 +549,8 @@ const aiKids: Course = {
         {
           id: 'ak1l4',
           title: 'AI, ML, and Deep Learning',
-          imageUrl: 'https://images.unsplash.com/photo-1655635643617-72e0b62b9278?w=800&auto=format&fit=crop&q=80',
+          inlineSvg: SVG_AI_ML_DL,
+          inlineSvgId: 'ak1l4',
           slides: [{
             heading: 'What\'s the Difference?',
             body: 'You\'ve probably heard these words used interchangeably. But they\'re actually different things — like how "sport" is different from "football" which is different from "penalty kicks."',
@@ -314,7 +577,6 @@ const aiKids: Course = {
         {
           id: 'ak2l1',
           title: 'What Is a Chatbot?',
-          imageUrl: 'https://images.unsplash.com/photo-1655720408254-7e32b93fdbcb?w=800&auto=format&fit=crop&q=80',
           inlineSvg: SVG_CHATBOT,
           inlineSvgId: 'ak2l1',
           slides: [{
@@ -331,7 +593,8 @@ const aiKids: Course = {
         {
           id: 'ak2l2',
           title: 'Why AI Sometimes Makes Things Up',
-          imageUrl: 'https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?w=800&auto=format&fit=crop&q=80',
+          inlineSvg: SVG_HALLUCINATION,
+          inlineSvgId: 'ak2l2',
           slides: [{
             heading: 'When AI Gets It Wrong',
             body: 'AI chatbots are designed to always give you a response. The problem is: sometimes they don\'t know the answer — but instead of saying "I don\'t know," they make up something that sounds right. This is called a "hallucination."',
@@ -346,7 +609,8 @@ const aiKids: Course = {
         {
           id: 'ak2l3',
           title: 'Prompting: Talk to AI Like a Pro',
-          imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=80',
+          inlineSvg: SVG_PROMPTING,
+          inlineSvgId: 'ak2l3',
           slides: [{
             heading: 'The Better You Ask, the Better the Answer',
             body: 'The words you use when talking to AI really matter. A vague question gets a vague answer. A clear, detailed question gets a much better one. This skill is called "prompting" — and it\'s one of the most useful things you can learn.',
@@ -361,7 +625,8 @@ const aiKids: Course = {
         {
           id: 'ak2l4',
           title: 'AI Art, Music & Videos',
-          imageUrl: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&auto=format&fit=crop&q=80',
+          inlineSvg: SVG_AI_CREATIVE,
+          inlineSvgId: 'ak2l4',
           slides: [{
             heading: 'AI Gets Creative',
             body: 'AI isn\'t just for text. Today\'s AI can generate stunning images from a description, compose music, and even create video. This raises exciting questions — and tricky ones too.',
@@ -388,7 +653,6 @@ const aiKids: Course = {
         {
           id: 'ak3l1',
           title: 'What Is an AI Agent?',
-          imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80',
           inlineSvg: SVG_AGENT_LOOP,
           inlineSvgId: 'ak3l1',
           slides: [{
@@ -405,7 +669,8 @@ const aiKids: Course = {
         {
           id: 'ak3l2',
           title: 'The Agent Loop: Think, Try, Learn',
-          imageUrl: 'https://images.unsplash.com/photo-1633281256183-c0f106f70d76?w=800&auto=format&fit=crop&q=80',
+          inlineSvg: SVG_STEP_LOOP,
+          inlineSvgId: 'ak3l2',
           slides: [{
             heading: 'How Agents Solve Problems Step by Step',
             body: 'AI agents don\'t just guess once — they work through problems in a loop: think about what to do, try an action, see what happens, then think again. This is called the "agent loop."',
@@ -421,7 +686,8 @@ const aiKids: Course = {
         {
           id: 'ak3l3',
           title: 'Should AI Make Decisions for Us?',
-          imageUrl: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&auto=format&fit=crop&q=80',
+          inlineSvg: SVG_AI_DECISIONS,
+          inlineSvgId: 'ak3l3',
           slides: [{
             heading: 'The Big Question About Autonomy',
             body: 'When AI agents can take actions in the world, we have to decide: how much should they do on their own? Some decisions are fine to delegate. Others should always have a human in charge.',
@@ -449,7 +715,8 @@ const aiKids: Course = {
         {
           id: 'ak4l1',
           title: 'AI That Sees and Hears',
-          imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80',
+          inlineSvg: SVG_AI_SENSES,
+          inlineSvgId: 'ak4l1',
           slides: [{
             heading: 'Beyond Words',
             body: 'AI isn\'t just about text and chat. Modern AI can look at a photo and describe what\'s in it, listen to music and identify the artist, or watch a video and summarise what happened. This is called multimodal AI.',
@@ -464,7 +731,8 @@ const aiKids: Course = {
         {
           id: 'ak4l2',
           title: 'Being Fair with AI',
-          imageUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&auto=format&fit=crop&q=80',
+          inlineSvg: SVG_FAIR_AI,
+          inlineSvgId: 'ak4l2',
           slides: [{
             heading: 'AI Can Be Biased — Here\'s Why',
             body: 'AI learns from data created by humans. And humans aren\'t always fair. So sometimes AI picks up unfair patterns from the data and repeats them. This is called bias — and fixing it is one of the most important challenges in AI.',
@@ -479,7 +747,6 @@ const aiKids: Course = {
         {
           id: 'ak4l3',
           title: 'Careers with AI — What Will You Build?',
-          imageUrl: 'https://images.unsplash.com/photo-1534665482403-a909d0d97c67?w=800&auto=format&fit=crop&q=80',
           inlineSvg: SVG_CAREERS,
           inlineSvgId: 'ak4l3',
           slides: [{
@@ -509,7 +776,6 @@ const aiKids: Course = {
         {
           id: 'ak5l1',
           title: 'Your Personal Info Is Precious',
-          imageUrl: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop&q=80',
           inlineSvg: SVG_CYBERSAFETY,
           inlineSvgId: 'ak5l1',
           slides: [{
@@ -527,7 +793,6 @@ const aiKids: Course = {
         {
           id: 'ak5l2',
           title: 'Deepfakes: When Seeing Isn\'t Believing',
-          imageUrl: 'https://images.unsplash.com/photo-1560186640-e1e086054c25?w=800&auto=format&fit=crop&q=80',
           inlineSvg: SVG_DEEPFAKE,
           inlineSvgId: 'ak5l2',
           slides: [{
@@ -545,7 +810,8 @@ const aiKids: Course = {
         {
           id: 'ak5l3',
           title: 'AI Trying to Trick You',
-          imageUrl: 'https://images.unsplash.com/photo-1504197832061-98356e3dcdcf?w=800&auto=format&fit=crop&q=80',
+          inlineSvg: SVG_TRICK,
+          inlineSvgId: 'ak5l3',
           slides: [{
             heading: 'Scams, Manipulation, and AI-Powered Tricks',
             body: 'Some people use AI to create fake messages, fake voices, or fake urgency to trick you into doing something. This is called social engineering — and AI makes it much easier for bad actors to do.',
@@ -561,7 +827,8 @@ const aiKids: Course = {
         {
           id: 'ak5l4',
           title: 'Your AI Safety Rules',
-          imageUrl: 'https://images.unsplash.com/photo-1566341013475-5a3244e59e1d?w=800&auto=format&fit=crop&q=80',
+          inlineSvg: SVG_SAFETY_RULES,
+          inlineSvgId: 'ak5l4',
           slides: [{
             heading: 'Five Rules Every Digital Kid Should Know',
             body: 'Just like there are rules for crossing the road safely, there are rules for using AI safely. These five rules will protect you — today and as AI gets even more powerful.',

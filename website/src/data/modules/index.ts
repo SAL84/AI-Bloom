@@ -1,4 +1,3 @@
-import m1 from './m1';
 import m2 from './m2';
 import m3 from './m3';
 import m4 from './m4';
@@ -14,7 +13,7 @@ const CYBERSEC_SE: Course = {
   id: 'ai-cybersec-se',
   title: 'AI for Cybersecurity Sales Engineers',
   subtitle: 'From foundational concepts to practical positioning, with architectural diagrams',
-  modules: [m1, m2, m3, m4, m5, m6],
+  modules: [m2, m3, m4, m5, m6],
   glossary: GLOSSARY,
 };
 
