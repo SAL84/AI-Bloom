@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   BookOpen, CheckCircle2, Circle, Award, Search, Sparkles, Map,
-  Library, Lightbulb, Flame, Zap, Brain, Layers, Shield, ShieldAlert,
+  Library, Zap, Brain, Layers, Shield, ShieldAlert,
   Building2, FlaskConical, Bot, Star, Cpu, Baby, GraduationCap, Briefcase
 } from 'lucide-react';
 import type { CourseModule, CourseId, View } from '../../types/course';
@@ -27,25 +27,6 @@ interface SidebarProps {
   completedCount: number;
 }
 
-const INSPIRATIONAL = [
-  'The best time to understand AI was five years ago. The second best time is right now.',
-  'Everyone around you is already using AI. The question is whether you\'re shaping it or just reacting to it.',
-  'AI won\'t replace you. Someone who understands AI might. Choose which side of that sentence you\'re on.',
-  'You don\'t need to build AI to master it. You just need to understand it well enough to ask better questions than anyone else in the room.',
-  'The people who thrive in the next decade won\'t be the ones who feared AI — they\'ll be the ones who got curious first.',
-  'Every expert was once a beginner who decided not to stay one.',
-  'Understanding AI is not a technical skill anymore. It\'s a leadership skill.',
-  'The most powerful thing you can learn today is how to think alongside machines — and know when not to trust them.',
-];
-
-const AI_FACTS = [
-  { label: 'Hot take', text: 'GPT stands for "Generative Pre-trained Transformer." Not "Generally Pretty Terrifying," though both apply depending on the day.' },
-  { label: 'Fun fact', text: 'The attention mechanism in transformers was introduced in 2017. Before that, AI had to read sentences left to right, forgetting the beginning by the end.' },
-  { label: 'Reality check', text: 'LLMs don\'t "know" anything. They\'re very confident pattern-completion machines. Your overconfident colleague is basically a human LLM.' },
-  { label: 'True story', text: 'The term "hallucination" for AI making things up was borrowed from psychology. The most human thing about AI is its relationship with facts.' },
-  { label: 'Did you know', text: 'A single training run for a frontier model can cost tens of millions of dollars. And it still can\'t reliably count the R\'s in "strawberry."' },
-  { label: 'Perspective', text: 'RAG is essentially giving an AI a cheat sheet during the exam. Somehow this is considered cheating for students but innovation in AI.' },
-];
 
 const COURSE_NAV: Array<{ id: CourseId; label: string; sub: string; icon: React.ReactNode; color: string }> = [
   { id: 'ai-essentials', label: 'AI Essentials', sub: 'Foundations · 4 modules', icon: <Star className="w-4 h-4 text-emerald-400 flex-shrink-0" />, color: 'bg-emerald-600/15 border-emerald-500/25 hover:bg-emerald-600/25' },
@@ -53,17 +34,6 @@ const COURSE_NAV: Array<{ id: CourseId; label: string; sub: string; icon: React.
 ];
 
 export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId, completedLessons, totalLessons, completedCount }: SidebarProps) => {
-  const [factIndex, setFactIndex] = useState(() => Math.floor(Math.random() * AI_FACTS.length));
-  const [inspIndex, setInspIndex] = useState(() => Math.floor(Math.random() * INSPIRATIONAL.length));
-
-  useEffect(() => {
-    if (view.type === 'library') {
-      setFactIndex(Math.floor(Math.random() * AI_FACTS.length));
-      setInspIndex(Math.floor(Math.random() * INSPIRATIONAL.length));
-    }
-  }, [view.type]);
-
-  const fact = AI_FACTS[factIndex];
   const inCourse = view.type === 'home' || view.type === 'module' || view.type === 'lesson' || view.type === 'quiz';
 
   const navBtn = (label: string, icon: React.ReactNode, active: boolean, onClick: () => void) => (
@@ -158,27 +128,6 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId,
               <span className="text-xs text-slate-400">6 modules · Live now</span>
             </span>
           </button>
-
-          {/* ── While You're Here (library only) ── */}
-          {!inCourse && (
-            <>
-              <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">While You're Here</div>
-              <div className="mx-1 mt-1 mb-1 rounded-xl bg-slate-800/60 border border-slate-700 p-4">
-                <div className="flex items-center gap-1.5 mb-2">
-                  <Flame className="w-3.5 h-3.5 text-orange-400 flex-shrink-0" />
-                  <span className="text-xs font-semibold text-orange-400 uppercase tracking-wider">Think about it</span>
-                </div>
-                <p className="text-xs text-slate-300 leading-relaxed italic">{INSPIRATIONAL[inspIndex]}</p>
-              </div>
-              <div className="mx-1 mt-2 mb-1 rounded-xl bg-slate-800/60 border border-slate-700 p-4">
-                <div className="flex items-center gap-1.5 mb-2">
-                  <Lightbulb className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
-                  <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider">{fact.label}</span>
-                </div>
-                <p className="text-xs text-slate-300 leading-relaxed">{fact.text}</p>
-              </div>
-            </>
-          )}
 
           {/* ── EXPLORE ── */}
           <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">Explore</div>
