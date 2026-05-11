@@ -64,6 +64,48 @@ const m2: CourseModule = {
           ],
         },
       ],
+      roleContent: [
+        {
+          role: 'general',
+          label: 'General User',
+          body: 'This overview maps all the confusing LLM jargon you\'ve heard into a single picture. Knowing where each concept lives helps you ask better questions when evaluating AI tools.',
+          bullets: [
+            'Guardrails explain why AI tools sometimes refuse requests — that\'s safety controls, not broken software',
+            'RAG explains why some AI tools know about your internal documents — retrieval, not built-in memory',
+            'Temperature settings explain why the same question can get different answers each time',
+          ],
+        },
+        {
+          role: 'security-se',
+          label: 'Security SE',
+          body: 'This diagram is your product positioning map. Every vendor feature lands on one of these four layers — knowing which one tells you the conversation to have and the objections to expect.',
+          bullets: [
+            'Ask: which layer does this feature live on — quality, techniques, guardrails, or mechanics?',
+            'Guardrail gaps are your attack surface discussion; probe what\'s filtered and what isn\'t',
+            'When a customer says "we need to customise it," map that to techniques (RAG, fine-tuning, prompting) before scoping',
+          ],
+        },
+        {
+          role: 'developer',
+          label: 'Developer',
+          body: 'This is your architecture decision map. Every layer has its own build-vs-buy tradeoffs, latency implications, and failure modes.',
+          bullets: [
+            'Guardrails should be infrastructure, not application code — don\'t rebuild them in every service',
+            'RAG and fine-tuning solve different problems; pick based on whether the gap is knowledge or behaviour',
+            'Temperature is a runtime parameter — expose it as config, not a hardcoded constant',
+          ],
+        },
+        {
+          role: 'consultant',
+          label: 'AI Consultant',
+          body: 'Use this diagram as a client education tool. Placing their questions and concerns onto the right layer focuses the conversation and stops scope creep before it starts.',
+          bullets: [
+            'Map client concerns to layers: data privacy → guardrails; outdated answers → RAG; inconsistent tone → fine-tuning',
+            'Most "AI isn\'t working" complaints land on techniques or guardrails, not model quality',
+            'Governance conversations should start at the guardrails layer — that\'s where policy lives',
+          ],
+        },
+      ],
     },
     {
       id: 'm2l1',
@@ -75,7 +117,49 @@ const m2: CourseModule = {
         { heading: 'Context Windows', body: 'The maximum tokens a model can see at once — input plus output. Modern frontier models offer 200K to 2M+ tokens. But longer context does not equal better answers; models often degrade in the middle of very long contexts (lost in the middle).' },
         { heading: 'Security Incidents in Token Terms', body: 'Concrete examples for SE conversations: a typical phishing email plus headers ≈ 500-1,500 tokens. A SIEM alert with enrichment ≈ 200-800 tokens. A 10-page incident report ≈ 4,000-6,000 tokens. A 500-page IR engagement document ≈ 200,000+ tokens. A 30-second deepfake video sample for analysis can exceed 50,000 tokens. This is why batch alert analysis, video forensics, and long-document review have very different cost profiles.' },
         { heading: 'Sales Implication', body: 'When a prospect asks can it analyze our 500-page incident report — yes, technically. But the right answer is often retrieving the relevant slice of the document at query time rather than stuffing everything in the prompt. We will cover that retrieval pattern (RAG) in Lesson 4. This is a credibility marker — push back gently on context-window-as-magic-bullet thinking.' }
-      ]
+      ],
+      roleContent: [
+        {
+          role: 'general',
+          label: 'General User',
+          body: 'Every time you use an AI tool, it\'s working within a token budget. Long conversations, big documents, and complex instructions all compete for the same limited space — and when it fills up, earlier context gets dropped.',
+          bullets: [
+            'If an AI seems to "forget" earlier parts of a long conversation, the context window has run out',
+            'Shorter, focused prompts usually get better answers than long, sprawling ones',
+            'AI tools charge per token — very long documents cost significantly more to analyse',
+          ],
+        },
+        {
+          role: 'security-se',
+          label: 'Security SE',
+          body: 'Token literacy is a credibility differentiator in cost and architecture conversations — and it\'s the setup for your RAG pitch.',
+          bullets: [
+            'Use the phishing email / SIEM alert token estimates to make cost conversations concrete and defensible',
+            'Counter "just use a bigger context window" with the lost-in-the-middle degradation point',
+            'Ask: what\'s the average token size of the documents your analysts need to work with?',
+          ],
+        },
+        {
+          role: 'developer',
+          label: 'Developer',
+          body: 'Token accounting is a first-class engineering concern — model it explicitly in your architecture, not as an afterthought.',
+          bullets: [
+            'Instrument token usage per request from day one — production cost surprises come from here',
+            'Test long-context performance at the p90 document size, not average — degradation is non-linear',
+            'CVE IDs, hashes, and unusual strings often tokenise inefficiently — benchmark your domain vocabulary',
+          ],
+        },
+        {
+          role: 'consultant',
+          label: 'AI Consultant',
+          body: 'Token costs compound silently at enterprise scale. Build token budgeting into the total cost model from the start, not after the first invoice arrives.',
+          bullets: [
+            'Estimate token volume from client document sizes before committing to a pricing model',
+            'Large context window ≠ large context quality — include this in the evaluation criteria',
+            'Set client expectations: analysing entire knowledge bases via context window is the expensive, lower-quality path',
+          ],
+        },
+      ],
     },
     {
       id: 'm2l2',
@@ -85,7 +169,49 @@ const m2: CourseModule = {
         { heading: 'What Embeddings Are', body: 'Numerical representations of text (or images, code, audio) where semantically similar items end up near each other in high-dimensional space. Each item becomes a vector — a long list of numbers — and similarity is measured by distance between vectors. Phishing email and credential harvesting message cluster together even with no shared words, because their meanings are close.' },
         { heading: 'Vector Search: Finding Similar Things', body: 'Once content is embedded as vectors, you can ask: what items are closest to this query in vector space? That is vector search — also called semantic search. Unlike keyword search (which matches literal words), it matches meaning. A query for credential theft will surface documents about phishing, password dumps, and token harvesting even when those exact words do not appear.' },
         { heading: 'Why SEs Care', body: 'Embeddings power semantic search, similarity matching, and a lot of modern security ML. When customers describe wanting to find similar incidents, detect novel variants of known attacks, or surface related threat intel — embeddings are usually the underlying technique. They are also the foundation for the retrieval pattern we cover in the next lesson, so this concept compounds.' }
-      ]
+      ],
+      roleContent: [
+        {
+          role: 'general',
+          label: 'General User',
+          body: 'Semantic search finds what you mean, not just what you typed. This is why modern AI tools can surface relevant results even when you don\'t use the exact right keywords.',
+          bullets: [
+            'Semantic search works on meaning — you don\'t need perfect keywords to find relevant documents',
+            'Embeddings are why AI can group similar incidents together even with different terminology',
+            'This is also why AI-powered search sometimes returns things that seem unrelated but are conceptually close',
+          ],
+        },
+        {
+          role: 'security-se',
+          label: 'Security SE',
+          body: 'Embeddings are the technology behind "find similar incidents" and "detect novel attack variants" — use this framing to translate customer use cases into concrete capability claims.',
+          bullets: [
+            'When a customer asks about finding similar alerts, ask: does the product use embedding-based similarity or keyword matching?',
+            'Embeddings enable detection of phishing variants with no shared keywords — quantify this as coverage, not just quality',
+            'Ask: what embedding model does the product use, and how often is it retrained on new threat data?',
+          ],
+        },
+        {
+          role: 'developer',
+          label: 'Developer',
+          body: 'Embedding model choice and index freshness are first-class engineering decisions that directly determine retrieval quality in downstream RAG systems.',
+          bullets: [
+            'Use domain-specific embedding models for security text — general-purpose models underperform on CVEs and IOC notation',
+            'Index staleness degrades retrieval quality silently — build a refresh schedule into your pipeline',
+            'Test retrieval recall separately from generation quality — bad retrieval hides behind fluent-but-wrong responses',
+          ],
+        },
+        {
+          role: 'consultant',
+          label: 'AI Consultant',
+          body: 'Embedding quality is invisible to clients until retrieval fails — make it a first-order evaluation criterion, not an assumption.',
+          bullets: [
+            'Require vendors to disclose the embedding model and retraining cadence as a due-diligence question',
+            'Build a retrieval accuracy test using client-specific documents before signing off on a RAG deployment',
+            'Semantic similarity doesn\'t equal relevance — establish what "good retrieval" looks like for the client\'s use case',
+          ],
+        },
+      ],
     },
     {
       id: 'm2l3',
@@ -95,7 +221,49 @@ const m2: CourseModule = {
         { heading: 'The Pattern', body: 'Step 1: Embed the user query. Step 2: Find the most relevant chunks from a private knowledge base via vector search. Step 3: Stuff those chunks into the LLM prompt as context. Step 4: Generate an answer grounded in retrieved data.' },
         { heading: 'Why It Dominates Enterprise', body: 'Cheaper than fine-tuning. Updates instantly when source data changes. Provides citations. Keeps proprietary data out of the base model. For security: lets a SecOps copilot answer about your environment, your runbooks, your past incidents — without retraining anything.' },
         { heading: 'Where RAG Fails', body: 'If retrieval is bad, generation is bad. Garbage in, garbage out applies. Chunk strategy, embedding model choice, and reranking matter enormously. A common pilot failure is shipping naive RAG and blaming the LLM when retrieval was the actual problem.' }
-      ]
+      ],
+      roleContent: [
+        {
+          role: 'general',
+          label: 'General User',
+          body: 'RAG is how AI tools answer questions about your internal documents without those documents ever being baked into the model. The answer quality depends entirely on whether the right document chunk was retrieved first.',
+          bullets: [
+            'If the AI gives a wrong answer about your internal docs, the retrieval step probably failed, not the AI itself',
+            'Cited sources in AI answers are a RAG feature — no citations usually means no retrieval grounding',
+            'RAG answers can only be as good as the documents in the knowledge base — keep them current',
+          ],
+        },
+        {
+          role: 'security-se',
+          label: 'Security SE',
+          body: 'RAG is the dominant architecture for security copilots — and "naive RAG" is the leading cause of pilot failures that end up blamed on the model.',
+          bullets: [
+            'Ask: what retrieval and reranking strategy does the product use? "We use RAG" is not enough',
+            'When a pilot underperforms, isolate retrieval quality before assuming the LLM is the problem',
+            'RAG keeps proprietary data out of the model weights — use this to address data sovereignty objections',
+          ],
+        },
+        {
+          role: 'developer',
+          label: 'Developer',
+          body: 'RAG quality is an engineering problem at every step — chunking, embedding, retrieval, and reranking each have failure modes that compound.',
+          bullets: [
+            'Chunk size and overlap are the most impactful variables — test multiple strategies before shipping',
+            'Add a reranker between retrieval and generation; first-pass vector search ranking is rarely optimal',
+            'Instrument retrieval separately — log retrieved chunks and score them against expected answers',
+          ],
+        },
+        {
+          role: 'consultant',
+          label: 'AI Consultant',
+          body: 'RAG pilots fail at retrieval, not generation — but the blame usually falls on the model. Build retrieval evaluation into the pilot acceptance criteria before the engagement starts.',
+          bullets: [
+            'Define retrieval success criteria (e.g. top-3 recall on a golden query set) before the pilot begins',
+            'Budget for knowledge base curation — the quality of the source documents drives RAG quality',
+            'Naive RAG is a known failure pattern; ask vendors to describe their chunk and reranking strategy',
+          ],
+        },
+      ],
     },
     {
       id: 'm2l4',
@@ -105,7 +273,49 @@ const m2: CourseModule = {
         { heading: 'Prompting', body: 'You change behavior by changing instructions. Cheap, instant, reversible. Modern frontier models follow nuanced prompts well. Should be the default for 80%+ of use cases.' },
         { heading: 'Fine-Tuning', body: 'You change behavior by further training on examples. Expensive, slower, harder to update. Useful for specialized domains, fixed output formats, or when you need to bake style/tone into the weights themselves.' },
         { heading: 'The Honest Take', body: 'Most we need a fine-tuned model on our security data requests are actually RAG requests in disguise. Fine-tuning is the right answer when you need behavioral consistency that prompting cannot reliably achieve — far rarer than prospects assume.' }
-      ]
+      ],
+      roleContent: [
+        {
+          role: 'general',
+          label: 'General User',
+          body: 'Fine-tuning means retraining an AI on specific examples. Prompting means giving it better instructions. Most of the time, a better prompt achieves what you need faster and at a fraction of the cost.',
+          bullets: [
+            'Try prompting before assuming you need a custom model — the gap closes faster than expected',
+            'Fine-tuning is expensive and slow to update; prompting changes are instant',
+            'If a tool\'s output format is wrong, better prompting almost always fixes it without retraining',
+          ],
+        },
+        {
+          role: 'security-se',
+          label: 'Security SE',
+          body: '"We need to fine-tune it on our data" is almost always a RAG request in disguise. Redirecting this early saves the customer from an expensive, slow path to the same outcome.',
+          bullets: [
+            'Ask: is the gap knowledge (what it knows) or behaviour (how it responds)? Knowledge gaps → RAG; behaviour gaps → fine-tuning or prompting',
+            'Fine-tuning requires ML infrastructure and data pipelines the customer probably doesn\'t have — scope this before promising it',
+            'Most enterprise security customisation needs are solved by RAG plus prompt engineering',
+          ],
+        },
+        {
+          role: 'developer',
+          label: 'Developer',
+          body: 'Fine-tuning introduces a training pipeline, versioning, and evaluation burden that most teams underestimate. Default to prompting and only escalate when you have a documented, reproducible gap.',
+          bullets: [
+            'Document the specific failure mode before committing to fine-tuning — vague "not quite right" is not a sufficient trigger',
+            'Fine-tuning changes base behaviour and can degrade capabilities you weren\'t testing — run full evals, not just targeted tests',
+            'Few-shot prompting often closes the gap that looked like a fine-tuning problem',
+          ],
+        },
+        {
+          role: 'consultant',
+          label: 'AI Consultant',
+          body: 'Fine-tuning is the most overrecommended approach in AI projects. The burden of proof should be on the client to demonstrate that prompting genuinely cannot achieve their goal.',
+          bullets: [
+            'Run a structured prompting sprint before scoping fine-tuning — four weeks of prompt iteration often eliminates the need',
+            'Include fine-tuning maintenance cost in the TCO: data pipelines, retraining cycles, and eval harnesses',
+            'Clients confuse fine-tuning (behaviour) with RAG (knowledge) regularly — diagnose which problem they actually have',
+          ],
+        },
+      ],
     },
     {
       id: 'm2l5',
@@ -115,7 +325,49 @@ const m2: CourseModule = {
         { heading: "Not Lying", body: "Hallucination is the model producing fluent, confident output that isn't grounded in reality. The model isn't deceiving — it's sampling probable next-tokens, and probable doesn't mean true. This framing matters because customers often anthropomorphize the failure mode." },
         { heading: 'Mitigation Stack', body: "Grounding (RAG with citations), constrained output formats, retrieval verification, model-as-judge approaches, human-in-the-loop checkpoints. No single technique eliminates hallucinations; defense is layered. The diagram above shows how the layers compose — each catches what the one below missed." },
         { heading: 'Talk Track for Skeptics', body: "Suggested framing: \"You're right that LLMs hallucinate. That's why every response is grounded in retrieved evidence with citations, outputs are constrained to validated formats, and analyst confirmation stays in the loop for high-impact actions. The system isn't replacing human judgment — it's removing the work that doesn't need human judgment.\"" }
-      ]
+      ],
+      roleContent: [
+        {
+          role: 'general',
+          label: 'General User',
+          body: 'Hallucinations are not bugs or lies — the model is doing exactly what it was designed to do, which is produce statistically likely text. The practical lesson: always verify AI-generated facts, especially for consequential decisions.',
+          bullets: [
+            'Confident tone in an AI response does not signal accuracy — verify anything that matters',
+            'Citations in AI answers are a mitigation technique, not a guarantee — check the source',
+            'For high-stakes decisions, human review is a feature, not a workaround',
+          ],
+        },
+        {
+          role: 'security-se',
+          label: 'Security SE',
+          body: 'Hallucination objections are your setup for explaining the mitigation stack. Reframe "LLMs hallucinate" from a blocker into a solved engineering problem with measurable controls.',
+          bullets: [
+            'Use the mitigation stack to respond: grounding → format constraints → model-as-judge → human-in-the-loop',
+            'Ask: what is the consequence of a hallucination in your workflow? That determines which mitigation layer matters most',
+            'Probabilistic framing ("not lying, sampling probable tokens") defuses anthropomorphization before it becomes FUD',
+          ],
+        },
+        {
+          role: 'developer',
+          label: 'Developer',
+          body: 'Hallucination mitigation is a system design problem, not a model selection problem. Layer the controls and test each one independently.',
+          bullets: [
+            'Constrain output to structured formats (JSON schemas, enumerated choices) for high-stakes classifications',
+            'Implement model-as-judge evaluation in your CI pipeline — catch regressions before they reach users',
+            'Ground every factual claim in retrieved evidence and expose the source chunk to the user',
+          ],
+        },
+        {
+          role: 'consultant',
+          label: 'AI Consultant',
+          body: 'Hallucination risk is real but manageable with the right architecture. Clients who treat it as a binary "safe or unsafe" miss the mitigation stack that makes LLMs viable in high-stakes contexts.',
+          bullets: [
+            'Map each use case to its acceptable hallucination risk level — then match the mitigation stack to that level',
+            'Human-in-the-loop for high-consequence actions is not a limitation; position it as a governance control',
+            'Build hallucination rate benchmarks into pilot acceptance criteria — "sometimes wrong" is not a metric',
+          ],
+        },
+      ],
     },
     {
       id: 'm2l6',
@@ -161,6 +413,48 @@ const m2: CourseModule = {
             'Request batching: groups concurrent requests for GPU efficiency — running multiple requests together is significantly cheaper than running them one at a time',
             'Autoscaling: scales compute dynamically with demand — adds capacity when traffic spikes, reduces it when idle to control cost',
             'Model versioning and canary deployments: safe rollout of model updates using canary and blue-green deployment patterns — new model versions go to a small percentage of traffic first before full rollout',
+          ],
+        },
+      ],
+      roleContent: [
+        {
+          role: 'general',
+          label: 'General User',
+          body: 'The infrastructure behind AI is why on-premise AI is expensive and cloud AI is accessible. Understanding the three layers explains why enterprise AI costs what it costs — and why latency varies.',
+          bullets: [
+            'On-premise AI means owning the hardware layer — that\'s why it\'s significantly more expensive',
+            'Latency spikes usually happen at the serving layer, not inside the model itself',
+            'Model updates going live without you noticing is a feature of canary deployments — the rollout is gradual by design',
+          ],
+        },
+        {
+          role: 'security-se',
+          label: 'Security SE',
+          body: 'Infrastructure questions from IT and procurement are really questions about these three layers. Knowing the layers lets you give concrete, credible answers instead of deflecting to engineering.',
+          bullets: [
+            'On-premise GPU cost: H100s run ~$30K each; a small cluster for inference is a significant capital spend',
+            'Ask: what is the customer\'s SLA requirement? That determines the serving layer architecture they need',
+            'Canary deployment questions are really model governance questions — frame them as risk controls, not engineering details',
+          ],
+        },
+        {
+          role: 'developer',
+          label: 'Developer',
+          body: 'Optimisation and serving are where production AI lives — most model quality wins in development get erased by infrastructure decisions made in a hurry.',
+          bullets: [
+            'Quantisation can cut memory cost 4x with minimal quality loss — test it before provisioning more GPU',
+            'KV caching is essential for conversational workloads; without it, latency scales with conversation length',
+            'Implement canary deployments for model updates — silent capability regressions are the hardest bugs to catch',
+          ],
+        },
+        {
+          role: 'consultant',
+          label: 'AI Consultant',
+          body: 'The infrastructure layer is where AI project budgets surprise clients. Build all three layers into the TCO model before the engagement scope is set.',
+          bullets: [
+            'Hardware costs are often invisible in cloud-hosted products until scale hits — model cost per query at production volume',
+            'Optimisation is a capability clients should require from vendors — quantisation and distillation are table stakes, not extras',
+            'Serving SLAs belong in the procurement contract — not as a post-deployment conversation',
           ],
         },
       ],
@@ -219,6 +513,48 @@ const m2: CourseModule = {
             'Human preference eval: humans rank and compare model outputs — the most direct signal for whether the model is actually good, not just technically correct',
             'LLM-as-judge: a model scores and ranks other models\' outputs — scales human evaluation to volumes no human team can cover manually',
             'Eval harnesses: automated regression suites that run on every model update — catches regressions before they reach users',
+          ],
+        },
+      ],
+      roleContent: [
+        {
+          role: 'general',
+          label: 'General User',
+          body: 'AI safety is not a single switch — it\'s built in layers across training, deployment, and ongoing monitoring. Understanding this helps you evaluate vendor claims about "safe AI" with appropriate scepticism.',
+          bullets: [
+            '"Safe AI" is a process across three phases, not a property of the model itself',
+            'Guardrails explain why AI tools sometimes refuse requests — that\'s scope limits working as intended',
+            'Ask vendors: what audit trail do you have for what the AI said and why?',
+          ],
+        },
+        {
+          role: 'security-se',
+          label: 'Security SE',
+          body: 'When a customer asks "is this AI safe?" they\'re asking three different questions at once. This three-phase framework lets you give a structured, credible answer instead of a vague reassurance.',
+          bullets: [
+            'Walk through training time → deployment time → production time — each phase catches different failure modes',
+            'Ask: does the customer have prompt injection defence? That\'s a deployment-time control most overlook',
+            'Production observability (tracing, drift detection) is your audit and compliance answer — name it explicitly',
+          ],
+        },
+        {
+          role: 'developer',
+          label: 'Developer',
+          body: 'Safety is an engineering property built across all three phases — not a post-hoc filter. Missing any phase creates a category of failure the others cannot catch.',
+          bullets: [
+            'Implement prompt and response tracing from day one — retrospective audit trail is impossible without it',
+            'Add LLM-as-judge eval to your CI pipeline — human eval alone doesn\'t scale to deployment volume',
+            'Prompt injection defence belongs in deployment-time infrastructure, not in every application separately',
+          ],
+        },
+        {
+          role: 'consultant',
+          label: 'AI Consultant',
+          body: 'Most client "AI safety" audits only inspect the training phase. Production observability and continuous evals are where deployed systems actually fail — and where governance needs to live.',
+          bullets: [
+            'Build a safety audit that spans all three phases — training-time assurances alone are insufficient for compliance',
+            'Require production-time tracing and drift detection as contractual deliverables, not optional features',
+            'Continuous evals are the mechanism that makes AI governance auditable over time — build them in from the start',
           ],
         },
       ],

@@ -1,5 +1,9 @@
 # Claude Code — Project Configuration
 
+## Skills
+
+- Never use `gsd:*` skills in this project
+
 ## Rules
 
 - Do what has been asked; nothing more, nothing less
@@ -11,11 +15,10 @@
 - Keep files under 500 lines
 - Validate input at system boundaries
 
-## Build & Test
+## Build & Verify
 
-- ALWAYS run tests after code changes
-- ALWAYS verify build succeeds before committing
+- ALWAYS verify build succeeds after code changes and before committing
 
 ```bash
-npm run build && npm test
+cd website && npm run build
 ```
