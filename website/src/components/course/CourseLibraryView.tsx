@@ -293,24 +293,24 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
     onClick: () => setView({ type: 'home', courseId: 'ai-kids' }),
   };
   const coreCards: CardData[] = [
-    { no: '02', title: 'AI Essentials', kicker: 'For everyone', color: '#3f8a5e',
+    { no: '03', title: 'AI Essentials', kicker: 'For everyone', color: '#3f8a5e',
       blurb: "Vocabulary, history, honest limits. What an LLM is — and isn't — without the marketing.",
       modules: 4, level: 'Beginner', progress: pEss,
       badge: pEss > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-essentials' }) },
-    { no: '03', title: 'AI Deep Dive', kicker: 'For builders', color: '#5a4ec0',
+    { no: '04', title: 'AI Deep Dive', kicker: 'For builders', color: '#5a4ec0',
       blurb: "Transformers, embeddings, fine-tuning, evals. The trade-offs that don't fit on a slide.",
       modules: 4, level: 'Advanced', progress: pDeep,
       badge: pDeep > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-deep-dive' }) },
-    { no: '04', title: 'AI in Industry', kicker: 'For decision-makers', color: '#b78320',
+    { no: '05', title: 'AI in Industry', kicker: 'For decision-makers', color: '#b78320',
       blurb: 'A field map of products, providers, use-cases. Updated as the landscape shifts.',
       modules: 6, level: 'Intermediate', progress: 0,
       badge: 'Open →',
       onClick: () => setView({ type: 'industry' }) },
   ];
   const industryCards: CardData[] = [
-    { no: '05', title: 'AI for Cybersecurity Sales', kicker: 'Live cohort', color: '#2c6db0',
+    { no: '06', title: 'AI for Cybersecurity Sales', kicker: 'Live cohort', color: '#2c6db0',
       blurb: 'Six weeks for SEs and AEs selling into security teams. Recorded for your time zone.',
       modules: 3, level: 'Intermediate', progress: pCyber,
       badge: pCyber > 0 ? 'Resume →' : 'Open →',
@@ -326,7 +326,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
     <section className="px-4 sm:px-6 lg:px-12 pt-6 pb-10 lg:pb-14">
       <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4 mb-6 lg:mb-7">
         <h2 className="font-studio-display text-[32px] sm:text-[38px] lg:text-[44px] text-studio-ink m-0 font-normal tracking-[-0.6px] lg:tracking-[-0.8px]">
-          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— five on the shelf</span>
+          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— six on the shelf</span>
         </h2>
         <div className="flex flex-wrap gap-2">
           {filterBtns.map(({ key, label }) => (
@@ -341,7 +341,47 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       {(filter === 'all' || filter === 'kids') && (
         <div className="mb-7 lg:mb-9">
           <RowLabel sub="Start here if there's a curious 10-year-old at the table">For kids · ages 8–14</RowLabel>
-          <FeaturedCard {...kidsCard} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+            <CatalogCard {...kidsCard} />
+            <article
+              className="bg-studio-paper border border-dashed border-studio-rule rounded-[4px] overflow-hidden flex flex-col cursor-not-allowed opacity-90"
+              aria-disabled="true"
+            >
+              <div className="px-6 py-[22px] flex justify-between items-start" style={{ background: '#c4623a' }}>
+                <div>
+                  <div className="font-studio-mono text-[10.5px] tracking-[1.4px] uppercase" style={{ color: 'rgba(255,255,255,0.85)' }}>For ages 14–18</div>
+                  <h3 className="font-studio-display text-[30px] text-white mt-1.5 leading-[1.04] font-normal tracking-[-0.5px]">AI for School Students</h3>
+                </div>
+                <div className="font-studio-serif italic text-[32px] leading-none font-normal" style={{ color: 'rgba(255,255,255,0.7)' }}>№02</div>
+              </div>
+              <div className="px-6 py-5 flex-1 flex flex-col gap-4">
+                <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.55] m-0 flex-1">A deeper take for teens — how LLMs actually work, prompting like a power user, and the careers AI is opening up. Coming next.</p>
+                <div className="flex justify-between items-center pt-3.5 border-t border-dashed border-studio-rule font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px]">
+                  <span>In the kiln</span>
+                  <span className="font-studio-mono text-[10.5px] tracking-[1.2px] uppercase px-2.5 py-1 rounded-full border border-studio-rule text-studio-ink-dim bg-studio-bg">In progress</span>
+                </div>
+              </div>
+            </article>
+            <button
+              onClick={() => setView({ type: 'kids-games' })}
+              className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden text-left cursor-pointer flex flex-col hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200"
+            >
+              <div className="px-6 py-[22px] flex justify-between items-start" style={{ background: '#d96a3a' }}>
+                <div>
+                  <div className="font-studio-mono text-[10.5px] tracking-[1.4px] uppercase" style={{ color: 'rgba(255,255,255,0.85)' }}>Learn by playing</div>
+                  <h3 className="font-studio-display text-[30px] text-white mt-1.5 leading-[1.04] font-normal tracking-[-0.5px]">AI Games</h3>
+                </div>
+                <span className="text-[34px] leading-none">🎮</span>
+              </div>
+              <div className="px-6 py-5 flex-1 flex flex-col gap-4">
+                <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.55] m-0 flex-1">Three quick games — Spot the Bot, Prompt Master, and friends — that teach real AI concepts. All in your browser, no setup.</p>
+                <div className="flex justify-between items-center pt-3.5 border-t border-dashed border-studio-rule font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px]">
+                  <span>3 games · ages 8–14</span>
+                  <span className="text-studio-ink font-medium">Play now →</span>
+                </div>
+              </div>
+            </button>
+          </div>
         </div>
       )}
       {(filter === 'all' || filter === 'core') && (
