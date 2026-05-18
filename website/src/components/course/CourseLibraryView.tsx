@@ -27,27 +27,30 @@ function StudioNav({ setView }: { setView: (v: View) => void }) {
     { label: 'About' },
   ];
   return (
-    <nav className="flex items-center gap-6 px-12 py-[22px] border-b border-studio-rule bg-studio-paper">
-      <div className="flex items-center gap-3">
-        <div className="w-[30px] h-[30px] rounded-full bg-studio-ink text-studio-bg grid place-items-center font-studio-serif italic text-[19px]">a</div>
+    <nav className="flex items-center gap-3 lg:gap-6 px-4 sm:px-6 lg:px-12 py-3 lg:py-[22px] border-b border-studio-rule bg-studio-paper">
+      <div className="flex items-center gap-2.5 lg:gap-3 flex-shrink-0">
+        <div className="w-[28px] h-[28px] lg:w-[30px] lg:h-[30px] rounded-full bg-studio-ink text-studio-bg grid place-items-center font-studio-serif italic text-[17px] lg:text-[19px]">a</div>
         <div>
-          <div className="font-studio-serif italic text-[19px] text-studio-ink leading-none">The AI Learning Hub</div>
-          <div className="font-studio-mono text-[10px] text-studio-ink-mute tracking-[1.4px] uppercase mt-0.5">A free public library</div>
+          <div className="font-studio-serif italic text-[16px] sm:text-[18px] lg:text-[19px] text-studio-ink leading-none">
+            <span className="hidden sm:inline">The AI Learning Hub</span>
+            <span className="sm:hidden">AI Hub</span>
+          </div>
+          <div className="hidden sm:block font-studio-mono text-[10px] text-studio-ink-mute tracking-[1.4px] uppercase mt-0.5">A free public library</div>
         </div>
       </div>
-      <div className="flex gap-[26px] ml-9 flex-1">
+      <div className="hidden md:flex gap-4 lg:gap-[26px] md:ml-4 lg:ml-9 flex-1 flex-wrap">
         {links.map((it, i) => (
           <button key={it.label} onClick={() => it.view && setView(it.view)}
-            className={`font-studio-sans text-[13.5px] flex items-center hover:underline transition-all duration-100 ${i === 0 ? 'text-studio-ink font-semibold' : 'text-studio-ink-dim font-normal'}`}>
+            className={`font-studio-sans text-[13px] lg:text-[13.5px] flex items-center hover:underline transition-all duration-100 ${i === 0 ? 'text-studio-ink font-semibold' : 'text-studio-ink-dim font-normal'}`}>
             {it.label}{i === 0 && <span className="text-studio-kids ml-1.5">·</span>}
           </button>
         ))}
       </div>
-      <div className="flex items-center gap-2.5">
-        <div className="font-studio-sans text-[13px] text-studio-ink-dim px-3.5 py-2 border border-studio-rule rounded-full flex items-center gap-2 bg-studio-bg cursor-default">
+      <div className="ml-auto flex items-center gap-2 lg:gap-2.5 flex-shrink-0">
+        <div className="hidden lg:flex font-studio-sans text-[13px] text-studio-ink-dim px-3.5 py-2 border border-studio-rule rounded-full items-center gap-2 bg-studio-bg cursor-default">
           <span className="opacity-60">⌕</span> Search the catalog
         </div>
-        <button className="font-studio-sans text-[13px] text-studio-bg bg-studio-ink px-[18px] py-[9px] rounded-full font-medium hover:opacity-90 transition-opacity duration-150">
+        <button className="font-studio-sans text-[12.5px] sm:text-[13px] text-studio-bg bg-studio-ink px-3 sm:px-[18px] py-2 sm:py-[9px] rounded-full font-medium hover:opacity-90 transition-opacity duration-150 whitespace-nowrap">
           Get a card
         </button>
       </div>
@@ -59,24 +62,24 @@ function StudioNav({ setView }: { setView: (v: View) => void }) {
 
 function StudioHero() {
   return (
-    <section className="px-12 pt-16 pb-12 relative">
-      <div className="absolute top-9 right-14 font-studio-mono text-[11px] text-studio-ink-mute tracking-[1.4px] uppercase">
+    <section className="px-4 sm:px-6 lg:px-12 pt-10 lg:pt-16 pb-8 lg:pb-12 relative">
+      <div className="hidden sm:block absolute top-6 lg:top-9 right-6 lg:right-14 font-studio-mono text-[10px] lg:text-[11px] text-studio-ink-mute tracking-[1.4px] uppercase">
         Vol. VI · No. 03 — Spring 2026
       </div>
-      <div className="grid grid-cols-[1.5fr_1fr] gap-16 items-end">
+      <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8 lg:gap-16 lg:items-end">
         <div>
-          <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-[18px]">
+          <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-3 lg:mb-[18px]">
             ◆ Open shelves · all welcome
           </div>
-          <h1 className="font-studio-display text-[116px] leading-[0.93] tracking-[-3px] text-studio-ink m-0 font-normal">
+          <h1 className="font-studio-display text-[64px] sm:text-[88px] lg:text-[116px] leading-[0.93] tracking-[-1.4px] sm:tracking-[-2px] lg:tracking-[-3px] text-studio-ink m-0 font-normal">
             Curious<br />
             <span className="font-studio-serif italic text-studio-kids font-normal">about </span>AI?
           </h1>
-          <p className="font-studio-serif italic text-[24px] leading-[1.4] text-studio-ink-dim mt-7 max-w-[520px] font-normal">
+          <p className="font-studio-serif italic text-[17px] sm:text-[20px] lg:text-[24px] leading-[1.4] text-studio-ink-dim mt-5 lg:mt-7 max-w-[520px] font-normal">
             Seven courses. From eight-year-olds to enterprise sales. Everything is free, everything is real, nothing's on a corporate calendar.
           </p>
         </div>
-        <aside className="bg-studio-paper border border-studio-rule rounded-[4px] p-[26px] relative mt-6">
+        <aside className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 lg:p-[26px] relative mt-6">
           <div className="absolute -top-3 left-6 bg-studio-kids text-studio-bg font-studio-mono text-[10px] tracking-[1.6px] uppercase px-3 py-1 rounded-[2px]">
             Today's reading desk
           </div>
@@ -156,14 +159,14 @@ function CatalogCard({ no, title, kicker, blurb, modules, level, progress, badge
 function FeaturedCard({ no, title, kicker, blurb, modules, level, progress, badge, color, onClick }: CardData) {
   return (
     <article onClick={onClick}
-      className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden grid grid-cols-[1.1fr_1.6fr] min-h-[220px] cursor-pointer hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200">
-      <div className="p-8 flex flex-col justify-between relative" style={{ background: color }}>
+      className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden grid grid-cols-1 md:grid-cols-[1.1fr_1.6fr] md:min-h-[220px] cursor-pointer hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200">
+      <div className="p-6 lg:p-8 flex flex-col justify-between relative" style={{ background: color }}>
         <div className="font-studio-mono text-[10.5px] tracking-[1.4px] uppercase" style={{ color: 'rgba(255,255,255,0.85)' }}>{kicker}</div>
-        <h3 className="font-studio-display text-[56px] text-white mt-3 leading-[0.96] font-normal tracking-[-1.2px]">{title}</h3>
-        <div className="absolute top-5 right-6 font-studio-serif italic text-[36px] leading-none" style={{ color: 'rgba(255,255,255,0.7)' }}>№{no}</div>
-        <div className="font-studio-serif italic text-[16px] mt-2" style={{ color: 'rgba(255,255,255,0.85)' }}>A book for two — read it together.</div>
+        <h3 className="font-studio-display text-[40px] sm:text-[48px] lg:text-[56px] text-white mt-3 leading-[0.96] font-normal tracking-[-0.8px] lg:tracking-[-1.2px]">{title}</h3>
+        <div className="absolute top-4 lg:top-5 right-5 lg:right-6 font-studio-serif italic text-[28px] lg:text-[36px] leading-none" style={{ color: 'rgba(255,255,255,0.7)' }}>№{no}</div>
+        <div className="font-studio-serif italic text-[15px] lg:text-[16px] mt-2" style={{ color: 'rgba(255,255,255,0.85)' }}>A book for two — read it together.</div>
       </div>
-      <div className="p-8 flex flex-col gap-[18px] justify-center">
+      <div className="p-6 lg:p-8 flex flex-col gap-[18px] justify-center">
         <p className="font-studio-serif text-[19px] text-studio-ink leading-[1.45] m-0 font-normal">{blurb}</p>
         {progress > 0 && (
           <div>
@@ -235,15 +238,15 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
   ];
 
   return (
-    <section className="px-12 pt-6 pb-14">
-      <header className="flex items-baseline justify-between mb-7">
-        <h2 className="font-studio-display text-[44px] text-studio-ink m-0 font-normal tracking-[-0.8px]">
-          The catalog<span className="font-studio-serif italic font-normal text-studio-ink-dim text-[28px] ml-3">— five on the shelf</span>
+    <section className="px-4 sm:px-6 lg:px-12 pt-6 pb-10 lg:pb-14">
+      <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4 mb-6 lg:mb-7">
+        <h2 className="font-studio-display text-[32px] sm:text-[38px] lg:text-[44px] text-studio-ink m-0 font-normal tracking-[-0.6px] lg:tracking-[-0.8px]">
+          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— five on the shelf</span>
         </h2>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {filterBtns.map(({ key, label }) => (
             <button key={key} onClick={() => setFilter(key)}
-              className={`font-studio-sans text-[12.5px] font-medium px-3.5 py-[7px] rounded-full border transition-all duration-150 ${filter === key ? 'text-studio-bg bg-studio-ink border-studio-ink' : 'text-studio-ink bg-studio-paper border-studio-rule hover:border-studio-ink-dim'}`}>
+              className={`font-studio-sans text-[12px] lg:text-[12.5px] font-medium px-3 lg:px-3.5 py-[6px] lg:py-[7px] rounded-full border transition-all duration-150 ${filter === key ? 'text-studio-bg bg-studio-ink border-studio-ink' : 'text-studio-ink bg-studio-paper border-studio-rule hover:border-studio-ink-dim'}`}>
               {label}
             </button>
           ))}
@@ -251,21 +254,21 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       </header>
 
       {(filter === 'all' || filter === 'kids') && (
-        <div className="mb-9">
+        <div className="mb-7 lg:mb-9">
           <RowLabel sub="Start here if there's a curious 10-year-old at the table">For kids · ages 8–14</RowLabel>
           <FeaturedCard {...kidsCard} />
         </div>
       )}
       {(filter === 'all' || filter === 'core') && (
-        <div className="mb-9">
+        <div className="mb-7 lg:mb-9">
           <RowLabel sub="Read in any order — each stands alone">Core literacy</RowLabel>
-          <div className="grid grid-cols-3 gap-5">{coreCards.map(c => <CatalogCard key={c.no} {...c} />)}</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">{coreCards.map(c => <CatalogCard key={c.no} {...c} />)}</div>
         </div>
       )}
       {(filter === 'all' || filter === 'industry') && (
         <div>
           <RowLabel sub="Vertical, role-specific. More on the way.">Industry courses</RowLabel>
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
             {industryCards.map(c => <CatalogCard key={c.no} {...c} />)}
             <div className="border-[1.5px] border-dashed border-studio-rule rounded-[4px] p-7 flex flex-col justify-center gap-2">
               <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1.4px] uppercase">In the kiln</div>
@@ -290,14 +293,14 @@ function StudioSideStuff({ setView }: { setView: (v: View) => void }) {
   const playgroundItems = [['Tokenizer', 'See how your sentence becomes numbers'], ['Embedding map', 'Words plotted in 2D — drag them around'], ['Prompt diff', 'Two prompts, side by side, same model'], ['Temperature dial', 'Same prompt, ten temperatures']];
   const agenticItems = [['I.', "What an agent actually is (and isn't)", '8 min'], ['II.', 'The loop, and why it gets stuck', '11 min'], ['III.', 'Tool use without prayer', '14 min'], ['IV.', 'Memory: the parts that work', '9 min']];
   return (
-    <section className="px-12 pb-14">
-      <header className="flex items-baseline justify-between mb-6">
-        <h2 className="font-studio-display text-[44px] text-studio-ink m-0 font-normal tracking-[-0.8px]">
-          Side stuff<span className="font-studio-serif italic font-normal text-studio-ink-dim text-[24px] ml-3">— not courses, still worth your time</span>
+    <section className="px-4 sm:px-6 lg:px-12 pb-10 lg:pb-14">
+      <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3 mb-5 lg:mb-6">
+        <h2 className="font-studio-display text-[32px] sm:text-[38px] lg:text-[44px] text-studio-ink m-0 font-normal tracking-[-0.6px] lg:tracking-[-0.8px]">
+          Side stuff<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[18px] lg:text-[24px] ml-3">— not courses, still worth your time</span>
         </h2>
-        <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1px]">Two rabbit holes · enter at your own risk</div>
+        <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-ink-mute tracking-[1px]">Two rabbit holes · enter at your own risk</div>
       </header>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5">
         <article onClick={() => setView({ type: 'playground' })}
           className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden flex flex-col cursor-pointer hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200">
           <div className="px-[26px] py-[22px] flex justify-between items-start" style={{ background: '#3f8a5e' }}>
@@ -358,29 +361,29 @@ function StudioSideStuff({ setView }: { setView: (v: View) => void }) {
 
 function StudioReadingRoom() {
   return (
-    <section className="px-12 pb-14 grid grid-cols-[1.4fr_1fr] gap-6">
-      <article className="bg-studio-ink rounded-[4px] px-10 pt-10 pb-9">
+    <section className="px-4 sm:px-6 lg:px-12 pb-10 lg:pb-14 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-4 lg:gap-6">
+      <article className="bg-studio-ink rounded-[4px] px-6 sm:px-8 lg:px-10 pt-7 lg:pt-10 pb-7 lg:pb-9">
         <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.4px] uppercase mb-3.5">From the editor's desk</div>
-        <h3 className="font-studio-display text-[40px] leading-[1.05] m-0 font-normal tracking-[-0.6px] text-studio-bg">
+        <h3 className="font-studio-display text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.05] m-0 font-normal tracking-[-0.4px] lg:tracking-[-0.6px] text-studio-bg">
           A short, honest argument for{' '}
           <span className="font-studio-serif italic text-studio-kids">doing the homework.</span>
         </h3>
-        <p className="font-studio-serif italic text-[18px] leading-[1.5] mt-[22px] max-w-[520px]" style={{ color: 'rgba(245,239,228,0.78)' }}>
+        <p className="font-studio-serif italic text-[16px] lg:text-[18px] leading-[1.5] mt-5 lg:mt-[22px] max-w-[520px]" style={{ color: 'rgba(245,239,228,0.78)' }}>
           Curiosity about how things work has always been the unfair advantage. AI is just the latest frontier — and the syllabus is shorter than you'd think.
         </p>
-        <div className="flex gap-6 mt-7 font-studio-mono text-[11px] tracking-[1px]" style={{ color: 'rgba(245,239,228,0.55)' }}>
+        <div className="flex flex-wrap gap-3 lg:gap-6 mt-5 lg:mt-7 font-studio-mono text-[10.5px] lg:text-[11px] tracking-[1px]" style={{ color: 'rgba(245,239,228,0.55)' }}>
           <span>4 MIN READ</span><span>·</span><span>Issue 06</span><span>·</span><span>By the librarians</span>
         </div>
       </article>
-      <article className="bg-studio-paper border border-studio-rule rounded-[4px] p-7">
+      <article className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 lg:p-7">
         <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.4px] uppercase mb-3.5">Marginalia · Did you know</div>
-        <p className="font-studio-serif text-[22px] leading-[1.4] text-studio-ink m-0 italic font-normal">
+        <p className="font-studio-serif text-[18px] lg:text-[22px] leading-[1.4] text-studio-ink m-0 italic font-normal">
           The word "robot" comes from the Czech <span className="not-italic">robota</span> — forced labor.
         </p>
         <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.55] mt-4">
           Coined in a 1920 play. We've worried about this for over a century. So far the robots are still doing the paperwork.
         </p>
-        <div className="flex gap-2 mt-[18px]">
+        <div className="flex flex-wrap gap-2 mt-[18px]">
           {['Origins', '1920', 'Karel Čapek'].map(t => (
             <span key={t} className="font-studio-mono text-[10.5px] text-studio-ink-dim tracking-[0.6px] px-2.5 py-1 border border-studio-rule rounded-full bg-studio-bg">{t}</span>
           ))}
@@ -394,12 +397,12 @@ function StudioReadingRoom() {
 
 function StudioFooter() {
   return (
-    <footer className="px-12 py-8 border-t border-studio-rule bg-studio-paper">
-      <div className="flex justify-between items-baseline">
-        <div className="font-studio-serif italic text-[15px] text-studio-ink-dim max-w-[540px] leading-[1.5]">
+    <footer className="px-4 sm:px-6 lg:px-12 py-6 lg:py-8 border-t border-studio-rule bg-studio-paper">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-4">
+        <div className="font-studio-serif italic text-[14px] lg:text-[15px] text-studio-ink-dim max-w-[540px] leading-[1.5]">
           A free public library for AI literacy. Built by people who'd rather you understand than subscribe.
         </div>
-        <div className="flex gap-5 font-studio-mono text-[11px] text-studio-ink-mute tracking-[1px]">
+        <div className="flex flex-wrap gap-3 sm:gap-5 font-studio-mono text-[11px] text-studio-ink-mute tracking-[1px]">
           <span>RSS</span><span>NEWSLETTER</span><span>SOURCE</span><span>EST. MMXXV</span>
         </div>
       </div>

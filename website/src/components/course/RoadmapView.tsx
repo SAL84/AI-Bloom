@@ -94,20 +94,20 @@ export const RoadmapView = ({ setView }: Props) => (
   <div className="bg-studio-bg text-studio-ink font-studio-sans min-h-screen">
     <StudioNavLite crumbs={['Roadmap']} setView={setView} />
 
-    <div className="px-12 pt-12 pb-8 border-b border-studio-rule" style={{ background: '#5d5045' }}>
-      <div className="font-studio-mono text-[11px] tracking-[1.6px] uppercase mb-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
+    <div className="px-4 sm:px-6 lg:px-12 pt-8 lg:pt-12 pb-6 lg:pb-8 border-b border-studio-rule" style={{ background: '#5d5045' }}>
+      <div className="font-studio-mono text-[10.5px] lg:text-[11px] tracking-[1.6px] uppercase mb-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
         Portal status · Spring 2026
       </div>
-      <h1 className="font-studio-display text-[52px] font-normal tracking-[-1px] text-white leading-[1.0] mb-3">
+      <h1 className="font-studio-display text-[32px] sm:text-[40px] lg:text-[52px] font-normal tracking-[-0.6px] lg:tracking-[-1px] text-white leading-[1.0] mb-3">
         Development Roadmap
       </h1>
-      <p className="font-studio-serif italic text-[18px] leading-[1.5]" style={{ color: 'rgba(255,255,255,0.82)' }}>
+      <p className="font-studio-serif italic text-[16px] lg:text-[18px] leading-[1.5]" style={{ color: 'rgba(255,255,255,0.82)' }}>
         What's on the shelf, what's in the kiln, and what's on the whiteboard. Updated as courses ship.
       </p>
     </div>
 
     {/* Live & in-progress courses */}
-    <section className="px-12 pt-10 pb-14">
+    <section className="px-4 sm:px-6 lg:px-12 pt-8 lg:pt-10 pb-10 lg:pb-14">
       <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-6">◆ Courses</div>
 
       <div className="border-t border-studio-rule">
@@ -119,17 +119,17 @@ export const RoadmapView = ({ setView }: Props) => (
           const isLive = e.status !== 'field-notes';
 
           return (
-            <div key={e.id} className={`py-7 grid grid-cols-[56px_1fr_220px] gap-8 items-start border-b border-studio-rule`}>
+            <div key={e.id} className={`py-6 lg:py-7 grid grid-cols-[44px_1fr] lg:grid-cols-[56px_1fr_220px] gap-4 lg:gap-8 items-start border-b border-studio-rule`}>
               <div className="flex justify-center pt-1">
-                <div className="w-10 h-10 rounded-full grid place-items-center font-studio-serif italic text-[15px]"
+                <div className="w-9 lg:w-10 h-9 lg:h-10 rounded-full grid place-items-center font-studio-serif italic text-[14px] lg:text-[15px]"
                   style={{ background: e.color, color: '#fff' }}>
                   {e.no}
                 </div>
               </div>
 
-              <div>
-                <div className="flex items-baseline gap-3 mb-2 flex-wrap">
-                  <h2 className="font-studio-display text-[26px] font-normal tracking-[-0.3px] text-studio-ink leading-none m-0">{e.title}</h2>
+              <div className="lg:col-span-1 col-span-1 min-w-0">
+                <div className="flex items-baseline gap-2 lg:gap-3 mb-2 flex-wrap">
+                  <h2 className="font-studio-display text-[20px] sm:text-[22px] lg:text-[26px] font-normal tracking-[-0.3px] text-studio-ink leading-tight m-0">{e.title}</h2>
                   <span className="font-studio-mono text-[9.5px] tracking-[1.2px] uppercase px-2 py-[2px] rounded-full border"
                     style={{ color: statusColor, borderColor: `${statusColor}55`, background: `${statusColor}10` }}>
                     {STATUS_LABEL[e.status]}
@@ -148,15 +148,15 @@ export const RoadmapView = ({ setView }: Props) => (
                 )}
               </div>
 
-              <div className="text-right pt-1">
+              <div className="lg:text-right pt-1 col-span-2 lg:col-span-1 lg:col-start-3 flex flex-wrap items-center lg:items-end lg:flex-col gap-3 lg:gap-0">
                 {moduleCount !== undefined && (
-                  <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px] mb-3">
+                  <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px] lg:mb-3">
                     {moduleCount} modules · {lessonCount} lessons
                   </div>
                 )}
                 {e.view && (
                   <button onClick={() => setView(e.view!)}
-                    className="font-studio-sans text-[12.5px] font-medium px-3.5 py-2 rounded-full border border-studio-rule text-studio-ink hover:border-studio-ink-dim transition-colors duration-150">
+                    className="font-studio-sans text-[12.5px] font-medium px-3.5 py-2 rounded-full border border-studio-rule text-studio-ink hover:border-studio-ink-dim transition-colors duration-150 whitespace-nowrap">
                     {isLive ? 'Open course →' : 'See field notes →'}
                   </button>
                 )}
@@ -168,9 +168,9 @@ export const RoadmapView = ({ setView }: Props) => (
     </section>
 
     {/* Planned courses */}
-    <section className="px-12 pb-14">
-      <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1.6px] uppercase mb-6">○ In the kiln — courses</div>
-      <div className="grid grid-cols-3 gap-5">
+    <section className="px-4 sm:px-6 lg:px-12 pb-10 lg:pb-14">
+      <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-ink-mute tracking-[1.6px] uppercase mb-5 lg:mb-6">○ In the kiln — courses</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
         {PLANNED_COURSES.map(p => (
           <div key={p.no} className="border border-dashed border-studio-rule rounded-[4px] p-6">
             <div className="flex items-center justify-between mb-3">
@@ -189,11 +189,11 @@ export const RoadmapView = ({ setView }: Props) => (
     </section>
 
     {/* Platform features */}
-    <section className="px-12 pb-16">
-      <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1.6px] uppercase mb-6">○ In the kiln — platform</div>
+    <section className="px-4 sm:px-6 lg:px-12 pb-12 lg:pb-16">
+      <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-ink-mute tracking-[1.6px] uppercase mb-5 lg:mb-6">○ In the kiln — platform</div>
       <div className="bg-studio-paper border border-studio-rule rounded-[4px] divide-y divide-studio-rule-soft">
         {PLANNED_FEATURES.map((f, i) => (
-          <div key={i} className="px-6 py-4 flex items-baseline gap-5">
+          <div key={i} className="px-4 lg:px-6 py-4 flex flex-wrap items-baseline gap-x-3 lg:gap-x-5 gap-y-1">
             <span className="font-studio-mono text-[11px] text-studio-ink-mute flex-shrink-0">○</span>
             <span className="font-studio-sans text-[14px] text-studio-ink font-medium flex-shrink-0">{f.title}</span>
             <span className="font-studio-sans text-[13px] text-studio-ink-mute leading-[1.5]">— {f.note}</span>

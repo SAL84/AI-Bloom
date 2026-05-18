@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StudioNavLite } from './StudioChrome';
 import { COURSES } from '../../data/modules';
 import type { CourseModule, CourseId, Lesson, View } from '../../types/course';
@@ -27,6 +27,16 @@ interface LessonViewProps {
 export const LessonView = ({ module, lesson, modules, courseId, setView, completedLessons, markComplete }: LessonViewProps) => {
   const [slideMode, setSlideMode] = useState(false);
   const [slideIdx, setSlideIdx] = useState(0);
+  const [navOpen, setNavOpen] = useState(false);
+
+  // Close drawer on lesson change or Escape
+  useEffect(() => { setNavOpen(false); }, [lesson.id]);
+  useEffect(() => {
+    if (!navOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setNavOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [navOpen]);
 
   const lessonIdx = module.lessons.findIndex(l => l.id === lesson.id);
   const moduleIdx = modules.findIndex(m => m.id === module.id);
@@ -63,27 +73,27 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
 
     return (
       <div className="min-h-full flex flex-col" style={{ background: '#1d1916', color: '#f5efe4' }}>
-        <div className="flex items-center justify-between px-8 py-4 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
-          <div className="font-studio-mono text-[12px]" style={{ color: 'rgba(245,239,228,0.5)' }}>
+        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 lg:py-4 border-b gap-3" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+          <div className="font-studio-mono text-[11px] lg:text-[12px] truncate" style={{ color: 'rgba(245,239,228,0.5)' }}>
             <span style={{ color }}>{course?.title}</span> · {module.title} · {lesson.title}
           </div>
           <button
             onClick={() => setSlideMode(false)}
-            className="font-studio-sans text-[13px] px-3 py-1.5 rounded-[4px] transition-colors"
+            className="flex-shrink-0 font-studio-sans text-[12px] lg:text-[13px] px-3 py-1.5 rounded-[4px] transition-colors whitespace-nowrap"
             style={{ color: 'rgba(245,239,228,0.7)', background: 'rgba(255,255,255,0.06)' }}
           >
             ← Study mode
           </button>
         </div>
 
-        <div className="flex-1 flex items-center justify-center px-12 py-10">
+        <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-12 py-6 lg:py-10">
           <div className="max-w-4xl w-full">
-            <div className="font-studio-mono text-[11px] tracking-[1.4px] uppercase mb-6" style={{ color: 'rgba(245,239,228,0.35)' }}>
+            <div className="font-studio-mono text-[11px] tracking-[1.4px] uppercase mb-4 lg:mb-6" style={{ color: 'rgba(245,239,228,0.35)' }}>
               {slideIdx + 1} / {totalSlides}
             </div>
             {isVisualSlide ? (
               <div>
-                <h2 className="font-studio-display text-[48px] font-normal leading-[1.05] tracking-[-1px] mb-8" style={{ color: '#fbf6ec' }}>
+                <h2 className="font-studio-display text-[28px] sm:text-[36px] lg:text-[48px] font-normal leading-[1.05] tracking-[-0.6px] lg:tracking-[-1px] mb-6 lg:mb-8" style={{ color: '#fbf6ec' }}>
                   {lesson.title}
                 </h2>
                 {lesson.imageUrl ? (
@@ -99,16 +109,16 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
               </div>
             ) : (
               <>
-                <h2 className="font-studio-display text-[52px] font-normal leading-[1.0] tracking-[-1.5px] mb-6" style={{ color: '#fbf6ec' }}>
+                <h2 className="font-studio-display text-[30px] sm:text-[40px] lg:text-[52px] font-normal leading-[1.0] tracking-[-0.8px] lg:tracking-[-1.5px] mb-4 lg:mb-6" style={{ color: '#fbf6ec' }}>
                   {slide!.heading}
                 </h2>
-                <p className="font-studio-serif text-[22px] leading-[1.55]" style={{ color: 'rgba(245,239,228,0.78)' }}>
+                <p className="font-studio-serif text-[17px] sm:text-[19px] lg:text-[22px] leading-[1.55]" style={{ color: 'rgba(245,239,228,0.78)' }}>
                   {slide!.body}
                 </p>
                 {slide!.bullets && (
-                  <ul className="mt-5 space-y-2.5">
+                  <ul className="mt-4 lg:mt-5 space-y-2.5">
                     {slide!.bullets.map((b, i) => (
-                      <li key={i} className="flex items-start gap-3 font-studio-sans text-[17px]" style={{ color: 'rgba(245,239,228,0.7)' }}>
+                      <li key={i} className="flex items-start gap-3 font-studio-sans text-[14.5px] sm:text-[16px] lg:text-[17px]" style={{ color: 'rgba(245,239,228,0.7)' }}>
                         <span className="mt-2.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: color }} />
                         {b}
                       </li>
@@ -120,11 +130,11 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
           </div>
         </div>
 
-        <div className="flex items-center justify-between px-8 py-4 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 lg:py-4 border-t gap-3" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
           <button
             onClick={() => setSlideIdx(Math.max(0, slideIdx - 1))}
             disabled={slideIdx === 0}
-            className="font-studio-sans text-[13px] px-4 py-2 rounded-[4px] disabled:opacity-20 transition"
+            className="font-studio-sans text-[12px] lg:text-[13px] px-3 lg:px-4 py-2 rounded-[4px] disabled:opacity-20 transition"
             style={{ background: 'rgba(255,255,255,0.06)', color: '#f5efe4' }}
           >
             ← Prev
@@ -164,8 +174,43 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
         setView={setView}
       />
 
-      <div className="max-w-[1440px] mx-auto flex gap-10 px-12 items-start">
-        <div className="w-[260px] flex-shrink-0 sticky top-6 py-14">
+      {/* Mobile drawer overlay */}
+      {navOpen && (
+        <div
+          className="lg:hidden fixed inset-0 z-40 bg-black/40"
+          onClick={() => setNavOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+      {/* Mobile drawer panel */}
+      <aside
+        className={`lg:hidden fixed top-0 left-0 z-50 h-full w-[300px] max-w-[85vw] bg-studio-bg border-r border-studio-rule shadow-xl transform transition-transform duration-200 ease-out ${navOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        aria-hidden={!navOpen}
+      >
+        <div className="flex items-center justify-between px-5 py-4 border-b border-studio-rule">
+          <span className="font-studio-mono text-[11px] tracking-[1.2px] uppercase text-studio-ink-mute">Course outline</span>
+          <button
+            onClick={() => setNavOpen(false)}
+            className="font-studio-sans text-[13px] text-studio-ink-dim hover:text-studio-ink"
+            aria-label="Close lesson outline"
+          >
+            Close ✕
+          </button>
+        </div>
+        <div className="overflow-y-auto h-[calc(100%-57px)] px-4 py-4">
+          <CourseNav
+            modules={modules}
+            completedLessons={completedLessons}
+            color={color}
+            courseId={courseId}
+            setView={setView}
+            activeLessonId={lesson.id}
+          />
+        </div>
+      </aside>
+
+      <div className="max-w-[1440px] mx-auto flex gap-10 px-4 sm:px-6 lg:px-12 items-start">
+        <div className="hidden lg:block w-[260px] flex-shrink-0 sticky top-6 py-14">
           <CourseNav
             modules={modules}
             completedLessons={completedLessons}
@@ -176,49 +221,58 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
           />
         </div>
 
-        <article className="flex-1 min-w-0 max-w-3xl py-14">
-        <div className="font-studio-mono text-[11px] tracking-[1.4px] uppercase mb-4" style={{ color }}>
-          Module {moduleIdx + 1} · Lesson {lessonIdx + 1}
+        <article className="flex-1 min-w-0 max-w-3xl py-8 lg:py-14">
+        <div className="flex items-center justify-between mb-3 lg:mb-4 gap-3">
+          <div className="font-studio-mono text-[11px] tracking-[1.4px] uppercase" style={{ color }}>
+            Module {moduleIdx + 1} · Lesson {lessonIdx + 1}
+          </div>
+          <button
+            onClick={() => setNavOpen(true)}
+            className="lg:hidden font-studio-mono text-[11px] tracking-[1px] text-studio-ink-dim hover:text-studio-ink border border-studio-rule px-3 py-1.5 rounded-full transition-colors duration-150"
+            aria-label="Open lesson outline"
+          >
+            ☰ Lessons
+          </button>
         </div>
 
-        <div className="flex items-start justify-between gap-4 mb-10">
-          <h1 className="font-studio-display text-[44px] leading-[1.05] font-normal tracking-[-1px] text-studio-ink">
+        <div className="flex items-start justify-between gap-3 mb-8 lg:mb-10">
+          <h1 className="font-studio-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.05] font-normal tracking-[-0.6px] lg:tracking-[-1px] text-studio-ink">
             {lesson.title}
           </h1>
           <button
             onClick={() => { setSlideIdx(0); setSlideMode(true); }}
-            className="flex-shrink-0 font-studio-mono text-[11px] tracking-[1px] text-studio-ink-mute hover:text-studio-ink border border-studio-rule px-3.5 py-1.5 rounded-full transition-colors duration-150 mt-2"
+            className="flex-shrink-0 font-studio-mono text-[11px] tracking-[1px] text-studio-ink-mute hover:text-studio-ink border border-studio-rule px-3 lg:px-3.5 py-1.5 rounded-full transition-colors duration-150 mt-1 lg:mt-2"
           >
             Slides →
           </button>
         </div>
 
         {lesson.imageUrl && (
-          <div className="mb-10 xl:-mr-20 2xl:-mr-40">
+          <div className="mb-8 lg:mb-10 xl:-mr-20 2xl:-mr-40">
             <img src={lesson.imageUrl} alt={lesson.title}
-              className="w-full h-72 xl:h-96 object-cover rounded-[4px]"
+              className="w-full h-48 sm:h-64 lg:h-72 xl:h-96 object-cover rounded-[4px]"
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
           </div>
         )}
 
         {DiagramComponent && (
-          <div className="mb-10 xl:-mr-20 2xl:-mr-40 bg-studio-paper border border-studio-rule rounded-[4px] p-6">
+          <div className="mb-8 lg:mb-10 xl:-mr-20 2xl:-mr-40 bg-studio-paper border border-studio-rule rounded-[4px] p-3 sm:p-4 lg:p-6 overflow-x-auto">
             <DiagramComponent />
           </div>
         )}
         {hasInlineSvg && (
-          <div className="mb-10 xl:-mr-20 2xl:-mr-40 bg-studio-paper border border-studio-rule rounded-[4px] p-6">
+          <div className="mb-8 lg:mb-10 xl:-mr-20 2xl:-mr-40 bg-studio-paper border border-studio-rule rounded-[4px] p-3 sm:p-4 lg:p-6">
             <InlineSVGDiagram svgContent={lesson.inlineSvg!} diagramId={lesson.inlineSvgId ?? lesson.id} />
           </div>
         )}
 
-        <div className="space-y-10">
+        <div className="space-y-8 lg:space-y-10">
           {lesson.slides.map((s, i) => (
-            <section key={i} className="border-t border-studio-rule-soft pt-8 first:border-0 first:pt-0">
-              <h2 className="font-studio-display text-[28px] font-normal tracking-[-0.4px] text-studio-ink mb-3 leading-[1.15]">
+            <section key={i} className="border-t border-studio-rule-soft pt-7 lg:pt-8 first:border-0 first:pt-0">
+              <h2 className="font-studio-display text-[22px] sm:text-[24px] lg:text-[28px] font-normal tracking-[-0.3px] lg:tracking-[-0.4px] text-studio-ink mb-3 leading-[1.15]">
                 {s.heading}
               </h2>
-              <p className="font-studio-sans text-[15.5px] text-studio-ink-dim leading-[1.7]">{s.body}</p>
+              <p className="font-studio-sans text-[14.5px] lg:text-[15.5px] text-studio-ink-dim leading-[1.7]">{s.body}</p>
               {s.bullets && (
                 <ul className="mt-4 space-y-2">
                   {s.bullets.map((b, j) => (

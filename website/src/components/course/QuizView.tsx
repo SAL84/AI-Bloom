@@ -54,20 +54,20 @@ export const QuizView = ({ module, modules, courseId, setView, recordQuizScore }
         setView={setView}
       />
 
-      <div className="max-w-2xl mx-auto px-6 py-14">
-        <div className="font-studio-mono text-[11px] tracking-[1.4px] uppercase mb-4" style={{ color }}>
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 lg:py-14">
+        <div className="font-studio-mono text-[10.5px] lg:text-[11px] tracking-[1.4px] uppercase mb-3 lg:mb-4" style={{ color }}>
           Module {moduleIdx + 1} · End-of-module quiz
         </div>
-        <h1 className="font-studio-display text-[44px] font-normal tracking-[-1px] text-studio-ink leading-[1.05] mb-10">
+        <h1 className="font-studio-display text-[28px] sm:text-[36px] lg:text-[44px] font-normal tracking-[-0.6px] lg:tracking-[-1px] text-studio-ink leading-[1.05] mb-8 lg:mb-10">
           {module.title}
         </h1>
 
         {submitted && (
-          <div className="mb-10 px-7 py-6 bg-studio-paper border border-studio-rule rounded-[4px]">
-            <div className="font-studio-display text-[56px] leading-none font-normal" style={{ color }}>
+          <div className="mb-8 lg:mb-10 px-5 lg:px-7 py-5 lg:py-6 bg-studio-paper border border-studio-rule rounded-[4px]">
+            <div className="font-studio-display text-[40px] sm:text-[48px] lg:text-[56px] leading-none font-normal" style={{ color }}>
               {score}/{module.quiz.length}
             </div>
-            <p className="font-studio-serif italic text-[18px] text-studio-ink-dim mt-2 leading-[1.4]">
+            <p className="font-studio-serif italic text-[16px] lg:text-[18px] text-studio-ink-dim mt-2 leading-[1.4]">
               {score === module.quiz.length
                 ? 'Perfect — you have this module locked in.'
                 : score >= module.quiz.length * 0.7
@@ -77,14 +77,14 @@ export const QuizView = ({ module, modules, courseId, setView, recordQuizScore }
           </div>
         )}
 
-        <div className="space-y-7">
+        <div className="space-y-6 lg:space-y-7">
           {module.quiz.map((q, qi) => (
-            <div key={qi} className="border-t border-studio-rule pt-7">
-              <div className="flex gap-4 mb-4">
+            <div key={qi} className="border-t border-studio-rule pt-6 lg:pt-7">
+              <div className="flex gap-3 lg:gap-4 mb-3 lg:mb-4">
                 <span className="font-studio-mono text-[11px] text-studio-ink-mute mt-1.5 flex-shrink-0">{String(qi + 1).padStart(2, '0')}</span>
-                <span className="font-studio-serif text-[19px] text-studio-ink leading-[1.4] font-normal">{q.q}</span>
+                <span className="font-studio-serif text-[16px] sm:text-[17px] lg:text-[19px] text-studio-ink leading-[1.4] font-normal">{q.q}</span>
               </div>
-              <div className="space-y-2 pl-9">
+              <div className="space-y-2 pl-7 lg:pl-9">
                 {q.options.map((opt, oi) => {
                   const isSelected = answers[qi] === oi;
                   const isCorrect = q.correct === oi;
@@ -112,7 +112,7 @@ export const QuizView = ({ module, modules, courseId, setView, recordQuizScore }
           ))}
         </div>
 
-        <div className="flex items-center justify-between gap-3 pt-10 mt-8 border-t border-studio-rule">
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-8 lg:pt-10 mt-6 lg:mt-8 border-t border-studio-rule">
           {!submitted ? (
             <>
               <span className="font-studio-mono text-[12px] text-studio-ink-mute">{answered} of {module.quiz.length} answered</span>

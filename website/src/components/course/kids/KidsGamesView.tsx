@@ -49,22 +49,22 @@ export const KidsGamesView = ({ setView }: KidsGamesViewProps) => {
     <div className="bg-studio-bg min-h-screen">
       <StudioNavLite crumbs={['AI for Kids', 'Games']} crumbViews={[{ type: 'home', courseId: 'ai-kids' }, undefined]} setView={setView} />
 
-      <div className="px-12 pt-12 pb-8 border-b border-studio-rule" style={{ background: '#d96a3a' }}>
-        <div className="font-studio-mono text-[11px] tracking-[1.6px] uppercase mb-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
+      <div className="px-4 sm:px-6 lg:px-12 pt-8 lg:pt-12 pb-6 lg:pb-8 border-b border-studio-rule" style={{ background: '#d96a3a' }}>
+        <div className="font-studio-mono text-[10.5px] lg:text-[11px] tracking-[1.6px] uppercase mb-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
           Learn by playing · ages 8–14
         </div>
-        <h1 className="font-studio-display text-[52px] font-normal tracking-[-1px] text-white leading-[1.0] mb-3">
+        <h1 className="font-studio-display text-[32px] sm:text-[40px] lg:text-[52px] font-normal tracking-[-0.6px] lg:tracking-[-1px] text-white leading-[1.0] mb-3">
           AI Games
         </h1>
-        <p className="font-studio-serif italic text-[18px] leading-[1.5]" style={{ color: 'rgba(255,255,255,0.82)' }}>
+        <p className="font-studio-serif italic text-[16px] lg:text-[18px] leading-[1.5]" style={{ color: 'rgba(255,255,255,0.82)' }}>
           Each game teaches a real AI concept used by engineers today. Three games, all in your browser.
         </p>
       </div>
 
-      <div className="px-12 py-10">
-        <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-6">◆ Pick a game</div>
+      <div className="px-4 sm:px-6 lg:px-12 py-8 lg:py-10">
+        <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-5 lg:mb-6">◆ Pick a game</div>
 
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
           {GAMES.map(g => (
             <button
               key={g.id}

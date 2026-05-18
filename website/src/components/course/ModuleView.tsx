@@ -36,18 +36,18 @@ export const ModuleView = ({ module, modules, courseId, setView, completedLesson
       />
 
       {/* Module header */}
-      <div className="px-12 py-12 border-b border-studio-rule" style={{ background: color }}>
+      <div className="px-4 sm:px-6 lg:px-12 py-8 lg:py-12 border-b border-studio-rule" style={{ background: color }}>
         <div className="max-w-3xl">
-          <div className="font-studio-mono text-[11px] tracking-[1.6px] uppercase mb-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
+          <div className="font-studio-mono text-[10.5px] lg:text-[11px] tracking-[1.6px] uppercase mb-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
             Module {moduleIndex + 1} of {modules.length}
           </div>
-          <h1 className="font-studio-display text-[52px] leading-[1.0] font-normal tracking-[-1px] text-white">
+          <h1 className="font-studio-display text-[32px] sm:text-[40px] lg:text-[52px] leading-[1.0] font-normal tracking-[-0.6px] lg:tracking-[-1px] text-white">
             {module.title}
           </h1>
-          <p className="font-studio-serif italic text-[18px] mt-4 leading-[1.5]" style={{ color: 'rgba(255,255,255,0.82)' }}>
+          <p className="font-studio-serif italic text-[16px] lg:text-[18px] mt-3 lg:mt-4 leading-[1.5]" style={{ color: 'rgba(255,255,255,0.82)' }}>
             {module.summary}
           </p>
-          <div className="flex items-center gap-4 mt-6 font-studio-mono text-[11px] tracking-[1px]" style={{ color: 'rgba(255,255,255,0.6)' }}>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 lg:gap-4 mt-5 lg:mt-6 font-studio-mono text-[10.5px] lg:text-[11px] tracking-[1px]" style={{ color: 'rgba(255,255,255,0.6)' }}>
             <span>{module.lessons.length} lessons</span>
             <span>·</span>
             <span>{completedCount} of {module.lessons.length} complete</span>
@@ -59,7 +59,7 @@ export const ModuleView = ({ module, modules, courseId, setView, completedLesson
       </div>
 
       {/* Lesson list */}
-      <div className="px-12 py-10 max-w-3xl">
+      <div className="px-4 sm:px-6 lg:px-12 py-8 lg:py-10 max-w-3xl">
         <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-5">◆ Lessons</div>
 
         <div className="border-t border-studio-rule">
@@ -95,20 +95,20 @@ export const ModuleView = ({ module, modules, courseId, setView, completedLesson
         {/* Quiz */}
         <button
           onClick={() => setView({ type: 'quiz', courseId, moduleId: module.id })}
-          className="w-full mt-6 text-left px-6 py-5 bg-studio-paper border border-studio-rule rounded-[4px] flex items-center justify-between hover:border-studio-ink-dim transition-colors duration-150"
+          className="w-full mt-6 text-left px-5 lg:px-6 py-4 lg:py-5 bg-studio-paper border border-studio-rule rounded-[4px] flex items-center justify-between gap-4 hover:border-studio-ink-dim transition-colors duration-150"
         >
-          <div>
+          <div className="min-w-0">
             <div className="font-studio-mono text-[10px] tracking-[1.4px] uppercase text-studio-ink-mute mb-1.5">End of module</div>
-            <div className="font-studio-serif italic text-[22px] text-studio-ink font-normal leading-[1.1]">Check your understanding</div>
+            <div className="font-studio-serif italic text-[18px] lg:text-[22px] text-studio-ink font-normal leading-[1.1]">Check your understanding</div>
             <div className="font-studio-sans text-[13px] text-studio-ink-dim mt-1">{module.quiz.length} questions · multiple choice</div>
           </div>
           {quizScores[module.id] !== undefined ? (
-            <div className="text-right ml-8">
-              <div className="font-studio-display text-[38px] leading-none font-normal" style={{ color }}>{quizScores[module.id]}/{module.quiz.length}</div>
+            <div className="text-right ml-4 lg:ml-8 flex-shrink-0">
+              <div className="font-studio-display text-[30px] lg:text-[38px] leading-none font-normal" style={{ color }}>{quizScores[module.id]}/{module.quiz.length}</div>
               <div className="font-studio-mono text-[10px] text-studio-ink-mute tracking-[0.6px] mt-1">Retake →</div>
             </div>
           ) : (
-            <span className="font-studio-mono text-[12px] text-studio-ink tracking-[0.5px] ml-8">Take quiz →</span>
+            <span className="font-studio-mono text-[12px] text-studio-ink tracking-[0.5px] ml-4 lg:ml-8 flex-shrink-0 whitespace-nowrap">Take quiz →</span>
           )}
         </button>
       </div>

@@ -143,17 +143,17 @@ export const KidsCareersView = ({ setView }: { setView: (v: View) => void }) => 
     return (
       <div className="bg-studio-bg min-h-screen">
         <StudioNavLite crumbs={['AI for Kids', 'Career Explorer']} crumbViews={[{ type: 'home', courseId: 'ai-kids' }, undefined]} setView={setView} />
-        <div className="max-w-2xl mx-auto px-6 py-14 text-center">
-          <div className="text-[56px] mb-4">🚀</div>
-          <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-4">◆ Discover your path</div>
-          <h1 className="font-studio-display text-[44px] font-normal tracking-[-1px] text-studio-ink leading-[1.05] mb-4">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 lg:py-14 text-center">
+          <div className="text-[44px] sm:text-[56px] mb-4">🚀</div>
+          <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-3 lg:mb-4">◆ Discover your path</div>
+          <h1 className="font-studio-display text-[30px] sm:text-[36px] lg:text-[44px] font-normal tracking-[-0.6px] lg:tracking-[-1px] text-studio-ink leading-[1.05] mb-4">
             AI Career Explorer
           </h1>
-          <p className="font-studio-serif italic text-[18px] text-studio-ink-dim leading-[1.5] mb-10">
+          <p className="font-studio-serif italic text-[16px] lg:text-[18px] text-studio-ink-dim leading-[1.5] mb-8 lg:mb-10">
             AI is creating amazing new careers — and you could be part of it.<br />
             Answer 6 quick questions to discover which fits your personality.
           </p>
-          <div className="grid grid-cols-3 gap-3 mb-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8 lg:mb-10">
             {CAREERS.map(c => (
               <div key={c.key} className="bg-studio-paper border border-studio-rule rounded-[4px] p-4 text-center">
                 <div className="text-[28px] mb-1.5">{c.emoji}</div>
@@ -180,16 +180,16 @@ export const KidsCareersView = ({ setView }: { setView: (v: View) => void }) => 
     return (
       <div className="bg-studio-bg min-h-screen">
         <StudioNavLite crumbs={['AI for Kids', 'Career Explorer', 'Your result']} setView={setView} />
-        <div className="max-w-2xl mx-auto px-6 py-14">
-          <div className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden mb-8">
-            <div className="px-8 py-8 text-center" style={{ background: result.color }}>
-              <div className="text-[52px] mb-3">{result.emoji}</div>
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 lg:py-14">
+          <div className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden mb-6 lg:mb-8">
+            <div className="px-5 sm:px-8 py-6 lg:py-8 text-center" style={{ background: result.color }}>
+              <div className="text-[40px] sm:text-[52px] mb-3">{result.emoji}</div>
               <div className="font-studio-mono text-[10px] tracking-[1.6px] uppercase mb-2" style={{ color: 'rgba(255,255,255,0.7)' }}>Your AI career</div>
-              <h2 className="font-studio-display text-[40px] font-normal tracking-[-0.8px] text-white leading-[1.05] mb-1">{result.title}</h2>
-              <p className="font-studio-serif italic text-[18px]" style={{ color: 'rgba(255,255,255,0.85)' }}>{result.tagline}</p>
+              <h2 className="font-studio-display text-[28px] sm:text-[34px] lg:text-[40px] font-normal tracking-[-0.6px] lg:tracking-[-0.8px] text-white leading-[1.05] mb-1">{result.title}</h2>
+              <p className="font-studio-serif italic text-[16px] lg:text-[18px]" style={{ color: 'rgba(255,255,255,0.85)' }}>{result.tagline}</p>
             </div>
-            <div className="px-8 py-7">
-              <p className="font-studio-sans text-[15px] text-studio-ink-dim leading-[1.65] mb-6">{result.desc}</p>
+            <div className="px-5 sm:px-8 py-6 lg:py-7">
+              <p className="font-studio-sans text-[14px] lg:text-[15px] text-studio-ink-dim leading-[1.65] mb-5 lg:mb-6">{result.desc}</p>
               <div className="font-studio-mono text-[10px] text-studio-ink-mute tracking-[1.4px] uppercase mb-3">Roles you might love</div>
               <div className="flex flex-wrap gap-2 mb-6">
                 {result.roles.map(r => (
@@ -224,9 +224,9 @@ export const KidsCareersView = ({ setView }: { setView: (v: View) => void }) => 
   return (
     <div className="bg-studio-bg min-h-screen">
       <StudioNavLite crumbs={['AI for Kids', 'Career Explorer']} setView={setView} />
-      <div className="max-w-xl mx-auto px-6 py-14">
-        <div className="mb-8">
-          <div className="flex justify-between font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.5px] mb-2">
+      <div className="max-w-xl mx-auto px-4 sm:px-6 py-8 lg:py-14">
+        <div className="mb-6 lg:mb-8">
+          <div className="flex justify-between font-studio-mono text-[10.5px] lg:text-[11px] text-studio-ink-mute tracking-[0.5px] mb-2">
             <span>Question {current + 1} of {QUESTIONS.length}</span>
             <span>{pct}%</span>
           </div>
@@ -235,7 +235,7 @@ export const KidsCareersView = ({ setView }: { setView: (v: View) => void }) => 
           </div>
         </div>
 
-        <h2 className="font-studio-display text-[32px] font-normal tracking-[-0.5px] text-studio-ink leading-[1.15] mb-8 text-center">
+        <h2 className="font-studio-display text-[24px] sm:text-[28px] lg:text-[32px] font-normal tracking-[-0.4px] lg:tracking-[-0.5px] text-studio-ink leading-[1.15] mb-6 lg:mb-8 text-center">
           {q.q}
         </h2>
 

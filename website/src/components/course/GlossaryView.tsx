@@ -18,12 +18,12 @@ export const GlossaryView = ({ setView }: GlossaryViewProps) => {
     <div className="bg-studio-bg min-h-screen">
       <StudioNavLite crumbs={['Glossary']} setView={setView} />
 
-      <div className="max-w-2xl mx-auto px-6 py-14">
-        <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-4">◆ Reference</div>
-        <h1 className="font-studio-display text-[52px] font-normal tracking-[-1.2px] text-studio-ink leading-[1.0] mb-3">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 lg:py-14">
+        <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-3 lg:mb-4">◆ Reference</div>
+        <h1 className="font-studio-display text-[36px] sm:text-[44px] lg:text-[52px] font-normal tracking-[-0.8px] lg:tracking-[-1.2px] text-studio-ink leading-[1.0] mb-3">
           Glossary
         </h1>
-        <p className="font-studio-serif italic text-[18px] text-studio-ink-dim leading-[1.5] mb-10">
+        <p className="font-studio-serif italic text-[16px] lg:text-[18px] text-studio-ink-dim leading-[1.5] mb-8 lg:mb-10">
           Every term used across the courses — keep it open during prospect calls.
         </p>
 

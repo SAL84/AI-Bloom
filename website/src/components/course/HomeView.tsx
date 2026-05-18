@@ -105,18 +105,18 @@ const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScor
       : 'Start this module →';
 
   return (
-    <section className="px-12 pt-6 pb-14">
+    <section className="px-4 sm:px-6 lg:px-12 pt-6 pb-10 lg:pb-14">
       <div className="max-w-[1280px] mx-auto">
-        <header className="flex items-baseline justify-between mb-6">
-          <h2 className="font-studio-display text-[36px] text-studio-ink m-0 font-normal tracking-[-0.6px]">
+        <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-5 lg:mb-6">
+          <h2 className="font-studio-display text-[28px] sm:text-[32px] lg:text-[36px] text-studio-ink m-0 font-normal tracking-[-0.5px] lg:tracking-[-0.6px]">
             The {modules.length === 1 ? 'module' : `${modules.length} modules`}
           </h2>
-          <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1px]">Pick a module · open any lesson</div>
+          <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-ink-mute tracking-[1px]">Pick a module · open any lesson</div>
         </header>
 
-        <div className="grid grid-cols-[340px_1fr] gap-8 items-start">
-          {/* ── Left rail: module list ── */}
-          <aside className="flex flex-col gap-2">
+        <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-4 lg:gap-8 items-start">
+          {/* ── Left rail: module list (horizontal scroll on mobile) ── */}
+          <aside className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible -mx-4 sm:-mx-6 lg:mx-0 px-4 sm:px-6 lg:px-0 pb-2 lg:pb-0 snap-x snap-mandatory lg:snap-none scrollbar-thin">
             {modules.map((m, i) => {
               const status = statuses[i];
               const isDone = status === 'done';
@@ -128,7 +128,7 @@ const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScor
                 <button
                   key={m.id}
                   onClick={() => setSelectedIdx(i)}
-                  className="text-left px-4 py-3.5 rounded-[4px] border bg-studio-paper hover:border-studio-ink-dim transition-colors duration-100"
+                  className="text-left px-4 py-3.5 rounded-[4px] border bg-studio-paper hover:border-studio-ink-dim transition-colors duration-100 flex-shrink-0 w-[260px] lg:w-full snap-start"
                   style={{
                     borderColor: isSelected ? meta.color : isNow ? `${meta.color}66` : 'var(--tw-border-opacity-studio-rule, #e8dfc8)',
                     background: isSelected ? `${meta.color}0d` : undefined,
@@ -169,7 +169,7 @@ const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScor
             style={{ borderColor: selectedStatus === 'now' ? meta.color : '#e8dfc8' }}
           >
             {/* Module header */}
-            <div className="px-7 py-6 border-b border-studio-rule" style={selectedStatus === 'now' ? { background: `${meta.color}0d` } : undefined}>
+            <div className="px-5 sm:px-6 lg:px-7 py-5 lg:py-6 border-b border-studio-rule" style={selectedStatus === 'now' ? { background: `${meta.color}0d` } : undefined}>
               <div className="flex items-baseline gap-3 flex-wrap">
                 <span className="font-studio-mono text-[10.5px] tracking-[1.4px] uppercase" style={{ color: meta.color }}>
                   Module {safeIdx + 1} of {modules.length}
@@ -181,10 +181,10 @@ const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScor
                   <span className="font-studio-mono text-[10px] uppercase tracking-[1px]" style={{ color: meta.color }}>Complete</span>
                 )}
               </div>
-              <h3 className="font-studio-display text-[28px] font-normal tracking-[-0.4px] text-studio-ink mt-2 leading-[1.1]">
+              <h3 className="font-studio-display text-[22px] sm:text-[26px] lg:text-[28px] font-normal tracking-[-0.4px] text-studio-ink mt-2 leading-[1.1]">
                 {selected.title}
               </h3>
-              <p className="font-studio-sans text-[14px] text-studio-ink-dim leading-[1.55] mt-2 max-w-[640px]">
+              <p className="font-studio-sans text-[13.5px] lg:text-[14px] text-studio-ink-dim leading-[1.55] mt-2 max-w-[640px]">
                 {selected.summary}
               </p>
               <div className="flex items-center gap-4 mt-4 flex-wrap">
@@ -214,7 +214,7 @@ const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScor
                     )}
                     <button
                       onClick={() => setView({ type: 'lesson', courseId: course.id, moduleId: selected.id, lessonId: l.id })}
-                      className="w-full text-left px-7 py-3.5 flex items-baseline gap-5 border-b border-studio-rule-soft hover:bg-studio-bg transition-colors duration-100 group"
+                      className="w-full text-left px-5 sm:px-6 lg:px-7 py-3.5 flex items-baseline gap-3 sm:gap-5 border-b border-studio-rule-soft hover:bg-studio-bg transition-colors duration-100 group"
                     >
                       <span className="font-studio-mono text-[11px] text-studio-ink-mute w-7 flex-shrink-0">{String(li + 1).padStart(2, '0')}</span>
                       <span className="flex-1 font-studio-sans text-[14px] text-studio-ink-dim group-hover:text-studio-ink leading-[1.3]">
@@ -234,7 +234,7 @@ const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScor
               {/* Quiz row */}
               <button
                 onClick={() => setView({ type: 'quiz', courseId: course.id, moduleId: selected.id })}
-                className="w-full text-left px-7 py-3.5 flex items-baseline gap-5 hover:bg-studio-bg transition-colors duration-100 group border-t border-dashed border-studio-rule"
+                className="w-full text-left px-5 sm:px-6 lg:px-7 py-3.5 flex items-baseline gap-3 sm:gap-5 hover:bg-studio-bg transition-colors duration-100 group border-t border-dashed border-studio-rule"
               >
                 <span className="font-studio-mono text-[11px] text-studio-ink-mute w-7 flex-shrink-0">✦</span>
                 <span className="flex-1 font-studio-serif italic text-[14px] text-studio-ink-dim group-hover:text-studio-ink">Module quiz · {selected.quiz.length} questions</span>
@@ -275,26 +275,26 @@ export const HomeView = ({ setView, course, completedLessons, quizScores }: Prop
       <StudioNavLite crumbs={crumbs} crumbViews={[{ type: 'library' }, undefined, undefined]} setView={setView} resumeView={resumeView} />
 
       {/* Hero */}
-      <header className="px-12 pt-14 pb-8 grid grid-cols-[1.4fr_1fr] gap-14 items-end">
+      <header className="px-4 sm:px-6 lg:px-12 pt-8 lg:pt-14 pb-6 lg:pb-8 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-14 lg:items-end">
         <div>
-          <div className="font-studio-mono text-[11px] tracking-[1.6px] uppercase mb-[18px]" style={{ color: meta.color }}>{meta.kicker}</div>
-          <h1 className="font-studio-display text-[96px] leading-[0.92] tracking-[-2.6px] text-studio-ink m-0 font-normal">
+          <div className="font-studio-mono text-[10.5px] lg:text-[11px] tracking-[1.6px] uppercase mb-3 lg:mb-[18px]" style={{ color: meta.color }}>{meta.kicker}</div>
+          <h1 className="font-studio-display text-[52px] sm:text-[72px] lg:text-[96px] leading-[0.92] tracking-[-1.2px] sm:tracking-[-1.8px] lg:tracking-[-2.6px] text-studio-ink m-0 font-normal">
             {course.title.split(' ').length > 2
               ? <>{course.title.split(' ').slice(0, -1).join(' ')}{' '}<span className="font-studio-serif italic font-normal" style={{ color: meta.color }}>{course.title.split(' ').slice(-1)}</span></>
               : <>{course.title.split(' ')[0]}{' '}<span className="font-studio-serif italic font-normal" style={{ color: meta.color }}>{course.title.split(' ').slice(1).join(' ')}</span></>
             }
           </h1>
-          <p className="font-studio-serif italic text-[22px] leading-[1.45] text-studio-ink-dim mt-[22px] max-w-[560px] font-normal">{course.subtitle}</p>
-          <div className="flex gap-[18px] mt-[26px] flex-wrap">
+          <p className="font-studio-serif italic text-[17px] sm:text-[20px] lg:text-[22px] leading-[1.45] text-studio-ink-dim mt-4 lg:mt-[22px] max-w-[560px] font-normal">{course.subtitle}</p>
+          <div className="flex gap-3 lg:gap-[18px] mt-5 lg:mt-[26px] flex-wrap">
             {[[String(modules.length), 'modules'], [meta.duration, 'reading time'], [meta.level, 'level']].map(([k, v], i, arr) => (
-              <div key={i} className={`flex flex-col gap-0.5 pr-[18px] ${i < arr.length - 1 ? 'border-r border-studio-rule' : ''}`}>
-                <span className="font-studio-serif text-[22px] text-studio-ink font-normal leading-none">{k}</span>
-                <span className="font-studio-mono text-[10.5px] text-studio-ink-mute tracking-[1px] uppercase">{v}</span>
+              <div key={i} className={`flex flex-col gap-0.5 pr-3 lg:pr-[18px] ${i < arr.length - 1 ? 'border-r border-studio-rule' : ''}`}>
+                <span className="font-studio-serif text-[18px] lg:text-[22px] text-studio-ink font-normal leading-none">{k}</span>
+                <span className="font-studio-mono text-[10px] lg:text-[10.5px] text-studio-ink-mute tracking-[1px] uppercase">{v}</span>
               </div>
             ))}
           </div>
         </div>
-        <aside className="bg-studio-paper border border-studio-rule rounded-[4px] p-[26px]">
+        <aside className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 lg:p-[26px]">
           <div className="font-studio-mono text-[11px] tracking-[1.4px] uppercase" style={{ color: meta.color }}>
             Your card · {progress > 0 ? 'in progress' : 'not started'}
           </div>
@@ -339,8 +339,8 @@ export const HomeView = ({ setView, course, completedLessons, quizScores }: Prop
       />
 
       {/* Three sidebars */}
-      <section className="px-12 pb-14 grid grid-cols-[1.2fr_1fr_1fr] gap-6">
-        <div className="bg-studio-paper border border-studio-rule rounded-[4px] p-7">
+      <section className="px-4 sm:px-6 lg:px-12 pb-10 lg:pb-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr] gap-4 lg:gap-6">
+        <div className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 lg:p-7">
           <div className="font-studio-mono text-[11px] tracking-[1.4px] uppercase mb-3.5" style={{ color: meta.color }}>What you'll walk away with</div>
           <ul className="list-none p-0 m-0 flex flex-col gap-3">
             {meta.outcomes.map((t, i) => (
@@ -351,7 +351,7 @@ export const HomeView = ({ setView, course, completedLessons, quizScores }: Prop
             ))}
           </ul>
         </div>
-        <div className="bg-studio-paper border border-studio-rule rounded-[4px] p-7">
+        <div className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 lg:p-7">
           <div className="font-studio-mono text-[11px] tracking-[1.4px] uppercase mb-3.5" style={{ color: meta.color }}>Who this is for</div>
           <div className="flex flex-col gap-3.5">
             {meta.audience.map((t, i) => (
@@ -362,7 +362,7 @@ export const HomeView = ({ setView, course, completedLessons, quizScores }: Prop
             ))}
           </div>
         </div>
-        <div className="bg-studio-ink rounded-[4px] p-7">
+        <div className="bg-studio-ink rounded-[4px] p-5 lg:p-7 md:col-span-2 lg:col-span-1">
           <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.4px] uppercase mb-3.5">From the librarians</div>
           <p className="font-studio-serif italic text-[18px] leading-[1.45] m-0" style={{ color: 'rgba(245,239,228,0.92)' }}>{meta.quote}</p>
           <div className="font-studio-mono text-[10.5px] tracking-[1px] uppercase mt-[18px]" style={{ color: 'rgba(245,239,228,0.55)' }}>— editorial board, Issue 06</div>
@@ -370,15 +370,15 @@ export const HomeView = ({ setView, course, completedLessons, quizScores }: Prop
       </section>
 
       {/* Related */}
-      <section className="px-12 pb-16">
-        <header className="flex items-baseline justify-between mb-5">
-          <h2 className="font-studio-display text-[28px] text-studio-ink m-0 font-normal tracking-[-0.4px]">Read after this</h2>
-          <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1px]">Curated by the editors</div>
+      <section className="px-4 sm:px-6 lg:px-12 pb-12 lg:pb-16">
+        <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-5">
+          <h2 className="font-studio-display text-[24px] sm:text-[26px] lg:text-[28px] text-studio-ink m-0 font-normal tracking-[-0.4px]">Read after this</h2>
+          <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-ink-mute tracking-[1px]">Curated by the editors</div>
         </header>
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
           {meta.related.map(it => (
             <button key={it.no} onClick={() => setView(it.view)}
-              className="flex items-center gap-[18px] p-[22px] bg-studio-paper border border-studio-rule rounded-[4px] text-left hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200">
+              className="flex items-center gap-4 lg:gap-[18px] p-4 lg:p-[22px] bg-studio-paper border border-studio-rule rounded-[4px] text-left hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200">
               <div className="w-14 h-[76px] rounded-[2px] flex flex-col justify-between p-2 text-white" style={{ background: it.color }}>
                 <span className="font-studio-mono text-[9px] tracking-[1px]">№{it.no}</span>
                 <span className="font-studio-serif italic text-[13px] leading-none">a</span>
