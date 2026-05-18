@@ -13,10 +13,11 @@ export function StudioNavLite({ crumbs, crumbViews, setView, resumeView }: NavLi
     <nav className="flex items-center gap-6 px-12 py-5 border-b border-studio-rule bg-studio-paper">
       <button
         onClick={() => setView({ type: 'library' })}
-        className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
+        aria-label="Go to AI Learning Hub home"
+        className="group flex items-center gap-2.5 cursor-pointer transition-opacity hover:opacity-90"
       >
-        <div className="w-7 h-7 rounded-full bg-studio-ink text-studio-bg grid place-items-center font-studio-serif italic text-[17px]">a</div>
-        <div className="font-studio-serif italic text-[17px] text-studio-ink leading-none">The AI Learning Hub</div>
+        <div className="w-7 h-7 rounded-full bg-studio-ink text-studio-bg grid place-items-center font-studio-serif italic text-[17px] transition-transform group-hover:scale-105">a</div>
+        <div className="font-studio-serif italic text-[17px] text-studio-ink leading-none group-hover:underline decoration-studio-ink-dim underline-offset-[5px] decoration-1">The AI Learning Hub</div>
       </button>
       <div className="flex items-center gap-2.5 ml-6 font-studio-sans text-[13.5px] text-studio-ink-dim">
         {crumbs.map((c, i) => {
@@ -26,7 +27,10 @@ export function StudioNavLite({ crumbs, crumbViews, setView, resumeView }: NavLi
             <React.Fragment key={i}>
               {i > 0 && <span className="text-studio-ink-mute">›</span>}
               {view && !isLast ? (
-                <button onClick={() => setView(view)} className="text-studio-ink-dim hover:text-studio-ink hover:underline transition-colors duration-100">
+                <button
+                  onClick={() => setView(view)}
+                  className="cursor-pointer text-studio-ink-dim underline decoration-studio-rule decoration-1 underline-offset-[3px] hover:text-studio-ink hover:decoration-studio-ink-dim transition-colors duration-100"
+                >
                   {c}
                 </button>
               ) : (

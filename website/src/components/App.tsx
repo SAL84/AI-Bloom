@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { COURSES, COURSE } from '../data/modules';
 import { HomeView } from './course/HomeView';
 import { ModuleView } from './course/ModuleView';
@@ -33,11 +33,34 @@ const saveProgress = (progress: Progress): void => {
 };
 
 export default function App() {
-  const [view, setView] = useState<View>({ type: 'library' });
+  const [view, setViewRaw] = useState<View>({ type: 'library' });
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
   const [quizScores, setQuizScores] = useState<Record<string, number>>({});
   const [loaded, setLoaded] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const setView = useCallback<React.Dispatch<React.SetStateAction<View>>>((next) => {
+    setViewRaw((prev) => {
+      const resolved = typeof next === 'function' ? (next as (p: View) => View)(prev) : next;
+      if (typeof window !== 'undefined') {
+        window.history.pushState({ appView: resolved }, '');
+      }
+      return resolved;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!window.history.state?.appView) {
+      window.history.replaceState({ appView: { type: 'library' } }, '');
+    }
+    const onPop = (e: PopStateEvent) => {
+      const v: View | undefined = e.state?.appView;
+      setViewRaw(v ?? { type: 'library' });
+    };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
 
   useEffect(() => {
     const p = loadProgress();

@@ -164,7 +164,7 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
         setView={setView}
       />
 
-      <div className="flex gap-10 px-12 items-start">
+      <div className="max-w-[1440px] mx-auto flex gap-10 px-12 items-start">
         <div className="w-[260px] flex-shrink-0 sticky top-6 py-14">
           <CourseNav
             modules={modules}
@@ -176,7 +176,7 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
           />
         </div>
 
-        <article className="flex-1 min-w-0 max-w-2xl py-14">
+        <article className="flex-1 min-w-0 max-w-3xl py-14">
         <div className="font-studio-mono text-[11px] tracking-[1.4px] uppercase mb-4" style={{ color }}>
           Module {moduleIdx + 1} · Lesson {lessonIdx + 1}
         </div>
@@ -194,20 +194,20 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
         </div>
 
         {lesson.imageUrl && (
-          <div className="mb-10">
+          <div className="mb-10 xl:-mr-20 2xl:-mr-40">
             <img src={lesson.imageUrl} alt={lesson.title}
-              className="w-full h-56 object-cover rounded-[4px]"
+              className="w-full h-72 xl:h-96 object-cover rounded-[4px]"
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
           </div>
         )}
 
         {DiagramComponent && (
-          <div className="mb-10 bg-studio-paper border border-studio-rule rounded-[4px] p-4">
+          <div className="mb-10 xl:-mr-20 2xl:-mr-40 bg-studio-paper border border-studio-rule rounded-[4px] p-6">
             <DiagramComponent />
           </div>
         )}
         {hasInlineSvg && (
-          <div className="mb-10 bg-studio-paper border border-studio-rule rounded-[4px] p-4">
+          <div className="mb-10 xl:-mr-20 2xl:-mr-40 bg-studio-paper border border-studio-rule rounded-[4px] p-6">
             <InlineSVGDiagram svgContent={lesson.inlineSvg!} diagramId={lesson.inlineSvgId ?? lesson.id} />
           </div>
         )}
