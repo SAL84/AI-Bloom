@@ -24,7 +24,6 @@ export const ModuleView = ({ module, modules, courseId, setView, completedLesson
   const completedCount = module.lessons.filter(l => completedLessons[l.id]).length;
   const color = COURSE_COLORS[courseId] ?? '#5b5347';
   const course = COURSES[courseId];
-  const nextLesson = module.lessons.find(l => !completedLessons[l.id]);
 
   return (
     <div className="bg-studio-bg min-h-screen">
@@ -32,7 +31,6 @@ export const ModuleView = ({ module, modules, courseId, setView, completedLesson
         crumbs={[course?.title ?? 'Course', module.title]}
         crumbViews={[{ type: 'home', courseId }, undefined]}
         setView={setView}
-        resumeView={nextLesson ? { type: 'lesson', courseId, moduleId: module.id, lessonId: nextLesson.id } : undefined}
       />
 
       {/* Module header */}

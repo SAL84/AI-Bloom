@@ -5,10 +5,9 @@ interface NavLiteProps {
   crumbs: string[];
   crumbViews?: (View | undefined)[];
   setView: (v: View) => void;
-  resumeView?: View;
 }
 
-export function StudioNavLite({ crumbs, crumbViews, setView, resumeView }: NavLiteProps) {
+export function StudioNavLite({ crumbs, crumbViews, setView }: NavLiteProps) {
   return (
     <nav className="flex items-center gap-3 sm:gap-4 lg:gap-6 px-4 sm:px-6 lg:px-12 py-3 lg:py-5 border-b border-studio-rule bg-studio-paper">
       <button
@@ -58,18 +57,11 @@ export function StudioNavLite({ crumbs, crumbViews, setView, resumeView }: NavLi
         </button>
         <button
           onClick={() => setView({ type: 'playground' })}
-          className="font-studio-sans text-[12.5px] sm:text-[13px] text-studio-bg bg-studio-ink px-3 sm:px-[18px] py-2 sm:py-[9px] rounded-full font-medium hover:opacity-90 transition-opacity duration-150 whitespace-nowrap"
+          className="font-studio-sans text-[12.5px] sm:text-[13px] text-white px-3 sm:px-[18px] py-2 sm:py-[9px] rounded-full font-medium hover:opacity-90 transition-opacity duration-150 whitespace-nowrap"
+          style={{ background: '#b85c3a' }}
         >
           AI Studio →
         </button>
-        {resumeView && (
-          <button
-            onClick={() => setView(resumeView)}
-            className="font-studio-sans text-[12.5px] sm:text-[13px] text-studio-ink bg-transparent border border-studio-rule px-3 sm:px-4 py-2 sm:py-[9px] rounded-full font-medium hover:border-studio-ink-dim transition-colors duration-150 whitespace-nowrap"
-          >
-            Resume →
-          </button>
-        )}
       </div>
     </nav>
   );

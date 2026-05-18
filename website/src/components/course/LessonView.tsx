@@ -246,7 +246,7 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
     <div className="bg-studio-bg min-h-screen">
       <StudioNavLite
         crumbs={[course?.title ?? 'Course', module.title, lesson.title]}
-        crumbViews={[{ type: 'home', courseId }, { type: 'module', courseId, moduleId: module.id }, undefined]}
+        crumbViews={[{ type: 'home', courseId }, { type: 'home', courseId, moduleId: module.id }, undefined]}
         setView={setView}
       />
 

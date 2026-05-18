@@ -7,7 +7,6 @@ import { QuizView } from './course/QuizView';
 import { GlossaryView } from './course/GlossaryView';
 import { RoadmapView } from './course/RoadmapView';
 import { AIPlaygroundsView } from './course/AIPlaygroundsView';
-import { AgenticAIView } from './course/AgenticAIView';
 import { IndustryView } from './course/IndustryView';
 import { CourseLibraryView } from './course/CourseLibraryView';
 import { KidsGamesView } from './course/kids/KidsGamesView';
@@ -114,7 +113,7 @@ export default function App() {
         <CourseLibraryView setView={setView} completedLessons={completedLessons} />
       )}
       {view.type === 'home' && (
-        <HomeView setView={setView} course={activeCourse} completedLessons={completedLessons} quizScores={quizScores} savedLessons={savedLessons} toggleSaved={toggleSaved} />
+        <HomeView setView={setView} course={activeCourse} completedLessons={completedLessons} quizScores={quizScores} savedLessons={savedLessons} toggleSaved={toggleSaved} initialModuleId={view.moduleId} />
       )}
       {view.type === 'module' && currentModule && (
         <ModuleView module={currentModule} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} completedLessons={completedLessons} quizScores={quizScores} />
@@ -128,8 +127,8 @@ export default function App() {
       {view.type === 'glossary' && <GlossaryView setView={setView} />}
       {view.type === 'roadmap' && <RoadmapView setView={setView} />}
       {view.type === 'shelf' && <ShelfView setView={setView} savedLessons={savedLessons} toggleSaved={toggleSaved} completedLessons={completedLessons} />}
-      {view.type === 'playground' && <AIPlaygroundsView setView={setView} />}
-      {view.type === 'agentic-ai' && <AgenticAIView setView={setView} />}
+      {view.type === 'playground' && <AIPlaygroundsView setView={setView} initialSection="playgrounds" />}
+      {view.type === 'agentic-ai' && <AIPlaygroundsView setView={setView} initialSection="agentic" />}
       {view.type === 'industry' && <IndustryView setView={setView} />}
       {view.type === 'kids-games' && <KidsGamesView setView={setView} />}
       {view.type === 'kids-careers' && <KidsCareersView setView={setView} />}

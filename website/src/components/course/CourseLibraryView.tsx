@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { COURSES } from '../../data/modules';
 import type { CourseId, View } from '../../types/course';
+import { SearchModal } from './SearchModal';
 
 interface Props {
   setView: (view: View) => void;
@@ -18,7 +19,7 @@ function courseProgress(id: CourseId, done: Record<string, boolean>): number {
 
 // ── Nav ───────────────────────────────────────────────────────────────────────
 
-function StudioNav({ setView }: { setView: (v: View) => void }) {
+function StudioNav({ setView, onOpenSearch }: { setView: (v: View) => void; onOpenSearch: () => void }) {
   const links: Array<{ label: string; view?: View }> = [
     { label: 'Catalog', view: { type: 'library' } },
     { label: 'Glossary', view: { type: 'glossary' } },
@@ -47,12 +48,23 @@ function StudioNav({ setView }: { setView: (v: View) => void }) {
         ))}
       </div>
       <div className="ml-auto flex items-center gap-2 lg:gap-2.5 flex-shrink-0">
-        <div className="hidden lg:flex font-studio-sans text-[13px] text-studio-ink-dim px-3.5 py-2 border border-studio-rule rounded-full items-center gap-2 bg-studio-bg cursor-default">
+        <button
+          onClick={onOpenSearch}
+          aria-label="Search the catalog"
+          className="lg:hidden w-9 h-9 grid place-items-center rounded-full border border-studio-rule text-studio-ink-dim hover:text-studio-ink hover:border-studio-ink-dim transition-colors duration-150"
+        >
+          <span className="text-[16px]">⌕</span>
+        </button>
+        <button
+          onClick={onOpenSearch}
+          className="hidden lg:inline-flex font-studio-sans text-[13px] text-studio-ink-dim hover:text-studio-ink hover:border-studio-ink-dim px-3.5 py-2 border border-studio-rule rounded-full items-center gap-2 bg-studio-bg transition-colors duration-150"
+        >
           <span className="opacity-60">⌕</span> Search the catalog
-        </div>
+        </button>
         <button
           onClick={() => setView({ type: 'playground' })}
-          className="font-studio-sans text-[12.5px] sm:text-[13px] text-studio-bg bg-studio-ink px-3 sm:px-[18px] py-2 sm:py-[9px] rounded-full font-medium hover:opacity-90 transition-opacity duration-150 whitespace-nowrap"
+          className="font-studio-sans text-[12.5px] sm:text-[13px] text-white px-3 sm:px-[18px] py-2 sm:py-[9px] rounded-full font-medium hover:opacity-90 transition-opacity duration-150 whitespace-nowrap"
+          style={{ background: '#b85c3a' }}
         >
           AI Studio →
         </button>
@@ -63,7 +75,54 @@ function StudioNav({ setView }: { setView: (v: View) => void }) {
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
 
-function StudioHero() {
+const PROFILE_QUESTIONS = [
+  {
+    key: 'role' as const,
+    label: 'I am',
+    options: [
+      { value: 'curious', label: 'curious' },
+      { value: 'parent',  label: 'a parent' },
+      { value: 'builder', label: 'a builder' },
+      { value: 'seller',  label: 'a seller' },
+    ],
+  },
+  {
+    key: 'time' as const,
+    label: 'I have',
+    options: [
+      { value: 'short',  label: '20 minutes' },
+      { value: 'medium', label: 'an evening' },
+      { value: 'long',   label: 'a few weeks' },
+    ],
+  },
+  {
+    key: 'goal' as const,
+    label: 'I want',
+    options: [
+      { value: 'vocab', label: 'vocabulary' },
+      { value: 'depth', label: 'depth' },
+      { value: 'ship',  label: 'to ship something' },
+    ],
+  },
+];
+
+type ProfileAnswers = { role?: string; time?: string; goal?: string };
+
+function recommendCourse(a: ProfileAnswers): { view: View; label: string; why: string } {
+  if (a.role === 'parent')  return { view: { type: 'home', courseId: 'ai-kids' },        label: 'AI for Kids',                 why: 'made to read with an 8–14-year-old' };
+  if (a.role === 'seller')  return { view: { type: 'home', courseId: 'ai-cybersec-se' }, label: 'AI for Cybersecurity Sales',  why: 'for SEs and AEs in security' };
+  if (a.role === 'builder' || a.goal === 'depth' || a.goal === 'ship') {
+    return { view: { type: 'home', courseId: 'ai-deep-dive' }, label: 'AI Deep Dive', why: 'transformers, evals, the failure modes' };
+  }
+  if (a.time === 'short')   return { view: { type: 'home', courseId: 'ai-essentials' }, label: 'AI Essentials',               why: 'shortest path to literacy' };
+  return { view: { type: 'home', courseId: 'ai-essentials' },   label: 'AI Essentials',               why: 'the right starting point if only one' };
+}
+
+function StudioHero({ setView }: { setView: (v: View) => void }) {
+  const [answers, setAnswers] = useState<ProfileAnswers>({});
+  const allAnswered = !!(answers.role && answers.time && answers.goal);
+  const recommendation = allAnswered ? recommendCourse(answers) : null;
+
   return (
     <section className="px-4 sm:px-6 lg:px-12 pt-10 lg:pt-16 pb-8 lg:pb-12 relative">
       <div className="hidden sm:block absolute top-6 lg:top-9 right-6 lg:right-14 font-studio-mono text-[10px] lg:text-[11px] text-studio-ink-mute tracking-[1.4px] uppercase">
@@ -93,15 +152,38 @@ function StudioHero() {
             Three quick questions. We'll point you at one of the seven courses.
           </p>
           <div className="flex flex-col gap-2">
-            {([['I am…', 'curious / a parent / a builder / a seller'], ['I have…', '20 minutes / an evening / a few weeks'], ['I want…', 'vocabulary / depth / something to ship']] as const).map(([k, v], i) => (
-              <div key={i} className="flex items-baseline justify-between px-3.5 py-2.5 bg-studio-bg rounded-[4px] border border-studio-rule-soft">
-                <span className="font-studio-serif italic text-[15px] text-studio-ink">{k}</span>
-                <span className="font-studio-mono text-[11px] text-studio-ink-mute">{v}</span>
+            {PROFILE_QUESTIONS.map(q => (
+              <div key={q.key} className="px-3.5 py-2.5 bg-studio-bg rounded-[4px] border border-studio-rule-soft flex flex-wrap items-center gap-x-2 gap-y-1.5">
+                <div className="font-studio-serif italic text-[15px] text-studio-ink flex-shrink-0">{q.label}…</div>
+                {q.options.map(opt => {
+                  const isSelected = answers[q.key] === opt.value;
+                  return (
+                    <button
+                      key={opt.value}
+                      onClick={() => setAnswers(a => ({ ...a, [q.key]: opt.value }))}
+                      className="font-studio-mono text-[11px] tracking-[0.3px] px-2.5 py-1 rounded-full border transition-colors duration-100"
+                      style={isSelected
+                        ? { background: '#1d1916', color: '#fbf6ec', borderColor: '#1d1916' }
+                        : { background: 'transparent', color: '#8c8273', borderColor: '#e8dfc8' }}
+                    >
+                      {opt.label}
+                    </button>
+                  );
+                })}
               </div>
             ))}
           </div>
-          <button className="w-full mt-4 font-studio-sans text-[13.5px] font-medium text-studio-bg bg-studio-ink py-[11px] px-4 rounded-[4px] hover:opacity-90 transition-opacity duration-150">
-            Recommend me a course →
+          {recommendation && (
+            <div className="mt-3 font-studio-mono text-[10.5px] tracking-[0.6px] text-studio-ink-mute uppercase">
+              Best fit · <span className="text-studio-ink normal-case font-studio-serif italic text-[13px] tracking-normal">{recommendation.why}</span>
+            </div>
+          )}
+          <button
+            onClick={() => recommendation && setView(recommendation.view)}
+            disabled={!recommendation}
+            className="w-full mt-3 font-studio-sans text-[13.5px] font-medium text-studio-bg bg-studio-ink py-[11px] px-4 rounded-[4px] hover:opacity-90 transition-opacity duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            {recommendation ? `Open ${recommendation.label} →` : 'Recommend me a course →'}
           </button>
         </aside>
       </div>
@@ -415,13 +497,17 @@ function StudioFooter() {
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 
-export const CourseLibraryView = ({ setView, completedLessons }: Props) => (
-  <div className="bg-studio-bg text-studio-ink font-studio-sans min-h-screen">
-    <StudioNav setView={setView} />
-    <StudioHero />
-    <StudioCatalog setView={setView} completedLessons={completedLessons} />
-    <StudioSideStuff setView={setView} />
-    <StudioReadingRoom />
-    <StudioFooter />
-  </div>
-);
+export const CourseLibraryView = ({ setView, completedLessons }: Props) => {
+  const [searchOpen, setSearchOpen] = useState(false);
+  return (
+    <div className="bg-studio-bg text-studio-ink font-studio-sans min-h-screen">
+      <StudioNav setView={setView} onOpenSearch={() => setSearchOpen(true)} />
+      <StudioHero setView={setView} />
+      <StudioCatalog setView={setView} completedLessons={completedLessons} />
+      <StudioSideStuff setView={setView} />
+      <StudioReadingRoom />
+      <StudioFooter />
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} setView={setView} />
+    </div>
+  );
+};

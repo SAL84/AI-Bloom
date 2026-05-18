@@ -9,6 +9,7 @@ interface Props {
   quizScores: Record<string, number>;
   savedLessons: Record<string, boolean>;
   toggleSaved: (lessonId: string) => void;
+  initialModuleId?: string;
 }
 
 type ModStatus = 'done' | 'now' | 'next'; // used by getStatuses
@@ -93,20 +94,22 @@ interface SyllabusProps {
   setView: (v: View) => void;
   savedLessons: Record<string, boolean>;
   toggleSaved: (lessonId: string) => void;
+  initialModuleId?: string;
 }
 
-const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScores, course, meta, setView, savedLessons, toggleSaved }: SyllabusProps) => {
-  const [selectedIdx, setSelectedIdx] = useState<number>(nowIdx >= 0 ? nowIdx : 0);
+const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScores, course, meta, setView, savedLessons, toggleSaved, initialModuleId }: SyllabusProps) => {
+  const initialIdx = (() => {
+    if (initialModuleId) {
+      const i = modules.findIndex(m => m.id === initialModuleId);
+      if (i >= 0) return i;
+    }
+    return nowIdx >= 0 ? nowIdx : 0;
+  })();
+  const [selectedIdx, setSelectedIdx] = useState<number>(initialIdx);
   const safeIdx = Math.min(Math.max(selectedIdx, 0), modules.length - 1);
   const selected = modules[safeIdx];
   const selectedStatus = statuses[safeIdx];
   const selectedDone = selected.lessons.filter(l => completedLessons[l.id]).length;
-  const firstIncomplete = selected.lessons.find(l => !completedLessons[l.id]) ?? selected.lessons[0];
-  const ctaLabel = selectedStatus === 'done'
-    ? 'Re-read first lesson →'
-    : selectedDone > 0
-      ? `Resume · ${firstIncomplete.title} →`
-      : 'Start this module →';
 
   return (
     <section className="px-4 sm:px-6 lg:px-12 pt-6 pb-10 lg:pb-14">
@@ -191,17 +194,8 @@ const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScor
               <p className="font-studio-sans text-[13.5px] lg:text-[14px] text-studio-ink-dim leading-[1.55] mt-2 max-w-[640px]">
                 {selected.summary}
               </p>
-              <div className="flex items-center gap-4 mt-4 flex-wrap">
-                <button
-                  onClick={() => setView({ type: 'lesson', courseId: course.id, moduleId: selected.id, lessonId: firstIncomplete.id })}
-                  className="font-studio-sans text-[13.5px] font-medium text-studio-bg py-[10px] px-5 rounded-full hover:opacity-90 transition-opacity duration-150"
-                  style={{ background: meta.color }}
-                >
-                  {ctaLabel}
-                </button>
-                <span className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px]">
-                  {selectedDone}/{selected.lessons.length} lessons read
-                </span>
+              <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px] mt-3">
+                {selectedDone}/{selected.lessons.length} lessons read
               </div>
             </div>
 
@@ -270,7 +264,7 @@ const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScor
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 
-export const HomeView = ({ setView, course, completedLessons, quizScores, savedLessons, toggleSaved }: Props) => {
+export const HomeView = ({ setView, course, completedLessons, quizScores, savedLessons, toggleSaved, initialModuleId }: Props) => {
   const meta = META[course.id];
   const { modules } = course;
   const statuses = getStatuses(modules, completedLessons);
@@ -290,7 +284,7 @@ export const HomeView = ({ setView, course, completedLessons, quizScores, savedL
 
   return (
     <div className="bg-studio-bg text-studio-ink font-studio-sans min-h-screen">
-      <StudioNavLite crumbs={crumbs} crumbViews={[{ type: 'library' }, undefined, undefined]} setView={setView} resumeView={resumeView} />
+      <StudioNavLite crumbs={crumbs} crumbViews={[{ type: 'library' }, undefined, undefined]} setView={setView} />
 
       {/* Hero */}
       <header className="px-4 sm:px-6 lg:px-12 pt-8 lg:pt-14 pb-6 lg:pb-8 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-14 lg:items-end">
@@ -356,7 +350,60 @@ export const HomeView = ({ setView, course, completedLessons, quizScores, savedL
         setView={setView}
         savedLessons={savedLessons}
         toggleSaved={toggleSaved}
+        initialModuleId={initialModuleId}
       />
+
+      {course.id === 'ai-kids' && (
+        /* Kids: Games + Career Explorer cards, placed under the syllabus */
+        <section className="px-4 sm:px-6 lg:px-12 pt-2 pb-10 lg:pb-14">
+          <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-4 lg:mb-5">
+            <h2 className="font-studio-display text-[24px] sm:text-[26px] lg:text-[28px] text-studio-ink m-0 font-normal tracking-[-0.4px]">
+              Try it yourself
+            </h2>
+            <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-ink-mute tracking-[1px]">Two hands-on rooms</div>
+          </header>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5">
+            <button
+              onClick={() => setView({ type: 'kids-games' })}
+              className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden text-left hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200 flex flex-col"
+            >
+              <div className="px-6 py-5 flex items-center justify-between" style={{ background: meta.color }}>
+                <div>
+                  <div className="font-studio-mono text-[10.5px] tracking-[1.4px] uppercase" style={{ color: 'rgba(255,255,255,0.85)' }}>Learn by playing</div>
+                  <div className="font-studio-display text-[28px] text-white mt-1.5 leading-[1.04] font-normal tracking-[-0.5px]">AI Games</div>
+                </div>
+                <span className="text-[36px]">🎮</span>
+              </div>
+              <div className="px-6 py-5 flex-1 flex flex-col gap-3">
+                <p className="font-studio-sans text-[13.5px] text-studio-ink-dim leading-[1.55] m-0">Three quick games — Spot the Bot, Prompt Master, and friends — that teach real AI concepts. All in your browser, no setup.</p>
+                <div className="flex justify-between items-center pt-3 border-t border-dashed border-studio-rule font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px]">
+                  <span>3 games · ages 8–14</span>
+                  <span className="text-studio-ink font-medium">Play now →</span>
+                </div>
+              </div>
+            </button>
+            <button
+              onClick={() => setView({ type: 'kids-careers' })}
+              className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden text-left hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200 flex flex-col"
+            >
+              <div className="px-6 py-5 flex items-center justify-between" style={{ background: meta.color }}>
+                <div>
+                  <div className="font-studio-mono text-[10.5px] tracking-[1.4px] uppercase" style={{ color: 'rgba(255,255,255,0.85)' }}>What could you be?</div>
+                  <div className="font-studio-display text-[28px] text-white mt-1.5 leading-[1.04] font-normal tracking-[-0.5px]">Career Explorer</div>
+                </div>
+                <span className="text-[36px]">🚀</span>
+              </div>
+              <div className="px-6 py-5 flex-1 flex flex-col gap-3">
+                <p className="font-studio-sans text-[13.5px] text-studio-ink-dim leading-[1.55] m-0">Six quick questions to discover which AI career fits your personality. Builders, storytellers, detectives — there's a role for every kind of kid.</p>
+                <div className="flex justify-between items-center pt-3 border-t border-dashed border-studio-rule font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px]">
+                  <span>6-question quiz · 2 min</span>
+                  <span className="text-studio-ink font-medium">Take the quiz →</span>
+                </div>
+              </div>
+            </button>
+          </div>
+        </section>
+      )}
 
       {/* Three sidebars */}
       <section className="px-4 sm:px-6 lg:px-12 pb-10 lg:pb-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr] gap-4 lg:gap-6">
@@ -389,29 +436,31 @@ export const HomeView = ({ setView, course, completedLessons, quizScores, savedL
         </div>
       </section>
 
-      {/* Related */}
-      <section className="px-4 sm:px-6 lg:px-12 pb-12 lg:pb-16">
-        <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-5">
-          <h2 className="font-studio-display text-[24px] sm:text-[26px] lg:text-[28px] text-studio-ink m-0 font-normal tracking-[-0.4px]">Read after this</h2>
-          <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-ink-mute tracking-[1px]">Curated by the editors</div>
-        </header>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-          {meta.related.map(it => (
-            <button key={it.no} onClick={() => setView(it.view)}
-              className="flex items-center gap-4 lg:gap-[18px] p-4 lg:p-[22px] bg-studio-paper border border-studio-rule rounded-[4px] text-left hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200">
-              <div className="w-14 h-[76px] rounded-[2px] flex flex-col justify-between p-2 text-white" style={{ background: it.color }}>
-                <span className="font-studio-mono text-[9px] tracking-[1px]">№{it.no}</span>
-                <span className="font-studio-serif italic text-[13px] leading-none">a</span>
-              </div>
-              <div className="flex-1">
-                <div className="font-studio-display text-[22px] text-studio-ink leading-[1.05] font-normal tracking-[-0.3px]">{it.title}</div>
-                <div className="font-studio-serif italic text-[14px] text-studio-ink-dim mt-1">{it.sub}</div>
-              </div>
-              <span className="font-studio-mono text-[12px] text-studio-ink-mute">→</span>
-            </button>
-          ))}
-        </div>
-      </section>
+      {course.id !== 'ai-kids' && (
+        /* Read after this — non-kids courses only */
+        <section className="px-4 sm:px-6 lg:px-12 pb-12 lg:pb-16">
+          <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-5">
+            <h2 className="font-studio-display text-[24px] sm:text-[26px] lg:text-[28px] text-studio-ink m-0 font-normal tracking-[-0.4px]">Read after this</h2>
+            <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-ink-mute tracking-[1px]">Curated by the editors</div>
+          </header>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+            {meta.related.map(it => (
+              <button key={it.no} onClick={() => setView(it.view)}
+                className="flex items-center gap-4 lg:gap-[18px] p-4 lg:p-[22px] bg-studio-paper border border-studio-rule rounded-[4px] text-left hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200">
+                <div className="w-14 h-[76px] rounded-[2px] flex flex-col justify-between p-2 text-white" style={{ background: it.color }}>
+                  <span className="font-studio-mono text-[9px] tracking-[1px]">№{it.no}</span>
+                  <span className="font-studio-serif italic text-[13px] leading-none">a</span>
+                </div>
+                <div className="flex-1">
+                  <div className="font-studio-display text-[22px] text-studio-ink leading-[1.05] font-normal tracking-[-0.3px]">{it.title}</div>
+                  <div className="font-studio-serif italic text-[14px] text-studio-ink-dim mt-1">{it.sub}</div>
+                </div>
+                <span className="font-studio-mono text-[12px] text-studio-ink-mute">→</span>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       <StudioFooter />
     </div>
