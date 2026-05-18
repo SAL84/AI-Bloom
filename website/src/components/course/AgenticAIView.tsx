@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Bot, Cpu, ShieldAlert, Layers, FileSearch } from 'lucide-react';
 import type { View } from '../../types/course';
+import { StudioNavLite, StudioFooter } from './StudioChrome';
 import { AgentAnatomy } from './agentic/AgentAnatomy';
 import { AgentScenario } from './agentic/AgentScenario';
 import type { ScenarioStep } from './agentic/AgentScenario';
@@ -9,7 +9,7 @@ interface AgenticAIViewProps {
   setView: (view: View) => void;
 }
 
-// ── Scenario data ───────────────────────────────────────────────────────────
+// ── Scenario data ─────────────────────────────────────────────────────────────
 
 const ALERT_TRIAGE: ScenarioStep[] = [
   { type: 'think', label: 'Agent Reasons', content: 'Account takeover pattern. Need to verify the auth events and IP reputation before escalating — I want evidence, not assumptions.' },
@@ -55,64 +55,73 @@ const PATCH_ADVISOR: ScenarioStep[] = [
   { type: 'answer', label: 'Finding', content: '🎯 Sprint priority (3 of 52 require urgent action):\n\n1. EMERGENCY — CVE-2024-3400 in PA-DC-01\n   CVSS 10.0 · Actively exploited · Internet-facing datacenter firewall\n   → Patch within 24 hours\n\n2. URGENT — CVE-2024-21762 in FW-EDGE-01, FW-EDGE-02\n   CVSS 9.8 · Actively exploited · Edge firewalls\n   → Patch within 48 hours\n\n3. NOT APPLICABLE — CVE-2024-1709 (ConnectWise not in inventory)\n\nRemaining 49 findings: schedule across next 3 sprints ranked by CVSS + internet exposure.' },
 ];
 
-// ── Tab config ──────────────────────────────────────────────────────────────
+// ── Tab config ────────────────────────────────────────────────────────────────
 
 const TABS = [
-  { id: 'anatomy',  label: 'The Agent Loop',      icon: Cpu,        desc: 'How agents think and act' },
-  { id: 'triage',   label: 'Alert Triage Agent',  icon: ShieldAlert,desc: 'Account compromise investigation' },
-  { id: 'breach',   label: 'Breach Responder',    icon: Layers,     desc: 'Ransomware scope & containment' },
-  { id: 'patch',    label: 'Patch Advisor',        icon: FileSearch, desc: 'Vulnerability prioritisation' },
+  { id: 'anatomy', label: 'The Agent Loop',     glyph: '◎', desc: 'How agents think and act' },
+  { id: 'triage',  label: 'Alert Triage',       glyph: '⚑', desc: 'Account compromise investigation' },
+  { id: 'breach',  label: 'Breach Responder',   glyph: '◈', desc: 'Ransomware scope & containment' },
+  { id: 'patch',   label: 'Patch Advisor',      glyph: '◇', desc: 'Vulnerability prioritisation' },
 ] as const;
 
 type TabId = typeof TABS[number]['id'];
 
-// ── View ────────────────────────────────────────────────────────────────────
+// ── View ──────────────────────────────────────────────────────────────────────
 
-export const AgenticAIView = ({ setView: _setView }: AgenticAIViewProps) => {
+export const AgenticAIView = ({ setView }: AgenticAIViewProps) => {
   const [activeTab, setActiveTab] = useState<TabId>('anatomy');
   const active = TABS.find(t => t.id === activeTab)!;
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-10">
-      <div className="flex items-center gap-3 mb-2">
-        <Bot className="w-7 h-7 text-blue-500" />
-        <h1 className="text-2xl font-bold text-slate-900">Cybersecurity Agentic AI</h1>
-      </div>
-      <p className="text-sm text-slate-500 mb-6 leading-relaxed">
-        See how AI agents work — and watch three purpose-built security agents tackle real-world scenarios step by step.
-      </p>
+    <div className="bg-studio-bg min-h-screen">
+      <StudioNavLite crumbs={['Agentic AI']} setView={setView} />
 
-      {/* Tabs */}
-      <div className="flex gap-0 overflow-x-auto pb-px mb-6 border-b border-slate-200">
-        {TABS.map(tab => {
-          const Icon = tab.icon;
-          const isActive = activeTab === tab.id;
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium whitespace-nowrap border-b-2 transition -mb-px ${
-                isActive
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
-              }`}
-            >
-              <Icon className="w-4 h-4 flex-shrink-0" />
-              {tab.label}
-            </button>
-          );
-        })}
+      <div className="px-12 pt-12 pb-8 border-b border-studio-rule" style={{ background: '#5d5045' }}>
+        <div className="font-studio-mono text-[11px] tracking-[1.6px] uppercase mb-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
+          Field notes · not yet a course
+        </div>
+        <h1 className="font-studio-display text-[52px] font-normal tracking-[-1px] text-white leading-[1.0] mb-3">
+          Agentic AI
+        </h1>
+        <p className="font-studio-serif italic text-[18px] leading-[1.5]" style={{ color: 'rgba(255,255,255,0.82)' }}>
+          Tools, memory, the loop. A working developer's tour of why agents fail in production — and three live scenarios.
+        </p>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="px-12 pt-7 pb-0 border-b border-studio-rule bg-studio-paper">
+        <div className="flex gap-0">
+          {TABS.map(tab => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className="flex items-center gap-2 px-5 py-3 font-studio-sans text-[13.5px] border-b-2 transition-all duration-100 whitespace-nowrap -mb-px"
+                style={isActive
+                  ? { borderBottomColor: '#5d5045', color: '#1d1916', fontWeight: 500 }
+                  : { borderBottomColor: 'transparent', color: '#8c8273' }}
+              >
+                <span className="font-studio-serif text-[15px]">{tab.glyph}</span>
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="px-12 py-10">
         {activeTab !== 'anatomy' && (
-          <p className="text-xs text-slate-400 italic mb-5">{active.desc}</p>
+          <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1px] mb-5 uppercase">{active.desc}</div>
         )}
-        {activeTab === 'anatomy'  && <AgentAnatomy />}
-        {activeTab === 'triage'   && <AgentScenario trigger='47 failed logins then successful authentication from Russia — user: j.chen@company.com' steps={ALERT_TRIAGE} />}
-        {activeTab === 'breach'   && <AgentScenario trigger='Ransomware indicators on HOST-MFG-07 — files renamed with .enc extension. OT environment.' steps={BREACH_RESPONDER} />}
-        {activeTab === 'patch'    && <AgentScenario trigger='Monthly vulnerability scan complete — 52 findings in production. Prioritise for this sprint.' steps={PATCH_ADVISOR} />}
+        <div className="bg-studio-paper border border-studio-rule rounded-[4px] p-8">
+          {activeTab === 'anatomy' && <AgentAnatomy />}
+          {activeTab === 'triage'  && <AgentScenario trigger='47 failed logins then successful authentication from Russia — user: j.chen@company.com' steps={ALERT_TRIAGE} />}
+          {activeTab === 'breach'  && <AgentScenario trigger='Ransomware indicators on HOST-MFG-07 — files renamed with .enc extension. OT environment.' steps={BREACH_RESPONDER} />}
+          {activeTab === 'patch'   && <AgentScenario trigger='Monthly vulnerability scan complete — 52 findings in production. Prioritise for this sprint.' steps={PATCH_ADVISOR} />}
+        </div>
       </div>
+
+      <StudioFooter />
     </div>
   );
 };

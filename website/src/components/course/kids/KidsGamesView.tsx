@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Gamepad2 } from 'lucide-react';
 import type { View } from '../../../types/course';
+import { StudioNavLite } from '../StudioChrome';
 import { LabelItGame } from './games/LabelItGame';
 import { SpotTheBotGame } from './games/SpotTheBotGame';
 import { PromptMasterGame } from './games/PromptMasterGame';
@@ -12,66 +12,77 @@ interface KidsGamesViewProps {
 const GAMES = [
   {
     id: 'label-it' as const,
-    emoji: '🏷️',
+    glyph: '◧',
     label: 'Label It!',
     desc: 'Sort examples into categories to teach an AI — just like real AI trainers do.',
-    color: 'hover:border-purple-400',
     badge: 'Supervised Learning',
-    badgeColor: 'bg-purple-100 text-purple-700',
+    color: '#5a4ec0',
   },
   {
     id: 'spot-the-bot' as const,
-    emoji: '🤖',
+    glyph: '◉',
     label: 'Spot the Bot',
     desc: 'Read 5 messages and decide: was this written by a human or an AI?',
-    color: 'hover:border-blue-400',
     badge: 'AI Detection',
-    badgeColor: 'bg-blue-100 text-blue-700',
+    color: '#2c6db0',
   },
   {
     id: 'prompt-master' as const,
-    emoji: '🪄',
+    glyph: '◈',
     label: 'Prompt Master',
     desc: 'Write the perfect instruction to get exactly what you want from AI.',
-    color: 'hover:border-yellow-400',
     badge: 'Prompt Engineering',
-    badgeColor: 'bg-yellow-100 text-yellow-700',
+    color: '#d96a3a',
   },
 ];
 
 type GameId = typeof GAMES[number]['id'];
 
-export const KidsGamesView = ({ setView: _setView }: KidsGamesViewProps) => {
+export const KidsGamesView = ({ setView }: KidsGamesViewProps) => {
   const [activeGame, setActiveGame] = useState<GameId | null>(null);
 
-  if (activeGame === 'label-it')     return <LabelItGame onBack={() => setActiveGame(null)} />;
-  if (activeGame === 'spot-the-bot') return <SpotTheBotGame onBack={() => setActiveGame(null)} />;
+  if (activeGame === 'label-it')      return <LabelItGame onBack={() => setActiveGame(null)} />;
+  if (activeGame === 'spot-the-bot')  return <SpotTheBotGame onBack={() => setActiveGame(null)} />;
   if (activeGame === 'prompt-master') return <PromptMasterGame onBack={() => setActiveGame(null)} />;
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-10">
-      <div className="flex items-center gap-3 mb-2">
-        <Gamepad2 className="w-7 h-7 text-purple-500" />
-        <h1 className="text-2xl font-bold text-slate-900">AI Games</h1>
+    <div className="bg-studio-bg min-h-screen">
+      <StudioNavLite crumbs={['AI for Kids', 'Games']} crumbViews={[{ type: 'home', courseId: 'ai-kids' }, undefined]} setView={setView} />
+
+      <div className="px-12 pt-12 pb-8 border-b border-studio-rule" style={{ background: '#d96a3a' }}>
+        <div className="font-studio-mono text-[11px] tracking-[1.6px] uppercase mb-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
+          Learn by playing · ages 8–14
+        </div>
+        <h1 className="font-studio-display text-[52px] font-normal tracking-[-1px] text-white leading-[1.0] mb-3">
+          AI Games
+        </h1>
+        <p className="font-studio-serif italic text-[18px] leading-[1.5]" style={{ color: 'rgba(255,255,255,0.82)' }}>
+          Each game teaches a real AI concept used by engineers today. Three games, all in your browser.
+        </p>
       </div>
-      <p className="text-sm text-slate-500 mb-8 leading-relaxed">
-        Learn how AI really works — by playing! Each game teaches you a real AI concept used by engineers today.
-      </p>
-      <div className="grid gap-5 sm:grid-cols-3">
-        {GAMES.map(g => (
-          <button
-            key={g.id}
-            onClick={() => setActiveGame(g.id)}
-            className={`text-left bg-white border-2 border-slate-200 ${g.color} rounded-2xl p-6 transition group hover:shadow-md`}
-          >
-            <div className="text-5xl mb-4">{g.emoji}</div>
-            <div className="font-bold text-slate-900 text-lg group-hover:text-slate-700 mb-1">{g.label}</div>
-            <div className="text-sm text-slate-500 mb-4 leading-snug">{g.desc}</div>
-            <span className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full ${g.badgeColor}`}>
-              {g.badge}
-            </span>
-          </button>
-        ))}
+
+      <div className="px-12 py-10">
+        <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-6">◆ Pick a game</div>
+
+        <div className="grid grid-cols-3 gap-5">
+          {GAMES.map(g => (
+            <button
+              key={g.id}
+              onClick={() => setActiveGame(g.id)}
+              className="text-left bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200 cursor-pointer"
+            >
+              <div className="px-6 py-5 flex justify-between items-center" style={{ background: g.color }}>
+                <div className="font-studio-serif italic text-[48px] leading-none text-white font-normal">{g.glyph}</div>
+                <div className="font-studio-mono text-[10px] tracking-[1.4px] uppercase" style={{ color: 'rgba(255,255,255,0.7)' }}>{g.badge}</div>
+              </div>
+              <div className="px-6 py-5">
+                <div className="font-studio-display text-[22px] font-normal text-studio-ink mb-2 leading-[1.1]">{g.label}</div>
+                <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.55]">{g.desc}</p>
+                <div className="mt-4 font-studio-mono text-[11px] tracking-[0.5px]" style={{ color: g.color }}>Play now →</div>
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

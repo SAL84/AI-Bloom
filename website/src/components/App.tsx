@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, Library, BookOpen } from 'lucide-react';
 import { COURSES, COURSE } from '../data/modules';
-import { Sidebar } from './course/Sidebar';
 import { HomeView } from './course/HomeView';
 import { ModuleView } from './course/ModuleView';
 import { LessonView } from './course/LessonView';
@@ -14,13 +12,7 @@ import { IndustryView } from './course/IndustryView';
 import { CourseLibraryView } from './course/CourseLibraryView';
 import { KidsGamesView } from './course/kids/KidsGamesView';
 import { KidsCareersView } from './course/kids/KidsCareersView';
-import { ThemeToggle } from './course/ThemeToggle';
-import type { Theme } from './course/ThemeToggle';
 import type { View, Progress } from '../types/course';
-
-// ============================================================
-// STORAGE — standard localStorage (fixes window.storage bug)
-// ============================================================
 
 const STORAGE_KEY = 'ai_cybersec_se_progress_v2';
 
@@ -40,23 +32,12 @@ const saveProgress = (progress: Progress): void => {
   }
 };
 
-// ============================================================
-// APP
-// ============================================================
-
 export default function App() {
   const [view, setView] = useState<View>({ type: 'library' });
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [theme, setThemeState] = useState<Theme>(() => (typeof window !== 'undefined' ? (localStorage.getItem('theme') as Theme) : null) || 'light');
-  const mainScrollRef = useRef<HTMLDivElement>(null);
-
-  const setTheme = (t: Theme) => {
-    setThemeState(t);
-    localStorage.setItem('theme', t);
-  };
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
   const [quizScores, setQuizScores] = useState<Record<string, number>>({});
   const [loaded, setLoaded] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const p = loadProgress();
@@ -70,7 +51,7 @@ export default function App() {
   }, [completedLessons, quizScores, loaded]);
 
   useEffect(() => {
-    mainScrollRef.current?.scrollTo({ top: 0 });
+    scrollRef.current?.scrollTo({ top: 0 });
   }, [view]);
 
   const markComplete = (lessonId: string) => {
@@ -81,116 +62,40 @@ export default function App() {
     setQuizScores(prev => ({ ...prev, [moduleId]: score }));
   };
 
-  const inCourse = view.type === 'home' || view.type === 'module' || view.type === 'lesson' || view.type === 'quiz';
   const activeCourseId = ('courseId' in view && view.courseId) ? view.courseId : 'ai-cybersec-se';
   const activeCourse = COURSES[activeCourseId] ?? COURSE;
-  const totalLessons = activeCourse.modules.reduce((s, m) => s + m.lessons.length, 0);
-  const completedCount = Object.values(completedLessons).filter(Boolean).length;
 
-  const currentModule = ('moduleId' in view && inCourse)
-    ? activeCourse.modules.find(m => m.id === view.moduleId) ?? null
+  const currentModule = ('moduleId' in view)
+    ? activeCourse.modules.find(m => m.id === (view as { moduleId: string }).moduleId) ?? null
     : null;
   const currentLesson = view.type === 'lesson' && currentModule
-    ? currentModule.lessons.find(l => l.id === view.lessonId) ?? null
+    ? currentModule.lessons.find(l => l.id === (view as { lessonId: string }).lessonId) ?? null
     : null;
 
-  const outerBg = theme === 'dark' ? '#0f172a' : theme === 'midnight' ? '#080f1c' : '';
-
   return (
-    <div
-      className="flex min-h-screen bg-slate-50 text-slate-900"
-      style={{ fontFamily: 'system-ui, -apple-system, sans-serif', ...(outerBg ? { backgroundColor: outerBg } : {}) }}
-      data-theme={theme === 'light' ? undefined : theme}
-    >
-      <Sidebar
-        open={sidebarOpen}
-        setOpen={setSidebarOpen}
-        view={view}
-        setView={setView}
-        modules={activeCourse.modules}
-        activeCourseId={activeCourseId}
-        completedLessons={completedLessons}
-        totalLessons={totalLessons}
-        completedCount={completedCount}
-      />
-
-      <main className="flex-1 min-w-0 flex flex-col relative">
-        {/* Top-right controls — always visible */}
-        <div className="absolute top-4 right-4 z-30 flex items-center gap-2">
-          <button
-            onClick={() => setView({ type: 'library' })}
-            title="Course Library"
-            className="w-8 h-8 rounded-full flex items-center justify-center bg-white/80 hover:bg-white border border-slate-200 shadow-sm transition text-slate-500 hover:text-slate-900"
-          >
-            <Library className="w-4 h-4" />
-          </button>
-          {inCourse && (
-            <button
-              onClick={() => setView({ type: 'home' })}
-              title="Course Home"
-              className="w-8 h-8 rounded-full flex items-center justify-center bg-white/80 hover:bg-white border border-slate-200 shadow-sm transition text-slate-500 hover:text-slate-900"
-            >
-              <BookOpen className="w-4 h-4" />
-            </button>
-          )}
-          <ThemeToggle theme={theme} setTheme={setTheme} />
-        </div>
-
-        <header className="lg:hidden flex items-center justify-between p-4 bg-white border-b border-slate-200 sticky top-0 z-20">
-          <button onClick={() => setSidebarOpen(true)} className="p-1.5 rounded hover:bg-slate-100">
-            <Menu className="w-5 h-5" />
-          </button>
-          <span className="text-sm font-semibold">AI for Cybersec SEs</span>
-          <div className="w-7" />
-        </header>
-
-        <div ref={mainScrollRef} className="flex-1 overflow-y-auto">
-          {view.type === 'library' && (
-            <CourseLibraryView setView={setView} />
-          )}
-          {view.type === 'home' && (
-            <HomeView setView={setView} course={activeCourse} completedLessons={completedLessons} />
-          )}
-          {view.type === 'module' && currentModule && (
-            <ModuleView module={currentModule} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} completedLessons={completedLessons} quizScores={quizScores} />
-          )}
-          {view.type === 'lesson' && currentModule && currentLesson && (
-            <LessonView key={currentLesson.id} module={currentModule} lesson={currentLesson} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} completedLessons={completedLessons} markComplete={markComplete} />
-          )}
-          {view.type === 'quiz' && currentModule && (
-            <QuizView module={currentModule} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} recordQuizScore={recordQuizScore} />
-          )}
-          {view.type === 'glossary' && (
-            <GlossaryView setView={setView} />
-          )}
-          {view.type === 'roadmap' && (
-            <RoadmapView setView={setView} />
-          )}
-          {view.type === 'playground' && (
-            <AIPlaygroundsView setView={setView} />
-          )}
-          {view.type === 'agentic-ai' && (
-            <AgenticAIView setView={setView} />
-          )}
-          {view.type === 'industry' && (
-            <IndustryView setView={setView} />
-          )}
-          {view.type === 'kids-games' && (
-            <KidsGamesView setView={setView} />
-          )}
-          {view.type === 'kids-careers' && (
-            <KidsCareersView setView={setView} />
-          )}
-
-          <footer className="mt-auto border-t border-slate-200 px-6 py-4 flex items-center justify-between text-xs text-slate-400">
-            <span>Built by <span className="font-semibold text-slate-500">Salih A</span></span>
-            <span className="italic text-right max-w-xs leading-relaxed">
-              Built free. Because understanding AI<br />
-              shouldn't depend on who you work for.
-            </span>
-          </footer>
-        </div>
-      </main>
+    <div ref={scrollRef} style={{ height: '100vh', overflowY: 'auto' }}>
+      {view.type === 'library' && (
+        <CourseLibraryView setView={setView} completedLessons={completedLessons} />
+      )}
+      {view.type === 'home' && (
+        <HomeView setView={setView} course={activeCourse} completedLessons={completedLessons} quizScores={quizScores} />
+      )}
+      {view.type === 'module' && currentModule && (
+        <ModuleView module={currentModule} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} completedLessons={completedLessons} quizScores={quizScores} />
+      )}
+      {view.type === 'lesson' && currentModule && currentLesson && (
+        <LessonView key={currentLesson.id} module={currentModule} lesson={currentLesson} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} completedLessons={completedLessons} markComplete={markComplete} />
+      )}
+      {view.type === 'quiz' && currentModule && (
+        <QuizView module={currentModule} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} recordQuizScore={recordQuizScore} />
+      )}
+      {view.type === 'glossary' && <GlossaryView setView={setView} />}
+      {view.type === 'roadmap' && <RoadmapView setView={setView} />}
+      {view.type === 'playground' && <AIPlaygroundsView setView={setView} />}
+      {view.type === 'agentic-ai' && <AgenticAIView setView={setView} />}
+      {view.type === 'industry' && <IndustryView setView={setView} />}
+      {view.type === 'kids-games' && <KidsGamesView setView={setView} />}
+      {view.type === 'kids-careers' && <KidsCareersView setView={setView} />}
     </div>
   );
 }

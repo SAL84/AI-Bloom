@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+@theme {
+  /* Studio palette */
+  --color-studio-bg:        #f5efe4;
+  --color-studio-paper:     #fbf6ec;
+  --color-studio-ink:       #1d1916;
+  --color-studio-ink-dim:   #5b5347;
+  --color-studio-ink-mute:  #8c8273;
+  --color-studio-rule:      #d9cfb8;
+  --color-studio-rule-soft: #e7dfca;
+  /* Category accents */
+  --color-studio-kids:      #d96a3a;
+  --color-studio-ess:       #3f8a5e;
+  --color-studio-deep:      #5a4ec0;
+  --color-studio-ind:       #b78320;
+  --color-studio-cyber:     #2c6db0;
+  --color-studio-hot:       #c9421f;
+  --color-studio-agentic:   #5d5045;
+  /* Studio fonts */
+  --font-studio-display: "DM Serif Display", "Newsreader", Georgia, serif;
+  --font-studio-serif:   "Instrument Serif", "Newsreader", Georgia, serif;
+  --font-studio-sans:    "Geist", -apple-system, "Inter", sans-serif;
+  --font-studio-mono:    "DM Mono", "Geist Mono", ui-monospace, monospace;
+}
+
 /* ============================================================
    THEMES
    data-theme lives on the root <div>.

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, Search } from 'lucide-react';
+import { StudioNavLite, StudioFooter } from './StudioChrome';
 import type { View } from '../../types/course';
 import { COURSE } from '../../data/modules';
 
@@ -9,31 +9,50 @@ interface GlossaryViewProps {
 
 export const GlossaryView = ({ setView }: GlossaryViewProps) => {
   const [search, setSearch] = useState('');
-  const filtered = COURSE.glossary.filter(g => g.term.toLowerCase().includes(search.toLowerCase()) || g.def.toLowerCase().includes(search.toLowerCase()));
+  const filtered = COURSE.glossary.filter(g =>
+    g.term.toLowerCase().includes(search.toLowerCase()) ||
+    g.def.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div className="max-w-3xl mx-auto p-6 lg:p-10">
-      <button onClick={() => setView({ type: 'home' })} className="text-sm text-slate-500 hover:text-slate-900 mb-4 flex items-center gap-1">
-        <ChevronLeft className="w-4 h-4" /> Course Home
-      </button>
-      <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-2 flex items-center gap-2">
-        <Search className="w-7 h-7 text-blue-500" /> Glossary
-      </h1>
-      <p className="text-slate-600 mb-5 text-sm">Quick reference for every term used in the course — keep it open during prospect calls.</p>
+    <div className="bg-studio-bg min-h-screen">
+      <StudioNavLite crumbs={['Glossary']} setView={setView} />
 
-      <div className="relative mb-6">
-        <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-        <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search terms or definitions..." className="w-full pl-9 pr-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100" />
-      </div>
+      <div className="max-w-2xl mx-auto px-6 py-14">
+        <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-4">◆ Reference</div>
+        <h1 className="font-studio-display text-[52px] font-normal tracking-[-1.2px] text-studio-ink leading-[1.0] mb-3">
+          Glossary
+        </h1>
+        <p className="font-studio-serif italic text-[18px] text-studio-ink-dim leading-[1.5] mb-10">
+          Every term used across the courses — keep it open during prospect calls.
+        </p>
 
-      <div className="space-y-3">
-        {filtered.map((g, i) => (
-          <div key={i} className="bg-white border border-slate-200 rounded-lg p-4">
-            <div className="font-semibold text-slate-900">{g.term}</div>
-            <p className="text-sm text-slate-700 mt-1 leading-relaxed">{g.def}</p>
+        <div className="mb-8">
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search terms or definitions…"
+            className="w-full px-4 py-3 bg-studio-paper border border-studio-rule rounded-[4px] font-studio-sans text-[14px] text-studio-ink placeholder:text-studio-ink-mute focus:outline-none focus:border-studio-ink-dim transition-colors"
+          />
+        </div>
+
+        {filtered.length > 0 ? (
+          <div className="divide-y divide-studio-rule border-t border-studio-rule">
+            {filtered.map((g, i) => (
+              <div key={i} className="py-5">
+                <div className="font-studio-serif italic text-[20px] text-studio-ink mb-1.5 font-normal">{g.term}</div>
+                <p className="font-studio-sans text-[14px] text-studio-ink-dim leading-[1.65]">{g.def}</p>
+              </div>
+            ))}
           </div>
-        ))}
-        {filtered.length === 0 && <div className="text-center text-slate-500 py-8">No matches.</div>}
+        ) : (
+          <div className="py-16 text-center font-studio-serif italic text-[18px] text-studio-ink-mute">
+            No matches for "{search}"
+          </div>
+        )}
       </div>
+
+      <StudioFooter />
     </div>
   );
 };

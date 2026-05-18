@@ -1,261 +1,207 @@
 import React from 'react';
-import { Map, Users, Code2, Sparkles, Star, ArrowRight, Baby, FlaskConical, MessageSquare, Briefcase, BookOpen, Zap } from 'lucide-react';
-import type { View } from '../../types/course';
+import { StudioNavLite, StudioFooter } from './StudioChrome';
+import { COURSES } from '../../data/modules';
+import type { CourseId, View } from '../../types/course';
 
 interface Props {
   setView: (view: View) => void;
 }
 
-type Status = 'live' | 'building' | 'planned';
+type CourseStatus = 'live' | 'expanding' | 'partial' | 'field-notes';
 
-interface RoadmapItem {
-  status: Status;
+const STATUS_LABEL: Record<CourseStatus, string> = {
+  live: 'Live',
+  expanding: 'Live · expanding',
+  partial: 'Live · partial',
+  'field-notes': 'Field notes',
+};
+
+const STATUS_COLOR: Record<CourseStatus, string> = {
+  live: '#3f8a5e',
+  expanding: '#3f8a5e',
+  partial: '#b78320',
+  'field-notes': '#5d5045',
+};
+
+interface CourseEntry {
+  id: string;
+  no: string;
   title: string;
-  subtitle: string;
-  description: string;
-  bullets: string[];
-  icon: React.ReactNode;
-  accent: string;
-  textAccent: string;
-  bgAccent: string;
-  borderAccent: string;
+  track: string;
+  color: string;
+  status: CourseStatus;
+  note: string;
+  gaps?: string[];
+  view?: View;
 }
 
-const STATUS_LABEL: Record<Status, string> = {
-  live: 'Live',
-  building: 'Building',
-  planned: 'Planned',
-};
-
-const STATUS_STYLE: Record<Status, string> = {
-  live: 'bg-emerald-100 text-emerald-700 border border-emerald-200',
-  building: 'bg-blue-100 text-blue-700 border border-blue-200',
-  planned: 'bg-slate-100 text-slate-600 border border-slate-200',
-};
-
-const COURSES: RoadmapItem[] = [
+const ENTRIES: CourseEntry[] = [
   {
-    status: 'live',
-    title: 'AI for Cybersecurity Sales Engineers',
-    subtitle: 'Current product — you are here',
-    description:
-      'A technical fast-pass through AI fundamentals, ML concepts, agentic architecture, and security-specific AI positioning. Built for SEs who need to hold intelligent conversations with customers — not become researchers.',
-    bullets: [
-      '6 modules covering foundations to advanced agentic patterns',
-      'Interactive SVG diagrams with clickable explanations',
-      'Quiz assessments with SE-focused discovery questions',
-      'Covers Google security AI positioning and competitive landscape',
-    ],
-    icon: <Sparkles className="w-6 h-6" />,
-    accent: 'text-emerald-700',
-    textAccent: 'text-emerald-600',
-    bgAccent: 'bg-emerald-50',
-    borderAccent: 'border-emerald-200',
+    id: 'ai-kids', no: '01', title: 'AI for Kids', track: 'Foundations',
+    color: '#d96a3a', status: 'live',
+    note: 'Full course with career explorer and three in-browser games.',
+    view: { type: 'home', courseId: 'ai-kids' },
   },
   {
-    status: 'building',
-    title: 'Building & Transforming Business with AI',
-    subtitle: "What you need to do — a practitioner's playbook",
-    description:
-      'A practical course for business leaders, managers, and teams who want to move from AI curiosity to AI action. Covers how to identify real AI opportunities, lead transformation initiatives, manage AI projects, and build the organizational capabilities that make AI stick.',
-    bullets: [
-      'Spot high-value AI opportunities in your business — beyond the obvious use cases',
-      'Build the business case: ROI framing, risk assessment, and stakeholder alignment',
-      'AI project lifecycle: scoping, vendor evaluation, piloting, and scaling',
-      'Org readiness: data strategy, talent gaps, governance, and change management',
-      'Avoid the failure modes: hype traps, vendor lock-in, and initiative drift',
-    ],
-    icon: <Briefcase className="w-6 h-6" />,
-    accent: 'text-orange-700',
-    textAccent: 'text-orange-600',
-    bgAccent: 'bg-orange-50',
-    borderAccent: 'border-orange-200',
+    id: 'ai-essentials', no: '02', title: 'AI Essentials', track: 'Literacy',
+    color: '#3f8a5e', status: 'live',
+    note: 'Complete course with role-specific content tabs across all lessons.',
+    view: { type: 'home', courseId: 'ai-essentials' },
   },
   {
-    status: 'planned',
-    title: 'AI Fundamentals — General Audience',
-    subtitle: 'For everyone, no tech background needed',
-    description:
-      'Plain-language AI literacy for people who want to understand AI without becoming engineers. Practical, opinionated, and honest — covering what AI actually is, what it can and cannot do, and how to think critically about AI claims.',
-    bullets: [
-      'No jargon — every concept explained in everyday terms',
-      'Focus on how AI affects daily life, work, and society',
-      'Critical thinking toolkit: spotting AI hype vs. real capability',
-      'Interactive examples with real-world analogies',
-    ],
-    icon: <Users className="w-6 h-6" />,
-    accent: 'text-violet-700',
-    textAccent: 'text-violet-600',
-    bgAccent: 'bg-violet-50',
-    borderAccent: 'border-violet-200',
+    id: 'ai-deep-dive', no: '03', title: 'AI Deep Dive', track: 'Building',
+    color: '#5a4ec0', status: 'expanding',
+    note: 'Core modules live. Technical depth being added to slides.',
+    gaps: ['Deeper technical slides for M3 / M4', 'Evals module in draft'],
+    view: { type: 'home', courseId: 'ai-deep-dive' },
   },
   {
-    status: 'planned',
-    title: 'AI for Developers',
-    subtitle: 'Hands-on, API-first, production-ready',
-    description:
-      'A developer-track course covering how to build with AI: prompting, RAG, embeddings, function calling, agentic patterns, evals, and production concerns. Less theory, more code — everything illustrated with runnable examples.',
-    bullets: [
-      'Prompt engineering and context management patterns',
-      'RAG pipelines: chunking, embedding, retrieval, re-ranking',
-      'Tool use and function calling with real API examples',
-      'Agentic orchestration: planning loops, memory, multi-agent coordination',
-      'Evals, observability, and cost management in production',
-    ],
-    icon: <Code2 className="w-6 h-6" />,
-    accent: 'text-blue-700',
-    textAccent: 'text-blue-600',
-    bgAccent: 'bg-blue-50',
-    borderAccent: 'border-blue-200',
+    id: 'ai-industry', no: '04', title: 'AI in Industry', track: 'Orientation',
+    color: '#b78320', status: 'partial',
+    note: 'Landscape map and category overview live. Per-product breakdowns pending.',
+    gaps: ['Product breakdown cards for all 5 categories — Q3 2026'],
+    view: { type: 'industry' },
   },
   {
-    status: 'planned',
-    title: 'AI Basics for Kids',
-    subtitle: 'A standalone visual-first website for young learners',
-    description:
-      'A separate, purpose-built website that teaches children how AI works through stories, games, and visual metaphors. No code, no math — just curiosity. Designed for ages 8–14, usable in classrooms or at home.',
-    bullets: [
-      'Separate site with a child-friendly design and navigation',
-      'AI concepts taught through relatable characters and storylines',
-      'Interactive "train your own" mini-games to build intuition',
-      'Parent and teacher guide with discussion prompts',
-      'Covers: what AI is, how it learns, when it makes mistakes, and why fairness matters',
-    ],
-    icon: <Baby className="w-6 h-6" />,
-    accent: 'text-amber-700',
-    textAccent: 'text-amber-600',
-    bgAccent: 'bg-amber-50',
-    borderAccent: 'border-amber-200',
+    id: 'ai-cybersec-se', no: '05', title: 'AI for Cybersecurity Sales', track: 'Vertical',
+    color: '#2c6db0', status: 'live',
+    note: 'Three-module course for security SEs and AEs. Full lesson and quiz coverage.',
+    view: { type: 'home', courseId: 'ai-cybersec-se' },
+  },
+  {
+    id: 'agentic-ai', no: '¶', title: 'Agentic AI', track: 'Building · field notes',
+    color: '#5d5045', status: 'field-notes',
+    note: 'Live agent anatomy diagram and three interactive scenarios. Full course in development.',
+    gaps: ['Structured module format', 'Hands-on exercises'],
+    view: { type: 'agentic-ai' },
   },
 ];
 
-const FEATURES: RoadmapItem[] = [
-  {
-    status: 'planned',
-    title: 'Deep Dives — Advanced Content for Geeks',
-    subtitle: 'Optional rabbit holes for the technically curious',
-    description:
-      'Optional deep-dive sections attached to existing lessons for learners who want to go further. No hand-holding — papers, math, architecture details, and the reasoning behind design decisions that the fast-pass intentionally skips.',
-    bullets: [
-      'Expandable "Go Deeper" sections inside lessons — hidden by default, opt-in',
-      'Transformer internals: attention heads, positional encoding, KV cache',
-      'Training mechanics: loss functions, gradient descent, backprop intuition',
-      'Security-specific deep dives: embedding attack surfaces, prompt injection mechanics, model extraction',
-      'Links to seminal papers (Attention Is All You Need, InstructGPT, Constitutional AI, etc.)',
-    ],
-    icon: <FlaskConical className="w-6 h-6" />,
-    accent: 'text-rose-700',
-    textAccent: 'text-rose-600',
-    bgAccent: 'bg-rose-50',
-    borderAccent: 'border-rose-200',
-  },
-  {
-    status: 'planned',
-    title: 'AI Chatbot on Diagram Nodes',
-    subtitle: 'Click any SVG node — talk to an AI about it',
-    description:
-      'Replace the static explanation panel on interactive diagrams with a live AI chatbot. Clicking a node opens a conversation — ask follow-up questions, request examples, go deeper, or challenge what you just read. Learning becomes a dialogue, not a tooltip.',
-    bullets: [
-      'Each clickable node seeds the chatbot with its concept and the lesson context',
-      'Ask follow-ups: "Give me a real-world example", "How does this affect a SOC?", "What goes wrong here?"',
-      'Conversation scoped to the course topic — not a general-purpose assistant',
-      'Response streamed inline so the experience feels fast and natural',
-      'Session history kept per lesson so you can pick up where you left off',
-    ],
-    icon: <MessageSquare className="w-6 h-6" />,
-    accent: 'text-cyan-700',
-    textAccent: 'text-cyan-600',
-    bgAccent: 'bg-cyan-50',
-    borderAccent: 'border-cyan-200',
-  },
+const PLANNED_COURSES = [
+  { no: '06', title: 'Evals & Red-teaming', track: 'Safety', color: '#c9421f', target: 'Q3 2026', note: 'How to know if your AI system works. And how to break it.' },
+  { no: '07', title: 'AI for Healthcare', track: 'Vertical', color: '#2c6db0', target: 'Q4 2026', note: 'Clinical decision support, imaging AI, and the regulatory landscape.' },
+  { no: '08', title: 'AI for Legal', track: 'Vertical', color: '#5a4ec0', target: 'TBD', note: 'Contracts, discovery, and the liability questions practitioners actually ask.' },
 ];
 
-const RoadmapCard = ({ item, setView }: { item: RoadmapItem; setView: (view: View) => void }) => (
-  <div className={`rounded-xl border ${item.borderAccent} ${item.bgAccent} p-6`}>
-    <div className="flex items-start gap-4">
-      <div className={`flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center ${item.bgAccent} border ${item.borderAccent} ${item.accent}`}>
-        {item.icon}
+const PLANNED_FEATURES = [
+  { title: 'Browser back / forward navigation', note: 'History API wiring so the browser back button works inside the portal.' },
+  { title: 'Mobile layout', note: 'Responsive breakpoints for phones and tablets.' },
+  { title: 'Course completion certificates', note: 'Printable PDF on completion — no account required.' },
+  { title: 'Full-text search', note: 'Search across lessons, glossary, and course descriptions.' },
+];
+
+export const RoadmapView = ({ setView }: Props) => (
+  <div className="bg-studio-bg text-studio-ink font-studio-sans min-h-screen">
+    <StudioNavLite crumbs={['Roadmap']} setView={setView} />
+
+    <div className="px-12 pt-12 pb-8 border-b border-studio-rule" style={{ background: '#5d5045' }}>
+      <div className="font-studio-mono text-[11px] tracking-[1.6px] uppercase mb-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
+        Portal status · Spring 2026
       </div>
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 flex-wrap mb-1">
-          <h2 className="font-bold text-slate-900 text-lg leading-tight">{item.title}</h2>
-          <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${STATUS_STYLE[item.status]}`}>
-            {STATUS_LABEL[item.status]}
-          </span>
-        </div>
-        <p className={`text-xs font-medium mb-3 ${item.textAccent}`}>{item.subtitle}</p>
-        <p className="text-slate-700 text-sm leading-relaxed mb-4">{item.description}</p>
-        <ul className="space-y-1.5">
-          {item.bullets.map((b, j) => (
-            <li key={j} className="flex items-start gap-2 text-sm text-slate-600">
-              <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${item.textAccent.replace('text-', 'bg-')}`} />
-              {b}
-            </li>
-          ))}
-        </ul>
-        {item.status === 'live' && (
-          <button
-            onClick={() => setView({ type: 'home' })}
-            className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-900"
-          >
-            Go to course <ArrowRight className="w-4 h-4" />
-          </button>
-        )}
-      </div>
+      <h1 className="font-studio-display text-[52px] font-normal tracking-[-1px] text-white leading-[1.0] mb-3">
+        Development Roadmap
+      </h1>
+      <p className="font-studio-serif italic text-[18px] leading-[1.5]" style={{ color: 'rgba(255,255,255,0.82)' }}>
+        What's on the shelf, what's in the kiln, and what's on the whiteboard. Updated as courses ship.
+      </p>
     </div>
+
+    {/* Live & in-progress courses */}
+    <section className="px-12 pt-10 pb-14">
+      <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-6">◆ Courses</div>
+
+      <div className="border-t border-studio-rule">
+        {ENTRIES.map((e, i) => {
+          const course = COURSES[e.id as CourseId];
+          const moduleCount = course?.modules.length;
+          const lessonCount = course?.modules.reduce((s, m) => s + m.lessons.length, 0);
+          const statusColor = STATUS_COLOR[e.status];
+          const isLive = e.status !== 'field-notes';
+
+          return (
+            <div key={e.id} className={`py-7 grid grid-cols-[56px_1fr_220px] gap-8 items-start border-b border-studio-rule`}>
+              <div className="flex justify-center pt-1">
+                <div className="w-10 h-10 rounded-full grid place-items-center font-studio-serif italic text-[15px]"
+                  style={{ background: e.color, color: '#fff' }}>
+                  {e.no}
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-baseline gap-3 mb-2 flex-wrap">
+                  <h2 className="font-studio-display text-[26px] font-normal tracking-[-0.3px] text-studio-ink leading-none m-0">{e.title}</h2>
+                  <span className="font-studio-mono text-[9.5px] tracking-[1.2px] uppercase px-2 py-[2px] rounded-full border"
+                    style={{ color: statusColor, borderColor: `${statusColor}55`, background: `${statusColor}10` }}>
+                    {STATUS_LABEL[e.status]}
+                  </span>
+                  <span className="font-studio-serif italic text-[14px] text-studio-ink-mute">· {e.track}</span>
+                </div>
+                <p className="font-studio-sans text-[14px] text-studio-ink-dim leading-[1.6] m-0">{e.note}</p>
+                {e.gaps && (
+                  <ul className="mt-3 space-y-1 list-none p-0 m-0">
+                    {e.gaps.map((g, gi) => (
+                      <li key={gi} className="flex items-baseline gap-2 font-studio-sans text-[13px] text-studio-ink-mute">
+                        <span className="font-studio-mono text-[10px]">○</span>{g}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+
+              <div className="text-right pt-1">
+                {moduleCount !== undefined && (
+                  <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px] mb-3">
+                    {moduleCount} modules · {lessonCount} lessons
+                  </div>
+                )}
+                {e.view && (
+                  <button onClick={() => setView(e.view!)}
+                    className="font-studio-sans text-[12.5px] font-medium px-3.5 py-2 rounded-full border border-studio-rule text-studio-ink hover:border-studio-ink-dim transition-colors duration-150">
+                    {isLive ? 'Open course →' : 'See field notes →'}
+                  </button>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+    {/* Planned courses */}
+    <section className="px-12 pb-14">
+      <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1.6px] uppercase mb-6">○ In the kiln — courses</div>
+      <div className="grid grid-cols-3 gap-5">
+        {PLANNED_COURSES.map(p => (
+          <div key={p.no} className="border border-dashed border-studio-rule rounded-[4px] p-6">
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-9 h-9 rounded-full grid place-items-center font-studio-serif italic text-[14px]"
+                style={{ background: `${p.color}18`, color: p.color, border: `1px dashed ${p.color}55` }}>
+                {p.no}
+              </div>
+              <span className="font-studio-mono text-[10px] text-studio-ink-mute tracking-[1px]">{p.target}</span>
+            </div>
+            <div className="font-studio-display text-[22px] font-normal tracking-[-0.3px] text-studio-ink-dim leading-[1.1] mb-1">{p.title}</div>
+            <div className="font-studio-mono text-[10px] text-studio-ink-mute tracking-[0.6px] mb-2">{p.track}</div>
+            <p className="font-studio-sans text-[13px] text-studio-ink-mute leading-[1.5] m-0">{p.note}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* Platform features */}
+    <section className="px-12 pb-16">
+      <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1.6px] uppercase mb-6">○ In the kiln — platform</div>
+      <div className="bg-studio-paper border border-studio-rule rounded-[4px] divide-y divide-studio-rule-soft">
+        {PLANNED_FEATURES.map((f, i) => (
+          <div key={i} className="px-6 py-4 flex items-baseline gap-5">
+            <span className="font-studio-mono text-[11px] text-studio-ink-mute flex-shrink-0">○</span>
+            <span className="font-studio-sans text-[14px] text-studio-ink font-medium flex-shrink-0">{f.title}</span>
+            <span className="font-studio-sans text-[13px] text-studio-ink-mute leading-[1.5]">— {f.note}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <StudioFooter />
   </div>
 );
-
-export const RoadmapView = ({ setView }: Props) => {
-  return (
-    <div className="max-w-3xl mx-auto p-6 lg:p-10">
-      <div className="mb-8">
-        <div className="flex items-center gap-2 mb-1">
-          <Map className="w-5 h-5 text-blue-600" />
-          <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider">Product Roadmap</span>
-        </div>
-        <h1 className="text-2xl lg:text-3xl font-bold text-slate-900">Where We Are Going</h1>
-        <p className="mt-2 text-slate-500 leading-relaxed">
-          AI literacy for every kind of learner — from cybersecurity professionals to curious kids.
-        </p>
-      </div>
-
-      {/* Courses section */}
-      <div className="mb-10">
-        <div className="flex items-center gap-2 mb-4">
-          <BookOpen className="w-4 h-4 text-slate-400" />
-          <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Courses</h2>
-        </div>
-        <div className="space-y-6">
-          {COURSES.map((item, i) => (
-            <RoadmapCard key={i} item={item} setView={setView} />
-          ))}
-        </div>
-      </div>
-
-      {/* Features section */}
-      <div className="mb-10">
-        <div className="flex items-center gap-2 mb-4">
-          <Zap className="w-4 h-4 text-slate-400" />
-          <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Platform Features</h2>
-        </div>
-        <div className="space-y-6">
-          {FEATURES.map((item, i) => (
-            <RoadmapCard key={i} item={item} setView={setView} />
-          ))}
-        </div>
-      </div>
-
-      <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 flex items-start gap-4">
-        <Star className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
-        <div>
-          <p className="text-sm font-semibold text-slate-800 mb-1">Have feedback or a request?</p>
-          <p className="text-sm text-slate-500">
-            This roadmap reflects current priorities. If you have specific topics, audiences, or use cases in mind,
-            we want to hear them — the best content gets built from real learner needs.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};

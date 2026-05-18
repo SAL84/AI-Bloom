@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, RotateCcw } from 'lucide-react';
+import { StudioNavLite, StudioFooter } from '../StudioChrome';
 import type { View } from '../../../types/course';
 
 type CareerKey = 'artist' | 'engineer' | 'teacher' | 'ethicist' | 'researcher' | 'data';
@@ -19,13 +19,13 @@ const QUESTIONS: Question[] = [
     q: "What sounds most fun to you?",
     options: [
       { label: "🎨 Creating digital art, games, or music", scores: { artist: 2 } },
-      { label: "🔧 Building and fixing things that work", scores: { engineer: 2 } },
+      { label: "🔧 Building and fixing things that work",   scores: { engineer: 2 } },
       { label: "📚 Teaching and explaining things to others", scores: { teacher: 2 } },
-      { label: "🔭 Discovering how things work", scores: { researcher: 2 } },
+      { label: "🔭 Discovering how things work",            scores: { researcher: 2 } },
     ],
   },
   {
-    q: "Your superpower is...",
+    q: "Your superpower is…",
     options: [
       { label: "✨ Imagination — you see things others don't", scores: { artist: 2 } },
       { label: "🧩 Logic — you love patterns and systems",    scores: { engineer: 1, data: 1 } },
@@ -34,39 +34,39 @@ const QUESTIONS: Question[] = [
     ],
   },
   {
-    q: "In a group project, you're the one who...",
+    q: "In a group project, you're the one who…",
     options: [
-      { label: "🎨 Makes it look amazing",               scores: { artist: 2 } },
-      { label: "⚙️ Makes sure it actually works",        scores: { engineer: 1, data: 1 } },
-      { label: "🤝 Makes sure everyone's included",      scores: { ethicist: 1, teacher: 2 } },
-      { label: "💡 Comes up with the big idea",          scores: { researcher: 2 } },
+      { label: "🎨 Makes it look amazing",          scores: { artist: 2 } },
+      { label: "⚙️ Makes sure it actually works",   scores: { engineer: 1, data: 1 } },
+      { label: "🤝 Makes sure everyone's included", scores: { ethicist: 1, teacher: 2 } },
+      { label: "💡 Comes up with the big idea",     scores: { researcher: 2 } },
     ],
   },
   {
-    q: "Your dream is to...",
+    q: "Your dream is to…",
     options: [
-      { label: "🎮 Create AI art, music, or games",             scores: { artist: 2 } },
-      { label: "🤖 Build a robot or AI system",                 scores: { engineer: 2 } },
-      { label: "⚖️ Make AI fair and safe for everyone",        scores: { ethicist: 2 } },
-      { label: "🚀 Discover something nobody has before",       scores: { researcher: 2 } },
+      { label: "🎮 Create AI art, music, or games",        scores: { artist: 2 } },
+      { label: "🤖 Build a robot or AI system",            scores: { engineer: 2 } },
+      { label: "⚖️ Make AI fair and safe for everyone",   scores: { ethicist: 2 } },
+      { label: "🚀 Discover something nobody has before", scores: { researcher: 2 } },
     ],
   },
   {
-    q: "When something doesn't work, you...",
+    q: "When something doesn't work, you…",
     options: [
-      { label: "🎨 Try a totally different creative approach",    scores: { artist: 1, researcher: 1 } },
-      { label: "🔍 Debug it step by step until it's fixed",      scores: { engineer: 1, data: 2 } },
+      { label: "🎨 Try a totally different creative approach",      scores: { artist: 1, researcher: 1 } },
+      { label: "🔍 Debug it step by step until it's fixed",        scores: { engineer: 1, data: 2 } },
       { label: "💬 Think about how it affects the people using it", scores: { ethicist: 2 } },
-      { label: "📖 Research the root cause deeply",              scores: { researcher: 1, data: 1 } },
+      { label: "📖 Research the root cause deeply",                scores: { researcher: 1, data: 1 } },
     ],
   },
   {
-    q: "Your friends call you the...",
+    q: "Your friends call you the…",
     options: [
-      { label: "🎨 Creative one",  scores: { artist: 2 } },
-      { label: "🧠 Smart one",     scores: { engineer: 1, data: 1 } },
-      { label: "💛 Kind one",      scores: { ethicist: 1, teacher: 2 } },
-      { label: "🌍 Curious one",   scores: { researcher: 2 } },
+      { label: "🎨 Creative one", scores: { artist: 2 } },
+      { label: "🧠 Smart one",    scores: { engineer: 1, data: 1 } },
+      { label: "💛 Kind one",     scores: { ethicist: 1, teacher: 2 } },
+      { label: "🌍 Curious one",  scores: { researcher: 2 } },
     ],
   },
 ];
@@ -78,76 +78,39 @@ interface CareerResult {
   tagline: string;
   desc: string;
   roles: string[];
-  gradient: string;
-  badge: string;
+  color: string;
 }
 
 const CAREERS: CareerResult[] = [
-  {
-    key: 'artist',
-    title: 'AI Creative',
-    emoji: '🎨',
+  { key: 'artist',     title: 'AI Creative',     emoji: '🎨', color: '#5a4ec0',
     tagline: 'You see beauty in code',
     desc: "You don't just use AI — you make it beautiful. You'll design AI-powered games, art generators, music tools, and experiences that move people.",
-    roles: ['AI Game Designer', 'Creative Technologist', 'AI Music Composer', 'Digital Experience Designer'],
-    gradient: 'from-pink-500 to-purple-500',
-    badge: 'bg-pink-100 text-pink-800',
-  },
-  {
-    key: 'engineer',
-    title: 'AI Engineer',
-    emoji: '🔧',
+    roles: ['AI Game Designer', 'Creative Technologist', 'AI Music Composer', 'Digital Experience Designer'] },
+  { key: 'engineer',   title: 'AI Engineer',     emoji: '🔧', color: '#2c6db0',
     tagline: 'You build the future',
     desc: "You're the architect of tomorrow's AI systems. You'll design and build the models, apps, and robots that everyone else uses.",
-    roles: ['Machine Learning Engineer', 'Robotics Engineer', 'AI Software Developer', 'Systems Architect'],
-    gradient: 'from-blue-500 to-cyan-500',
-    badge: 'bg-blue-100 text-blue-800',
-  },
-  {
-    key: 'teacher',
-    title: 'AI Educator',
-    emoji: '📚',
+    roles: ['Machine Learning Engineer', 'Robotics Engineer', 'AI Software Developer', 'Systems Architect'] },
+  { key: 'teacher',    title: 'AI Educator',     emoji: '📚', color: '#3f8a5e',
     tagline: 'You make the complex simple',
     desc: "You have a rare gift: making hard things easy to understand. You'll help the world learn to use AI safely and confidently.",
-    roles: ['AI Curriculum Designer', 'Technology Teacher', 'AI Trainer', 'Educational Content Creator'],
-    gradient: 'from-emerald-500 to-teal-500',
-    badge: 'bg-emerald-100 text-emerald-800',
-  },
-  {
-    key: 'ethicist',
-    title: 'AI Ethicist',
-    emoji: '⚖️',
+    roles: ['AI Curriculum Designer', 'Technology Teacher', 'AI Trainer', 'Educational Content Creator'] },
+  { key: 'ethicist',   title: 'AI Ethicist',     emoji: '⚖️', color: '#b78320',
     tagline: 'You make AI fair for everyone',
     desc: "You're the guardian of AI fairness. You'll make sure AI systems don't discriminate, protect people's privacy, and work for everyone — not just a few.",
-    roles: ['AI Ethics Researcher', 'AI Policy Advisor', 'Trust & Safety Lead', 'AI Auditor'],
-    gradient: 'from-orange-500 to-amber-500',
-    badge: 'bg-orange-100 text-orange-800',
-  },
-  {
-    key: 'researcher',
-    title: 'AI Researcher',
-    emoji: '🔭',
+    roles: ['AI Ethics Researcher', 'AI Policy Advisor', 'Trust & Safety Lead', 'AI Auditor'] },
+  { key: 'researcher', title: 'AI Researcher',   emoji: '🔭', color: '#5d5045',
     tagline: 'You ask questions nobody has asked',
     desc: "You push the boundaries of what AI can do. You'll work on problems nobody has solved yet, publishing discoveries that change the entire field.",
-    roles: ['AI Research Scientist', 'ML Researcher', 'Neuro-AI Pioneer', 'AI Safety Researcher'],
-    gradient: 'from-violet-500 to-indigo-500',
-    badge: 'bg-violet-100 text-violet-800',
-  },
-  {
-    key: 'data',
-    title: 'Data Scientist',
-    emoji: '📊',
+    roles: ['AI Research Scientist', 'ML Researcher', 'Neuro-AI Pioneer', 'AI Safety Researcher'] },
+  { key: 'data',       title: 'Data Scientist',  emoji: '📊', color: '#c9421f',
     tagline: 'You see patterns where others see chaos',
     desc: "You turn mountains of raw data into AI that actually works. You'll find the signal in the noise and teach AI what the real world looks like.",
-    roles: ['Data Scientist', 'ML Data Engineer', 'Analytics Lead', 'AI Training Specialist'],
-    gradient: 'from-red-500 to-rose-500',
-    badge: 'bg-red-100 text-red-800',
-  },
+    roles: ['Data Scientist', 'ML Data Engineer', 'Analytics Lead', 'AI Training Specialist'] },
 ];
 
 const EMPTY_SCORES: Record<CareerKey, number> = { artist: 0, engineer: 0, teacher: 0, ethicist: 0, researcher: 0, data: 0 };
 
-export const KidsCareersView = ({ setView: _setView }: { setView: (v: View) => void }) => {
+export const KidsCareersView = ({ setView }: { setView: (v: View) => void }) => {
   const [step, setStep] = useState<'intro' | 'quiz' | 'result'>('intro');
   const [current, setCurrent] = useState(0);
   const [scores, setScores] = useState<Record<CareerKey, number>>({ ...EMPTY_SCORES });
@@ -175,96 +138,124 @@ export const KidsCareersView = ({ setView: _setView }: { setView: (v: View) => v
     setResult(null);
   };
 
+  // ── Intro ──────────────────────────────────────────────────────────────────
   if (step === 'intro') {
     return (
-      <div className="max-w-2xl mx-auto px-6 py-10 text-center">
-        <div className="text-6xl mb-4">🚀</div>
-        <h1 className="text-2xl font-bold text-slate-900 mb-3">AI Career Explorer</h1>
-        <p className="text-slate-600 mb-6 leading-relaxed">
-          AI is creating amazing new careers — and you could be part of it!<br />
-          Answer 6 quick questions to discover which AI career fits YOUR personality.
-        </p>
-        <div className="grid grid-cols-3 gap-3 mb-8 text-sm">
-          {CAREERS.map(c => (
-            <div key={c.key} className="bg-white border border-slate-200 rounded-xl p-3 text-center">
-              <div className="text-2xl mb-1">{c.emoji}</div>
-              <div className="font-semibold text-slate-700 text-xs leading-tight">{c.title}</div>
-            </div>
-          ))}
-        </div>
-        <button
-          onClick={() => setStep('quiz')}
-          className="px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl font-bold text-lg hover:opacity-90 transition shadow-lg"
-        >
-          Start the Quiz! 🎯
-        </button>
-      </div>
-    );
-  }
-
-  if (step === 'result' && result) {
-    return (
-      <div className="max-w-2xl mx-auto px-6 py-10 text-center">
-        <div className={`inline-block rounded-3xl bg-gradient-to-br ${result.gradient} p-1 mb-6`}>
-          <div className="bg-white rounded-[22px] px-8 py-6">
-            <div className="text-6xl mb-3">{result.emoji}</div>
-            <div className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">Your AI Career</div>
-            <h2 className="text-2xl font-bold text-slate-900 mb-1">{result.title}</h2>
-            <p className={`font-semibold text-lg bg-gradient-to-r ${result.gradient} bg-clip-text text-transparent`}>{result.tagline}</p>
-          </div>
-        </div>
-        <p className="text-slate-700 mb-5 leading-relaxed">{result.desc}</p>
-        <div className="bg-slate-50 rounded-2xl p-5 mb-5 text-left">
-          <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Roles you might love:</div>
-          <div className="flex flex-wrap gap-2">
-            {result.roles.map(r => (
-              <span key={r} className={`rounded-full px-3 py-1 text-sm font-medium ${result.badge}`}>{r}</span>
+      <div className="bg-studio-bg min-h-screen">
+        <StudioNavLite crumbs={['AI for Kids', 'Career Explorer']} crumbViews={[{ type: 'home', courseId: 'ai-kids' }, undefined]} setView={setView} />
+        <div className="max-w-2xl mx-auto px-6 py-14 text-center">
+          <div className="text-[56px] mb-4">🚀</div>
+          <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-4">◆ Discover your path</div>
+          <h1 className="font-studio-display text-[44px] font-normal tracking-[-1px] text-studio-ink leading-[1.05] mb-4">
+            AI Career Explorer
+          </h1>
+          <p className="font-studio-serif italic text-[18px] text-studio-ink-dim leading-[1.5] mb-10">
+            AI is creating amazing new careers — and you could be part of it.<br />
+            Answer 6 quick questions to discover which fits your personality.
+          </p>
+          <div className="grid grid-cols-3 gap-3 mb-10">
+            {CAREERS.map(c => (
+              <div key={c.key} className="bg-studio-paper border border-studio-rule rounded-[4px] p-4 text-center">
+                <div className="text-[28px] mb-1.5">{c.emoji}</div>
+                <div className="font-studio-sans text-[13px] text-studio-ink font-medium">{c.title}</div>
+                <div className="font-studio-mono text-[10px] text-studio-ink-mute mt-0.5 tracking-[0.3px]">{c.tagline}</div>
+              </div>
             ))}
           </div>
-        </div>
-        <p className="text-sm text-slate-500 mb-6">
-          Remember — many of these careers didn't exist 10 years ago.<br />
-          The ones <strong>you</strong> will work in might not exist yet! 🌟
-        </p>
-        <div className="flex gap-3 justify-center">
-          <button onClick={reset} className="flex items-center gap-2 px-5 py-2.5 bg-purple-600 text-white rounded-xl font-semibold hover:bg-purple-700 transition">
-            <RotateCcw className="w-4 h-4" /> Try Again
+          <button
+            onClick={() => setStep('quiz')}
+            className="font-studio-sans text-[15px] font-medium px-8 py-3.5 rounded-full text-studio-bg hover:opacity-90 transition-opacity"
+            style={{ background: '#d96a3a' }}
+          >
+            Start the quiz →
           </button>
         </div>
+        <StudioFooter />
       </div>
     );
   }
 
+  // ── Result ─────────────────────────────────────────────────────────────────
+  if (step === 'result' && result) {
+    return (
+      <div className="bg-studio-bg min-h-screen">
+        <StudioNavLite crumbs={['AI for Kids', 'Career Explorer', 'Your result']} setView={setView} />
+        <div className="max-w-2xl mx-auto px-6 py-14">
+          <div className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden mb-8">
+            <div className="px-8 py-8 text-center" style={{ background: result.color }}>
+              <div className="text-[52px] mb-3">{result.emoji}</div>
+              <div className="font-studio-mono text-[10px] tracking-[1.6px] uppercase mb-2" style={{ color: 'rgba(255,255,255,0.7)' }}>Your AI career</div>
+              <h2 className="font-studio-display text-[40px] font-normal tracking-[-0.8px] text-white leading-[1.05] mb-1">{result.title}</h2>
+              <p className="font-studio-serif italic text-[18px]" style={{ color: 'rgba(255,255,255,0.85)' }}>{result.tagline}</p>
+            </div>
+            <div className="px-8 py-7">
+              <p className="font-studio-sans text-[15px] text-studio-ink-dim leading-[1.65] mb-6">{result.desc}</p>
+              <div className="font-studio-mono text-[10px] text-studio-ink-mute tracking-[1.4px] uppercase mb-3">Roles you might love</div>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {result.roles.map(r => (
+                  <span key={r} className="font-studio-mono text-[11px] px-3 py-1.5 rounded-full border"
+                    style={{ color: result.color, borderColor: result.color + '55', background: result.color + '10' }}>
+                    {r}
+                  </span>
+                ))}
+              </div>
+              <p className="font-studio-serif italic text-[15px] text-studio-ink-mute leading-[1.5]">
+                Many of these careers didn't exist 10 years ago. The ones you will work in might not exist yet. 🌟
+              </p>
+            </div>
+          </div>
+          <div className="text-center">
+            <button onClick={reset}
+              className="font-studio-sans text-[14px] font-medium px-6 py-2.5 rounded-full text-studio-bg hover:opacity-90 transition-opacity"
+              style={{ background: '#d96a3a' }}>
+              Try again →
+            </button>
+          </div>
+        </div>
+        <StudioFooter />
+      </div>
+    );
+  }
+
+  // ── Quiz ───────────────────────────────────────────────────────────────────
   const q = QUESTIONS[current];
+  const pct = Math.round((current / QUESTIONS.length) * 100);
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-10">
-      <button onClick={reset} className="flex items-center gap-1 text-sm text-slate-500 hover:text-slate-900 mb-6">
-        <ChevronLeft className="w-4 h-4" /> Back to Intro
-      </button>
-      <div className="mb-6">
-        <div className="flex justify-between text-xs text-slate-400 mb-1">
-          <span>Question {current + 1} of {QUESTIONS.length}</span>
-          <span>{Math.round((current / QUESTIONS.length) * 100)}%</span>
+    <div className="bg-studio-bg min-h-screen">
+      <StudioNavLite crumbs={['AI for Kids', 'Career Explorer']} setView={setView} />
+      <div className="max-w-xl mx-auto px-6 py-14">
+        <div className="mb-8">
+          <div className="flex justify-between font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.5px] mb-2">
+            <span>Question {current + 1} of {QUESTIONS.length}</span>
+            <span>{pct}%</span>
+          </div>
+          <div className="h-1.5 bg-studio-rule rounded-full overflow-hidden">
+            <div className="h-full rounded-full transition-all duration-300" style={{ width: `${pct}%`, background: '#d96a3a' }} />
+          </div>
         </div>
-        <div className="w-full bg-slate-100 rounded-full h-2">
-          <div
-            className="bg-gradient-to-r from-purple-500 to-blue-500 h-2 rounded-full transition-all"
-            style={{ width: `${(current / QUESTIONS.length) * 100}%` }}
-          />
+
+        <h2 className="font-studio-display text-[32px] font-normal tracking-[-0.5px] text-studio-ink leading-[1.15] mb-8 text-center">
+          {q.q}
+        </h2>
+
+        <div className="space-y-3">
+          {q.options.map((opt, i) => (
+            <button
+              key={i}
+              onClick={() => handleAnswer(opt.scores)}
+              className="w-full text-left px-5 py-4 bg-studio-paper border border-studio-rule rounded-[4px] font-studio-sans text-[15px] text-studio-ink-dim hover:border-studio-ink hover:text-studio-ink transition-all duration-100"
+            >
+              {opt.label}
+            </button>
+          ))}
         </div>
-      </div>
-      <h2 className="text-xl font-bold text-slate-900 mb-6 text-center">{q.q}</h2>
-      <div className="space-y-3">
-        {q.options.map((opt, i) => (
-          <button
-            key={i}
-            onClick={() => handleAnswer(opt.scores)}
-            className="w-full text-left p-4 bg-white border-2 border-slate-200 hover:border-purple-400 hover:bg-purple-50 rounded-2xl text-slate-800 font-medium transition hover:scale-[1.01]"
-          >
-            {opt.label}
+
+        <div className="mt-8 text-center">
+          <button onClick={reset} className="font-studio-mono text-[11px] text-studio-ink-mute hover:text-studio-ink tracking-[0.5px] transition-colors">
+            ← Start over
           </button>
-        ))}
+        </div>
       </div>
     </div>
   );

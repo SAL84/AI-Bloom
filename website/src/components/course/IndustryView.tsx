@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, Shield, Code2, Cloud, BarChart3, ChevronRight } from 'lucide-react';
+import { StudioNavLite, StudioFooter } from './StudioChrome';
 import type { View } from '../../types/course';
 
 interface Props {
@@ -8,36 +8,31 @@ interface Props {
 
 const CATEGORIES = [
   {
-    icon: <Cloud className="w-6 h-6" />,
-    color: 'bg-sky-100 text-sky-700',
+    glyph: '☁', color: '#2c6db0',
     title: 'Cloud AI Platforms',
     summary: 'AWS, Azure, and Google Cloud — the infrastructure layer powering most enterprise AI deployments.',
     examples: ['AWS Bedrock', 'Azure OpenAI Service', 'Google Vertex AI', 'Cloudflare AI'],
   },
   {
-    icon: <Cpu className="w-6 h-6" />,
-    color: 'bg-purple-100 text-purple-700',
+    glyph: '◎', color: '#5a4ec0',
     title: 'Foundation Model Providers',
     summary: 'The labs building and serving frontier models that everyone else builds on.',
     examples: ['OpenAI (GPT-4o, o3)', 'Anthropic (Claude)', 'Google (Gemini)', 'Meta (Llama)', 'Mistral', 'Cohere'],
   },
   {
-    icon: <Shield className="w-6 h-6" />,
-    color: 'bg-red-100 text-red-700',
+    glyph: '◈', color: '#c9421f',
     title: 'AI-Powered Security Tools',
     summary: 'Security vendors embedding AI into detection, response, and analyst assistance workflows.',
     examples: ['CrowdStrike Charlotte AI', 'Microsoft Security Copilot', 'Darktrace', 'Palo Alto Precision AI', 'Google SecOps AI'],
   },
   {
-    icon: <Code2 className="w-6 h-6" />,
-    color: 'bg-emerald-100 text-emerald-700',
+    glyph: '⌥', color: '#3f8a5e',
     title: 'AI Developer Tools',
     summary: 'Tools that put AI into the hands of developers — from code completion to full agent frameworks.',
     examples: ['GitHub Copilot', 'Cursor', 'Claude Code', 'Amazon Q Developer', 'Tabnine'],
   },
   {
-    icon: <BarChart3 className="w-6 h-6" />,
-    color: 'bg-amber-100 text-amber-700',
+    glyph: '⋈', color: '#b78320',
     title: 'AI in Business Applications',
     summary: 'Enterprise software embedding AI into workflows that millions of people use every day.',
     examples: ['Salesforce Einstein', 'ServiceNow AI', 'Workday AI', 'Microsoft 365 Copilot', 'Notion AI'],
@@ -45,41 +40,51 @@ const CATEGORIES = [
 ];
 
 export const IndustryView = ({ setView }: Props) => (
-  <div className="max-w-4xl mx-auto p-6 lg:p-10">
-    <div className="mb-8">
-      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold mb-4">
-        <Cpu className="w-3.5 h-3.5" /> Product Landscape
+  <div className="bg-studio-bg min-h-screen">
+    <StudioNavLite crumbs={['AI in Industry']} setView={setView} />
+
+    <div className="px-12 pt-12 pb-8 border-b border-studio-rule" style={{ background: '#b78320' }}>
+      <div className="font-studio-mono text-[11px] tracking-[1.6px] uppercase mb-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
+        Catalog №04 · Product landscape
       </div>
-      <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-3">AI in the Industry</h1>
-      <p className="text-lg text-slate-600">
-        A practical map of where AI is being built, deployed, and used — across infrastructure, applications, and security.
+      <h1 className="font-studio-display text-[52px] font-normal tracking-[-1px] text-white leading-[1.0] mb-3">
+        AI in Industry
+      </h1>
+      <p className="font-studio-serif italic text-[18px] leading-[1.5]" style={{ color: 'rgba(255,255,255,0.82)' }}>
+        A practical field map of where AI is being built, deployed, and used — across infrastructure, applications, and security.
       </p>
     </div>
 
-    <div className="space-y-4">
-      {CATEGORIES.map((cat, i) => (
-        <div key={i} className="bg-white border border-slate-200 rounded-xl p-6 hover:border-slate-300 hover:shadow-sm transition">
-          <div className="flex items-start gap-4">
-            <div className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center ${cat.color}`}>
-              {cat.icon}
-            </div>
-            <div className="flex-1 min-w-0">
-              <h2 className="text-lg font-bold text-slate-900 mb-1">{cat.title}</h2>
-              <p className="text-sm text-slate-600 mb-3">{cat.summary}</p>
+    <div className="px-12 py-10 max-w-4xl">
+      <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-6">◆ Five sectors</div>
+
+      <div className="divide-y divide-studio-rule border-t border-studio-rule">
+        {CATEGORIES.map((cat, i) => (
+          <div key={i} className="py-8 grid grid-cols-[48px_1fr] gap-7 items-start">
+            <div className="font-studio-serif italic text-[36px] leading-none mt-1" style={{ color: cat.color }}>{cat.glyph}</div>
+            <div>
+              <h2 className="font-studio-display text-[26px] font-normal tracking-[-0.3px] text-studio-ink mb-2 leading-[1.1]">{cat.title}</h2>
+              <p className="font-studio-sans text-[14px] text-studio-ink-dim leading-[1.6] mb-4">{cat.summary}</p>
               <div className="flex flex-wrap gap-2">
                 {cat.examples.map(ex => (
-                  <span key={ex} className="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">{ex}</span>
+                  <span key={ex} className="font-studio-mono text-[11px] text-studio-ink-dim tracking-[0.3px] px-3 py-1.5 border border-studio-rule rounded-full bg-studio-paper">
+                    {ex}
+                  </span>
                 ))}
               </div>
             </div>
-            <ChevronRight className="w-5 h-5 text-slate-300 flex-shrink-0 mt-1" />
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      <div className="mt-8 px-6 py-5 bg-studio-paper border border-studio-rule rounded-[4px]">
+        <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1.4px] uppercase mb-2">In the kiln</div>
+        <p className="font-studio-serif italic text-[17px] text-studio-ink-dim leading-[1.5]">
+          Detailed breakdowns of each product — capabilities, limitations, and positioning — coming next quarter.
+        </p>
+      </div>
     </div>
 
-    <div className="mt-8 bg-blue-50 border border-blue-100 rounded-xl p-5 text-center">
-      <p className="text-sm text-slate-600">Detailed breakdowns of each product — capabilities, limitations, and positioning — coming soon.</p>
-    </div>
+    <StudioFooter />
   </div>
 );

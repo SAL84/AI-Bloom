@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, CheckCircle2, FileText, Presentation } from 'lucide-react';
+import { StudioNavLite } from './StudioChrome';
+import { COURSES } from '../../data/modules';
 import type { CourseModule, CourseId, Lesson, View } from '../../types/course';
 import { DIAGRAM_REGISTRY } from '../diagrams';
 import { InlineSVGDiagram } from '../diagrams/InlineSVGDiagram';
 import { RoleTabPanel } from './RoleTabPanel';
+import { CourseNav } from './CourseNav';
+
+const COURSE_COLORS: Record<string, string> = {
+  'ai-kids':       '#d96a3a',
+  'ai-essentials': '#3f8a5e',
+  'ai-deep-dive':  '#5a4ec0',
+  'ai-cybersec-se':'#2c6db0',
+};
 
 interface LessonViewProps {
   module: CourseModule;
@@ -24,6 +33,8 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
   const isLast = lessonIdx === module.lessons.length - 1;
   const DiagramComponent = lesson.diagram ? DIAGRAM_REGISTRY[lesson.diagram] : null;
   const hasInlineSvg = !!lesson.inlineSvg;
+  const color = COURSE_COLORS[courseId] ?? '#5b5347';
+  const course = COURSES[courseId];
 
   const goNext = () => {
     if (!completedLessons[lesson.id]) markComplete(lesson.id);
@@ -42,6 +53,7 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
     }
   };
 
+  // ── Slide mode ───────────────────────────────────────────────────────────────
   if (slideMode) {
     const hasVisual = !!(DiagramComponent || hasInlineSvg || lesson.imageUrl);
     const totalSlides = (hasVisual ? 1 : 0) + lesson.slides.length;
@@ -50,47 +62,54 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
     const slide = !isVisualSlide ? lesson.slides[contentSlideIdx] : null;
 
     return (
-      <div className="min-h-full bg-slate-900 text-white flex flex-col">
-        <div className="flex items-center justify-between p-4 border-b border-slate-800">
-          <div className="text-sm text-slate-400">
-            <span className="font-semibold text-blue-400">M{moduleIdx + 1}.{lessonIdx + 1}</span> · {lesson.title}
+      <div className="min-h-full flex flex-col" style={{ background: '#1d1916', color: '#f5efe4' }}>
+        <div className="flex items-center justify-between px-8 py-4 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+          <div className="font-studio-mono text-[12px]" style={{ color: 'rgba(245,239,228,0.5)' }}>
+            <span style={{ color }}>{course?.title}</span> · {module.title} · {lesson.title}
           </div>
-          <button onClick={() => setSlideMode(false)} className="text-sm text-slate-300 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded hover:bg-slate-800">
-            <FileText className="w-4 h-4" /> Study Mode
+          <button
+            onClick={() => setSlideMode(false)}
+            className="font-studio-sans text-[13px] px-3 py-1.5 rounded-[4px] transition-colors"
+            style={{ color: 'rgba(245,239,228,0.7)', background: 'rgba(255,255,255,0.06)' }}
+          >
+            ← Study mode
           </button>
         </div>
 
-        <div className="flex-1 flex items-center justify-center p-8 lg:p-16">
+        <div className="flex-1 flex items-center justify-center px-12 py-10">
           <div className="max-w-4xl w-full">
-            <div className="text-xs uppercase tracking-widest text-blue-400 font-semibold mb-3">Slide {slideIdx + 1} of {totalSlides}</div>
+            <div className="font-studio-mono text-[11px] tracking-[1.4px] uppercase mb-6" style={{ color: 'rgba(245,239,228,0.35)' }}>
+              {slideIdx + 1} / {totalSlides}
+            </div>
             {isVisualSlide ? (
               <div>
-                <h2 className="text-2xl lg:text-3xl font-bold mb-4">{lesson.title}</h2>
+                <h2 className="font-studio-display text-[48px] font-normal leading-[1.05] tracking-[-1px] mb-8" style={{ color: '#fbf6ec' }}>
+                  {lesson.title}
+                </h2>
                 {lesson.imageUrl ? (
-                  <img
-                    src={lesson.imageUrl}
-                    alt={lesson.title}
-                    className="w-full max-h-72 object-cover rounded-xl"
-                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                  />
+                  <img src={lesson.imageUrl} alt={lesson.title} className="w-full max-h-80 object-cover rounded-[4px]"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
                 ) : (
-                  <div className="bg-white rounded-xl p-4">
+                  <div className="bg-studio-paper rounded-[4px] p-4">
                     {DiagramComponent
                       ? <DiagramComponent />
-                      : <InlineSVGDiagram svgContent={lesson.inlineSvg!} diagramId={lesson.inlineSvgId ?? lesson.id} />
-                    }
+                      : <InlineSVGDiagram svgContent={lesson.inlineSvg!} diagramId={lesson.inlineSvgId ?? lesson.id} />}
                   </div>
                 )}
               </div>
             ) : (
               <>
-                <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-tight">{slide!.heading}</h2>
-                <p className="text-lg lg:text-xl text-slate-300 leading-relaxed">{slide!.body}</p>
+                <h2 className="font-studio-display text-[52px] font-normal leading-[1.0] tracking-[-1.5px] mb-6" style={{ color: '#fbf6ec' }}>
+                  {slide!.heading}
+                </h2>
+                <p className="font-studio-serif text-[22px] leading-[1.55]" style={{ color: 'rgba(245,239,228,0.78)' }}>
+                  {slide!.body}
+                </p>
                 {slide!.bullets && (
-                  <ul className="mt-4 space-y-2">
+                  <ul className="mt-5 space-y-2.5">
                     {slide!.bullets.map((b, i) => (
-                      <li key={i} className="flex items-start gap-2 text-lg text-slate-300">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />
+                      <li key={i} className="flex items-start gap-3 font-studio-sans text-[17px]" style={{ color: 'rgba(245,239,228,0.7)' }}>
+                        <span className="mt-2.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: color }} />
                         {b}
                       </li>
                     ))}
@@ -101,22 +120,34 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
           </div>
         </div>
 
-        <div className="flex items-center justify-between p-4 border-t border-slate-800 gap-3">
-          <button onClick={() => setSlideIdx(Math.max(0, slideIdx - 1))} disabled={slideIdx === 0} className="px-4 py-2 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1.5 text-sm">
-            <ChevronLeft className="w-4 h-4" /> Previous
+        <div className="flex items-center justify-between px-8 py-4 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+          <button
+            onClick={() => setSlideIdx(Math.max(0, slideIdx - 1))}
+            disabled={slideIdx === 0}
+            className="font-studio-sans text-[13px] px-4 py-2 rounded-[4px] disabled:opacity-20 transition"
+            style={{ background: 'rgba(255,255,255,0.06)', color: '#f5efe4' }}
+          >
+            ← Prev
           </button>
           <div className="flex gap-1.5">
             {Array.from({ length: totalSlides }).map((_, i) => (
-              <button key={i} onClick={() => setSlideIdx(i)} className={`h-2 rounded-full transition-all ${i === slideIdx ? 'w-8 bg-blue-400' : 'w-2 bg-slate-700 hover:bg-slate-600'}`} />
+              <button key={i} onClick={() => setSlideIdx(i)}
+                className="h-1.5 rounded-full transition-all duration-200"
+                style={{ width: i === slideIdx ? 28 : 6, background: i === slideIdx ? color : 'rgba(255,255,255,0.2)' }}
+              />
             ))}
           </div>
           {slideIdx < totalSlides - 1 ? (
-            <button onClick={() => setSlideIdx(slideIdx + 1)} className="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500 flex items-center gap-1.5 text-sm font-semibold">
-              Next <ChevronRight className="w-4 h-4" />
+            <button onClick={() => setSlideIdx(slideIdx + 1)}
+              className="font-studio-sans text-[13px] font-medium px-4 py-2 rounded-[4px]"
+              style={{ background: color, color: '#fbf6ec' }}>
+              Next →
             </button>
           ) : (
-            <button onClick={() => { setSlideMode(false); goNext(); }} className="px-4 py-2 rounded bg-emerald-600 hover:bg-emerald-500 flex items-center gap-1.5 text-sm font-semibold">
-              Finish Lesson <CheckCircle2 className="w-4 h-4" />
+            <button onClick={() => { setSlideMode(false); goNext(); }}
+              className="font-studio-sans text-[13px] font-medium px-4 py-2 rounded-[4px]"
+              style={{ background: color, color: '#fbf6ec' }}>
+              Finish ✓
             </button>
           )}
         </div>
@@ -124,70 +155,81 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
     );
   }
 
+  // ── Study mode ───────────────────────────────────────────────────────────────
   return (
-    <div className="p-6 lg:p-10">
-      {/* Header — constrained */}
-      <div className="max-w-3xl mx-auto">
-        <button onClick={() => setView({ type: 'module', courseId, moduleId: module.id })} className="text-sm text-slate-500 hover:text-slate-900 mb-4 flex items-center gap-1">
-          <ChevronLeft className="w-4 h-4" /> {module.title}
-        </button>
+    <div className="bg-studio-bg min-h-screen">
+      <StudioNavLite
+        crumbs={[course?.title ?? 'Course', module.title, lesson.title]}
+        crumbViews={[{ type: 'home', courseId }, { type: 'module', courseId, moduleId: module.id }, undefined]}
+        setView={setView}
+      />
 
-        <div className="flex items-start justify-between gap-4 mb-6">
-          <div className="flex-1">
-            <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider">Module {moduleIdx + 1} · Lesson {lessonIdx + 1}</span>
-            <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 mt-1">{lesson.title}</h1>
-          </div>
-          <button onClick={() => { setSlideIdx(0); setSlideMode(true); }} className="flex-shrink-0 px-3 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 text-sm flex items-center gap-1.5 font-medium">
-            <Presentation className="w-4 h-4" /> Slide Mode
-          </button>
-        </div>
-      </div>
-
-      {/* Photo — shown for all lessons that have an imageUrl */}
-      {lesson.imageUrl && (
-        <div className="max-w-3xl mx-auto mb-6">
-          <img
-            src={lesson.imageUrl}
-            alt={lesson.title}
-            className="w-full h-52 lg:h-64 object-cover rounded-xl shadow-sm"
-            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+      <div className="flex gap-10 px-12 items-start">
+        <div className="w-[260px] flex-shrink-0 sticky top-6 py-14">
+          <CourseNav
+            modules={modules}
+            completedLessons={completedLessons}
+            color={color}
+            courseId={courseId}
+            setView={setView}
+            activeLessonId={lesson.id}
           />
         </div>
-      )}
 
-      {/* Diagram — wider container so it scales up on large screens */}
-      {DiagramComponent && (
-        <div className="max-w-5xl mx-auto mb-6">
-          <DiagramComponent />
+        <article className="flex-1 min-w-0 max-w-2xl py-14">
+        <div className="font-studio-mono text-[11px] tracking-[1.4px] uppercase mb-4" style={{ color }}>
+          Module {moduleIdx + 1} · Lesson {lessonIdx + 1}
         </div>
-      )}
-      {hasInlineSvg && (
-        <div className="max-w-5xl mx-auto mb-6">
-          <InlineSVGDiagram svgContent={lesson.inlineSvg!} diagramId={lesson.inlineSvgId ?? lesson.id} />
-        </div>
-      )}
 
-      {/* Lesson content — constrained for readability */}
-      <div className="max-w-3xl mx-auto">
-        <div className="space-y-6 mb-8">
+        <div className="flex items-start justify-between gap-4 mb-10">
+          <h1 className="font-studio-display text-[44px] leading-[1.05] font-normal tracking-[-1px] text-studio-ink">
+            {lesson.title}
+          </h1>
+          <button
+            onClick={() => { setSlideIdx(0); setSlideMode(true); }}
+            className="flex-shrink-0 font-studio-mono text-[11px] tracking-[1px] text-studio-ink-mute hover:text-studio-ink border border-studio-rule px-3.5 py-1.5 rounded-full transition-colors duration-150 mt-2"
+          >
+            Slides →
+          </button>
+        </div>
+
+        {lesson.imageUrl && (
+          <div className="mb-10">
+            <img src={lesson.imageUrl} alt={lesson.title}
+              className="w-full h-56 object-cover rounded-[4px]"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+          </div>
+        )}
+
+        {DiagramComponent && (
+          <div className="mb-10 bg-studio-paper border border-studio-rule rounded-[4px] p-4">
+            <DiagramComponent />
+          </div>
+        )}
+        {hasInlineSvg && (
+          <div className="mb-10 bg-studio-paper border border-studio-rule rounded-[4px] p-4">
+            <InlineSVGDiagram svgContent={lesson.inlineSvg!} diagramId={lesson.inlineSvgId ?? lesson.id} />
+          </div>
+        )}
+
+        <div className="space-y-10">
           {lesson.slides.map((s, i) => (
-            <div key={i} className="bg-white border border-slate-200 rounded-xl p-6">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold">{i + 1}</div>
-                <h3 className="font-semibold text-slate-900">{s.heading}</h3>
-              </div>
-              <p className="text-slate-700 leading-relaxed">{s.body}</p>
+            <section key={i} className="border-t border-studio-rule-soft pt-8 first:border-0 first:pt-0">
+              <h2 className="font-studio-display text-[28px] font-normal tracking-[-0.4px] text-studio-ink mb-3 leading-[1.15]">
+                {s.heading}
+              </h2>
+              <p className="font-studio-sans text-[15.5px] text-studio-ink-dim leading-[1.7]">{s.body}</p>
               {s.bullets && (
-                <ul className="mt-3 space-y-1.5">
+                <ul className="mt-4 space-y-2">
                   {s.bullets.map((b, j) => (
-                    <li key={j} className="flex items-start gap-2 text-slate-700">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+                    <li key={j} className="flex items-start gap-3 font-studio-sans text-[15px] text-studio-ink-dim leading-[1.6]">
+                      <span className="mt-[9px] w-1 h-1 rounded-full flex-shrink-0" style={{ background: color }} />
                       {b}
                     </li>
                   ))}
                 </ul>
               )}
-            </div>
+            </section>
           ))}
         </div>
 
@@ -195,14 +237,19 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
           <RoleTabPanel roleContent={lesson.roleContent} />
         )}
 
-        <div className="flex items-center justify-between gap-3 pt-6 mt-6 border-t border-slate-200">
-          <button onClick={goPrev} className="px-4 py-2 text-slate-600 hover:text-slate-900 flex items-center gap-1.5 text-sm">
-            <ChevronLeft className="w-4 h-4" /> {lessonIdx === 0 ? 'Module' : 'Previous'}
+        <div className="flex items-center justify-between gap-3 pt-10 mt-10 border-t border-studio-rule">
+          <button onClick={goPrev} className="font-studio-sans text-[14px] text-studio-ink-dim hover:text-studio-ink transition-colors">
+            ← {lessonIdx === 0 ? 'Module' : 'Previous'}
           </button>
-          <button onClick={goNext} className="px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-1.5 text-sm font-semibold shadow-sm">
-            {isLast ? 'Take Quiz' : 'Next Lesson'} <ChevronRight className="w-4 h-4" />
+          <button
+            onClick={goNext}
+            className="font-studio-sans text-[13.5px] font-medium px-5 py-2.5 rounded-full text-studio-bg hover:opacity-90 transition-opacity"
+            style={{ background: color }}
+          >
+            {isLast ? 'Take the quiz →' : 'Next lesson →'}
           </button>
         </div>
+        </article>
       </div>
     </div>
   );

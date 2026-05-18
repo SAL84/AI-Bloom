@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlaskConical, Hash, Layers, Thermometer, GitMerge } from 'lucide-react';
+import { StudioNavLite, StudioFooter } from './StudioChrome';
 import type { View } from '../../types/course';
 import { TokenizerPlayground } from './playgrounds/TokenizerPlayground';
 import { ContextWindowPlayground } from './playgrounds/ContextWindowPlayground';
@@ -11,54 +11,64 @@ interface AIPlaygroundsViewProps {
 }
 
 const TABS = [
-  { id: 'tokenizer',   label: 'Tokeniser',       icon: Hash },
-  { id: 'context',     label: 'Context Window',   icon: Layers },
-  { id: 'temperature', label: 'Temperature',      icon: Thermometer },
-  { id: 'embeddings',  label: 'Embeddings',       icon: GitMerge },
+  { id: 'tokenizer',   label: 'Tokeniser',      glyph: '§' },
+  { id: 'context',     label: 'Context Window',  glyph: '¶' },
+  { id: 'temperature', label: 'Temperature',     glyph: '~' },
+  { id: 'embeddings',  label: 'Embeddings',      glyph: '∿' },
 ] as const;
 
 type TabId = typeof TABS[number]['id'];
 
-export const AIPlaygroundsView = ({ setView: _setView }: AIPlaygroundsViewProps) => {
+export const AIPlaygroundsView = ({ setView }: AIPlaygroundsViewProps) => {
   const [activeTab, setActiveTab] = useState<TabId>('tokenizer');
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-10">
-      <div className="flex items-center gap-3 mb-2">
-        <FlaskConical className="w-7 h-7 text-emerald-500" />
-        <h1 className="text-2xl font-bold text-slate-900">AI Playgrounds</h1>
-      </div>
-      <p className="text-sm text-slate-500 mb-6 leading-relaxed">
-        Interactive demos that make abstract AI concepts tangible. No setup, no sign-in — just experiment.
-      </p>
+    <div className="bg-studio-bg min-h-screen">
+      <StudioNavLite crumbs={['AI Playgrounds']} setView={setView} />
 
-      <div className="flex gap-0 overflow-x-auto pb-px mb-6 border-b border-slate-200">
-        {TABS.map(tab => {
-          const Icon = tab.icon;
-          const active = activeTab === tab.id;
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium whitespace-nowrap border-b-2 transition -mb-px ${
-                active
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
-              }`}
-            >
-              <Icon className="w-4 h-4 flex-shrink-0" />
-              {tab.label}
-            </button>
-          );
-        })}
+      <div className="px-12 pt-12 pb-8 border-b border-studio-rule" style={{ background: '#3f8a5e' }}>
+        <div className="font-studio-mono text-[11px] tracking-[1.6px] uppercase mb-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
+          Try things · break things · no API keys
+        </div>
+        <h1 className="font-studio-display text-[52px] font-normal tracking-[-1px] text-white leading-[1.0] mb-3">
+          AI Playgrounds
+        </h1>
+        <p className="font-studio-serif italic text-[18px] leading-[1.5]" style={{ color: 'rgba(255,255,255,0.82)' }}>
+          Runnable toys that make abstract concepts tangible. Four experiments, all in your browser.
+        </p>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        {activeTab === 'tokenizer'   && <TokenizerPlayground />}
-        {activeTab === 'context'     && <ContextWindowPlayground />}
-        {activeTab === 'temperature' && <TemperaturePlayground />}
-        {activeTab === 'embeddings'  && <EmbeddingsSimilarityPlayground />}
+      <div className="px-12 pt-7 pb-0 border-b border-studio-rule bg-studio-paper">
+        <div className="flex gap-0">
+          {TABS.map(tab => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className="flex items-center gap-2 px-5 py-3 font-studio-sans text-[13.5px] border-b-2 transition-all duration-100 whitespace-nowrap -mb-px"
+                style={isActive
+                  ? { borderBottomColor: '#3f8a5e', color: '#1d1916', fontWeight: 500 }
+                  : { borderBottomColor: 'transparent', color: '#8c8273' }}
+              >
+                <span className="font-studio-serif italic text-[16px]">{tab.glyph}</span>
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
+
+      <div className="px-12 py-10">
+        <div className="bg-studio-paper border border-studio-rule rounded-[4px] p-8">
+          {activeTab === 'tokenizer'   && <TokenizerPlayground />}
+          {activeTab === 'context'     && <ContextWindowPlayground />}
+          {activeTab === 'temperature' && <TemperaturePlayground />}
+          {activeTab === 'embeddings'  && <EmbeddingsSimilarityPlayground />}
+        </div>
+      </div>
+
+      <StudioFooter />
     </div>
   );
 };
