@@ -94,9 +94,12 @@ interface LessonViewProps {
   setView: (view: View) => void;
   completedLessons: Record<string, boolean>;
   markComplete: (lessonId: string) => void;
+  savedLessons: Record<string, boolean>;
+  toggleSaved: (lessonId: string) => void;
 }
 
-export const LessonView = ({ module, lesson, modules, courseId, setView, completedLessons, markComplete }: LessonViewProps) => {
+export const LessonView = ({ module, lesson, modules, courseId, setView, completedLessons, markComplete, savedLessons, toggleSaved }: LessonViewProps) => {
+  const isSaved = !!savedLessons[lesson.id];
   const [slideMode, setSlideMode] = useState(false);
   const [slideIdx, setSlideIdx] = useState(0);
   const [navOpen, setNavOpen] = useState(false);
@@ -312,12 +315,22 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
           <h1 className="font-studio-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.05] font-normal tracking-[-0.6px] lg:tracking-[-1px] text-studio-ink">
             {lesson.title}
           </h1>
-          <button
-            onClick={() => { setSlideIdx(0); setSlideMode(true); }}
-            className="flex-shrink-0 font-studio-mono text-[11px] tracking-[1px] text-studio-ink-mute hover:text-studio-ink border border-studio-rule px-3 lg:px-3.5 py-1.5 rounded-full transition-colors duration-150 mt-1 lg:mt-2"
-          >
-            Slides →
-          </button>
+          <div className="flex flex-col sm:flex-row gap-2 flex-shrink-0 mt-1 lg:mt-2">
+            <button
+              onClick={() => toggleSaved(lesson.id)}
+              aria-label={isSaved ? 'Remove from shelf' : 'Save to shelf'}
+              className={`font-studio-mono text-[11px] tracking-[1px] border px-3 lg:px-3.5 py-1.5 rounded-full transition-colors duration-150 whitespace-nowrap ${isSaved ? 'text-white' : 'text-studio-ink-mute hover:text-studio-ink border-studio-rule'}`}
+              style={isSaved ? { background: color, borderColor: color } : undefined}
+            >
+              {isSaved ? '★ Saved' : '☆ Save'}
+            </button>
+            <button
+              onClick={() => { setSlideIdx(0); setSlideMode(true); }}
+              className="font-studio-mono text-[11px] tracking-[1px] text-studio-ink-mute hover:text-studio-ink border border-studio-rule px-3 lg:px-3.5 py-1.5 rounded-full transition-colors duration-150 whitespace-nowrap"
+            >
+              Slides →
+            </button>
+          </div>
         </div>
 
         {lesson.imageUrl && (

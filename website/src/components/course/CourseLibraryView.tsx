@@ -22,7 +22,7 @@ function StudioNav({ setView }: { setView: (v: View) => void }) {
   const links: Array<{ label: string; view?: View }> = [
     { label: 'Catalog', view: { type: 'library' } },
     { label: 'Glossary', view: { type: 'glossary' } },
-    { label: 'Studio', view: { type: 'playground' } },
+    { label: 'Shelf', view: { type: 'shelf' } },
     { label: 'Roadmap', view: { type: 'roadmap' } },
     { label: 'About' },
   ];
@@ -50,8 +50,11 @@ function StudioNav({ setView }: { setView: (v: View) => void }) {
         <div className="hidden lg:flex font-studio-sans text-[13px] text-studio-ink-dim px-3.5 py-2 border border-studio-rule rounded-full items-center gap-2 bg-studio-bg cursor-default">
           <span className="opacity-60">⌕</span> Search the catalog
         </div>
-        <button className="font-studio-sans text-[12.5px] sm:text-[13px] text-studio-bg bg-studio-ink px-3 sm:px-[18px] py-2 sm:py-[9px] rounded-full font-medium hover:opacity-90 transition-opacity duration-150 whitespace-nowrap">
-          Get a card
+        <button
+          onClick={() => setView({ type: 'playground' })}
+          className="font-studio-sans text-[12.5px] sm:text-[13px] text-studio-bg bg-studio-ink px-3 sm:px-[18px] py-2 sm:py-[9px] rounded-full font-medium hover:opacity-90 transition-opacity duration-150 whitespace-nowrap"
+        >
+          AI Studio →
         </button>
       </div>
     </nav>

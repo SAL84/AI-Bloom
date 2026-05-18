@@ -7,6 +7,8 @@ interface Props {
   course: Course;
   completedLessons: Record<string, boolean>;
   quizScores: Record<string, number>;
+  savedLessons: Record<string, boolean>;
+  toggleSaved: (lessonId: string) => void;
 }
 
 type ModStatus = 'done' | 'now' | 'next'; // used by getStatuses
@@ -89,9 +91,11 @@ interface SyllabusProps {
   course: Course;
   meta: { color: string };
   setView: (v: View) => void;
+  savedLessons: Record<string, boolean>;
+  toggleSaved: (lessonId: string) => void;
 }
 
-const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScores, course, meta, setView }: SyllabusProps) => {
+const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScores, course, meta, setView, savedLessons, toggleSaved }: SyllabusProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number>(nowIdx >= 0 ? nowIdx : 0);
   const safeIdx = Math.min(Math.max(selectedIdx, 0), modules.length - 1);
   const selected = modules[safeIdx];
@@ -205,6 +209,7 @@ const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScor
             <div>
               {selected.lessons.map((l, li) => {
                 const done = !!completedLessons[l.id];
+                const saved = !!savedLessons[l.id];
                 return (
                   <React.Fragment key={l.id}>
                     {l.sectionLabel && (
@@ -212,21 +217,34 @@ const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScor
                         {l.sectionLabel}
                       </div>
                     )}
-                    <button
-                      onClick={() => setView({ type: 'lesson', courseId: course.id, moduleId: selected.id, lessonId: l.id })}
-                      className="w-full text-left px-5 sm:px-6 lg:px-7 py-3.5 flex items-baseline gap-3 sm:gap-5 border-b border-studio-rule-soft hover:bg-studio-bg transition-colors duration-100 group"
-                    >
-                      <span className="font-studio-mono text-[11px] text-studio-ink-mute w-7 flex-shrink-0">{String(li + 1).padStart(2, '0')}</span>
-                      <span className="flex-1 font-studio-sans text-[14px] text-studio-ink-dim group-hover:text-studio-ink leading-[1.3]">
-                        {l.title}
-                        {l.diagram && <span className="ml-2 font-studio-mono text-[10px] text-studio-ink-mute">· diagram</span>}
-                      </span>
-                      <span className="font-studio-mono text-[10.5px] tracking-[0.5px] flex-shrink-0">
-                        {done
-                          ? <span style={{ color: meta.color }}>✓ done</span>
-                          : <span className="text-studio-ink-mute group-hover:text-studio-ink transition-colors">read →</span>}
-                      </span>
-                    </button>
+                    <div className="flex items-stretch border-b border-studio-rule-soft hover:bg-studio-bg transition-colors duration-100 group">
+                      <button
+                        onClick={() => setView({ type: 'lesson', courseId: course.id, moduleId: selected.id, lessonId: l.id })}
+                        className="flex-1 min-w-0 text-left px-5 sm:px-6 lg:px-7 py-3.5 flex items-baseline gap-3 sm:gap-5"
+                      >
+                        <span className="font-studio-mono text-[11px] text-studio-ink-mute w-7 flex-shrink-0">{String(li + 1).padStart(2, '0')}</span>
+                        <span className="flex-1 font-studio-sans text-[14px] text-studio-ink-dim group-hover:text-studio-ink leading-[1.3]">
+                          {l.title}
+                          {l.diagram && <span className="ml-2 font-studio-mono text-[10px] text-studio-ink-mute">· diagram</span>}
+                        </span>
+                        <span className="font-studio-mono text-[10.5px] tracking-[0.5px] flex-shrink-0">
+                          {done
+                            ? <span style={{ color: meta.color }}>✓ done</span>
+                            : <span className="text-studio-ink-mute group-hover:text-studio-ink transition-colors">read →</span>}
+                        </span>
+                      </button>
+                      <button
+                        onClick={() => toggleSaved(l.id)}
+                        aria-label={saved ? 'Remove from shelf' : 'Save to shelf'}
+                        title={saved ? 'Remove from shelf' : 'Save to shelf'}
+                        className="flex-shrink-0 px-3 sm:px-4 grid place-items-center font-studio-mono text-[14px] transition-colors duration-100"
+                        style={{ color: saved ? meta.color : undefined }}
+                      >
+                        <span className={saved ? '' : 'text-studio-ink-mute hover:text-studio-ink'}>
+                          {saved ? '★' : '☆'}
+                        </span>
+                      </button>
+                    </div>
                   </React.Fragment>
                 );
               })}
@@ -252,7 +270,7 @@ const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScor
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 
-export const HomeView = ({ setView, course, completedLessons, quizScores }: Props) => {
+export const HomeView = ({ setView, course, completedLessons, quizScores, savedLessons, toggleSaved }: Props) => {
   const meta = META[course.id];
   const { modules } = course;
   const statuses = getStatuses(modules, completedLessons);
@@ -336,6 +354,8 @@ export const HomeView = ({ setView, course, completedLessons, quizScores }: Prop
         course={course}
         meta={meta}
         setView={setView}
+        savedLessons={savedLessons}
+        toggleSaved={toggleSaved}
       />
 
       {/* Three sidebars */}

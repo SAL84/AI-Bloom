@@ -12,15 +12,16 @@ import { IndustryView } from './course/IndustryView';
 import { CourseLibraryView } from './course/CourseLibraryView';
 import { KidsGamesView } from './course/kids/KidsGamesView';
 import { KidsCareersView } from './course/kids/KidsCareersView';
+import { ShelfView } from './course/ShelfView';
 import type { View, Progress } from '../types/course';
 
 const STORAGE_KEY = 'ai_cybersec_se_progress_v2';
 
 const loadProgress = (): Progress => {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || { completedLessons: {}, quizScores: {} };
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || { completedLessons: {}, quizScores: {}, savedLessons: {} };
   } catch {
-    return { completedLessons: {}, quizScores: {} };
+    return { completedLessons: {}, quizScores: {}, savedLessons: {} };
   }
 };
 
@@ -36,6 +37,7 @@ export default function App() {
   const [view, setViewRaw] = useState<View>({ type: 'library' });
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
   const [quizScores, setQuizScores] = useState<Record<string, number>>({});
+  const [savedLessons, setSavedLessons] = useState<Record<string, boolean>>({});
   const [loaded, setLoaded] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -66,12 +68,13 @@ export default function App() {
     const p = loadProgress();
     setCompletedLessons(p.completedLessons || {});
     setQuizScores(p.quizScores || {});
+    setSavedLessons(p.savedLessons || {});
     setLoaded(true);
   }, []);
 
   useEffect(() => {
-    if (loaded) saveProgress({ completedLessons, quizScores });
-  }, [completedLessons, quizScores, loaded]);
+    if (loaded) saveProgress({ completedLessons, quizScores, savedLessons });
+  }, [completedLessons, quizScores, savedLessons, loaded]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: 0 });
@@ -83,6 +86,16 @@ export default function App() {
 
   const recordQuizScore = (moduleId: string, score: number) => {
     setQuizScores(prev => ({ ...prev, [moduleId]: score }));
+  };
+
+  const toggleSaved = (lessonId: string) => {
+    setSavedLessons(prev => {
+      if (prev[lessonId]) {
+        const { [lessonId]: _, ...rest } = prev;
+        return rest;
+      }
+      return { ...prev, [lessonId]: true };
+    });
   };
 
   const activeCourseId = ('courseId' in view && view.courseId) ? view.courseId : 'ai-cybersec-se';
@@ -101,19 +114,20 @@ export default function App() {
         <CourseLibraryView setView={setView} completedLessons={completedLessons} />
       )}
       {view.type === 'home' && (
-        <HomeView setView={setView} course={activeCourse} completedLessons={completedLessons} quizScores={quizScores} />
+        <HomeView setView={setView} course={activeCourse} completedLessons={completedLessons} quizScores={quizScores} savedLessons={savedLessons} toggleSaved={toggleSaved} />
       )}
       {view.type === 'module' && currentModule && (
         <ModuleView module={currentModule} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} completedLessons={completedLessons} quizScores={quizScores} />
       )}
       {view.type === 'lesson' && currentModule && currentLesson && (
-        <LessonView key={currentLesson.id} module={currentModule} lesson={currentLesson} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} completedLessons={completedLessons} markComplete={markComplete} />
+        <LessonView key={currentLesson.id} module={currentModule} lesson={currentLesson} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} completedLessons={completedLessons} markComplete={markComplete} savedLessons={savedLessons} toggleSaved={toggleSaved} />
       )}
       {view.type === 'quiz' && currentModule && (
         <QuizView module={currentModule} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} recordQuizScore={recordQuizScore} />
       )}
       {view.type === 'glossary' && <GlossaryView setView={setView} />}
       {view.type === 'roadmap' && <RoadmapView setView={setView} />}
+      {view.type === 'shelf' && <ShelfView setView={setView} savedLessons={savedLessons} toggleSaved={toggleSaved} completedLessons={completedLessons} />}
       {view.type === 'playground' && <AIPlaygroundsView setView={setView} />}
       {view.type === 'agentic-ai' && <AgenticAIView setView={setView} />}
       {view.type === 'industry' && <IndustryView setView={setView} />}

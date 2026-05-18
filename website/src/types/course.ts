@@ -56,6 +56,7 @@ export interface Course {
 export interface Progress {
   completedLessons: Record<string, boolean>;
   quizScores: Record<string, number>;
+  savedLessons?: Record<string, boolean>;
 }
 
 export type View =
@@ -66,6 +67,7 @@ export type View =
   | { type: 'quiz'; courseId?: CourseId; moduleId: string }
   | { type: 'glossary' }
   | { type: 'roadmap' }
+  | { type: 'shelf' }
   | { type: 'playground' }
   | { type: 'agentic-ai' }
   | { type: 'industry' }

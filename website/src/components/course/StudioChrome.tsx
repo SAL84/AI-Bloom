@@ -44,13 +44,28 @@ export function StudioNavLite({ crumbs, crumbViews, setView, resumeView }: NavLi
         })}
       </div>
       <div className="ml-auto flex items-center gap-2 lg:gap-2.5 flex-shrink-0">
-        <button className="hidden md:block font-studio-sans text-[13px] text-studio-ink bg-transparent border border-studio-rule px-3.5 py-2 rounded-full hover:border-studio-ink-dim transition-colors duration-150">
-          Save to shelf
+        <button
+          onClick={() => setView({ type: 'shelf' })}
+          className="hidden sm:inline-flex items-center gap-1.5 font-studio-sans text-[13px] text-studio-ink-dim hover:text-studio-ink hover:underline decoration-studio-ink-dim underline-offset-[3px] decoration-1 transition-colors duration-100 whitespace-nowrap"
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" className="flex-shrink-0">
+            <rect x="1.5" y="2" width="2.5" height="10" rx="0.4" stroke="currentColor" strokeWidth="1" fill="none" />
+            <rect x="5" y="3" width="2.5" height="9" rx="0.4" stroke="currentColor" strokeWidth="1" fill="none" />
+            <rect x="8.5" y="2.5" width="2.5" height="9.5" rx="0.4" stroke="currentColor" strokeWidth="1" fill="none" />
+            <line x1="0.5" y1="12.5" x2="13.5" y2="12.5" stroke="currentColor" strokeWidth="1" />
+          </svg>
+          Shelf
+        </button>
+        <button
+          onClick={() => setView({ type: 'playground' })}
+          className="font-studio-sans text-[12.5px] sm:text-[13px] text-studio-bg bg-studio-ink px-3 sm:px-[18px] py-2 sm:py-[9px] rounded-full font-medium hover:opacity-90 transition-opacity duration-150 whitespace-nowrap"
+        >
+          AI Studio →
         </button>
         {resumeView && (
           <button
             onClick={() => setView(resumeView)}
-            className="font-studio-sans text-[12.5px] sm:text-[13px] text-studio-bg bg-studio-ink px-3 sm:px-4 py-2 sm:py-[9px] rounded-full font-medium hover:opacity-90 transition-opacity duration-150 whitespace-nowrap"
+            className="font-studio-sans text-[12.5px] sm:text-[13px] text-studio-ink bg-transparent border border-studio-rule px-3 sm:px-4 py-2 sm:py-[9px] rounded-full font-medium hover:border-studio-ink-dim transition-colors duration-150 whitespace-nowrap"
           >
             Resume →
           </button>
