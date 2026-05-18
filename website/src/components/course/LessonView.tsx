@@ -14,6 +14,78 @@ const COURSE_COLORS: Record<string, string> = {
   'ai-cybersec-se':'#2c6db0',
 };
 
+// ── Diagram zoom modal ───────────────────────────────────────────────────────
+interface SvgZoomModalProps {
+  open: boolean;
+  onClose: () => void;
+  title?: string;
+  children: React.ReactNode;
+}
+
+const SvgZoomModal = ({ open, onClose, title, children }: SvgZoomModalProps) => {
+  const [zoom, setZoom] = useState(1);
+
+  useEffect(() => { if (open) setZoom(1); }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      else if (e.key === '+' || e.key === '=') setZoom(z => Math.min(z + 0.25, 4));
+      else if (e.key === '-') setZoom(z => Math.max(z - 0.25, 0.5));
+      else if (e.key === '0') setZoom(1);
+    };
+    window.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex flex-col bg-studio-bg">
+      <div className="flex items-center justify-between gap-2 px-3 sm:px-4 py-2.5 sm:py-3 border-b border-studio-rule bg-studio-paper">
+        <div className="font-studio-mono text-[10.5px] sm:text-[11px] uppercase tracking-[1.2px] text-studio-ink-mute truncate min-w-0">
+          {title ?? 'Diagram'}
+        </div>
+        <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+          <button onClick={() => setZoom(z => Math.max(z - 0.25, 0.5))} aria-label="Zoom out"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-studio-rule grid place-items-center text-studio-ink hover:border-studio-ink-dim transition-colors">
+            −
+          </button>
+          <span className="font-studio-mono text-[10.5px] sm:text-[11px] text-studio-ink-mute min-w-[3ch] text-center tabular-nums">
+            {Math.round(zoom * 100)}%
+          </span>
+          <button onClick={() => setZoom(z => Math.min(z + 0.25, 4))} aria-label="Zoom in"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-studio-rule grid place-items-center text-studio-ink hover:border-studio-ink-dim transition-colors">
+            +
+          </button>
+          <button onClick={() => setZoom(1)} aria-label="Reset zoom"
+            className="hidden sm:inline-flex font-studio-mono text-[11px] px-3 py-2 rounded-full border border-studio-rule text-studio-ink-dim hover:border-studio-ink-dim hover:text-studio-ink transition-colors">
+            Reset
+          </button>
+          <button onClick={onClose} aria-label="Close diagram"
+            className="ml-1 sm:ml-2 font-studio-sans text-[12.5px] sm:text-[13px] px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-studio-ink text-studio-bg hover:opacity-90 transition-opacity whitespace-nowrap">
+            Close ✕
+          </button>
+        </div>
+      </div>
+      <div className="flex-1 overflow-auto" style={{ touchAction: 'pinch-zoom pan-x pan-y' }}>
+        <div className="p-4 sm:p-6" style={{ zoom }}>
+          {children}
+        </div>
+      </div>
+      <div className="px-4 py-2 border-t border-studio-rule bg-studio-paper font-studio-mono text-[10.5px] text-studio-ink-mute tracking-[0.5px] text-center">
+        Pinch to zoom · drag to pan · Esc to close
+      </div>
+    </div>
+  );
+};
+
 interface LessonViewProps {
   module: CourseModule;
   lesson: Lesson;
@@ -28,6 +100,7 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
   const [slideMode, setSlideMode] = useState(false);
   const [slideIdx, setSlideIdx] = useState(0);
   const [navOpen, setNavOpen] = useState(false);
+  const [zoomedDiagram, setZoomedDiagram] = useState<React.ReactNode>(null);
 
   // Close drawer on lesson change or Escape
   useEffect(() => { setNavOpen(false); }, [lesson.id]);
@@ -256,12 +329,28 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
         )}
 
         {DiagramComponent && (
-          <div className="mb-8 lg:mb-10 xl:-mr-20 2xl:-mr-40 bg-studio-paper border border-studio-rule rounded-[4px] p-3 sm:p-4 lg:p-6 overflow-x-auto">
+          <div className="mb-8 lg:mb-10 xl:-mr-20 2xl:-mr-40 relative bg-studio-paper border border-studio-rule rounded-[4px] p-3 sm:p-4 lg:p-6 overflow-x-auto">
+            <button
+              onClick={() => setZoomedDiagram(<DiagramComponent />)}
+              aria-label="Expand diagram"
+              className="absolute top-2 right-2 z-10 font-studio-mono text-[10.5px] tracking-[0.6px] px-2.5 py-1.5 rounded-full bg-studio-bg/90 backdrop-blur-sm border border-studio-rule text-studio-ink-dim hover:text-studio-ink hover:border-studio-ink-dim transition-colors"
+            >
+              ⤢ Expand
+            </button>
             <DiagramComponent />
           </div>
         )}
         {hasInlineSvg && (
-          <div className="mb-8 lg:mb-10 xl:-mr-20 2xl:-mr-40 bg-studio-paper border border-studio-rule rounded-[4px] p-3 sm:p-4 lg:p-6">
+          <div className="mb-8 lg:mb-10 xl:-mr-20 2xl:-mr-40 relative bg-studio-paper border border-studio-rule rounded-[4px] p-3 sm:p-4 lg:p-6">
+            <button
+              onClick={() => setZoomedDiagram(
+                <InlineSVGDiagram svgContent={lesson.inlineSvg!} diagramId={`${lesson.inlineSvgId ?? lesson.id}-zoom`} />
+              )}
+              aria-label="Expand diagram"
+              className="absolute top-2 right-2 z-10 font-studio-mono text-[10.5px] tracking-[0.6px] px-2.5 py-1.5 rounded-full bg-studio-bg/90 backdrop-blur-sm border border-studio-rule text-studio-ink-dim hover:text-studio-ink hover:border-studio-ink-dim transition-colors"
+            >
+              ⤢ Expand
+            </button>
             <InlineSVGDiagram svgContent={lesson.inlineSvg!} diagramId={lesson.inlineSvgId ?? lesson.id} />
           </div>
         )}
@@ -305,6 +394,14 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
         </div>
         </article>
       </div>
+
+      <SvgZoomModal
+        open={!!zoomedDiagram}
+        onClose={() => setZoomedDiagram(null)}
+        title={lesson.title}
+      >
+        {zoomedDiagram}
+      </SvgZoomModal>
     </div>
   );
 };
