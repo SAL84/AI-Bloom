@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StudioNavLite, StudioFooter } from './StudioChrome';
 import type { Course, CourseId, CourseModule, View } from '../../types/course';
 
@@ -79,6 +79,177 @@ function getStatuses(modules: CourseModule[], done: Record<string, boolean>): Mo
   });
 }
 
+// ── Syllabus section ─────────────────────────────────────────────────────────
+interface SyllabusProps {
+  modules: CourseModule[];
+  statuses: ModStatus[];
+  nowIdx: number;
+  completedLessons: Record<string, boolean>;
+  quizScores: Record<string, number>;
+  course: Course;
+  meta: { color: string };
+  setView: (v: View) => void;
+}
+
+const SyllabusSection = ({ modules, statuses, nowIdx, completedLessons, quizScores, course, meta, setView }: SyllabusProps) => {
+  const [selectedIdx, setSelectedIdx] = useState<number>(nowIdx >= 0 ? nowIdx : 0);
+  const safeIdx = Math.min(Math.max(selectedIdx, 0), modules.length - 1);
+  const selected = modules[safeIdx];
+  const selectedStatus = statuses[safeIdx];
+  const selectedDone = selected.lessons.filter(l => completedLessons[l.id]).length;
+  const firstIncomplete = selected.lessons.find(l => !completedLessons[l.id]) ?? selected.lessons[0];
+  const ctaLabel = selectedStatus === 'done'
+    ? 'Re-read first lesson →'
+    : selectedDone > 0
+      ? `Resume · ${firstIncomplete.title} →`
+      : 'Start this module →';
+
+  return (
+    <section className="px-12 pt-6 pb-14">
+      <div className="max-w-[1280px] mx-auto">
+        <header className="flex items-baseline justify-between mb-6">
+          <h2 className="font-studio-display text-[36px] text-studio-ink m-0 font-normal tracking-[-0.6px]">
+            The {modules.length === 1 ? 'module' : `${modules.length} modules`}
+          </h2>
+          <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1px]">Pick a module · open any lesson</div>
+        </header>
+
+        <div className="grid grid-cols-[340px_1fr] gap-8 items-start">
+          {/* ── Left rail: module list ── */}
+          <aside className="flex flex-col gap-2">
+            {modules.map((m, i) => {
+              const status = statuses[i];
+              const isDone = status === 'done';
+              const isNow = status === 'now';
+              const isSelected = i === safeIdx;
+              const lessonDone = m.lessons.filter(l => completedLessons[l.id]).length;
+              const progressPct = m.lessons.length > 0 ? (lessonDone / m.lessons.length) * 100 : 0;
+              return (
+                <button
+                  key={m.id}
+                  onClick={() => setSelectedIdx(i)}
+                  className="text-left px-4 py-3.5 rounded-[4px] border bg-studio-paper hover:border-studio-ink-dim transition-colors duration-100"
+                  style={{
+                    borderColor: isSelected ? meta.color : isNow ? `${meta.color}66` : 'var(--tw-border-opacity-studio-rule, #e8dfc8)',
+                    background: isSelected ? `${meta.color}0d` : undefined,
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="w-7 h-7 rounded-full grid place-items-center font-studio-serif italic text-[13px] flex-shrink-0"
+                      style={{
+                        background: isDone || isNow || isSelected ? meta.color : 'transparent',
+                        border: `1px solid ${isDone || isNow || isSelected ? meta.color : '#d9cfb8'}`,
+                        color: isDone || isNow || isSelected ? '#fff' : '#8c8273',
+                      }}>
+                      {isDone ? '✓' : i + 1}
+                    </span>
+                    <span className={`flex-1 min-w-0 font-studio-display text-[16px] font-normal tracking-[-0.2px] leading-[1.15] truncate ${status === 'next' && !isSelected ? 'text-studio-ink-dim' : 'text-studio-ink'}`}>
+                      {m.title}
+                    </span>
+                    {isNow && (
+                      <span className="font-studio-mono text-[9px] text-studio-bg tracking-[1.2px] uppercase px-1.5 py-[2px] rounded-[2px] flex-shrink-0" style={{ background: meta.color }}>Now</span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-3 mt-2 pl-10">
+                    <div className="flex-1 h-[3px] bg-studio-rule-soft rounded-full overflow-hidden">
+                      <div className="h-full rounded-full transition-all duration-200" style={{ width: `${progressPct}%`, background: meta.color }} />
+                    </div>
+                    <span className="font-studio-mono text-[10px] text-studio-ink-mute tracking-[0.4px] flex-shrink-0">
+                      {lessonDone}/{m.lessons.length}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </aside>
+
+          {/* ── Right pane: selected module detail ── */}
+          <div
+            className="bg-studio-paper border rounded-[4px] overflow-hidden"
+            style={{ borderColor: selectedStatus === 'now' ? meta.color : '#e8dfc8' }}
+          >
+            {/* Module header */}
+            <div className="px-7 py-6 border-b border-studio-rule" style={selectedStatus === 'now' ? { background: `${meta.color}0d` } : undefined}>
+              <div className="flex items-baseline gap-3 flex-wrap">
+                <span className="font-studio-mono text-[10.5px] tracking-[1.4px] uppercase" style={{ color: meta.color }}>
+                  Module {safeIdx + 1} of {modules.length}
+                </span>
+                {selectedStatus === 'now' && (
+                  <span className="font-studio-mono text-[9.5px] text-studio-bg tracking-[1.2px] uppercase px-[7px] py-[2px] rounded-[2px]" style={{ background: meta.color }}>Up next</span>
+                )}
+                {selectedStatus === 'done' && (
+                  <span className="font-studio-mono text-[10px] uppercase tracking-[1px]" style={{ color: meta.color }}>Complete</span>
+                )}
+              </div>
+              <h3 className="font-studio-display text-[28px] font-normal tracking-[-0.4px] text-studio-ink mt-2 leading-[1.1]">
+                {selected.title}
+              </h3>
+              <p className="font-studio-sans text-[14px] text-studio-ink-dim leading-[1.55] mt-2 max-w-[640px]">
+                {selected.summary}
+              </p>
+              <div className="flex items-center gap-4 mt-4 flex-wrap">
+                <button
+                  onClick={() => setView({ type: 'lesson', courseId: course.id, moduleId: selected.id, lessonId: firstIncomplete.id })}
+                  className="font-studio-sans text-[13.5px] font-medium text-studio-bg py-[10px] px-5 rounded-full hover:opacity-90 transition-opacity duration-150"
+                  style={{ background: meta.color }}
+                >
+                  {ctaLabel}
+                </button>
+                <span className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px]">
+                  {selectedDone}/{selected.lessons.length} lessons read
+                </span>
+              </div>
+            </div>
+
+            {/* Lesson list */}
+            <div>
+              {selected.lessons.map((l, li) => {
+                const done = !!completedLessons[l.id];
+                return (
+                  <React.Fragment key={l.id}>
+                    {l.sectionLabel && (
+                      <div className="py-2 px-7 font-studio-mono text-[10px] text-studio-ink-mute tracking-[1.4px] uppercase border-b border-dashed border-studio-rule-soft" style={{ background: 'rgba(245,239,228,0.5)' }}>
+                        {l.sectionLabel}
+                      </div>
+                    )}
+                    <button
+                      onClick={() => setView({ type: 'lesson', courseId: course.id, moduleId: selected.id, lessonId: l.id })}
+                      className="w-full text-left px-7 py-3.5 flex items-baseline gap-5 border-b border-studio-rule-soft hover:bg-studio-bg transition-colors duration-100 group"
+                    >
+                      <span className="font-studio-mono text-[11px] text-studio-ink-mute w-7 flex-shrink-0">{String(li + 1).padStart(2, '0')}</span>
+                      <span className="flex-1 font-studio-sans text-[14px] text-studio-ink-dim group-hover:text-studio-ink leading-[1.3]">
+                        {l.title}
+                        {l.diagram && <span className="ml-2 font-studio-mono text-[10px] text-studio-ink-mute">· diagram</span>}
+                      </span>
+                      <span className="font-studio-mono text-[10.5px] tracking-[0.5px] flex-shrink-0">
+                        {done
+                          ? <span style={{ color: meta.color }}>✓ done</span>
+                          : <span className="text-studio-ink-mute group-hover:text-studio-ink transition-colors">read →</span>}
+                      </span>
+                    </button>
+                  </React.Fragment>
+                );
+              })}
+
+              {/* Quiz row */}
+              <button
+                onClick={() => setView({ type: 'quiz', courseId: course.id, moduleId: selected.id })}
+                className="w-full text-left px-7 py-3.5 flex items-baseline gap-5 hover:bg-studio-bg transition-colors duration-100 group border-t border-dashed border-studio-rule"
+              >
+                <span className="font-studio-mono text-[11px] text-studio-ink-mute w-7 flex-shrink-0">✦</span>
+                <span className="flex-1 font-studio-serif italic text-[14px] text-studio-ink-dim group-hover:text-studio-ink">Module quiz · {selected.quiz.length} questions</span>
+                {quizScores[selected.id] !== undefined
+                  ? <span className="font-studio-mono text-[10.5px] flex-shrink-0" style={{ color: meta.color }}>{quizScores[selected.id]}/{selected.quiz.length}</span>
+                  : <span className="font-studio-mono text-[10.5px] text-studio-ink-mute group-hover:text-studio-ink transition-colors flex-shrink-0">take →</span>}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 export const HomeView = ({ setView, course, completedLessons, quizScores }: Props) => {
@@ -155,93 +326,17 @@ export const HomeView = ({ setView, course, completedLessons, quizScores }: Prop
         </aside>
       </header>
 
-      {/* Modules with inline lessons */}
-      <section className="px-12 pt-6 pb-14">
-        <header className="flex items-baseline justify-between mb-5">
-          <h2 className="font-studio-display text-[36px] text-studio-ink m-0 font-normal tracking-[-0.6px]">
-            The {modules.length === 1 ? 'module' : `${modules.length} modules`}
-          </h2>
-          <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1px]">Read in order · skip whenever</div>
-        </header>
-
-        <div className="flex flex-col gap-5">
-          {modules.map((m, i) => {
-            const status = statuses[i];
-            const isDone = status === 'done';
-            const isNow = status === 'now';
-            const lessonDoneCount = m.lessons.filter(l => completedLessons[l.id]).length;
-            return (
-              <div key={m.id}
-                className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden"
-                style={isNow ? { borderColor: meta.color } : undefined}
-              >
-                {/* Module header */}
-                <div className="px-6 py-5 flex items-center gap-5 border-b border-studio-rule"
-                  style={isNow ? { background: `${meta.color}0d` } : undefined}>
-                  <span className="w-9 h-9 rounded-full grid place-items-center font-studio-serif italic text-[16px] font-normal flex-shrink-0"
-                    style={{ background: isDone || isNow ? meta.color : 'transparent', border: `1px solid ${isDone || isNow ? meta.color : '#d9cfb8'}`, color: isDone || isNow ? '#fff' : '#8c8273' }}>
-                    {isDone ? '✓' : i + 1}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-baseline gap-3 flex-wrap">
-                      <span className={`font-studio-display text-[22px] font-normal tracking-[-0.3px] leading-none ${status === 'next' ? 'text-studio-ink-dim' : 'text-studio-ink'}`}>{m.title}</span>
-                      {isNow && <span className="font-studio-mono text-[9.5px] text-studio-bg tracking-[1.2px] uppercase px-[7px] py-[2px] rounded-[2px]" style={{ background: meta.color }}>Up next</span>}
-                      {isDone && <span className="font-studio-mono text-[10px] uppercase tracking-[1px]" style={{ color: meta.color }}>Complete</span>}
-                    </div>
-                    <p className={`font-studio-sans text-[13px] leading-[1.5] mt-1 m-0 ${status === 'next' ? 'text-studio-ink-mute' : 'text-studio-ink-dim'}`}>{m.summary}</p>
-                  </div>
-                  <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px] flex-shrink-0">
-                    {lessonDoneCount}/{m.lessons.length}
-                  </div>
-                </div>
-
-                {/* Lesson list */}
-                <div>
-                  {m.lessons.map((l, li) => {
-                    const done = !!completedLessons[l.id];
-                    return (
-                      <React.Fragment key={l.id}>
-                        {l.sectionLabel && (
-                          <div className="py-2 px-6 font-studio-mono text-[10px] text-studio-ink-mute tracking-[1.4px] uppercase border-b border-dashed border-studio-rule-soft" style={{ background: 'rgba(245,239,228,0.5)' }}>
-                            {l.sectionLabel}
-                          </div>
-                        )}
-                        <button
-                          onClick={() => setView({ type: 'lesson', courseId: course.id, moduleId: m.id, lessonId: l.id })}
-                          className="w-full text-left px-6 py-3.5 flex items-baseline gap-5 border-b border-studio-rule-soft hover:bg-studio-bg transition-colors duration-100 group"
-                        >
-                          <span className="font-studio-mono text-[11px] text-studio-ink-mute w-7 flex-shrink-0">{String(li + 1).padStart(2, '0')}</span>
-                          <span className="flex-1 font-studio-sans text-[14px] text-studio-ink-dim group-hover:text-studio-ink leading-[1.3]">
-                            {l.title}
-                            {l.diagram && <span className="ml-2 font-studio-mono text-[10px] text-studio-ink-mute">· diagram</span>}
-                          </span>
-                          <span className="font-studio-mono text-[10.5px] tracking-[0.5px] flex-shrink-0">
-                            {done
-                              ? <span style={{ color: meta.color }}>✓ done</span>
-                              : <span className="text-studio-ink-mute group-hover:text-studio-ink transition-colors">read →</span>}
-                          </span>
-                        </button>
-                      </React.Fragment>
-                    );
-                  })}
-
-                  {/* Quiz row */}
-                  <button
-                    onClick={() => setView({ type: 'quiz', courseId: course.id, moduleId: m.id })}
-                    className="w-full text-left px-6 py-3.5 flex items-baseline gap-5 hover:bg-studio-bg transition-colors duration-100 group border-t border-dashed border-studio-rule"
-                  >
-                    <span className="font-studio-mono text-[11px] text-studio-ink-mute w-7 flex-shrink-0">✦</span>
-                    <span className="flex-1 font-studio-serif italic text-[14px] text-studio-ink-dim group-hover:text-studio-ink">Module quiz · {m.quiz.length} questions</span>
-                    {quizScores[m.id] !== undefined
-                      ? <span className="font-studio-mono text-[10.5px] flex-shrink-0" style={{ color: meta.color }}>{quizScores[m.id]}/{m.quiz.length}</span>
-                      : <span className="font-studio-mono text-[10.5px] text-studio-ink-mute group-hover:text-studio-ink transition-colors flex-shrink-0">take →</span>}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+      {/* Modules: syllabus left-rail + selected-module detail */}
+      <SyllabusSection
+        modules={modules}
+        statuses={statuses}
+        nowIdx={nowIdx}
+        completedLessons={completedLessons}
+        quizScores={quizScores}
+        course={course}
+        meta={meta}
+        setView={setView}
+      />
 
       {/* Three sidebars */}
       <section className="px-12 pb-14 grid grid-cols-[1.2fr_1fr_1fr] gap-6">
