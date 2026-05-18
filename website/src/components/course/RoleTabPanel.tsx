@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { RoleContent } from '../../types/course';
+import type { RoleContent, RoleKey } from '../../types/course';
 
 const ROLE_META: Record<string, { label: string; color: string }> = {
   general:       { label: 'General User',  color: '#5d5045' },
@@ -12,10 +12,14 @@ const ROLE_ORDER = ['general', 'security-se', 'developer', 'consultant'];
 
 interface Props {
   roleContent: RoleContent[];
+  selected?: RoleKey | null;
+  setSelected?: (role: RoleKey | null) => void;
 }
 
-export const RoleTabPanel = ({ roleContent }: Props) => {
-  const [selected, setSelected] = useState<string | null>(null);
+export const RoleTabPanel = ({ roleContent, selected: selectedProp, setSelected: setSelectedProp }: Props) => {
+  const [localSelected, setLocalSelected] = useState<RoleKey | null>(null);
+  const selected = selectedProp !== undefined ? selectedProp : localSelected;
+  const setSelected = setSelectedProp ?? setLocalSelected;
 
   if (!roleContent || roleContent.length === 0) return null;
 

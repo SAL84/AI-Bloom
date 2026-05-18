@@ -51,6 +51,86 @@ export const LearningParadigmsDiagram = () => (
   </DiagramFrame>
 );
 
+export const LearningParadigmsGenericDiagram = () => (
+  <DiagramFrame viewBox="0 0 800 320" caption="Three core paradigms — how machines actually learn from data">
+    {[
+      { x: 30, title: 'Supervised', color: COLORS.blue, examples: ['Image classification', 'Email spam filters', 'Loan approval scoring'], desc: 'Trained on labeled examples' },
+      { x: 285, title: 'Unsupervised', color: COLORS.cyan, examples: ['Customer segmentation', 'Anomaly detection', 'Topic discovery in text'], desc: 'Finds patterns without labels' },
+      { x: 540, title: 'Reinforcement', color: COLORS.amber, examples: ['Game-playing AIs (AlphaGo)', 'Robotics & self-driving', 'RLHF for chatbots'], desc: 'Learns via reward signals' }
+    ].map((p, i) => (
+      <g key={i}>
+        <rect x={p.x} y="20" width="230" height="280" rx="10" fill={COLORS.white} stroke={p.color} strokeWidth="2" />
+        <rect x={p.x} y="20" width="230" height="50" rx="10" fill={p.color} />
+        <text x={p.x + 115} y="52" textAnchor="middle" fill={COLORS.white} fontSize="16" fontWeight="700">{p.title}</text>
+        <text x={p.x + 115} y="95" textAnchor="middle" fill={COLORS.slate700} fontSize="11" fontStyle="italic">{p.desc}</text>
+        <text x={p.x + 20} y="135" fill={COLORS.slate500} fontSize="10" fontWeight="600">EVERYDAY EXAMPLES</text>
+        {p.examples.map((ex, j) => (
+          <g key={j}>
+            <circle cx={p.x + 25} cy={160 + j * 30} r="3" fill={p.color} />
+            <text x={p.x + 38} y={165 + j * 30} fill={COLORS.slate700} fontSize="12">{ex}</text>
+          </g>
+        ))}
+      </g>
+    ))}
+  </DiagramFrame>
+);
+
+export const CapabilityTiersDiagram = () => {
+  const tiers = [
+    { y: 30, title: 'Narrow AI', desc: 'One task, one domain — today', examples: 'Chess engines · Spam filters · Image classifiers', color: COLORS.blue, status: 'TODAY' },
+    { y: 110, title: 'Frontier LLMs', desc: 'One objective, hundreds of domains', examples: 'Claude · GPT-4 · Gemini · Llama', color: COLORS.cyan, status: 'TODAY' },
+    { y: 190, title: 'AGI', desc: 'Human-level reasoning across any domain', examples: 'Not yet achieved — no timeline consensus', color: COLORS.amber, status: 'FUTURE' },
+    { y: 270, title: 'Superintelligence', desc: 'Surpasses humans across every domain', examples: 'Hypothetical — raises alignment questions', color: COLORS.red, status: 'HYPOTHETICAL' },
+  ];
+  return (
+    <DiagramFrame viewBox="0 0 800 380" caption="When a customer says 'AI', they could mean any of these tiers — calibrate early">
+      {tiers.map((t, i) => (
+        <g key={i}>
+          <rect x="40" y={t.y} width="720" height="60" rx="8" fill={COLORS.white} stroke={t.color} strokeWidth="2" />
+          <rect x="40" y={t.y} width="180" height="60" rx="8" fill={t.color} />
+          <text x="130" y={t.y + 30} textAnchor="middle" fill={COLORS.white} fontSize="16" fontWeight="700">{t.title}</text>
+          <text x="130" y={t.y + 48} textAnchor="middle" fill={COLORS.white} fontSize="10" opacity="0.85">{t.status}</text>
+          <text x="240" y={t.y + 24} fill={COLORS.slate700} fontSize="13" fontWeight="600">{t.desc}</text>
+          <text x="240" y={t.y + 44} fill={COLORS.slate500} fontSize="11">{t.examples}</text>
+        </g>
+      ))}
+    </DiagramFrame>
+  );
+};
+
+export const AIPipelineDiagram = () => {
+  const stages = [
+    { x: 40, title: 'Collect & Clean', desc: 'Raw data is gathered and prepared', color: COLORS.blue },
+    { x: 215, title: 'Train', desc: 'A model learns patterns from data', color: COLORS.cyan },
+    { x: 390, title: 'Deploy', desc: 'Model serves real-time inference', color: COLORS.amber },
+    { x: 565, title: 'Feedback Loop', desc: 'Outcomes flow back into training', color: COLORS.emerald },
+  ];
+  return (
+    <DiagramFrame viewBox="0 0 760 280" caption="Every AI product runs this pipeline — no feedback loop means a frozen snapshot">
+      {stages.map((s, i) => (
+        <g key={i}>
+          <rect x={s.x} y="60" width="155" height="120" rx="10" fill={COLORS.white} stroke={s.color} strokeWidth="2" />
+          <rect x={s.x} y="60" width="155" height="36" rx="10" fill={s.color} />
+          <text x={s.x + 77} y="84" textAnchor="middle" fill={COLORS.white} fontSize="13" fontWeight="700">{s.title}</text>
+          <text x={s.x + 77} y="125" textAnchor="middle" fill={COLORS.slate700} fontSize="11">{s.desc.split(' ').slice(0, 3).join(' ')}</text>
+          <text x={s.x + 77} y="142" textAnchor="middle" fill={COLORS.slate700} fontSize="11">{s.desc.split(' ').slice(3).join(' ')}</text>
+          {i < stages.length - 1 && (
+            <path d={`M${s.x + 155} 120 L${s.x + 175} 120`} stroke={COLORS.slate500} strokeWidth="2" markerEnd="url(#arrow-pipeline)" />
+          )}
+        </g>
+      ))}
+      <defs>
+        <marker id="arrow-pipeline" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke={COLORS.slate500} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </marker>
+      </defs>
+      <path d={`M642 180 Q642 230 400 230 Q150 230 117 180`} stroke={COLORS.emerald} strokeWidth="1.5" strokeDasharray="5 4" fill="none" markerEnd="url(#arrow-pipeline)" />
+      <text x="400" y="248" textAnchor="middle" fill={COLORS.emerald} fontSize="11" fontStyle="italic">feedback signals shape the next training run</text>
+      <text x="400" y="40" textAnchor="middle" fill={COLORS.slate700} fontSize="13" fontWeight="600">The AI Pipeline</text>
+    </DiagramFrame>
+  );
+};
+
 export const BaseRateDiagram = () => (
   <DiagramFrame viewBox="0 0 800 460" caption="Base rate fallacy: even 99% accuracy floods the SOC when prevalence is low">
     <text x="400" y="30" textAnchor="middle" fill={COLORS.slate900} fontSize="14" fontWeight="700">100,000 files scanned · 0.1% actual malware (100 files) · 99% accurate detector</text>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StudioNavLite } from './StudioChrome';
 import { COURSES } from '../../data/modules';
-import type { CourseModule, CourseId, Lesson, View } from '../../types/course';
+import type { CourseModule, CourseId, Lesson, View, RoleKey } from '../../types/course';
 import { DIAGRAM_REGISTRY } from '../diagrams';
 import { InlineSVGDiagram } from '../diagrams/InlineSVGDiagram';
 import { RoleTabPanel } from './RoleTabPanel';
@@ -104,6 +104,9 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
   const [slideIdx, setSlideIdx] = useState(0);
   const [navOpen, setNavOpen] = useState(false);
   const [zoomedDiagram, setZoomedDiagram] = useState<React.ReactNode>(null);
+  const [selectedRole, setSelectedRole] = useState<RoleKey | null>(null);
+
+  useEffect(() => { setSelectedRole(null); }, [lesson.id]);
 
   // Close drawer on lesson change or Escape
   useEffect(() => { setNavOpen(false); }, [lesson.id]);
@@ -117,7 +120,9 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
   const lessonIdx = module.lessons.findIndex(l => l.id === lesson.id);
   const moduleIdx = modules.findIndex(m => m.id === module.id);
   const isLast = lessonIdx === module.lessons.length - 1;
-  const DiagramComponent = lesson.diagram ? DIAGRAM_REGISTRY[lesson.diagram] : null;
+  const effectiveDiagramKey = (selectedRole && lesson.roleDiagrams?.[selectedRole]) || lesson.diagram;
+  const DiagramComponent = effectiveDiagramKey ? DIAGRAM_REGISTRY[effectiveDiagramKey] : null;
+  const ExtraDiagramComponent = lesson.extraDiagram ? DIAGRAM_REGISTRY[lesson.extraDiagram] : null;
   const hasInlineSvg = !!lesson.inlineSvg;
   const color = COURSE_COLORS[courseId] ?? '#5b5347';
   const course = COURSES[courseId];
@@ -169,7 +174,7 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
             </div>
             {isVisualSlide ? (
               <div>
-                <h2 className="font-studio-display text-[28px] sm:text-[36px] lg:text-[48px] font-normal leading-[1.05] tracking-[-0.6px] lg:tracking-[-1px] mb-6 lg:mb-8" style={{ color: '#fbf6ec' }}>
+                <h2 className="font-studio-display text-[28px] sm:text-[36px] lg:text-[48px] font-normal leading-[1.05] tracking-[-0.6px] lg:tracking-[-1px] mb-6 lg:mb-8 whitespace-pre-line" style={{ color: '#fbf6ec' }}>
                   {lesson.title}
                 </h2>
                 {lesson.imageUrl ? (
@@ -312,7 +317,7 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
         </div>
 
         <div className="flex items-start justify-between gap-3 mb-8 lg:mb-10">
-          <h1 className="font-studio-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.05] font-normal tracking-[-0.6px] lg:tracking-[-1px] text-studio-ink">
+          <h1 className="font-studio-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.05] font-normal tracking-[-0.6px] lg:tracking-[-1px] text-studio-ink whitespace-pre-line">
             {lesson.title}
           </h1>
           <div className="flex flex-col sm:flex-row gap-2 flex-shrink-0 mt-1 lg:mt-2">
@@ -353,6 +358,18 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
             <DiagramComponent />
           </div>
         )}
+        {ExtraDiagramComponent && (
+          <div className="mb-8 lg:mb-10 xl:-mr-20 2xl:-mr-40 relative bg-studio-paper border border-studio-rule rounded-[4px] p-3 sm:p-4 lg:p-6 overflow-x-auto">
+            <button
+              onClick={() => setZoomedDiagram(<ExtraDiagramComponent />)}
+              aria-label="Expand diagram"
+              className="absolute top-2 right-2 z-10 font-studio-mono text-[10.5px] tracking-[0.6px] px-2.5 py-1.5 rounded-full bg-studio-bg/90 backdrop-blur-sm border border-studio-rule text-studio-ink-dim hover:text-studio-ink hover:border-studio-ink-dim transition-colors"
+            >
+              ⤢ Expand
+            </button>
+            <ExtraDiagramComponent />
+          </div>
+        )}
         {hasInlineSvg && (
           <div className="mb-8 lg:mb-10 xl:-mr-20 2xl:-mr-40 relative bg-studio-paper border border-studio-rule rounded-[4px] p-3 sm:p-4 lg:p-6">
             <button
@@ -390,7 +407,7 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
         </div>
 
         {lesson.roleContent && lesson.roleContent.length > 0 && (
-          <RoleTabPanel roleContent={lesson.roleContent} />
+          <RoleTabPanel roleContent={lesson.roleContent} selected={selectedRole} setSelected={setSelectedRole} />
         )}
 
         <div className="flex items-center justify-between gap-3 pt-10 mt-10 border-t border-studio-rule">

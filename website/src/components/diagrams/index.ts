@@ -1,5 +1,5 @@
 import React from 'react';
-import { AIBasicsOverviewDiagram, NestedAIDiagram, BaseRateDiagram, LearningParadigmsDiagram, NeuralNetDiagram } from './m1-diagrams';
+import { AIBasicsOverviewDiagram, NestedAIDiagram, BaseRateDiagram, LearningParadigmsDiagram, LearningParadigmsGenericDiagram, NeuralNetDiagram, CapabilityTiersDiagram, AIPipelineDiagram } from './m1-diagrams';
 import { TokenizationDiagram, EmbeddingsDiagram, RAGFlowDiagram, FTvsPromptingDiagram, HallucinationMitigationDiagram } from './m2-diagrams';
 import { AIStackDiagram, MCPDiagram, AgentTopologyDiagram, AutonomyLevelsDiagram, A2AvsMCPDiagram, SkillsPluginsDiagram, SubagentsDiagram, HooksDiagram, PhishingTriageDiagram } from './m3-diagrams';
 import { SOCArchDiagram, PromptInjectionDiagram, AgentAttackSurfaceDiagram, EDRBehavioralDiagram, EmailIdentityDiagram, AIAttackAccelerationDiagram, SOAREvolutionDiagram, SIEMXDRDiagram } from './m4-diagrams';
@@ -13,7 +13,10 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   NestedAI: NestedAIDiagram,
   BaseRate: BaseRateDiagram,
   LearningParadigms: LearningParadigmsDiagram,
+  LearningParadigmsGeneric: LearningParadigmsGenericDiagram,
   NeuralNet: NeuralNetDiagram,
+  CapabilityTiers: CapabilityTiersDiagram,
+  AIPipeline: AIPipelineDiagram,
   Tokenization: TokenizationDiagram,
   Embeddings: EmbeddingsDiagram,
   RAGFlow: RAGFlowDiagram,

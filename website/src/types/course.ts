@@ -17,6 +17,8 @@ export interface QuizQuestion {
   correct: number;
 }
 
+export type RoleKey = 'general' | 'security-se' | 'developer' | 'consultant';
+
 export interface Lesson {
   id: string;
   title: string;
@@ -27,6 +29,8 @@ export interface Lesson {
   sectionLabel?: string;
   slides: Slide[];
   roleContent?: RoleContent[];
+  roleDiagrams?: Partial<Record<RoleKey, string>>;
+  extraDiagram?: string;
 }
 
 export interface CourseModule {
