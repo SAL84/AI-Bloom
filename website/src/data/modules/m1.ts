@@ -168,7 +168,7 @@ const m1: CourseModule = {
     // ── L3 ─────────────────────────────────────────────────────────────────────
     {
       id: 'm1l1',
-      title: 'AI vs ML vs DL vs GenAI',
+      title: 'AI Hierarchy',
       inlineSvg: diagram1,
       inlineSvgId: 'd1',
       slides: [
