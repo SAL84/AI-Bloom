@@ -1,6 +1,5 @@
 import type { CourseModule } from '../../types/course';
 import { diagram2 } from '../svgs/diagram2';
-import { diagram2b } from '../svgs/diagram2b';
 import { diagram2c } from '../svgs/diagram2c';
 
 const m2: CourseModule = {
@@ -22,7 +21,16 @@ const m2: CourseModule = {
             'LLM mechanics: pre-training, inference, tokens, context windows, embeddings, and sampling — covered in lesson 2',
             'Guardrails and hallucinations: the safety layer around every deployment — covered in lesson 3',
             'LLM techniques: prompt engineering, RAG, fine-tuning, and RLHF — covered in lesson 4',
-            'Infrastructure and governance: how models reach users safely at enterprise scale — covered in lessons 5–6',
+            'Infrastructure: how models reach users safely at enterprise scale — covered in lesson 5',
+          ],
+        },
+        {
+          heading: 'Pre-Training vs Inference: Two Distinct Phases',
+          body: 'Every LLM goes through two distinct phases. Pre-training is a one-time process where the model reads enormous amounts of text and learns to predict what comes next — that is how it acquires general knowledge. It costs tens of millions of dollars for frontier models and is entirely vendor territory. Inference is what happens every time someone sends a message — the model uses what it learned to generate a response. This is where enterprise cost, latency, and deployment decisions live.',
+          bullets: [
+            'Pre-training: next-token prediction at scale — the model learns patterns from billions of examples; never a customer responsibility',
+            'Inference: running the model on new inputs — happens on every query; the cost compounds at enterprise scale',
+            'Fine-tuning sits between the two: you continue training on your data, but starting from a pre-trained checkpoint — much cheaper than training from scratch, but still requires ML infrastructure',
           ],
         },
       ],
@@ -75,15 +83,6 @@ const m2: CourseModule = {
       diagram: 'Tokenization',
       extraDiagram: 'Embeddings',
       slides: [
-        {
-          heading: 'Pre-Training vs Inference: Two Distinct Phases',
-          body: 'Every LLM goes through two distinct phases. Pre-training is a one-time process where the model reads enormous amounts of text and learns to predict what comes next — that is how it acquires general knowledge. It costs tens of millions of dollars for frontier models and is entirely vendor territory. Inference is what happens every time someone sends a message — the model uses what it learned to generate a response. This is where enterprise cost, latency, and deployment decisions live.',
-          bullets: [
-            'Pre-training: next-token prediction at scale — the model learns patterns from billions of examples; never a customer responsibility',
-            'Inference: running the model on new inputs — happens on every query; the cost compounds at enterprise scale',
-            'Fine-tuning sits between the two: you continue training on your data, but starting from a pre-trained checkpoint — much cheaper than training from scratch, but still requires ML infrastructure',
-          ],
-        },
         {
           heading: 'Tokens: The Unit of Everything',
           body: 'LLMs read and write in tokens — typically 3–4 characters of English text. Pricing, throughput, and context limits are all measured in tokens, not words. Rule of thumb: 750 words ≈ 1,000 tokens. Tokens extend beyond text: images are tokenized as patches (a 1024×1024 image can cost hundreds to thousands of tokens), video as frames over time (30 seconds of video can exceed tens of thousands of tokens), and audio as discrete sound units. Every modality maps to tokens — every token has a cost.',
@@ -182,7 +181,7 @@ const m2: CourseModule = {
     },
     {
       id: 'm2l5',
-      title: 'Guardrails & Hallucination Mitigation',
+      title: 'LLM Guardrails',
       diagram: 'HallucinationMitigation',
       slides: [
         { heading: 'Guardrails — The Safety Layer Around Every Deployment', body: 'A raw LLM will produce almost anything — confident, fluent, and potentially wrong or harmful. Guardrails are the runtime constraints added on top to make models safe and scoped for a specific use case. Every enterprise AI product has them. Understanding this layer matters because customers will ask both "how is this safe?" and "why won\'t it do what I asked?"', bullets: [
@@ -312,7 +311,7 @@ const m2: CourseModule = {
     },
     {
       id: 'm2l6',
-      title: 'LLM Infrastructure — How Models Get to Users',
+      title: 'LLM Infrastructure',
       sectionLabel: 'Advanced',
       inlineSvg: diagram2c,
       inlineSvgId: 'd2c',
@@ -397,108 +396,6 @@ const m2: CourseModule = {
             'Hardware costs are often invisible in cloud-hosted products until scale hits — model cost per query at production volume',
             'Optimisation is a capability clients should require from vendors — quantisation and distillation are table stakes, not extras',
             'Serving SLAs belong in the procurement contract — not as a post-deployment conversation',
-          ],
-        },
-      ],
-    },
-    {
-      id: 'm2l0b',
-      title: 'LLM Governance & Safety — When Each Layer Applies',
-      inlineSvg: diagram2b,
-      inlineSvgId: 'd2b',
-      slides: [
-        {
-          heading: 'Safety Is Not One Thing',
-          body: 'When customers ask "is this AI safe?" they are actually asking several different questions at once. Safety in LLMs is built across three separate phases — before the model ships, while it runs in production, and continuously as it evolves. Each phase catches different failure modes. No single layer is enough on its own.',
-          bullets: [
-            'Training time: safety and alignment baked into the model before it is ever deployed',
-            'Deployment time: guardrails applied at runtime to constrain what the live model can do',
-            'Production time: observability to know what the model is actually doing at scale',
-            'Continuous evals: validation that runs across all phases to catch regressions and drift',
-          ],
-        },
-        {
-          heading: 'Training Time — Safety Built In Before the Model Ships',
-          body: 'The first line of defence happens during training itself. Before a model is released, the team running training shapes its behaviour and probes it for failure modes. By the time it reaches customers, these properties are baked into the weights.',
-          bullets: [
-            'Instruction tuning (SFT): trains the model to follow instructions and be helpful',
-            'Constitutional AI (CAI): a principles-based self-critique loop where the model evaluates its own outputs against a set of rules during training',
-            'RLHF: shapes behaviour through human preference feedback — humans rank model outputs and the model learns to prefer higher-rated responses',
-            'Red-teaming: adversarial probing by humans trying to find failure modes before release',
-          ],
-        },
-        {
-          heading: 'Deployment Time — Guardrails on the Live Model',
-          body: 'Once a model is deployed, a second layer of controls wraps around it at runtime. These are not inside the model — they sit between the user and the model, filtering what goes in and what comes out on every single request.',
-          bullets: [
-            'Output filters: block unsafe, harmful, or off-policy content at runtime — the last check before a response reaches the user',
-            'Scope and policy limits: define what the model is and is not allowed to do in this specific deployment',
-            'Prompt injection defence: prevents adversarial inputs from hijacking model behaviour — critical in security contexts where user-supplied data enters prompts',
-            'PII and data privacy: detects and redacts sensitive personal data in both inputs and outputs',
-          ],
-        },
-        {
-          heading: 'Production Time — Knowing What the Model Is Doing at Scale',
-          body: 'Deploying safely is not a one-time event. Once a model is live and handling real traffic, you need visibility into every interaction. Production observability catches the problems that training and deployment guardrails missed.',
-          bullets: [
-            'Prompt and response tracing: a full audit trail of every interaction — essential for incident investigation and compliance',
-            'Cost and token tracking: per-request spend, token usage, and budget alerts',
-            'Output drift detection: flags quality degradation and behaviour shifts over time',
-            'Latency and performance: response time, throughput, and SLA monitoring',
-          ],
-        },
-        {
-          heading: 'Continuous Evals — Validation That Never Stops',
-          body: 'Evals are automated tests that run across all three phases. They are the feedback loop that tells you whether the model is still doing what you expect — and whether any change made things better or worse. In a production system, evals run on every update.',
-          bullets: [
-            'Benchmarks: standardised capability tests used to compare models and track capability over versions',
-            'Human preference eval: humans rank and compare model outputs — the most direct signal for actual quality',
-            'LLM-as-judge: a model scores and ranks other models\' outputs — scales human evaluation to volumes no human team can cover',
-            'Eval harnesses: automated regression suites that run on every model update',
-          ],
-        },
-      ],
-      roleContent: [
-        {
-          role: 'general',
-          label: 'General User',
-          body: 'AI safety is not a single switch — it\'s built in layers across training, deployment, and ongoing monitoring. Understanding this helps you evaluate vendor claims about "safe AI" with appropriate scepticism.',
-          bullets: [
-            '"Safe AI" is a process across three phases, not a property of the model itself',
-            'Guardrails explain why AI tools sometimes refuse requests — that\'s scope limits working as intended',
-            'Ask vendors: what audit trail do you have for what the AI said and why?',
-          ],
-        },
-        {
-          role: 'security-se',
-          label: 'Security SE',
-          body: 'When a customer asks "is this AI safe?" they\'re asking three different questions at once. This three-phase framework turns a vague reassurance into a structured, auditable answer — and surfaces gaps that become security objections if you don\'t name them first.',
-          bullets: [
-            'Walk through training time → deployment time → production time with the customer — each phase catches different failure modes; asking which phase their concern lives in immediately focuses the conversation',
-            'Prompt injection defence is a deployment-time control most prospects haven\'t considered — raise it proactively: "What happens when a threat actor embeds adversarial instructions in email content that your agent is analysing?"',
-            'Production observability (tracing, drift detection) is your compliance and audit answer — "can you prove what the AI did and why?" requires prompt/response tracing from day one, not as a retrofit',
-            'Ask: does the vendor run red-teaming before major model updates? No answer means no adversarial testing — that\'s a risk posture question, not a product question',
-            'Continuous evals distinguish platforms from demos — a vendor without eval harnesses cannot prove their model quality holds across updates',
-          ],
-        },
-        {
-          role: 'developer',
-          label: 'Developer',
-          body: 'Safety is an engineering property built across all three phases — not a post-hoc filter. Missing any phase creates a category of failure the others cannot catch.',
-          bullets: [
-            'Implement prompt and response tracing from day one — retrospective audit trail is impossible without it',
-            'Add LLM-as-judge eval to your CI pipeline — human eval alone doesn\'t scale to deployment volume',
-            'Prompt injection defence belongs in deployment-time infrastructure, not in every application separately',
-          ],
-        },
-        {
-          role: 'consultant',
-          label: 'AI Consultant',
-          body: 'Most client "AI safety" audits only inspect the training phase. Production observability and continuous evals are where deployed systems actually fail — and where governance needs to live.',
-          bullets: [
-            'Build a safety audit that spans all three phases — training-time assurances alone are insufficient for compliance',
-            'Require production-time tracing and drift detection as contractual deliverables, not optional features',
-            'Continuous evals are the mechanism that makes AI governance auditable over time — build them in from the start',
           ],
         },
       ],
