@@ -97,7 +97,6 @@ const m1: CourseModule = {
     {
       id: 'm1-tiers',
       title: 'AI Capability Tiers',
-      diagram: 'CapabilityTiers',
       inlineSvg: diagram0b,
       inlineSvgId: 'd0b',
       slides: [
