@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { COURSES } from '../../data/modules';
 import type { CourseId, View } from '../../types/course';
 import { SearchModal } from './SearchModal';
+import { EDITORS_DESK, MARGINALIA } from '../../data/reading-room';
 
 interface Props {
   setView: (view: View) => void;
@@ -484,32 +485,44 @@ function StudioSideStuff({ setView }: { setView: (v: View) => void }) {
 
 // ── Reading Room ──────────────────────────────────────────────────────────────
 
-function StudioReadingRoom() {
+function StudioReadingRoom({ setView }: { setView: (v: View) => void }) {
+  const [editor] = useState(() => EDITORS_DESK[Math.floor(Math.random() * EDITORS_DESK.length)]);
+  const [tidbit] = useState(() => MARGINALIA[Math.floor(Math.random() * MARGINALIA.length)]);
   return (
     <section className="px-4 sm:px-6 lg:px-12 pb-10 lg:pb-14 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-4 lg:gap-6">
-      <article className="bg-studio-ink rounded-[4px] px-6 sm:px-8 lg:px-10 pt-7 lg:pt-10 pb-7 lg:pb-9">
+      <button
+        type="button"
+        onClick={() => setView({ type: 'roadmap' })}
+        aria-label={`Open the roadmap: ${editor.preTitle} ${editor.kickerTitle}`}
+        className="text-left bg-studio-ink rounded-[4px] px-6 sm:px-8 lg:px-10 pt-7 lg:pt-10 pb-7 lg:pb-9 cursor-pointer hover:opacity-95 transition-opacity duration-150 block w-full"
+      >
         <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.4px] uppercase mb-3.5">From the editor's desk</div>
         <h3 className="font-studio-display text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.05] m-0 font-normal tracking-[-0.4px] lg:tracking-[-0.6px] text-studio-bg">
-          A short, honest argument for{' '}
-          <span className="font-studio-serif italic text-studio-kids">doing the homework.</span>
+          {editor.preTitle}{' '}
+          <span className="font-studio-serif italic text-studio-kids">{editor.kickerTitle}</span>
         </h3>
         <p className="font-studio-serif italic text-[16px] lg:text-[18px] leading-[1.5] mt-5 lg:mt-[22px] max-w-[520px]" style={{ color: 'rgba(245,239,228,0.78)' }}>
-          Curiosity about how things work has always been the unfair advantage. AI is just the latest frontier — and the syllabus is shorter than you'd think.
+          {editor.text}
         </p>
         <div className="flex flex-wrap gap-3 lg:gap-6 mt-5 lg:mt-7 font-studio-mono text-[10.5px] lg:text-[11px] tracking-[1px]" style={{ color: 'rgba(245,239,228,0.55)' }}>
-          <span>4 MIN READ</span><span>·</span><span>Issue 06</span><span>·</span><span>By the librarians</span>
+          {editor.meta.map((m, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <span>·</span>}
+              <span>{m}</span>
+            </React.Fragment>
+          ))}
         </div>
-      </article>
+      </button>
       <article className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 lg:p-7">
         <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.4px] uppercase mb-3.5">Marginalia · Did you know</div>
         <p className="font-studio-serif text-[18px] lg:text-[22px] leading-[1.4] text-studio-ink m-0 italic font-normal">
-          The word "robot" comes from the Czech <span className="not-italic">robota</span> — forced labor.
+          {tidbit.factoid}
         </p>
         <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.55] mt-4">
-          Coined in a 1920 play. We've worried about this for over a century. So far the robots are still doing the paperwork.
+          {tidbit.expansion}
         </p>
         <div className="flex flex-wrap gap-2 mt-[18px]">
-          {['Origins', '1920', 'Karel Čapek'].map(t => (
+          {tidbit.tags.map(t => (
             <span key={t} className="font-studio-mono text-[10.5px] text-studio-ink-dim tracking-[0.6px] px-2.5 py-1 border border-studio-rule rounded-full bg-studio-bg">{t}</span>
           ))}
         </div>
@@ -547,7 +560,7 @@ export const CourseLibraryView = ({ setView, completedLessons }: Props) => {
       <StudioHero setView={setView} />
       <StudioCatalog setView={setView} completedLessons={completedLessons} />
       <StudioSideStuff setView={setView} />
-      <StudioReadingRoom />
+      <StudioReadingRoom setView={setView} />
       <StudioFooter />
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} setView={setView} />
     </div>

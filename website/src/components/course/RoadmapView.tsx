@@ -88,6 +88,7 @@ const PLANNED_FEATURES = [
   { title: 'Mobile layout', note: 'Responsive breakpoints for phones and tablets.' },
   { title: 'Course completion certificates', note: 'Printable PDF on completion — no account required.' },
   { title: 'Full-text search', note: 'Search across lessons, glossary, and course descriptions.' },
+  { title: 'Dark mode', note: 'Light, dark, and midnight theme toggle in the nav. Toggle component built; needs dark variants for the Studio palette.' },
 ];
 
 export const RoadmapView = ({ setView }: Props) => (
