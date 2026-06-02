@@ -87,7 +87,76 @@ const m4: CourseModule = {
         { heading: 'Model Armor and Runtime Governance', body: 'Model Armor intercepts traffic between users or agents and the model — screening inputs for prompt injection attempts, DLP violations, and harmful content before they reach the model context. For agentic deployments, Model Armor can be applied at the Agent Gateway level, covering all agent traffic across the fleet without modifying individual agent code. Discovery question: "Do you have any controls today on what enters your AI prompts, or is all input reaching the model unfiltered?" Most customers in early deployments have no runtime controls. This question opens the governance conversation and positions Agent Gateway as the enforcement plane.' },
         { heading: 'Positioning Data Governance in the Deal', body: 'Data governance should not be the last slide in a security meeting — it should be the second conversation, right after establishing business pain. Raising it proactively ("before we go further, let me show you how data governance works in this architecture") signals that you are a trusted advisor, not a vendor. It also pre-empts the CISO objection rather than responding to it defensively. Customers who understand the controls before they ask about them are significantly more likely to move to a pilot.' }
       ]
-    }
+    },
+    {
+      id: 'm4l8',
+      title: 'Three AI Misconceptions That Cost Security Deals',
+      diagram: 'BaseRate',
+      slides: [
+        {
+          heading: 'Misconception 1 — "More Accuracy = Better Detection"',
+          body: 'A vendor says their detector is 99% accurate. Sounds great — until you ask about the base rate. Imagine 100,000 emails per day with 1% carrying real threats (1,000 emails). A 99% accurate detector flags 990 true threats — but also 990 false positives from the clean mail. Precision is just 50%: for every real threat, one false alarm. Alert fatigue is not a workflow problem — it is a base rate problem. When a prospect complains about noise, this is almost always the underlying cause.',
+        },
+        {
+          heading: 'Why Accuracy Headlines Mislead Security Buyers',
+          body: 'The base rate fallacy hits security harder than almost any other domain because real threats are rare by definition. A detector that is 99.9% accurate can still flood a SOC with false positives if the attack base rate is 0.01%. The fix is not higher accuracy — it is asking about precision at the actual deployment base rate. Discovery question: "What is your current false positive rate, and what is the actual prevalence of the threats you detect?" Vendors who benchmark against artificially high attack densities are hiding this math.',
+        },
+        {
+          heading: 'Misconception 2 — "The AI Understands Our Environment"',
+          body: 'A trained model is a frozen set of weights reflecting the world at training time — not your environment, not your threat landscape, not your specific telemetry. It does not "understand" your org. It cannot tell when it is wrong. Confident-sounding wrong answers — including hallucinated IOC context, fabricated CVE summaries, or confidently incorrect incident narratives — are not malfunctions. They are the predictable behaviour of a probabilistic system. Discovery question: "How does the model handle gaps in its training — does it signal uncertainty, or does it generate a confident answer regardless?"',
+        },
+        {
+          heading: 'Misconception 3 — "AI Learns From Our Environment Over Time"',
+          body: 'Most deployed security AI models are frozen snapshots retrained on a vendor schedule. The threat actor TTPs that emerged last month are not in the model you licensed today. Feedback loops — when they exist — typically feed the next training run, not the live model. In security, stale training data is not just inaccurate — it is a detection gap. Discovery question: "What is your retraining cadence, and how quickly does newly observed attacker behaviour make it into the detection model?"',
+        },
+        {
+          heading: 'Turning These Into Discovery and Displacement Questions',
+          body: 'Three questions that open deals. (1) "What is the current false positive rate on your highest-volume alert type, and what is the actual attack prevalence in that category?" — surfaces alert fatigue root cause and opens the precision conversation. (2) "When your AI produces a confident incident narrative that turns out to be wrong, what does that look like operationally?" — surfaces blind trust in AI outputs and positions explainability. (3) "When a new TTP or campaign emerges, how long before it appears in your detection model?" — surfaces retraining lag and positions freshness as a security risk, not just a product limitation. Vendors who cannot answer (3) with a specific SLA are selling last year\'s threat landscape.',
+        },
+      ],
+      roleContent: [
+        {
+          role: 'general',
+          label: 'General User',
+          body: 'AI security tools disappoint in predictable ways — and nearly all of it traces to these three misunderstandings. Knowing them helps you ask the right questions before committing to a platform.',
+          bullets: [
+            'Noisy alerts usually mean the base rate is low, not that the AI is broken — ask about precision, not accuracy',
+            'Confident AI answers in a security context still need analyst verification — probabilistic output is not a verdict',
+            'Ask any security AI vendor: when was it last retrained and on what recent attack data?',
+          ],
+        },
+        {
+          role: 'security-se',
+          label: 'Security SE',
+          body: 'These three misconceptions are your most powerful displacement tools. Lead with them when a prospect is evaluating competitors on accuracy headlines, complaining about alert fatigue, or asking whether the AI "knows" their environment.',
+          bullets: [
+            'The base rate calculation done live with a prospect\'s own alert volume is the most effective single discovery move in AI security',
+            '"What is your false positive rate?" is a better opener than any product demo — it frames the problem before you position the solution',
+            'Retraining cadence is an underused displacement question — most legacy platforms retrain on 6-month or annual cycles',
+          ],
+        },
+        {
+          role: 'developer',
+          label: 'Developer',
+          body: 'Building security AI means inheriting all three problems by default. Precision-at-base-rate, uncertainty signalling, and retraining cadence are engineering requirements, not post-deployment tuning.',
+          bullets: [
+            'Evaluate detection models on precision at your actual deployment base rate — accuracy on balanced test sets is useless for rare-event detection',
+            'Build uncertainty output into the model pipeline — confident outputs on out-of-distribution inputs are a security risk, not just an ML problem',
+            'Define retraining SLAs before launch: how quickly must new adversary TTPs appear in the model? That number drives your data pipeline requirements',
+          ],
+        },
+        {
+          role: 'consultant',
+          label: 'AI Consultant',
+          body: 'Security AI evaluations that rely on vendor-supplied accuracy benchmarks are almost always measuring the wrong thing. Reframe every client evaluation around base rate, uncertainty handling, and retraining freshness.',
+          bullets: [
+            'Require vendors to run the base rate calculation against the client\'s own log volumes — not benchmark datasets',
+            'Add retraining cadence and TTP coverage lag to every vendor scorecard as a first-order criterion',
+            'Alert fatigue RCA before selecting a platform: if the root cause is base rate, a more accurate model will not fix it',
+          ],
+        },
+      ],
+    },
   ],
   quiz: [
     { q: 'What is the core positioning shift when selling Google SecOps vs. a legacy SIEM?', options: ['Lower price per GB of data ingested', 'Google Cloud as the agent control plane — the customer is buying an operating model change, not a product swap', 'More connectors out of the box', 'A faster query engine'], correct: 1 },

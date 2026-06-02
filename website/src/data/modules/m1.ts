@@ -1,6 +1,7 @@
 import type { CourseModule } from '../../types/course';
 import { diagram0a } from '../svgs/diagram0a';
 import { diagram0b } from '../svgs/diagram0b';
+import { diagram0c } from '../svgs/diagram0c';
 import { diagram1 } from '../svgs/diagram1';
 
 const m1: CourseModule = {
@@ -259,112 +260,44 @@ const m1: CourseModule = {
     // ── L4 ─────────────────────────────────────────────────────────────────────
     {
       id: 'm1-pipeline',
-      title: 'The AI Pipeline',
-      diagram: 'AIPipeline',
-      slides: [
-        {
-          heading: 'What Actually Happens Under the Hood',
-          body: 'Every AI product runs the same pipeline — knowing it exposes where things break and what vendor claims to probe:',
-          bullets: [
-            'Collect & clean → raw data is gathered and prepared',
-            'Train → a model learns patterns from the data',
-            'Deploy → the model serves real-time inference',
-            'Feedback loop → outcomes flow back into future training',
-            'No feedback loop = a frozen snapshot that never improves from production signals',
-          ],
-        },
-        {
-          heading: 'Where Pipelines Break',
-          body: 'Each stage has a distinct failure mode — and most "the AI got worse" complaints trace back to one of them.',
-          bullets: [
-            'Bad data in → biased or unreliable model out, no matter how sophisticated the training',
-            'Training drift — the world changes but the model is frozen at the moment it was trained',
-            'Deployment without monitoring — silent degradation goes unnoticed until customers complain',
-            'No feedback loop — the model never improves from how it is actually being used',
-          ],
-        },
-      ],
-      roleContent: [
-        {
-          role: 'general',
-          label: 'General User',
-          body: 'The pipeline explains why AI tools sometimes feel stale or wrong — the model may be a frozen snapshot from months ago that no longer reflects today\'s reality.',
-          bullets: [
-            'Ask before relying: is this tool connected to a live feedback loop, or a frozen snapshot?',
-            '"The AI is wrong about recent events" usually means stale training data, not broken software',
-            'New AI features often arrive when a vendor retrains — that is the pipeline at work',
-          ],
-        },
-        {
-          role: 'security-se',
-          label: 'Security SE',
-          body: 'The pipeline framework lets you turn a "show me the magic" pitch into a structured discovery conversation about where the customer\'s value actually lives.',
-          bullets: [
-            'Discover: does their pipeline have a feedback loop, or does the model degrade silently in production?',
-            'Probe data freshness — for threat detection, model age is a hidden compliance and efficacy risk',
-            'Ask who owns retraining cadence on the customer side — gaps here predict procurement friction',
-          ],
-        },
-        {
-          role: 'developer',
-          label: 'Developer',
-          body: 'The pipeline model is your architecture checklist — every missing stage is a production debt waiting to surface.',
-          bullets: [
-            'Ship a feedback loop from day one — frozen models degrade as the real-world distribution shifts',
-            'Data cleaning is where most pipeline projects fail — budget time accordingly',
-            'Instrument deployment for monitoring before scaling traffic — silent degradation is the default',
-          ],
-        },
-        {
-          role: 'consultant',
-          label: 'AI Consultant',
-          body: 'Clients often buy the model and forget the pipeline. Re-anchor every engagement around the pipeline so retraining and drift are funded, not assumed.',
-          bullets: [
-            'Audit the client\'s pipeline: is there a feedback loop? Who owns the retraining cadence?',
-            'No feedback loop = a compliance and drift risk that grows invisibly over time',
-            'Build retraining and monitoring costs into the TCO model from the start — not as a Year-2 surprise',
-          ],
-        },
-      ],
-    },
-
-    // ── L5 ─────────────────────────────────────────────────────────────────────
-    {
-      id: 'm1-journey',
-      title: 'Inside the Model: How AI Actually Learns',
+      title: 'The AI Pipeline and Learning Paradigms',
       diagram: 'LearningParadigmsGeneric',
+      extraDiagram: 'AIPipeline',
       roleDiagrams: { 'security-se': 'LearningParadigms' },
-      extraDiagram: 'NeuralNet',
       slides: [
         {
-          heading: 'Supervised Learning',
-          body: 'A model trains on labelled examples — "this is a cat, this is not a cat." Accuracy depends on label quality. Most classical ML in production today works this way: spam filters, image classifiers, credit scoring, loan approval.',
-        },
-        {
-          heading: 'Unsupervised Learning',
-          body: 'A model finds patterns without labels — clustering similar items, detecting anomalies, surfacing structure in messy data. Strength: catches things you did not know to look for. Weakness: high false-positive rates without careful tuning.',
-        },
-        {
-          heading: 'Reinforcement Learning',
-          body: 'A model learns from reward signals as it tries actions. Used heavily in agentic systems and in the post-training of LLMs (RLHF — Reinforcement Learning from Human Feedback). This is how chatbots learn to be helpful and how game-playing AIs surpass humans.',
-        },
-        {
-          heading: 'Neural Networks: The Engine',
-          body: 'Layers of mathematical neurons, each applying a weighted transform plus a non-linear function. Stack enough layers and the network can approximate extremely complex functions — that is the whole trick.',
-        },
-        {
-          heading: 'Training: How Weights Become Knowledge',
-          body: 'Forward pass: data flows through, prediction comes out. Loss function measures error. Backpropagation pushes corrections backward through the network, adjusting weights. Repeat millions of times. The model is just the final set of weights.',
-        },
-        {
-          heading: 'From Numbers to Language: NLP and the Transformer Leap',
-          body: 'Deep Learning splits into three application domains — Natural Language Processing (text), Computer Vision (images and video), and Robotics/Automation (perception and control). All three were supercharged in 2017 by a single architecture: the Transformer.',
+          heading: 'The AI Pipeline: From Data to Decision',
+          body: 'Every AI product runs the same pipeline — understanding it exposes where things break and what vendor claims to probe:',
           bullets: [
-            'NLP: text understanding and generation — chatbots, translation, summarisation, and the origin of LLMs',
-            'Computer Vision: image recognition and object detection — used in screenshot analysis, visual classification, and CCTV analytics',
+            'Collect & clean → raw data is gathered and prepared; quality here determines quality everywhere downstream',
+            'Train → a model learns patterns from the data and its weights are frozen',
+            'Deploy → the frozen model serves real-time inference; the world keeps changing, the model does not',
+            'Feedback loop → outcomes flow back into future retraining — without this, the model is a depreciating asset',
+            'Key question for any vendor: is there a feedback loop, or is this a snapshot that never improves from production signals?',
+          ],
+        },
+        {
+          heading: 'Three Ways AI Learns',
+          body: 'The learning paradigm determines what data the model needs, what it is good at, and where it fails. All three are in production today.',
+          bullets: [
+            'Supervised: trains on labelled examples ("this is X, this is not X"). Most classical ML works this way — spam filters, classifiers, scoring models. Accuracy depends entirely on label quality.',
+            'Unsupervised: finds patterns without labels — clustering, anomaly detection, structure discovery. Strength: catches unknown unknowns. Weakness: high false-positive rates without careful tuning.',
+            'Reinforcement: learns from reward signals as it tries actions. Used in agentic systems and LLM post-training (RLHF). This is how chatbots learn to be helpful and game AIs surpass humans.',
+          ],
+        },
+        {
+          heading: 'Neural Networks: Layers of Weighted Transforms',
+          body: 'A neural network is layers of mathematical neurons. Each applies a weighted transform plus a non-linear function. Stack enough layers and the network can approximate extremely complex functions — that is the whole trick. Training works through three steps: forward pass (data flows through, prediction comes out), loss function (measures how wrong the prediction was), and backpropagation (pushes corrections backwards through the network, adjusting weights). Repeat millions of times. The trained model is just the final set of weights — a frozen snapshot of patterns learned from data. It does not "know" things in a human sense; it computes statistically likely outputs.',
+        },
+        {
+          heading: 'The Transformer: Why Everything Changed in 2017',
+          body: 'Deep learning applies across three domains — Natural Language Processing (text), Computer Vision (images and video), and Robotics/Automation (perception and control). All three were transformed by a single 2017 architecture: the Transformer.',
+          bullets: [
+            'NLP: text understanding and generation — chatbots, translation, summarisation, and the foundation of LLMs',
+            'Computer Vision: image recognition and object detection — visual classification, screenshot analysis, CCTV analytics',
             'Robotics and Automation: perception, navigation, and control systems',
-            'Transformer architecture: the attention mechanism that unified all three domains — it is why everything changed',
-            'A trained model is fundamentally a frozen set of numbers (weights) plus an architecture. It does not "know" things in a human sense — it computes statistically likely outputs from inputs',
+            'The Transformer\'s attention mechanism allowed models to learn context across long sequences — enabling the leap from narrow task models to broad-domain LLMs',
+            'Everything since 2022 (ChatGPT, Claude, Gemini) is built on this architectural foundation',
           ],
         },
       ],
@@ -372,45 +305,46 @@ const m1: CourseModule = {
         {
           role: 'general',
           label: 'General User',
-          body: 'Different AI tools learn in fundamentally different ways — which explains why some are great at flagging the unexpected and others excel at following precise rules. And none of them "know" things the way you do.',
+          body: 'The pipeline explains why AI tools feel stale or wrong — the model is a frozen snapshot from training time. The paradigm explains why some tools are great at spotting anomalies while others need explicit examples. Understanding both tells you when to trust an AI output and when to verify it.',
           bullets: [
-            'Supervised tools need good labelled examples to work well — garbage labels mean wrong answers',
-            'Unsupervised tools surface anomalies but require human judgement to interpret',
-            'Confident-sounding wrong answers happen because the model is pattern-matching, not reasoning',
-            'The model can\'t update its "knowledge" from your conversation — it\'s a frozen snapshot',
+            'Ask before relying on any AI tool: is it connected to a live feedback loop, or a frozen snapshot?',
+            '"The AI is wrong about recent events" means stale training data — the pipeline has no feedback loop',
+            'Supervised tools need good labelled data; unsupervised ones surface patterns but need human interpretation',
+            'Confident wrong answers are expected from a probabilistic system — the model cannot tell when it is wrong',
           ],
         },
         {
           role: 'security-se',
           label: 'Security SE',
-          body: 'Matching the right learning paradigm to the customer\'s use case — and using the "frozen weights" framing — separates informed SEs from order-takers.',
+          body: 'The pipeline and paradigm together are your structured discovery framework. Pipeline questions expose operational debt; paradigm questions expose whether the product actually fits the use case.',
           bullets: [
-            'Ask: does your use case have reliable labelled data? If not, supervised learning will underperform',
-            'UEBA high false-positive complaints often signal unsupervised models without adequate tuning',
-            'When customers say "the AI knows our environment," ask: was it trained on your specific data?',
-            'Use "statistically likely output" to reframe hallucination concerns without dismissing them',
+            'Pipeline: "Does your feedback loop feed the live model or the next training run?" — the answer exposes model freshness risk',
+            'Pipeline: "Who owns the retraining cadence on your side?" — gaps here predict procurement and support friction',
+            'Paradigm: "Does your use case have reliable labelled data?" — if not, supervised learning will underperform and UEBA noise complaints follow',
+            'Paradigm: "Was the model trained on your specific environment?" — reframes "the AI knows our environment" claims accurately',
           ],
         },
         {
           role: 'developer',
           label: 'Developer',
-          body: 'Paradigm choice locks in data requirements, evaluation strategy, and operational complexity — pick before you architect. And remember a model is just weights, not a knowledge base.',
+          body: 'Pipeline design and paradigm choice are both architectural decisions made before you write a line of model code — and both are expensive to change later.',
           bullets: [
-            'Supervised: invest in label quality pipelines first; accuracy is only as good as the labels',
-            'Unsupervised: define anomaly thresholds before shipping — without tuning, alert volume is unusable',
-            'Loss function choice directly determines what the model optimises for — make it intentional',
-            'Evaluate on held-out data that matches production distribution, not benchmark splits',
+            'Ship a feedback loop from day one — frozen models degrade as the production distribution shifts',
+            'Supervised: label quality pipelines are the real investment; accuracy is only as good as the labels',
+            'Unsupervised: define anomaly thresholds before shipping — without tuning, alert volume is production-blocking',
+            'Loss function choice determines what the model optimises for — make it intentional, not default',
+            'Evaluate on held-out data that matches production distribution — benchmark splits tell you nothing about real-world behaviour',
           ],
         },
         {
           role: 'consultant',
           label: 'AI Consultant',
-          body: 'Clients often choose a paradigm based on what they\'ve heard about rather than what their data and use case actually supports. And frozen weights mean yesterday\'s model is handling today\'s problems.',
+          body: 'Clients buy the model and forget the pipeline. They choose a paradigm based on what they\'ve heard about rather than what their data supports. Both mistakes compound into drift and disappointment — audit both before recommending anything.',
           bullets: [
-            'Audit the client\'s labelled dataset quality before recommending supervised approaches',
-            'Unsupervised deployments need a tuning and review cycle — build that into the roadmap',
-            'Model drift is inevitable — build a monitoring and retraining cadence into every deployment plan',
-            'RL is rarely the right first choice; advise clients to prove value with supervised or unsupervised first',
+            'Audit pipeline completeness: is there a feedback loop? Who owns monitoring and retraining cadence?',
+            'Audit label quality before recommending supervised approaches — garbage labels produce garbage models no matter the architecture',
+            'Unsupervised deployments need a tuning and review cadence built into the roadmap — it is not a set-and-forget paradigm',
+            'Build retraining and monitoring costs into every TCO model from day one — they are never optional, just underfunded',
           ],
         },
       ],
@@ -420,68 +354,69 @@ const m1: CourseModule = {
     {
       id: 'm1l4',
       title: 'Demystifying AI: Three Misconceptions That Mislead Buyers',
-      diagram: 'BaseRate',
+      inlineSvg: diagram0c,
+      inlineSvgId: 'd0c',
       slides: [
         {
           heading: 'Misconception 1 — "More Accuracy = Better AI"',
-          body: 'A vendor says their detector is 99.9% accurate. It sounds great. But accuracy on its own is meaningless without knowing how rare the thing being detected actually is. Imagine 100,000 emails per day, with 1 in 10,000 being a real threat. A 99.9% accurate detector flags 0.1% of the 99,990 legitimate emails — that is ~100 false positives for every 10 real threats caught. Same accuracy headline, 10x worse experience as the threat gets rarer.',
+          body: 'A vendor says their classifier is 99% accurate. It sounds great. But accuracy alone is meaningless without knowing how rare the target actually is. Imagine 100,000 items classified, with 1% actually positive. A 99% accurate model flags 990 true positives — but also 990 false positives from the clean items. Precision is just 50%: for every real hit, there is one false alarm. Same accuracy headline, very different real-world experience depending on the base rate.',
         },
         {
-          heading: 'Why This Trap Catches Everyone',
-          body: 'This is the base rate fallacy: humans instinctively focus on the accuracy number and ignore how rare the target actually is. It explains alert fatigue and disappointment with AI tools in many fields beyond security — medical screening, fraud detection, content moderation. The fix is not "higher accuracy" — it is asking about positive predictive value at the real-world base rate. That is the number that predicts the actual experience.',
+          heading: 'Why the Base Rate Trap Catches Everyone',
+          body: 'This is the base rate fallacy: people instinctively focus on the accuracy number and ignore how rare the target actually is. It explains disappointment with AI tools across medical screening, fraud detection, content moderation, recruitment — anywhere the thing being detected is rare. The fix is not "higher accuracy" — it is asking about positive predictive value at the real-world prevalence. That is the number that predicts the actual experience.',
         },
         {
           heading: 'Misconception 2 — "The AI Knows Things Like a Human Does"',
-          body: 'A trained model is a frozen set of weights, not a knowledge base. It produces statistically likely outputs based on the patterns it saw during training. It does not "understand" your business, has no memory of previous conversations unless explicitly given, and cannot tell when it is wrong. Confident-sounding wrong answers are not a malfunction — they are the predictable behaviour of a probabilistic system being asked to act certain.',
+          body: 'A trained model is a frozen set of weights, not a knowledge base. It produces statistically likely outputs based on patterns seen during training. It does not "understand" your business, has no memory of previous conversations unless explicitly given, and cannot tell when it is wrong. Confident-sounding wrong answers are not a malfunction — they are the predictable behaviour of a probabilistic system being asked to act certain.',
         },
         {
           heading: 'Misconception 3 — "AI Keeps Learning From How I Use It"',
-          body: 'Most deployed AI models do not learn from your usage. They are frozen snapshots, retrained on a schedule the vendor controls. Feedback loops — when they exist — flow into the next training run, not into the live model you are using right now. If a vendor cannot explain their retraining cadence, the model you bought today may not match the threat or product landscape six months from now.',
+          body: 'Most deployed AI models do not learn from your usage. They are frozen snapshots, retrained on a schedule the vendor controls. Feedback loops — when they exist — flow into the next training run, not into the live model you are using right now. The model you are using today reflects what the world looked like at training time. Ask vendors: retraining cadence and what signal drives it.',
         },
         {
-          heading: 'The Question to Ask Vendors',
-          body: 'Instead of "how accurate is your AI?", ask three sharper questions: (1) What is the base rate of the thing you detect, in our environment? (2) What does the model fall back to when it does not know? (3) How often is it retrained, and on what signal? Vendors who answer cleanly are typically the ones worth a deeper conversation.',
+          heading: 'Three Questions to Ask Any AI Vendor',
+          body: 'Instead of "how accurate is your AI?", ask three sharper questions: (1) What is the base rate of the thing you detect, in a real deployment environment? (2) What does the model output when it does not know the answer — does it say so, or does it guess confidently? (3) How often is it retrained, and on what signal? Vendors who answer all three cleanly are typically the ones worth a deeper conversation. Vendors who deflect any of the three usually have something to hide in that answer.',
         },
       ],
       roleContent: [
         {
           role: 'general',
           label: 'General User',
-          body: 'AI disappointment usually traces back to one of these three misunderstandings — none of which are about the AI being broken. Knowing the difference changes how you should evaluate and interpret AI outputs.',
+          body: 'AI disappointment almost always traces back to one of these three misunderstandings — and none of them mean the AI is broken. Understanding the difference changes how you evaluate, interpret, and trust AI outputs.',
           bullets: [
-            'A flood of false positives means the target is rare, not that the AI is malfunctioning',
-            'Use AI outputs as a starting point to verify, not a final answer to trust blindly',
-            'Ask how often the AI you use is updated — old training data shows up as bad recent answers',
+            'A flood of false results usually means the target is rare, not that the AI is malfunctioning',
+            'AI outputs are probabilistic starting points — verify before acting on anything consequential',
+            'Ask how often the AI tool you use is updated — stale training data shows up as confidently wrong recent answers',
           ],
         },
         {
           role: 'security-se',
           label: 'Security SE',
-          body: 'These three misconceptions are your most powerful objection-handling tools when competitors lead with accuracy numbers, and your most powerful discovery openers when a prospect complains about alert fatigue or stale detections.',
+          body: 'These three misconceptions are your most powerful objection-handling tools when competitors lead with accuracy numbers, and your best discovery openers when a customer complains about noisy results or stale detections.',
           bullets: [
-            'Ask: "What was the threat base rate in the benchmark environment?" — vendors almost never disclose this',
-            'Ask prospects: "What percentage of opened alerts are real today?" — the answer opens the prioritisation conversation',
-            'A vendor claiming "AI-powered" without a clear answer on retraining cadence is selling a snapshot — surface this early',
+            'Ask: "What was the base rate in the benchmark environment?" — vendors almost never disclose this proactively',
+            'Ask customers: "What percentage of opened results are actually real today?" — the answer opens the prioritisation conversation',
+            'A vendor claiming "AI-powered" without a clear answer on retraining cadence is selling a frozen snapshot — surface this early',
           ],
         },
         {
           role: 'developer',
           label: 'Developer',
-          body: 'Precision, recall, and a real retraining strategy are your real evaluation metrics — accuracy alone is meaningless, and a model without a feedback loop is a depreciating asset.',
+          body: 'Precision, recall, and a real retraining strategy are your actual evaluation metrics — accuracy alone is meaningless for rare-event detection, and a model without a feedback loop is a depreciating asset.',
           bullets: [
-            'Use precision-recall curves, not accuracy, for any low-base-rate detection problem',
-            'Calculate expected daily false positive volume at production base rates before shipping',
-            'Design retraining and drift monitoring into the system from day one — not Year 2',
+            'Use precision-recall curves, not accuracy, for any low-base-rate classification problem',
+            'Calculate expected false positive volume at production base rates before shipping — never assume accuracy headlines translate',
+            'Design retraining cadence and drift monitoring into the system from day one, not as a Year 2 afterthought',
           ],
         },
         {
           role: 'consultant',
           label: 'AI Consultant',
-          body: 'AI procurement decisions based on accuracy headlines or "AI learns over time" promises are almost always wrong. Reframe every client evaluation around base rate, frozen-weights, and retraining cadence.',
+          body: 'Procurement decisions built on accuracy headlines or "learns over time" promises are almost always wrong. Reframe every client AI evaluation around these three axes: base rate, frozen weights, and retraining cadence.',
           bullets: [
-            'Run the base rate calculation live with the client\'s own volume — it lands harder than slides',
-            'Require vendors to disclose benchmark base rates and retraining cadence as procurement conditions',
-            'Frame model freshness as a risk, not a feature — clients underweight this until it bites',
+            'Run the base rate calculation live with the client\'s own volume numbers — it lands harder than any slide',
+            'Require vendors to disclose benchmark base rates and retraining schedules as procurement conditions, not post-sales surprises',
+            'Frame model freshness as a risk — clients consistently underweight this until stale predictions cost them something real',
           ],
         },
       ],
