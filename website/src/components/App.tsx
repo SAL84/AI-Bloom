@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { COURSES, COURSE } from '../data/modules';
 import { HomeView } from './course/HomeView';
 import { ModuleView } from './course/ModuleView';
@@ -38,7 +38,6 @@ export default function App() {
   const [quizScores, setQuizScores] = useState<Record<string, number>>({});
   const [savedLessons, setSavedLessons] = useState<Record<string, boolean>>({});
   const [loaded, setLoaded] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   const setView = useCallback<React.Dispatch<React.SetStateAction<View>>>((next) => {
     setViewRaw((prev) => {
@@ -76,7 +75,7 @@ export default function App() {
   }, [completedLessons, quizScores, savedLessons, loaded]);
 
   useEffect(() => {
-    scrollRef.current?.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0 });
   }, [view]);
 
   const markComplete = (lessonId: string) => {
@@ -108,7 +107,7 @@ export default function App() {
     : null;
 
   return (
-    <div ref={scrollRef} style={{ height: '100vh', overflowY: 'auto' }}>
+    <>
       {view.type === 'library' && (
         <CourseLibraryView setView={setView} completedLessons={completedLessons} />
       )}
@@ -132,6 +131,6 @@ export default function App() {
       {view.type === 'industry' && <IndustryView setView={setView} />}
       {view.type === 'kids-games' && <KidsGamesView setView={setView} />}
       {view.type === 'kids-careers' && <KidsCareersView setView={setView} />}
-    </div>
+    </>
   );
 }
