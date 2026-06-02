@@ -19,18 +19,10 @@ const m2: CourseModule = {
           heading: 'One Diagram, the Whole Picture',
           body: 'LLMs come with a lot of vocabulary — and most of it gets used loosely. This diagram organises every key concept into a single map so you always know what something is, where it fits, and how it relates to everything else. The lessons in this module each go deep on one area. This lesson is the overview that ties them together.',
           bullets: [
-            'Model quality: how a model is built and how it runs — covered in this lesson',
-            'LLM mechanics: tokens, context windows, embeddings, and sampling — covered in lessons 2–3',
-            'Guardrails and hallucinations: the safety layer around every deployment — covered in lesson 4',
-            'LLM techniques: prompt engineering, RAG, fine-tuning, and RLHF — covered in lessons 5–6',
-          ],
-        },
-        {
-          heading: 'Model Quality — How a Model Gets Built and Run',
-          body: 'Every LLM goes through two distinct phases. Pre-training is a one-time process where the model reads enormous amounts of text and learns to predict what comes next — that is how it acquires general knowledge. Inference is what happens every time someone sends a message — the model uses what it learned to generate a response.',
-          bullets: [
-            'Pre-training: next-token prediction at scale — the model learns patterns from billions of examples; costs tens of millions of dollars for frontier models',
-            'Inference: running the model on new inputs — happens on every query; cheaper per call but the cost compounds at enterprise scale',
+            'LLM mechanics: pre-training, inference, tokens, context windows, embeddings, and sampling — covered in lesson 2',
+            'Guardrails and hallucinations: the safety layer around every deployment — covered in lesson 3',
+            'LLM techniques: prompt engineering, RAG, fine-tuning, and RLHF — covered in lesson 4',
+            'Infrastructure and governance: how models reach users safely at enterprise scale — covered in lessons 5–6',
           ],
         },
       ],
@@ -38,21 +30,21 @@ const m2: CourseModule = {
         {
           role: 'general',
           label: 'General User',
-          body: 'This overview maps all the confusing LLM jargon into a single picture. This lesson focuses on how models are built and run — the mechanics, guardrails, and techniques each have dedicated lessons.',
+          body: 'This overview maps all the confusing LLM jargon into a single picture. Each lesson goes deep on one layer — start here to orient, then pick the lesson that matches your question.',
           bullets: [
-            'Pre-training creates the general capability; inference is what happens every time you send a message',
-            'Model cost has two components: training (one-time, vendor-borne) and inference (per query, compounding at scale)',
-            'The diagram shows all four layers — dig into each in lessons 2 through 6',
+            'Every AI tool you use runs on some version of this four-layer architecture',
+            'Understanding which layer a problem lives on explains why some fixes are quick and some are expensive',
+            'The diagram is your reference — return to it after each lesson to see how the pieces connect',
           ],
         },
         {
           role: 'security-se',
           label: 'Security SE',
-          body: 'This diagram is your product positioning map. Every vendor feature lands on one of the four layers — use it to orient, then go deep with lessons 2–6 for the layer that matters in each customer conversation.',
+          body: 'This diagram is your product positioning map and your first whiteboard move. Every vendor claim lands on one of these four layers — use it to orient the conversation before going deep.',
           bullets: [
-            'Ask: which layer does this feature live on — model quality, mechanics, guardrails, or techniques?',
-            'Use pre-training vs inference framing to explain why on-premise AI costs what it does',
-            'The four-layer map is a discovery tool: customers often describe symptoms from one layer while the root cause is another',
+            'Ask: which layer does this feature live on — mechanics, guardrails, or techniques? Customers who can\'t answer are operating on buzzwords',
+            'Most "AI isn\'t working" complaints land on techniques (RAG quality) or guardrails — the four-layer map diagnoses which fast',
+            'Use pre-training vs. inference framing to explain why on-premise AI costs what it does — training is sunk cost, inference is variable and yours to optimise',
           ],
         },
         {
@@ -72,131 +64,118 @@ const m2: CourseModule = {
           bullets: [
             'Map client concerns to layers: stale answers → techniques (RAG); unsafe outputs → guardrails; slow responses → infrastructure',
             'Most "AI isn\'t working" complaints land on techniques or guardrails — the four-layer map diagnoses which fast',
-            'Pre-training vs inference cost split matters for TCO: pre-training is sunk cost; inference is variable and scales with usage',
+            'Pre-training vs. inference cost split matters for TCO: pre-training is sunk cost; inference is variable and scales with usage',
           ],
         },
       ],
     },
     {
       id: 'm2l1',
-      title: 'Tokens, Context Windows & Output Sampling',
+      title: 'LLM Mechanisms',
       diagram: 'Tokenization',
+      extraDiagram: 'Embeddings',
       slides: [
-        { heading: 'Tokens, Not Words', body: 'LLMs read and write in tokens — typically 3-4 characters of English text. Cybersecurity might be 2-3 tokens. Pricing, throughput, and limits are all measured in tokens, not words. Rule of thumb: 750 words ≈ 1,000 tokens.' },
-        { heading: 'Tokens for Non-Text Inputs', body: 'Tokens extend beyond text. Images are tokenized as patches — a single 1024×1024 image typically costs hundreds to a few thousand tokens depending on the model. Video is tokenized as frames over time, which is why 30 seconds of video can consume tens of thousands of tokens. Audio is tokenized as discrete sound units. The unit varies, but the principle holds: every modality maps to tokens, every token has a cost.' },
-        { heading: 'Context Windows', body: 'The maximum tokens a model can see at once — input plus output. Modern frontier models offer 200K to 2M+ tokens. But longer context does not equal better answers; models often degrade in the middle of very long contexts (lost in the middle).' },
-        { heading: 'Security Incidents in Token Terms', body: 'Concrete examples for SE conversations: a typical phishing email plus headers ≈ 500-1,500 tokens. A SIEM alert with enrichment ≈ 200-800 tokens. A 10-page incident report ≈ 4,000-6,000 tokens. A 500-page IR engagement document ≈ 200,000+ tokens. A 30-second deepfake video sample for analysis can exceed 50,000 tokens. This is why batch alert analysis, video forensics, and long-document review have very different cost profiles.' },
-        { heading: 'Temperature and Sampling — Controlling Output Randomness', body: 'Temperature determines how deterministic the model\'s output is. Low temperature: the model reliably picks the most probable next token — useful for structured extraction, classification, and code. High temperature: the model samples more broadly, producing varied responses. Most production security deployments use low to moderate temperature. Understanding this explains why analysts sometimes get different answers to the same query.', bullets: [
-          'Temperature 0: maximally deterministic — the model always picks the most probable token',
-          'Temperature > 0: introduces variance — the same prompt can yield different outputs on every call',
-          'Nucleus sampling (top-p): limits token candidates to a cumulative probability threshold — an alternative to temperature',
-          'Production default: low temperature for factual and structured tasks; moderate temperature only for drafting and summarisation',
-        ] },
-        { heading: 'Sales Implication', body: 'When a prospect asks can it analyze our 500-page incident report — yes, technically. But the right answer is often retrieving the relevant slice of the document at query time rather than stuffing everything in the prompt. We will cover that retrieval pattern (RAG) in Lesson 5. This is a credibility marker — push back gently on context-window-as-magic-bullet thinking.' }
+        {
+          heading: 'Pre-Training vs Inference: Two Distinct Phases',
+          body: 'Every LLM goes through two distinct phases. Pre-training is a one-time process where the model reads enormous amounts of text and learns to predict what comes next — that is how it acquires general knowledge. It costs tens of millions of dollars for frontier models and is entirely vendor territory. Inference is what happens every time someone sends a message — the model uses what it learned to generate a response. This is where enterprise cost, latency, and deployment decisions live.',
+          bullets: [
+            'Pre-training: next-token prediction at scale — the model learns patterns from billions of examples; never a customer responsibility',
+            'Inference: running the model on new inputs — happens on every query; the cost compounds at enterprise scale',
+            'Fine-tuning sits between the two: you continue training on your data, but starting from a pre-trained checkpoint — much cheaper than training from scratch, but still requires ML infrastructure',
+          ],
+        },
+        {
+          heading: 'Tokens: The Unit of Everything',
+          body: 'LLMs read and write in tokens — typically 3–4 characters of English text. Pricing, throughput, and context limits are all measured in tokens, not words. Rule of thumb: 750 words ≈ 1,000 tokens. Tokens extend beyond text: images are tokenized as patches (a 1024×1024 image can cost hundreds to thousands of tokens), video as frames over time (30 seconds of video can exceed tens of thousands of tokens), and audio as discrete sound units. Every modality maps to tokens — every token has a cost.',
+          bullets: [
+            'A typical phishing email plus headers ≈ 500–1,500 tokens; a SIEM alert with enrichment ≈ 200–800 tokens',
+            'A 10-page incident report ≈ 4,000–6,000 tokens; a 500-page IR engagement document ≈ 200,000+ tokens',
+            'A 30-second deepfake video sample for analysis can exceed 50,000 tokens — very different cost profile than text analysis',
+          ],
+        },
+        {
+          heading: 'Context Windows and the Lost-in-the-Middle Problem',
+          body: 'The context window is the maximum tokens a model can see at once — input plus output combined. Modern frontier models offer 200K to 2M+ tokens. But longer context does not equal better answers: models often degrade in the middle of very long contexts (the "lost in the middle" problem). Understanding this prevents the common mistake of treating context window size as a substitute for retrieval architecture.',
+          bullets: [
+            'Large context window does not mean large context quality — attention degrades non-linearly at long ranges',
+            'The right answer for large documents is usually retrieving the relevant slice at query time (RAG), not stuffing everything in the prompt',
+            'Test long-context performance at the p90 document size of your customer\'s use case — degradation is non-linear and will surprise you',
+          ],
+        },
+        {
+          heading: 'Temperature: Controlling Output Randomness',
+          body: 'Temperature determines how deterministic the model\'s output is. Low temperature: the model reliably picks the most probable next token — useful for structured extraction, classification, and code. High temperature: the model samples more broadly, producing varied responses. Most production security deployments use low to moderate temperature. This explains why analysts sometimes get different answers to the same query — and why a vendor\'s temperature configuration is a meaningful security question.',
+          bullets: [
+            'Temperature 0: maximally deterministic — the model always picks the most probable token; right for security classification tasks',
+            'Temperature > 0: introduces variance — the same prompt can yield different outputs on every call; risky for high-stakes decisions',
+            'Nucleus sampling (top-p): an alternative to temperature that limits token candidates to a cumulative probability threshold',
+          ],
+        },
+        {
+          heading: 'Embeddings: Meaning as Math',
+          body: 'Embeddings are not just a RAG tool — they are the mechanic at the heart of how LLMs process language. Before generating any token, the model converts every input into a high-dimensional numerical vector. Semantically similar items end up near each other in this vector space. This is what lets models "understand" meaning rather than match strings, find related concepts across paraphrases, and power the retrieval layer in RAG systems. The same mechanism that powers LLM understanding also powers semantic search and threat similarity detection.',
+          bullets: [
+            'Every token is converted to an embedding before the model processes it — embeddings are the model\'s internal language',
+            'Semantic similarity = geometric closeness: related concepts cluster together in vector space even with no shared words',
+            'A "phishing email" and "credential harvesting message" cluster together — enabling detection of novel variants with no keyword overlap',
+          ],
+        },
+        {
+          heading: 'Vector Search: Semantic Detection at Scale',
+          body: 'Once content is embedded as vectors, you can ask: what items are closest to this query in vector space? That is vector search — also called semantic search. Unlike keyword search (which matches literal words), it matches meaning. A query for credential theft will surface documents about phishing, password dumps, and token harvesting even when those exact words do not appear. This capability is foundational for finding similar past incidents, detecting novel attack variants, and surfacing related threat intelligence.',
+          bullets: [
+            'Semantic search powers "find similar incidents" — the most requested SOC analyst workflow after natural-language querying',
+            'Vector search detects novel phishing variants with no shared keywords — this is a quantifiable detection coverage gain',
+            'Ask vendors: what embedding model does the product use, and how often is it retrained on new threat data? Stale embeddings mean degraded detection',
+          ],
+        },
       ],
       roleContent: [
         {
           role: 'general',
           label: 'General User',
-          body: 'Every time you use an AI tool, it\'s working within a token budget and a temperature setting. Long conversations and big documents compete for context space; temperature controls how consistent or varied the responses are.',
+          body: 'LLM mechanics explain why AI tools behave the way they do — why long conversations cost more, why answers can vary between runs, and why AI can find similar things without matching exact words.',
           bullets: [
             'If an AI seems to "forget" earlier parts of a long conversation, the context window has run out',
             'Shorter, focused prompts usually get better answers than long, sprawling ones',
-            'AI tools charge per token — very long documents cost significantly more to analyse',
             'Temperature settings explain why the same question can get different answers each run',
+            'Semantic search works on meaning — you don\'t need perfect keywords to find relevant documents',
           ],
         },
         {
           role: 'security-se',
           label: 'Security SE',
-          body: 'Token literacy and temperature awareness are both credibility differentiators. Token estimates make cost conversations concrete; temperature framing explains inconsistent analyst outputs.',
+          body: 'LLM mechanics are your credibility layer in technical conversations — and each one maps directly to a security-relevant discovery question or sales objection. Know all six to hold your own with any architect.',
           bullets: [
-            'Use the phishing email / SIEM alert token estimates to make cost conversations concrete and defensible',
-            'Counter "just use a bigger context window" with the lost-in-the-middle degradation point',
-            'Ask: what temperature does the product use for alert triage? High temperature is a risk for deterministic security tasks',
-            'Ask: what\'s the average token size of the documents your analysts need to work with?',
+            'Pre-training vs. inference framing deflects the "build a custom model" ask: "that\'s training from scratch — your use case needs inference customisation via RAG, not a new model"',
+            'Token estimates make cost conversations concrete: phishing email (1K tokens), SIEM alert (500 tokens), 500-page IR doc (200K tokens) — customers haven\'t done this math; you have',
+            'Counter "just use a bigger context window" with lost-in-the-middle degradation — forces the RAG conversation where your architecture wins',
+            'Ask: what temperature does the product use for alert triage? High temperature is a risk for security classification — low temperature is the correct default and a quality differentiator',
+            'Embeddings are the mechanism behind "find similar alerts/attacks" — quantify this as detection coverage, not just a UX feature',
+            'Ask: how often does the product retrain or update its embedding model on new threat data? Stale embeddings mean stale detection of novel attack variants',
           ],
         },
         {
           role: 'developer',
           label: 'Developer',
-          body: 'Token accounting and temperature configuration are both first-class engineering concerns — model them explicitly, not as afterthoughts.',
+          body: 'Token accounting, context quality, and embedding freshness are all first-class engineering concerns — model them explicitly from the start.',
           bullets: [
             'Instrument token usage per request from day one — production cost surprises come from here',
             'Test long-context performance at the p90 document size, not average — degradation is non-linear',
-            'CVE IDs, hashes, and unusual strings often tokenise inefficiently — benchmark your domain vocabulary',
             'Expose temperature as a per-use-case config — classification needs near-0, summarisation may warrant moderate values',
-          ],
-        },
-        {
-          role: 'consultant',
-          label: 'AI Consultant',
-          body: 'Token costs compound silently at enterprise scale, and temperature misconfiguration drives inconsistency complaints. Address both in the architecture review before deployment.',
-          bullets: [
-            'Estimate token volume from client document sizes before committing to a pricing model',
-            'Large context window ≠ large context quality — include this in the evaluation criteria',
-            'Set client expectations: analysing entire knowledge bases via context window is the expensive, lower-quality path',
-            'Set temperature standards in AI governance policy — consistent, auditable outputs require low temperature for high-stakes decisions',
-          ],
-        },
-      ],
-    },
-    {
-      id: 'm2l2',
-      title: 'Embeddings, Semantic Search & LLM Mechanics',
-      diagram: 'Embeddings',
-      slides: [
-        { heading: 'Embeddings as a Core LLM Mechanic', body: 'Embeddings are not just a RAG tool — they are the mechanic at the heart of how LLMs process language. Before generating any token, the model converts every input into a high-dimensional numerical vector. This is what lets models "understand" meaning rather than match strings, find related concepts across paraphrases, and power the retrieval layer in RAG systems.', bullets: [
-          'Every token is converted to an embedding before the model processes it — embeddings are the model\'s internal language',
-          'Semantic similarity = geometric closeness: related concepts cluster together in vector space',
-          'The same mechanism that powers LLM understanding also powers RAG retrieval and semantic search',
-          'Models can embed text, images, code, and audio using the same principle',
-        ] },
-        { heading: 'What Embeddings Are', body: 'Numerical representations of text (or images, code, audio) where semantically similar items end up near each other in high-dimensional space. Each item becomes a vector — a long list of numbers — and similarity is measured by distance between vectors. Phishing email and credential harvesting message cluster together even with no shared words, because their meanings are close.' },
-        { heading: 'Vector Search: Finding Similar Things', body: 'Once content is embedded as vectors, you can ask: what items are closest to this query in vector space? That is vector search — also called semantic search. Unlike keyword search (which matches literal words), it matches meaning. A query for credential theft will surface documents about phishing, password dumps, and token harvesting even when those exact words do not appear.' },
-        { heading: 'Why SEs Care', body: 'Embeddings power semantic search, similarity matching, and a lot of modern security ML. When customers describe wanting to find similar incidents, detect novel variants of known attacks, or surface related threat intel — embeddings are usually the underlying technique. They are also the foundation for the retrieval pattern covered in the RAG lesson, so this concept compounds.' }
-      ],
-      roleContent: [
-        {
-          role: 'general',
-          label: 'General User',
-          body: 'Embeddings are what let AI understand meaning rather than just match words — and they\'re the same mechanic powering the LLM\'s understanding, semantic search, and document retrieval all at once.',
-          bullets: [
-            'Semantic search works on meaning — you don\'t need perfect keywords to find relevant documents',
-            'Embeddings are why AI can group similar incidents together even with different terminology',
-            'This is also why AI-powered search sometimes returns things that seem unrelated but are conceptually close',
-          ],
-        },
-        {
-          role: 'security-se',
-          label: 'Security SE',
-          body: 'Embeddings are the technology behind "find similar incidents," "detect novel attack variants," and the LLM\'s own language understanding — use this framing to connect mechanics to customer use cases.',
-          bullets: [
-            'When a customer asks about finding similar alerts, ask: does the product use embedding-based similarity or keyword matching?',
-            'Embeddings enable detection of phishing variants with no shared keywords — quantify this as coverage, not just quality',
-            'Ask: what embedding model does the product use, and how often is it retrained on new threat data?',
-            'Embeddings power both LLM reasoning and RAG retrieval — understanding this lets you explain why retrieval quality depends on embedding quality',
-          ],
-        },
-        {
-          role: 'developer',
-          label: 'Developer',
-          body: 'Embeddings are a first-class engineering concern at two levels: inside the LLM (where input quality matters) and in your retrieval pipeline (where index freshness and model choice determine RAG quality).',
-          bullets: [
             'Use domain-specific embedding models for security text — general-purpose models underperform on CVEs and IOC notation',
             'Index staleness degrades retrieval quality silently — build a refresh schedule into your pipeline',
-            'Test retrieval recall separately from generation quality — bad retrieval hides behind fluent-but-wrong responses',
-            'The embedding model used for indexing and the one used for query encoding must match — mismatches silently destroy recall',
           ],
         },
         {
           role: 'consultant',
           label: 'AI Consultant',
-          body: 'Embedding quality is invisible to clients until retrieval fails — make it a first-order evaluation criterion, not an assumption. It underlies both LLM quality and RAG retrieval.',
+          body: 'Token costs compound silently at enterprise scale, embedding quality is invisible until retrieval fails, and temperature misconfiguration drives inconsistency complaints. Address all three before deployment.',
           bullets: [
-            'Require vendors to disclose the embedding model and retraining cadence as a due-diligence question',
-            'Build a retrieval accuracy test using client-specific documents before signing off on a RAG deployment',
-            'Semantic similarity doesn\'t equal relevance — establish what "good retrieval" looks like for the client\'s use case',
+            'Estimate token volume from client document sizes before committing to a pricing model',
+            'Large context window ≠ large context quality — include lost-in-the-middle degradation in evaluation criteria',
+            'Set temperature standards in AI governance policy — consistent, auditable outputs require low temperature for high-stakes decisions',
+            'Require vendors to disclose embedding model and retraining cadence — build retrieval accuracy tests into pilot acceptance criteria',
           ],
         },
       ],
@@ -212,9 +191,9 @@ const m2: CourseModule = {
           'Hallucination controls: grounding outputs in retrieved evidence and forcing citations to reduce confident-but-wrong answers',
           'Scope limits: define what the model is allowed to do — a SOC copilot should answer security questions, not discuss competitors',
         ] },
-        { heading: "Not Lying", body: "Hallucination is the model producing fluent, confident output that isn't grounded in reality. The model isn't deceiving — it's sampling probable next-tokens, and probable doesn't mean true. This framing matters because customers often anthropomorphize the failure mode." },
-        { heading: 'Mitigation Stack', body: "Grounding (RAG with citations), constrained output formats, retrieval verification, model-as-judge approaches, human-in-the-loop checkpoints. No single technique eliminates hallucinations; defense is layered. The diagram above shows how the layers compose — each catches what the one below missed." },
-        { heading: 'Talk Track for Skeptics', body: "Suggested framing: \"You're right that LLMs hallucinate. That's why every response is grounded in retrieved evidence with citations, outputs are constrained to validated formats, and analyst confirmation stays in the loop for high-impact actions. The system isn't replacing human judgment — it's removing the work that doesn't need human judgment.\"" }
+        { heading: 'Not Lying', body: 'Hallucination is the model producing fluent, confident output that isn\'t grounded in reality. The model isn\'t deceiving — it\'s sampling probable next-tokens, and probable doesn\'t mean true. This framing matters because customers often anthropomorphize the failure mode.' },
+        { heading: 'Mitigation Stack', body: 'Grounding (RAG with citations), constrained output formats, retrieval verification, model-as-judge approaches, human-in-the-loop checkpoints. No single technique eliminates hallucinations; defence is layered. Each layer catches what the one below missed.' },
+        { heading: 'Talk Track for Skeptics', body: 'Suggested framing: "You\'re right that LLMs hallucinate. That\'s why every response is grounded in retrieved evidence with citations, outputs are constrained to validated formats, and analyst confirmation stays in the loop for high-impact actions. The system isn\'t replacing human judgment — it\'s removing the work that doesn\'t need human judgment."' },
       ],
       roleContent: [
         {
@@ -231,12 +210,13 @@ const m2: CourseModule = {
         {
           role: 'security-se',
           label: 'Security SE',
-          body: 'Guardrails and hallucination objections are two of the most common blockers in security AI conversations. This lesson gives you a structured answer for both — probe the specific guardrail gaps and reframe hallucination as an engineered, measurable risk.',
+          body: 'Hallucination and guardrail objections are two of the most common deal-blockers in security AI conversations. You need a structured answer for each — not a reassurance, but a technical reframe backed by architecture.',
           bullets: [
-            'Ask: what is explicitly in-scope vs out-of-scope for this deployment? Scope limits expose both safety and functionality gaps',
-            'Use the mitigation stack to respond: grounding → format constraints → model-as-judge → human-in-the-loop',
-            'Ask: what is the consequence of a hallucination in your workflow? That determines which mitigation layer matters most',
-            'Probabilistic framing ("not lying, sampling probable tokens") defuses anthropomorphization before it becomes FUD',
+            'Reframe hallucination as probabilistic risk, not binary failure: "What\'s the consequence of a wrong answer in this workflow?" — then map the mitigation layer that addresses that consequence',
+            'Ask: what is explicitly in-scope vs. out-of-scope for this deployment? Scope limits gaps expose both safety risks and missing functionality',
+            'Mitigation stack order matters in a conversation: grounding → format constraints → model-as-judge → human-in-the-loop; each layer quantifiably reduces risk',
+            'Ask: does the product ground every answer in retrieved evidence with citations? "No citations" means no retrieval grounding — that\'s the hallucination surface to challenge',
+            'Prompt injection is a deployment-time guardrail gap most prospects haven\'t considered — raise it as: "what happens if a malicious email body contains adversarial instructions?"',
           ],
         },
         {
@@ -265,18 +245,21 @@ const m2: CourseModule = {
     },
     {
       id: 'm2l3',
-      title: 'LLM Techniques — RAG and Retrieval',
+      title: 'LLM Techniques',
       diagram: 'RAGFlow',
+      extraDiagram: 'FTvsPrompting',
       slides: [
-        { heading: 'LLM Techniques — Four Ways to Extend a Model', body: 'Once a model exists, there are four main ways to change or extend its behaviour without rebuilding it. These are not mutually exclusive — enterprise products typically layer several. When customers ask "can we customise it for our environment?" they are usually describing one of these.', bullets: [
+        { heading: 'Four Ways to Extend a Model', body: 'Once a model exists, there are four main ways to change or extend its behaviour without rebuilding it. These are not mutually exclusive — enterprise products typically layer several. When customers ask "can we customise it for our environment?" they are describing one of these four, even if they don\'t know which one yet.', bullets: [
           'Prompt engineering: shapes the model\'s input at runtime — fastest and cheapest; no retraining required',
-          'RAG (this lesson): injects external knowledge at query time — the standard pattern for grounding answers in private or up-to-date data',
-          'Fine-tuning: retrains on domain examples — used when behaviour gaps can\'t be fixed through prompting (covered next lesson)',
-          'RLHF: aligns model outputs using human preference signals — applied during model development, not post-deployment',
+          'RAG (Retrieval-Augmented Generation): injects external knowledge at query time — the standard pattern for grounding answers in private or up-to-date data',
+          'Fine-tuning: retrains on domain examples — used when behaviour gaps can\'t be fixed through prompting alone',
+          'RLHF (Reinforcement Learning from Human Feedback): aligns model outputs using human preference signals — applied during model development by the vendor, not post-deployment by the customer',
         ] },
-        { heading: 'The Pattern', body: 'Step 1: Embed the user query. Step 2: Find the most relevant chunks from a private knowledge base via vector search. Step 3: Stuff those chunks into the LLM prompt as context. Step 4: Generate an answer grounded in retrieved data.' },
-        { heading: 'Why It Dominates Enterprise', body: 'Cheaper than fine-tuning. Updates instantly when source data changes. Provides citations. Keeps proprietary data out of the base model. For security: lets a SecOps copilot answer about your environment, your runbooks, your past incidents — without retraining anything.' },
-        { heading: 'Where RAG Fails', body: 'If retrieval is bad, generation is bad. Garbage in, garbage out applies. Chunk strategy, embedding model choice, and reranking matter enormously. A common pilot failure is shipping naive RAG and blaming the LLM when retrieval was the actual problem.' }
+        { heading: 'RAG: The Enterprise Standard', body: 'RAG is the dominant enterprise pattern: embed the user query, find the most relevant chunks from a private knowledge base via vector search, inject those chunks into the LLM prompt as context, generate an answer grounded in retrieved data. For security: lets a SecOps copilot answer about your environment, your runbooks, your past incidents — without retraining anything. Cheaper than fine-tuning. Updates instantly when source data changes. Provides citations. Keeps proprietary data out of the base model.' },
+        { heading: 'Where RAG Fails', body: 'If retrieval is bad, generation is bad. Chunk strategy, embedding model choice, and reranking matter enormously. A common pilot failure is shipping naive RAG and blaming the LLM when retrieval was the actual problem. Ask vendors: what retrieval and reranking strategy does the product use? "We use RAG" is not sufficient — it is the beginning of the conversation, not the answer.' },
+        { heading: 'Prompt Engineering: The Right Default', body: 'You change behavior by changing instructions. Cheap, instant, reversible. Modern frontier models follow nuanced prompts well. Should be the default for 80%+ of use cases. Most enterprise customisation requests — tone, format, scope, persona — are solvable through prompt engineering. Escalate to RAG when the gap is knowledge; escalate to fine-tuning when the gap is behaviour that prompting genuinely cannot close.' },
+        { heading: 'Fine-Tuning vs RAG: Making the Call', body: 'Fine-tuning changes behavior by further training on examples. Expensive, slower to update, requires ML infrastructure. The diagnostic question: is the gap knowledge (what the model knows) or behaviour (how it responds)? Knowledge gaps → RAG. Behaviour gaps → fine-tuning or prompting. Most "we need a fine-tuned model on our security data" requests are actually RAG requests in disguise. RLHF is a training-time technique vendors apply during model development — customers cannot do it post-deployment.' },
+        { heading: 'The Honest Take', body: 'Most "we need a fine-tuned model on our security data" requests are actually RAG requests in disguise. Fine-tuning is the right answer when you need behavioral consistency that prompting cannot reliably achieve — far rarer than prospects assume. A structured prompting sprint of four weeks often eliminates the need for fine-tuning entirely. When a prospect insists on fine-tuning, ask: have you already ruled out RAG plus prompt engineering for this specific gap?' },
       ],
       roleContent: [
         {
@@ -286,99 +269,42 @@ const m2: CourseModule = {
           bullets: [
             'If the AI gives a wrong answer about your internal docs, the retrieval step probably failed, not the AI itself',
             'Cited sources in AI answers are a RAG feature — no citations usually means no retrieval grounding',
-            'RAG answers can only be as good as the documents in the knowledge base — keep them current',
+            'Try prompting before assuming you need a custom model — the gap closes faster than expected',
           ],
         },
         {
           role: 'security-se',
           label: 'Security SE',
-          body: 'RAG is the dominant LLM technique for security copilots — and "naive RAG" is the leading cause of pilot failures that end up blamed on the model. Know the four techniques to know when RAG is the right answer vs fine-tuning or prompting.',
+          body: '"We need to customise the AI for our environment" is the most common ask in security AI deals — and knowing which technique answers it is your most valuable diagnostic skill. Get this wrong and you scope the wrong solution.',
           bullets: [
-            'When a customer says "we need to customise the AI for our environment," map that to RAG (knowledge) vs fine-tuning (behaviour) before scoping',
-            'Ask: what retrieval and reranking strategy does the product use? "We use RAG" is not enough',
-            'When a pilot underperforms, isolate retrieval quality before assuming the LLM is the problem',
-            'RAG keeps proprietary data out of model weights — use this to address data sovereignty objections',
+            'Map the ask before scoping: knowledge gap (SOC runbooks, past incidents, threat intel) → RAG; behaviour gap (consistent format, tone, domain terminology) → fine-tuning or prompting; alignment → RLHF is vendor-applied, not customer-configurable',
+            'Naive RAG is the #1 cause of pilot failures blamed on the model — ask: what chunk strategy and reranker does the product use? Vendors who can\'t answer are shipping naive RAG',
+            'RAG keeps proprietary data out of model weights — use this to address data sovereignty and compliance objections directly',
+            'Fine-tuning requires ML infrastructure and data pipelines customers typically don\'t have — scope this before promising it or let it reveal an unrealistic expectation',
+            '"We need RLHF for custom alignment" is a vendor-development request, not a deployment option — correct it early before it becomes a procurement blocker',
+            'Prompting sprint framing: "Let us run four weeks of structured prompt engineering against your use case before scoping fine-tuning — it closes most gaps at a fraction of the cost"',
           ],
         },
         {
           role: 'developer',
           label: 'Developer',
-          body: 'RAG is often the right answer over fine-tuning — faster to iterate, cheaper to update, and no training infrastructure. But RAG quality is an engineering problem at every step.',
+          body: 'RAG is often the right answer over fine-tuning — faster to iterate, cheaper to update, and no training infrastructure. But RAG quality is an engineering problem at every step of the pipeline.',
           bullets: [
             'Choose RAG over fine-tuning when the gap is knowledge (what it knows) not behaviour (how it responds)',
             'Chunk size and overlap are the most impactful variables — test multiple strategies before shipping',
             'Add a reranker between retrieval and generation; first-pass vector search ranking is rarely optimal',
-            'Instrument retrieval separately — log retrieved chunks and score them against expected answers',
-          ],
-        },
-        {
-          role: 'consultant',
-          label: 'AI Consultant',
-          body: 'RAG pilots fail at retrieval, not generation — but the blame usually falls on the model. Build retrieval evaluation into the pilot acceptance criteria before the engagement starts. Always confirm whether the client needs RAG (knowledge) or fine-tuning (behaviour) before scoping.',
-          bullets: [
-            'Diagnose the gap first: stale or missing knowledge → RAG; inconsistent tone or format → fine-tuning or prompting',
-            'Define retrieval success criteria (e.g. top-3 recall on a golden query set) before the pilot begins',
-            'Budget for knowledge base curation — the quality of source documents drives RAG quality',
-            'Naive RAG is a known failure pattern; ask vendors to describe their chunk and reranking strategy',
-          ],
-        },
-      ],
-    },
-    {
-      id: 'm2l4',
-      title: 'LLM Techniques — Prompting, Fine-Tuning & RLHF',
-      diagram: 'FTvsPrompting',
-      slides: [
-        { heading: 'LLM Techniques — The Three You Control Post-Deployment', body: 'RAG injects knowledge at query time (covered in the previous lesson). This lesson covers the three techniques that shape model behaviour: prompt engineering, fine-tuning, and RLHF. Together with RAG, these make up the full customisation toolkit every enterprise AI buyer asks about.', bullets: [
-          'Prompt engineering: the default starting point — fastest to iterate, no infrastructure required, reversible in real time',
-          'Fine-tuning: bakes examples into weights — useful when consistent output format or style can\'t be achieved through prompting alone',
-          'RLHF (Reinforcement Learning from Human Feedback): shapes model behaviour through human preference signals — the mechanism behind why frontier models are helpful, safe, and instruction-following',
-        ] },
-        { heading: 'Prompting', body: 'You change behavior by changing instructions. Cheap, instant, reversible. Modern frontier models follow nuanced prompts well. Should be the default for 80%+ of use cases.' },
-        { heading: 'Fine-Tuning', body: 'You change behavior by further training on examples. Expensive, slower, harder to update. Useful for specialized domains, fixed output formats, or when you need to bake style/tone into the weights themselves.' },
-        { heading: 'The Honest Take', body: 'Most we need a fine-tuned model on our security data requests are actually RAG requests in disguise. Fine-tuning is the right answer when you need behavioral consistency that prompting cannot reliably achieve — far rarer than prospects assume.' }
-      ],
-      roleContent: [
-        {
-          role: 'general',
-          label: 'General User',
-          body: 'Prompting, fine-tuning, and RLHF are the three ways an AI\'s behaviour gets shaped after training. Most of the time, a better prompt achieves what you need faster and at a fraction of the cost of retraining.',
-          bullets: [
-            'Try prompting before assuming you need a custom model — the gap closes faster than expected',
-            'Fine-tuning is expensive and slow to update; prompting changes are instant',
-            'RLHF is why frontier AI tools are helpful and avoid harmful outputs — it\'s baked in during model development',
-          ],
-        },
-        {
-          role: 'security-se',
-          label: 'Security SE',
-          body: '"We need to fine-tune it on our data" is almost always a RAG request in disguise. Knowing the three techniques — and their distinctions — lets you redirect early and save the customer from an expensive, slow path.',
-          bullets: [
-            'Ask: is the gap knowledge (what it knows) or behaviour (how it responds)? Knowledge gaps → RAG; behaviour gaps → fine-tuning or prompting',
-            'Fine-tuning requires ML infrastructure and data pipelines the customer probably doesn\'t have — scope this before promising it',
-            'RLHF is a training-time technique; customers can\'t do it post-deployment — flag this when they ask for "custom alignment"',
-            'Most enterprise security customisation needs are solved by RAG plus prompt engineering',
-          ],
-        },
-        {
-          role: 'developer',
-          label: 'Developer',
-          body: 'Fine-tuning introduces a training pipeline, versioning, and evaluation burden most teams underestimate. Default to prompting, escalate to fine-tuning only with a documented, reproducible gap, and treat RLHF as a vendor-supplied property.',
-          bullets: [
-            'Document the specific failure mode before committing to fine-tuning — vague "not quite right" is not a sufficient trigger',
             'Fine-tuning changes base behaviour and can degrade capabilities you weren\'t testing — run full evals, not just targeted tests',
-            'Few-shot prompting often closes the gap that looked like a fine-tuning problem',
-            'RLHF at the application level requires human preference labelling pipelines — budget for this before committing to it',
+            'RLHF at the application level requires human preference labelling pipelines — budget for this before committing',
           ],
         },
         {
           role: 'consultant',
           label: 'AI Consultant',
-          body: 'Fine-tuning is the most overrecommended approach in AI projects. The burden of proof should be on the client to demonstrate that prompting genuinely cannot achieve their goal — and RLHF is almost never a post-deployment option.',
+          body: 'RAG pilots fail at retrieval, not generation — but the blame usually falls on the model. Fine-tuning is the most overrecommended approach in AI projects. Diagnose which technique is actually needed before scoping any engagement.',
           bullets: [
+            'Define retrieval success criteria (e.g. top-3 recall on a golden query set) before the pilot begins — not after it fails',
             'Run a structured prompting sprint before scoping fine-tuning — four weeks of iteration often eliminates the need',
-            'Include fine-tuning maintenance cost in the TCO: data pipelines, retraining cycles, and eval harnesses',
-            'Clients confuse fine-tuning (behaviour) with RAG (knowledge) regularly — diagnose which problem they actually have',
+            'Budget for knowledge base curation in RAG projects — source document quality drives RAG quality, and clients consistently underestimate this',
             'RLHF is a model development technique, not a deployment customisation option — correct this expectation early',
           ],
         },
@@ -405,29 +331,29 @@ const m2: CourseModule = {
           body: 'LLMs are computationally intense. The hardware needed to train and run them is specialised, expensive, and in short supply. Most enterprises never own this layer — they rent it through cloud providers. But knowing what it is helps when procurement or IT security asks about the underlying infrastructure.',
           bullets: [
             'GPUs and TPUs: the chips that power AI — NVIDIA H100 and A100 for general AI workloads, Google TPUv4 clusters for Google\'s own models',
-            'Distributed training: training splits across many nodes in parallel — a frontier model cannot fit on a single machine, so hundreds or thousands of chips work together',
-            'CUDA and GPU frameworks: software that parallelises matrix operations and makes GPUs useful for AI — most AI training runs on CUDA',
-            'Cloud vs on-premise: AWS, Azure, and GCP provide GPU compute on demand; on-premise means buying or leasing the hardware yourself — higher control, much higher cost and complexity',
+            'Distributed training: training splits across many nodes in parallel — a frontier model cannot fit on a single machine',
+            'Cloud vs on-premise: AWS, Azure, and GCP provide GPU compute on demand; on-premise means buying the hardware — higher control, much higher cost and complexity',
+            'H100s run ~$30K each; a small inference cluster is significant capital — use this when customers ask about on-prem AI cost',
           ],
         },
         {
           heading: 'Optimisation — Making Models Smaller and Cheaper',
           body: 'Frontier models are too large and slow to run efficiently as-is. A set of techniques compresses and accelerates them without destroying their capability. This layer is what makes it practical to run powerful models at enterprise scale — and it directly affects the cost and latency numbers in any commercial conversation.',
           bullets: [
-            'Quantisation: reduces model precision to save memory and cost — a model stored in lower numerical precision runs faster and uses less GPU memory with minimal quality loss',
-            'Distillation: a smaller model learns from a larger teacher model — produces a compact model that behaves like the original at a fraction of the size',
-            'Pruning: removes low-impact weights to reduce model size — the model gets leaner without losing most of its capability',
-            'KV caching and speculative decoding: speeds up token generation at inference time — caching avoids recomputing attention for repeated context; speculative decoding predicts multiple tokens ahead to reduce latency',
+            'Quantisation: reduces model precision to save memory and cost — runs faster, uses less GPU memory with minimal quality loss',
+            'Distillation: a smaller model learns from a larger teacher model — compact model that behaves like the original at a fraction of the size',
+            'Pruning: removes low-impact weights to reduce model size without losing most capability',
+            'KV caching and speculative decoding: speeds up token generation at inference time — essential for conversational workloads',
           ],
         },
         {
           heading: 'Serving — Getting the Model to Users Reliably',
           body: 'The serving layer is everything between the optimised model and the end user. It handles traffic, manages cost, and keeps the system running when demand spikes or something goes wrong. For enterprise deployments, this is where SLAs live.',
           bullets: [
-            'API gateway: rate limiting, authentication, routing, and load balancing — every request to an LLM goes through a gateway that controls access and distributes traffic',
-            'Request batching: groups concurrent requests for GPU efficiency — running multiple requests together is significantly cheaper than running them one at a time',
-            'Autoscaling: scales compute dynamically with demand — adds capacity when traffic spikes, reduces it when idle to control cost',
-            'Model versioning and canary deployments: safe rollout of model updates using canary and blue-green deployment patterns — new model versions go to a small percentage of traffic first before full rollout',
+            'API gateway: rate limiting, authentication, routing, and load balancing on every request',
+            'Request batching: groups concurrent requests for GPU efficiency — significantly cheaper than running them one at a time',
+            'Autoscaling: scales compute dynamically with demand — adds capacity when traffic spikes, reduces it when idle',
+            'Model versioning and canary deployments: safe rollout of model updates using canary and blue-green patterns — new versions go to a small percentage of traffic first',
           ],
         },
       ],
@@ -437,7 +363,7 @@ const m2: CourseModule = {
           label: 'General User',
           body: 'The infrastructure behind AI is why on-premise AI is expensive and cloud AI is accessible. Understanding the three layers explains why enterprise AI costs what it costs — and why latency varies.',
           bullets: [
-            'On-premise AI means owning the hardware layer — that\'s why it\'s significantly more expensive',
+            'On-premise AI means owning the hardware layer — that\'s why it\'s significantly more expensive than cloud',
             'Latency spikes usually happen at the serving layer, not inside the model itself',
             'Model updates going live without you noticing is a feature of canary deployments — the rollout is gradual by design',
           ],
@@ -445,11 +371,12 @@ const m2: CourseModule = {
         {
           role: 'security-se',
           label: 'Security SE',
-          body: 'Infrastructure questions from IT and procurement are really questions about these three layers. Knowing the layers lets you give concrete, credible answers instead of deflecting to engineering.',
+          body: 'Infrastructure questions from IT, procurement, and CISOs are really questions about these three layers. Knowing the layers lets you give concrete, credible answers instead of deflecting to engineering.',
           bullets: [
-            'On-premise GPU cost: H100s run ~$30K each; a small cluster for inference is a significant capital spend',
-            'Ask: what is the customer\'s SLA requirement? That determines the serving layer architecture they need',
-            'Canary deployment questions are really model governance questions — frame them as risk controls, not engineering details',
+            'On-premise GPU cost: H100s run ~$30K each; a small inference cluster is a significant capital spend — quantify this before a customer goes down the on-prem path',
+            'Ask: what is the SLA requirement? That determines the serving layer architecture — autoscaling, redundancy, and canary deployment are table stakes for a production SOC tool',
+            'Canary deployment questions are really model governance questions — frame them as risk controls: "new model versions go to 5% of traffic first; you don\'t absorb a regression all at once"',
+            'Quantisation and distillation are how vendors lower inference cost — ask whether the customer-facing product uses the full model or an optimised variant and what quality tradeoffs apply',
           ],
         },
         {
@@ -494,10 +421,10 @@ const m2: CourseModule = {
           heading: 'Training Time — Safety Built In Before the Model Ships',
           body: 'The first line of defence happens during training itself. Before a model is released, the team running training shapes its behaviour and probes it for failure modes. By the time it reaches customers, these properties are baked into the weights.',
           bullets: [
-            'Instruction tuning (SFT): trains the model to follow instructions and be helpful — supervised fine-tuning on human-written examples of good behaviour',
+            'Instruction tuning (SFT): trains the model to follow instructions and be helpful',
             'Constitutional AI (CAI): a principles-based self-critique loop where the model evaluates its own outputs against a set of rules during training',
-            'RLHF: shapes behaviour through human preference feedback — humans rank model outputs and the model learns to prefer the responses people rated higher',
-            'Red-teaming: adversarial probing by humans trying to find failure modes before release — the model gets stress-tested before it ever sees real users',
+            'RLHF: shapes behaviour through human preference feedback — humans rank model outputs and the model learns to prefer higher-rated responses',
+            'Red-teaming: adversarial probing by humans trying to find failure modes before release',
           ],
         },
         {
@@ -505,29 +432,29 @@ const m2: CourseModule = {
           body: 'Once a model is deployed, a second layer of controls wraps around it at runtime. These are not inside the model — they sit between the user and the model, filtering what goes in and what comes out on every single request.',
           bullets: [
             'Output filters: block unsafe, harmful, or off-policy content at runtime — the last check before a response reaches the user',
-            'Scope and policy limits: define what the model is and is not allowed to do in this specific deployment — a SOC copilot should not discuss unrelated topics',
-            'Prompt injection defence: prevents adversarial inputs from hijacking model behaviour — critical in security contexts where user-supplied data is fed into prompts',
-            'PII and data privacy: detects and redacts sensitive personal data in both inputs and outputs — important for any deployment handling customer or employee data',
+            'Scope and policy limits: define what the model is and is not allowed to do in this specific deployment',
+            'Prompt injection defence: prevents adversarial inputs from hijacking model behaviour — critical in security contexts where user-supplied data enters prompts',
+            'PII and data privacy: detects and redacts sensitive personal data in both inputs and outputs',
           ],
         },
         {
           heading: 'Production Time — Knowing What the Model Is Doing at Scale',
-          body: 'Deploying safely is not a one-time event. Once a model is live and handling real traffic, you need visibility into every interaction. Production observability catches the problems that training and deployment guardrails missed — including slow drift that no single response makes obvious.',
+          body: 'Deploying safely is not a one-time event. Once a model is live and handling real traffic, you need visibility into every interaction. Production observability catches the problems that training and deployment guardrails missed.',
           bullets: [
             'Prompt and response tracing: a full audit trail of every interaction — essential for incident investigation and compliance',
-            'Cost and token tracking: per-request spend, token usage, and budget alerts — production LLMs can run expensive fast without monitoring',
-            'Output drift detection: flags quality degradation and behaviour shifts over time — models can change as underlying infrastructure updates',
-            'Latency and performance: response time, throughput, and SLA monitoring — user experience degrades before most people notice the technical signal',
+            'Cost and token tracking: per-request spend, token usage, and budget alerts',
+            'Output drift detection: flags quality degradation and behaviour shifts over time',
+            'Latency and performance: response time, throughput, and SLA monitoring',
           ],
         },
         {
           heading: 'Continuous Evals — Validation That Never Stops',
           body: 'Evals are automated tests that run across all three phases. They are the feedback loop that tells you whether the model is still doing what you expect — and whether any change made things better or worse. In a production system, evals run on every update.',
           bullets: [
-            'Benchmarks: standardised capability tests — MMLU, HumanEval, HellaSwag — used to compare models and track capability over versions',
-            'Human preference eval: humans rank and compare model outputs — the most direct signal for whether the model is actually good, not just technically correct',
-            'LLM-as-judge: a model scores and ranks other models\' outputs — scales human evaluation to volumes no human team can cover manually',
-            'Eval harnesses: automated regression suites that run on every model update — catches regressions before they reach users',
+            'Benchmarks: standardised capability tests used to compare models and track capability over versions',
+            'Human preference eval: humans rank and compare model outputs — the most direct signal for actual quality',
+            'LLM-as-judge: a model scores and ranks other models\' outputs — scales human evaluation to volumes no human team can cover',
+            'Eval harnesses: automated regression suites that run on every model update',
           ],
         },
       ],
@@ -545,11 +472,13 @@ const m2: CourseModule = {
         {
           role: 'security-se',
           label: 'Security SE',
-          body: 'When a customer asks "is this AI safe?" they\'re asking three different questions at once. This three-phase framework lets you give a structured, credible answer instead of a vague reassurance.',
+          body: 'When a customer asks "is this AI safe?" they\'re asking three different questions at once. This three-phase framework turns a vague reassurance into a structured, auditable answer — and surfaces gaps that become security objections if you don\'t name them first.',
           bullets: [
-            'Walk through training time → deployment time → production time — each phase catches different failure modes',
-            'Ask: does the customer have prompt injection defence? That\'s a deployment-time control most overlook',
-            'Production observability (tracing, drift detection) is your audit and compliance answer — name it explicitly',
+            'Walk through training time → deployment time → production time with the customer — each phase catches different failure modes; asking which phase their concern lives in immediately focuses the conversation',
+            'Prompt injection defence is a deployment-time control most prospects haven\'t considered — raise it proactively: "What happens when a threat actor embeds adversarial instructions in email content that your agent is analysing?"',
+            'Production observability (tracing, drift detection) is your compliance and audit answer — "can you prove what the AI did and why?" requires prompt/response tracing from day one, not as a retrofit',
+            'Ask: does the vendor run red-teaming before major model updates? No answer means no adversarial testing — that\'s a risk posture question, not a product question',
+            'Continuous evals distinguish platforms from demos — a vendor without eval harnesses cannot prove their model quality holds across updates',
           ],
         },
         {
@@ -576,10 +505,13 @@ const m2: CourseModule = {
     },
   ],
   quiz: [
-    { q: 'A customer wants their SOC copilot to answer questions using their internal runbooks. What is the right architectural answer?', options: ['Fine-tune a custom model on their runbooks', 'Use RAG to retrieve relevant runbook sections at query time', 'Train a model from scratch', 'Just use a longer context window'], correct: 1 },
-    { q: 'Why might a 2M-token context window not solve "analyze our entire knowledge base"?', options: ['It is too expensive', 'Models often degrade attention mid-context (lost in the middle)', 'It is technically impossible', 'Tokens are not real'], correct: 1 },
-    { q: 'A hallucination is best described as:', options: ['The model intentionally lying', 'Fluent output not grounded in reality', 'A bug in the code', 'A jailbreak attempt'], correct: 1 }
-  ]
+    { q: 'A customer wants their SOC copilot to answer questions using their internal runbooks. What is the right architectural answer?', options: ['Fine-tune a custom model on their runbooks', 'Use RAG to retrieve relevant runbook sections at query time', 'Train a model from scratch', 'Just use a larger context window'], correct: 1 },
+    { q: 'Why might a 2M-token context window not solve "analyse our entire knowledge base"?', options: ['It is too expensive', 'Models often degrade attention mid-context (lost in the middle)', 'It is technically impossible', 'Tokens are not real'], correct: 1 },
+    { q: 'A hallucination is best described as:', options: ['The model intentionally lying', 'Fluent output not grounded in reality — probable tokens, not true facts', 'A bug in the code', 'A jailbreak attempt'], correct: 1 },
+    { q: 'A prospect says "we need to fine-tune the AI on our threat data." The most likely honest diagnosis is:', options: ['They genuinely need fine-tuning', 'It is a RAG request in disguise — they need knowledge injection, not behaviour change', 'They need RLHF applied to their environment', 'Fine-tuning is always the right choice for domain data'], correct: 1 },
+    { q: 'What does low temperature (near 0) mean for a security classification task?', options: ['The model runs faster', 'Outputs are maximally deterministic — the model always picks the most probable token', 'The model uses less GPU', 'Responses will be more creative'], correct: 1 },
+    { q: 'Embeddings enable detection of novel phishing variants because:', options: ['They match exact keyword strings', 'Semantically similar concepts cluster together in vector space regardless of exact wording', 'They retrain the model on new attack patterns', 'They increase the context window'], correct: 1 },
+  ],
 };
 
 export default m2;
