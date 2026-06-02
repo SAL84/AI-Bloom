@@ -1,4 +1,7 @@
 import type { CourseModule } from '../../types/course';
+import { diagram3a } from '../svgs/diagram3a';
+import { diagram3ci } from '../svgs/diagram3ci';
+import { diagram3cii } from '../svgs/diagram3cii';
 
 const m3: CourseModule = {
   id: 'm3',
@@ -116,9 +119,12 @@ const m3: CourseModule = {
       id: 'm3l3',
       title: 'Agents and Agentic Systems',
       diagram: 'AgentTopology',
+      inlineSvg: diagram3a,
+      inlineSvgId: 'd3a',
       slides: [
-        { heading: 'What Makes Something an Agent', body: 'Three things: (1) goal-directedness — pursues an objective rather than answering one prompt, (2) tool use — can take actions in the world, not just produce text, (3) autonomy — decides next steps based on outcomes, with iteration. Anything missing those is not really an agent, marketing claims notwithstanding.' },
-        { heading: 'Single-Agent vs Multi-Agent', body: 'Single-agent: one autonomous loop pursuing one goal. Multi-agent: specialized agents coordinate with each other — one might triage, another investigate, another respond. Multi-agent shines when subtasks differ enough to warrant specialization; otherwise it is overhead. We cover the protocols that make this coordination possible (MCP and A2A) in Lesson 5.' },
+        { heading: 'Inside an Agent: The Core Anatomy', body: 'Every agent shares the same structural blueprint. At the centre sits an LLM acting as the reasoning brain — it interprets the goal, decides next actions, and evaluates outcomes. Four elements surround it. (1) Trigger: what starts the agent — user input, a scheduled time, or a system event. (2) Planning loop: the cycle that runs until the goal is satisfied — observe (gather context from memory and tools), plan (decide the next action), act (execute a tool call, produce output, or spawn a subagent), reflect (compare result to goal; loop again or terminate). (3) Memory: in-context memory (the active window — retrieved context, conversation history, tool results) and persistent memory (vector databases, files, session summaries — survives across runs). (4) Goal evaluation: the success criteria that terminates the loop. Without a well-defined goal, the agent cannot decide when to stop.' },
+        { heading: 'What Makes Something an Agent', body: 'Three things: (1) goal-directedness — pursues an objective rather than answering one prompt, (2) tool use — can take actions in the world, not just produce text, (3) autonomy — decides next steps based on outcomes, with iteration. Anything missing those is not really an agent, marketing claims notwithstanding. The planning loop (observe → plan → act → reflect) is the mechanical expression of all three: it iterates toward a goal using tool results, with the LLM making each routing decision.' },
+        { heading: 'Guardrails, Human-in-the-Loop, and the Integration Layer', body: 'Two cross-cutting control bands run across the entire agent anatomy. Guardrails (safety, scope, policy) constrain every action — they are not agent code; they are enforced at the execution boundary as hooks that intercept before actions fire. Human-in-the-loop (HITL) intercepts when confidence is low, stakes are high, or a defined threshold is crossed. Both operate as pre/post hooks in the execution pipeline, not as logic inside the LLM. Below the agent sits the integration layer: MCP connectors, A2A coordination, external APIs, vector databases, sandboxes, orchestration frameworks, and hooks/skill managers. The integration layer is infrastructure — agent logic above it should never contain hardcoded knowledge of how tools are physically connected.' },
         { heading: 'Orchestrator-Subagent Pattern', body: 'The most common enterprise architecture: one orchestrator agent receives the high-level goal, decomposes it into tasks, and delegates to specialized subagents. The orchestrator manages state and decides when the goal is satisfied. In SecOps: an orchestrator receives an alert, delegates enrichment to an IOC-lookup subagent, delegates sandbox analysis to a malware subagent, then synthesizes findings. This is why "agent" as a single monolithic loop rarely scales.' },
         { heading: 'Where Multi-Agent Adds Risk', body: 'Each agent handoff is a trust boundary. If the orchestrator blindly trusts subagent output without validation, a poisoned subagent response can corrupt the entire investigation chain. Security design must treat inter-agent messages with the same skepticism as user input — especially in security-sensitive workflows. This is not theoretical: it is the same confused-deputy pattern that plagued service-to-service calls in microservices architectures.' }
       ],
@@ -126,41 +132,41 @@ const m3: CourseModule = {
         {
           role: 'general',
           label: 'General User',
-          body: 'An agent is different from a chatbot — it takes sequences of actions in the world, not just producing text responses. That distinction matters for how much you trust and verify its outputs.',
+          body: 'An agent is different from a chatbot — it runs a planning loop (observe → plan → act → reflect) until a goal is satisfied, taking real actions along the way. That loop and those actions are why it requires more oversight than a text tool.',
           bullets: [
-            'If an AI tool is "taking actions" on your behalf, it\'s likely agentic — treat it with appropriate caution',
-            'Multi-agent systems can produce unexpected outcomes from chains of reasonable-looking decisions',
-            'Always understand what actions an agent is authorised to take before granting it access',
+            'If an AI tool is "taking actions" on your behalf through a planning loop, it\'s agentic — apply appropriate scrutiny',
+            'Guardrails and human-in-the-loop are architectural properties, not optional features — ask if they are present',
+            'Always understand what triggers an agent, what its goal is, and what actions it is authorised to take',
           ],
         },
         {
           role: 'security-se',
           label: 'Security SE',
-          body: 'The three-part agent definition (goal-directedness, tool use, autonomy) is your vendor claim filter. Most marketed "agents" fail at least one criterion.',
+          body: 'The anatomy diagram is your whiteboard move for "what is an agent?" — LLM brain, planning loop, memory, guardrails, HITL, integration layer. Drawing it separates the architectural conversation from the marketing claim.',
           bullets: [
-            'Ask: does it pursue a goal across multiple steps, or just answer one prompt? The second is not an agent',
-            'Ask: what happens when one agent in a multi-agent chain produces bad output? Is it validated before propagation?',
-            'The confused-deputy framing resonates with architects who lived through microservices security failures',
+            'Ask: does it pursue a goal across a planning loop, or just answer one prompt? The second is not an agent',
+            'Ask: where do guardrails enforce policy — inside agent code or at the execution boundary as hooks?',
+            'The confused-deputy framing (inter-agent trust) resonates with architects who survived microservices security failures',
           ],
         },
         {
           role: 'developer',
           label: 'Developer',
-          body: 'Inter-agent trust is the most underspecified security property in agentic system design. Treat every agent handoff as an untrusted API call.',
+          body: 'The planning loop (observe → plan → act → reflect) is the unit of agent reasoning. Design the stopping condition (goal evaluation) before the loop — vague goals produce infinite iterations or premature termination.',
           bullets: [
-            'Validate and sanitise subagent outputs before passing them to the orchestrator — treat them as untrusted input',
-            'Define the agent\'s goal as a precise, testable specification — vague goals produce unpredictable loops',
-            'Single-agent before multi-agent: add orchestration complexity only when the task demands it',
+            'Implement guardrails as hooks at the execution boundary, not as conditional logic inside agent code',
+            'Separate in-context memory (ephemeral, current run) from persistent memory (durable, cross-run) — they have different consistency and security requirements',
+            'Single-agent before multi-agent: add orchestration complexity only when the anatomy genuinely demands it',
           ],
         },
         {
           role: 'consultant',
           label: 'AI Consultant',
-          body: 'Multi-agent architecture adds coordination overhead, trust complexity, and failure modes that single-agent designs don\'t have. Advise clients to start simple and prove the value before expanding.',
+          body: 'Use the agent anatomy as a rapid assessment framework: trigger, planning loop, memory architecture, guardrails, HITL thresholds, and integration layer. Gaps in any element are design risks, not implementation details.',
           bullets: [
-            'Ask: which subtasks justify a separate agent? If the answer is "all of them," the design is over-engineered',
-            'Each agent handoff is a security and reliability risk — build in validation checkpoints, not just escalation paths',
-            'Map the client\'s trust model for inter-agent communication before approving a multi-agent architecture',
+            'Assess guardrail placement first — guardrails inside agent code are fragile; guardrails as hooks are auditable',
+            'Ask: what are the HITL thresholds? No answer means the agent runs without a defined escalation policy',
+            'Map the integration layer: vendor-shipped MCP connectors vs custom integrations determines the long-term maintenance burden',
           ],
         },
       ],
@@ -222,30 +228,33 @@ const m3: CourseModule = {
       id: 'm3l5',
       title: 'Agent Protocols: MCP and A2A',
       diagram: 'A2AvsMCP',
+      inlineSvg: diagram3cii,
+      inlineSvgId: 'd3cii',
       slides: [
-        { heading: 'MCP for Agent-to-Tool', body: 'MCP standardizes how a single agent reaches out to tools and resources. Think of it as the agent peripheral bus.' },
-        { heading: 'A2A for Agent-to-Agent', body: 'Agent2Agent protocol (Google, increasingly adopted) standardizes how agents discover and communicate with each other. Think of it as the network layer between agents. Together with MCP, A2A creates the substrate for multi-agent enterprise systems.' },
-        { heading: 'Why This Slide Wins Architects', body: 'When you can cleanly separate agent-to-tool (MCP) from agent-to-agent (A2A) for a customer architect, you have immediately distinguished yourself from competitors who muddle the layers. This is a credibility move.' }
+        { heading: 'Same Scenario, Two Protocols', body: 'Consider a single task: "Book me a flight to Dubai and add it to my calendar." This scenario runs through both protocols to make the difference concrete. Under MCP: one LLM (Claude) stays in control throughout. It connects to a Flight API MCP server and a Calendar API MCP server as tools it calls directly — simpler architecture, lower latency, one reasoning chain. Under A2A: an Orchestrator agent delegates to two specialized agents — a Flight Agent (its own tools, memory, and model) and a Calendar Agent (same). Each operates autonomously on its subtask; the orchestrator aggregates. The protocol determines the architecture, which determines the trust model and failure modes.' },
+        { heading: 'MCP: One LLM, Multiple Tools', body: 'MCP standardizes how a single agent reaches out to tools and resources — think of it as the agent peripheral bus. The LLM queries available MCP servers, calls their tools, and synthesizes the results. One LLM stays in control throughout. Key characteristics: simpler architecture, lower latency (fewer round trips), easier to debug (single reasoning chain), single trust boundary to govern. Ideal when tasks are well-defined, tool calls can be orchestrated by one model, and domain specialization is not required. MCP is the right default for most workflows. Note: when agents in an A2A network need to call tools, they use MCP to do so — the two protocols are complementary, not competing.' },
+        { heading: 'A2A: Specialized Agents Collaborating', body: 'Agent2Agent protocol (Google, 2025, increasingly adopted) standardizes how agents discover and communicate with each other — think of it as the network layer between agents. In the Dubai example, an Orchestrator spawns a Flight Agent and a Calendar Agent, each with specialized tools, memory, and a model tuned for its domain. They run in parallel; the Orchestrator aggregates. Key characteristics: higher coordination overhead, better domain specialization, and independent failure isolation — one agent failing does not cascade to the other. Ideal when subtasks require genuinely different expertise, can run in parallel with independent state, or have different privilege requirements. Together with MCP, A2A creates the substrate for multi-agent enterprise systems.' },
+        { heading: 'When to Use Which — and the SE Credibility Move', body: 'Decision heuristic: use MCP unless the subtasks are genuinely heterogeneous (different domain expertise required), can run in true parallel, or need different privilege levels. If two or more of those are true, A2A adds real value. If not, A2A adds coordination overhead without benefit. The SE credibility move: cleanly separating agent-to-tool (MCP) from agent-to-agent (A2A) for a customer architect immediately distinguishes you from competitors who conflate them. Discovery question: "Does your current architecture have a coordination layer between agents, or are agent interactions point-to-point?" — the answer reveals their current state and opens the architectural conversation.' }
       ],
       roleContent: [
         {
           role: 'general',
           label: 'General User',
-          body: 'MCP and A2A are the communication standards that allow different AI agents to work together reliably. Without them, every connection is a bespoke integration that breaks when either side changes.',
+          body: 'MCP and A2A solve different connection problems: MCP connects an agent to its tools, A2A connects agents to each other. Understanding which is which explains why some AI systems are simpler to govern than others.',
           bullets: [
-            'MCP handles agent-to-tool connections; A2A handles agent-to-agent collaboration',
-            'These standards are why agents from different vendors can potentially work together',
-            'Proprietary protocols lock you into one vendor\'s ecosystem — open standards don\'t',
+            'MCP keeps one LLM in control — simpler, lower latency, easier to audit',
+            'A2A adds specialization and parallelism, but also more trust boundaries and coordination complexity',
+            'Proprietary coordination protocols lock you into one vendor\'s ecosystem — open standards like MCP and A2A don\'t',
           ],
         },
         {
           role: 'security-se',
           label: 'Security SE',
-          body: 'MCP vs A2A is your credibility move with architects. Keeping them separate and precise immediately signals a deeper understanding than competitors who conflate them.',
+          body: 'MCP vs A2A is your credibility move with architects. The Dubai scenario is the clearest way to show the difference — same task, two architectures, different security properties.',
           bullets: [
-            'Use the "peripheral bus vs network layer" analogy — architects respond to familiar hardware analogies',
+            'MCP: one trust boundary, one audit trail; A2A: multiple agent identities, multiple trust boundaries — harder to govern',
             'Ask: does the customer\'s current architecture have a coordination layer between agents, or is it point-to-point?',
-            'A2A adoption is accelerating — assess whether the customer\'s vendor stack supports it yet',
+            'A2A adoption is accelerating — include it in vendor evaluation scorecards as a forward-compatibility criterion',
           ],
         },
         {
@@ -254,18 +263,18 @@ const m3: CourseModule = {
           body: 'MCP and A2A solve different problems at different protocol layers — conflating them produces architectures with hidden coupling and poor failure isolation.',
           bullets: [
             'Design MCP connections as leaf-level integrations; A2A connections as peer-level coordination',
-            'A2A agent discovery should be dynamic, not hardcoded — build for agent topology changes from the start',
-            'Failure modes are different: MCP failures are tool unavailability; A2A failures are coordination and state sync',
+            'A2A agent discovery should be dynamic, not hardcoded — build for topology changes from the start',
+            'Failure modes differ: MCP failures are tool unavailability; A2A failures are coordination breakdown and state divergence',
           ],
         },
         {
           role: 'consultant',
           label: 'AI Consultant',
-          body: 'A2A adoption is where enterprise multi-agent architectures will standardise over the next two years. Clients evaluating platforms today should include A2A support as a forward-compatibility criterion.',
+          body: 'A2A adoption is where enterprise multi-agent architectures will standardise over the next two years. Clients building proprietary agent coordination today are building technical debt against an emerging standard.',
           bullets: [
-            'Include A2A support in vendor evaluation scorecards — it\'s a strategic interoperability criterion',
-            'Clients building proprietary agent coordination today are building technical debt against an emerging standard',
-            'Map the client\'s multi-agent topology: which connections need MCP (tool), which need A2A (peer)?',
+            'Include A2A support in vendor evaluation scorecards — proprietary coordination is a long-term interoperability risk',
+            'Use the Dubai heuristic with clients: does the task genuinely warrant specialist agents, or is MCP sufficient?',
+            'Map the client\'s topology: which connections need MCP (agent-to-tool), which need A2A (agent-to-agent peer)',
           ],
         },
       ],
@@ -274,9 +283,11 @@ const m3: CourseModule = {
       id: 'm3l6',
       title: 'Skills and Plugins: The Capability Layer',
       diagram: 'SkillsPlugins',
+      inlineSvg: diagram3ci,
+      inlineSvgId: 'd3ci',
       slides: [
-        { heading: 'Three Terms, One Evolution', body: 'Prospects, architects, and vendors use "plugin," "skill," and "tool" interchangeably — and mean different things each time. Getting the definitions precise is a credibility move with technical buyers. Here is the evolution: plugins were the first attempt at extensible AI capabilities (ChatGPT, 2023). MCP is the standardized protocol that replaced proprietary plugin ecosystems. Skills are what agents actually call — self-describing capability packages that live on top of MCP. Each term describes a different layer of the same stack.' },
-        { heading: 'What Made Plugins a Dead End', body: 'The plugin model of 2023 was directionally correct but broke in practice: every AI vendor had its own plugin format, auth was inconsistent across ecosystems, and discovery was manual. A plugin built for ChatGPT could not be used by another AI host without rebuilding it. For enterprise security this meant every AI integration was bespoke, unaudited, and owned by the vendor. MCP replaced all of this with a single open protocol — standardized discovery, server-side auth, and support for any MCP-compatible client. When a prospect says "plugin," it is a signal they are thinking about the old model. The SE redirect: "What you are describing is now handled by MCP — here is why the standard matters for governance and auditability."' },
+        { heading: 'The Terminology Stack — and Why It Matters', body: 'The vocabulary around AI capabilities has fractured across vendors and years. The stack that clarifies everything, bottom to top: (1) APIs — the roads; raw HTTP/JSON interfaces every external service exposes. (2) MCP — the traffic system; the open protocol that standardizes how agents discover and call tools across any API. (3) Connectors / Plugins / Skills — the vehicles; implementation packages that bridge a specific tool to the MCP standard, each carrying its own auth, schema, and contract. (4) LLM (Claude, GPT, Gemini) — the driver; reasons over available skills and decides which to call and when. (5) You — the destination; the business goal that defines success. One-sentence summary: "APIs are the roads. MCP is the traffic system. Connectors are the vehicles. Skills are the pre-planned journeys. Claude is the driver."' },
+        { heading: 'Platform Names, One Stack', body: 'Every major AI platform uses different words for the same stack layers. Anthropic: Connectors (MCP adapters), Actions (skill calls), Skills (named capability packages). OpenAI: Plugins (legacy, deprecated 2024), GPT Actions (current). Microsoft Copilot: Skills (agent capabilities), Copilot Connectors (MCP adapters). Zapier/Make: Connectors (integration adapters), Integrations (exposed capabilities), Zaps (automation workflows). The practical SE move: when a prospect says "we already have plugins," ask which vendor and which year — they may be describing the same layer under a different name. The unifying frame is always the stack: APIs → MCP → Connector → LLM → You. Vocabulary differs; the architecture does not.' },
         { heading: 'What a Skill Actually Is', body: 'A skill is a named, self-describing capability that an agent discovers and calls at runtime. Unlike a raw API call baked into agent code, a skill carries its own contract: name (what to call it), description (what it does — the agent reads this to decide when to use it), input schema (what parameters it needs), and output schema (what it returns). The agent never sees the implementation — only the interface. Two properties matter most for SEs: composability (agents can chain skills — the output of one feeds the input of the next) and governability (you can grant or revoke skill access per agent identity, without changing any agent code). In Google ADK, skills registered in the Agent Registry are discoverable by any agent with the appropriate identity and permission.' },
         { heading: 'The SE Move in a Prospect Conversation', body: 'Two scenarios where this vocabulary pays off. Scenario A — prospect architect asks "do your agents support plugins?": do not say yes or no. Say "we use MCP, which is the standardized evolution of the plugin model — here is what that gives you in terms of governance and security." Then connect to Agent Gateway as the policy enforcement layer over all MCP connections. Scenario B — prospect asks "how does an agent know what tools it has access to?": walk through skill discovery — the agent queries the registry for skills it is authorized to use, reads their descriptions to understand what each does, and calls them by name. No hardcoded tool lists. This is the architectural conversation that separates a platform pitch from a product pitch.' }
       ],
@@ -284,39 +295,39 @@ const m3: CourseModule = {
         {
           role: 'general',
           label: 'General User',
-          body: 'Skills are what agents actually do — named, self-describing capabilities they discover and call. Understanding this explains why some AI tools can extend themselves with new capabilities without being rebuilt.',
+          body: 'Think of AI capability as a stack: APIs are the roads, MCP is the traffic system, connectors are the vehicles, skills are the pre-planned journeys, and the LLM is the driver. Each layer has a distinct job — and distinct governance requirements.',
           bullets: [
-            '"Plugin" is the old term; skills on MCP are the current standard',
-            'An agent\'s skill list is a governance decision — who controls what the agent can do?',
-            'Skills without governance are capabilities without guardrails',
+            '"Plugin" is the old term; skills on MCP are the current standard — same concept, better architecture',
+            'An agent\'s skill list is a governance decision — who controls what capabilities the agent can access?',
+            'When vendors use different words (plugin, connector, action, skill), ask which layer of the stack they mean',
           ],
         },
         {
           role: 'security-se',
           label: 'Security SE',
-          body: 'The plugin-to-MCP-to-skills evolution is your vendor positioning move. Using precise vocabulary separates you from competitors still talking in 2023 plugin terms.',
+          body: 'The stack analogy (roads/traffic/vehicles/journeys/driver) and the platform naming decoder are your two vocabulary moves. Precise language immediately separates you from competitors still using 2023 plugin terms.',
           bullets: [
-            'When a prospect says "plugin," redirect to MCP — it signals governance awareness, not just terminology',
-            'Ask: how does an agent know which tools it\'s authorised to use? Dynamic skill discovery vs hardcoded lists is the answer',
-            'Connect skill governance to Agent Gateway as the policy enforcement layer',
+            'Use the naming decoder: when a prospect says "plugin," ask which vendor and year — they may mean connectors or MCP actions',
+            'Redirect "plugin" conversations to MCP — frame it as the governance-conscious evolution, not just a rebrand',
+            'Ask: how does an agent know which skills it\'s authorised to use? Dynamic discovery vs hardcoded lists is the answer',
           ],
         },
         {
           role: 'developer',
           label: 'Developer',
-          body: 'Skills are the interface contract between agents and capabilities. Build them with explicit input/output schemas — agents reason about them from the description, not the implementation.',
+          body: 'Skills are the interface contract between agents and capabilities. Each layer of the stack (API, MCP, connector, skill) has a distinct owner and failure mode — build to those boundaries, not across them.',
           bullets: [
-            'Skill descriptions are agent-facing documentation — write them for the model, not the human',
-            'Input and output schemas must be precise — LLM reasoning over ambiguous schemas produces incorrect tool calls',
-            'Skill composability (chaining outputs to inputs) should be tested explicitly, not assumed',
+            'Skill descriptions are agent-facing documentation — write them for the model\'s reasoning, not the human reader',
+            'Input and output schemas must be precise — ambiguous schemas produce incorrect tool calls at inference time',
+            'The connector (MCP server) owns auth, rate limiting, and error translation — do not rebuild these in agent code',
           ],
         },
         {
           role: 'consultant',
           label: 'AI Consultant',
-          body: 'Skill governance is the AI equivalent of API access control — it determines what the agent can touch. Clients without a skill governance policy have agents without a permission model.',
+          body: 'Skill governance is the AI equivalent of API access control — it determines what the agent can touch. Use the stack diagram to run a rapid capability audit: which layer does the client own, which do they consume, and where are the governance gaps?',
           bullets: [
-            'Require clients to define a skill access policy: which agent identities can call which skills?',
+            'Require a skill access policy: which agent identities can call which skills? No policy means no permission model',
             'Audit skill registries as part of any AI security review — unreviewed skills are unreviewed attack surface',
             'Plugin-era integrations are technical debt; map them to MCP migration as part of the AI modernisation roadmap',
           ],
