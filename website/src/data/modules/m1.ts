@@ -1,6 +1,7 @@
 import type { CourseModule } from '../../types/course';
 import { diagram0a } from '../svgs/diagram0a';
 import { diagram0b } from '../svgs/diagram0b';
+import { diagram0bi } from '../svgs/diagram0bi';
 import { diagram0c } from '../svgs/diagram0c';
 import { diagram1 } from '../svgs/diagram1';
 
@@ -98,8 +99,8 @@ const m1: CourseModule = {
     {
       id: 'm1-tiers',
       title: 'AI Capability Tiers',
-      inlineSvg: diagram0b,
-      inlineSvgId: 'd0b',
+      inlineSvg: diagram0bi,
+      inlineSvgId: 'd0bi',
       slides: [
         {
           heading: 'Where Products Actually Sit',
@@ -261,8 +262,8 @@ const m1: CourseModule = {
     {
       id: 'm1-pipeline',
       title: 'The AI Pipeline and Learning Paradigms',
-      diagram: 'LearningParadigmsGeneric',
-      extraDiagram: 'AIPipeline',
+      diagram: 'AIPipeline',
+      extraDiagram: 'LearningParadigmsGeneric',
       roleDiagrams: { 'security-se': 'LearningParadigms' },
       slides: [
         {
@@ -353,7 +354,7 @@ const m1: CourseModule = {
     // ── L6 ─────────────────────────────────────────────────────────────────────
     {
       id: 'm1l4',
-      title: 'Demystifying AI: Three Misconceptions That Mislead Buyers',
+      title: 'AI Top Misconceptions',
       inlineSvg: diagram0c,
       inlineSvgId: 'd0c',
       slides: [

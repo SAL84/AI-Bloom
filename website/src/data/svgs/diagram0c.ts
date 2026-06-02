@@ -6,7 +6,7 @@ export const diagram0c = `<svg width="100%" viewBox="0 0 840 568" role="img" xml
 <text x="420" y="24" text-anchor="middle" font-size="14" font-weight="700" fill="#3d3d3a" font-family='"Anthropic Sans", -apple-system, "system-ui", "Segoe UI", sans-serif'>Three misconceptions that mislead AI buyers</text>
 
 <!-- ── SECTION 1: Base rate fallacy ──────────────────────────────────── -->
-<rect x="12" y="34" width="816" height="272" rx="12" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5 4"/>
+<rect x="12" y="34" width="816" height="276" rx="12" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5 4"/>
 
 <rect x="26" y="48" width="126" height="18" rx="4" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
 <text x="89" y="60" text-anchor="middle" font-size="10" font-weight="600" fill="#dc2626" font-family='"Anthropic Sans", -apple-system, sans-serif'>Misconception 1</text>
@@ -16,8 +16,8 @@ export const diagram0c = `<svg width="100%" viewBox="0 0 840 568" role="img" xml
 <text x="420" y="97" text-anchor="middle" font-size="10" fill="#64748b" font-family='"Anthropic Sans", -apple-system, sans-serif'>Scenario: 100,000 items classified · 1% actual positives (1,000 items) · 99% accurate model</text>
 
 <!-- Column headers -->
-<text x="316" y="117" text-anchor="middle" font-size="11" font-weight="600" fill="#374151" font-family='"Anthropic Sans", -apple-system, sans-serif'>Actually Positive</text>
-<text x="638" y="117" text-anchor="middle" font-size="11" font-weight="600" fill="#374151" font-family='"Anthropic Sans", -apple-system, sans-serif'>Actually Negative</text>
+<text x="272" y="117" text-anchor="middle" font-size="11" font-weight="600" fill="#374151" font-family='"Anthropic Sans", -apple-system, sans-serif'>Actually Positive</text>
+<text x="616" y="117" text-anchor="middle" font-size="11" font-weight="600" fill="#374151" font-family='"Anthropic Sans", -apple-system, sans-serif'>Actually Negative</text>
 
 <!-- Row labels -->
 <text x="116" y="164" text-anchor="middle" font-size="10" font-weight="600" fill="#374151" font-family='"Anthropic Sans", -apple-system, sans-serif'>Flagged</text>
@@ -48,8 +48,9 @@ export const diagram0c = `<svg width="100%" viewBox="0 0 840 568" role="img" xml
 <text x="616" y="265" text-anchor="middle" font-size="10" fill="#1e40af" font-family='"Anthropic Sans", -apple-system, sans-serif'>True Negatives ✓</text>
 
 <!-- Insight bar -->
-<rect x="26" y="289" width="800" height="10" rx="5" fill="#f59e0b"/>
-<text x="420" y="301" text-anchor="middle" font-size="10" font-weight="700" fill="white" font-family='"Anthropic Sans", -apple-system, sans-serif'>Precision = 50%: for every real positive found, the model produces one false alarm — this is the number that predicts real-world experience</text>
+<rect x="26" y="284" width="800" height="24" rx="5" fill="#f59e0b"/>
+<text x="420" y="294" text-anchor="middle" font-size="10" font-weight="700" fill="white" font-family='"Anthropic Sans", -apple-system, sans-serif'>Precision = 50%: for every real positive found, the model produces one false alarm</text>
+<text x="420" y="306" text-anchor="middle" font-size="9" font-weight="600" fill="white" font-family='"Anthropic Sans", -apple-system, sans-serif'>This is the number that predicts real-world experience — not the accuracy headline</text>
 
 <!-- ── SECTION 2: Frozen weights (left) ────────────────────────────── -->
 <rect x="12" y="316" width="400" height="140" rx="12" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5 4"/>

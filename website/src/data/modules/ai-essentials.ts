@@ -2,6 +2,7 @@ import type { Course } from '../../types/course';
 import m1 from './m1';
 import m2 from './m2';
 import m3 from './m3';
+import { diagram0d } from '../svgs/diagram0d';
 
 const aiEssentials: Course = {
   id: 'ai-essentials',
@@ -19,6 +20,8 @@ const aiEssentials: Course = {
         {
           id: 'ae1l5',
           title: 'The Shift: How AI Is Already Reshaping Daily Life',
+          inlineSvg: diagram0d,
+          inlineSvgId: 'd0d',
           slides: [
             {
               heading: 'AI Is Already in Your Day — You Just Stopped Noticing',
