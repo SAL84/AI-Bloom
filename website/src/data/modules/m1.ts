@@ -1,5 +1,6 @@
 import type { CourseModule } from '../../types/course';
 import { diagram0a } from '../svgs/diagram0a';
+import { diagram0b } from '../svgs/diagram0b';
 import { diagram1 } from '../svgs/diagram1';
 
 const m1: CourseModule = {
@@ -97,6 +98,8 @@ const m1: CourseModule = {
       id: 'm1-tiers',
       title: 'AI Capability Tiers',
       diagram: 'CapabilityTiers',
+      inlineSvg: diagram0b,
+      inlineSvgId: 'd0b',
       slides: [
         {
           heading: 'Where Products Actually Sit',
