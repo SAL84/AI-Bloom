@@ -526,6 +526,8 @@ function StudioFooter() {
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-4">
         <div className="font-studio-serif italic text-[14px] lg:text-[15px] text-studio-ink-dim max-w-[540px] leading-[1.5]">
           A free public library for AI literacy. Built by people who'd rather you understand than subscribe.
+          <br />
+          Developed by Salih AA
         </div>
         <div className="flex flex-wrap gap-3 sm:gap-5 font-studio-mono text-[11px] text-studio-ink-mute tracking-[1px]">
           <span>RSS</span><span>NEWSLETTER</span><span>SOURCE</span><span>EST. MMXXV</span>
