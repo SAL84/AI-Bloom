@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StudioNavLite, StudioFooter } from '../StudioChrome';
 import type { View } from '../../../types/course';
 
-type CareerKey = 'artist' | 'engineer' | 'teacher' | 'ethicist' | 'researcher' | 'data';
+type CareerKey = 'artist' | 'engineer' | 'teacher' | 'ethicist' | 'researcher' | 'data' | 'connector';
 
 interface Option {
   label: string;
@@ -22,6 +22,7 @@ const QUESTIONS: Question[] = [
       { label: "🔧 Building and fixing things that work",   scores: { engineer: 2 } },
       { label: "📚 Teaching and explaining things to others", scores: { teacher: 2 } },
       { label: "🔭 Discovering how things work",            scores: { researcher: 2 } },
+      { label: "🌉 Helping people use cool new technology", scores: { connector: 2 } },
     ],
   },
   {
@@ -31,6 +32,7 @@ const QUESTIONS: Question[] = [
       { label: "🧩 Logic — you love patterns and systems",    scores: { engineer: 1, data: 1 } },
       { label: "❤️ Empathy — you understand how people feel", scores: { ethicist: 2, teacher: 1 } },
       { label: "❓ Curiosity — you always ask 'why?'",       scores: { researcher: 2 } },
+      { label: "🗣️ Communication — you make hard things easy to talk about", scores: { connector: 2 } },
     ],
   },
   {
@@ -40,6 +42,7 @@ const QUESTIONS: Question[] = [
       { label: "⚙️ Makes sure it actually works",   scores: { engineer: 1, data: 1 } },
       { label: "🤝 Makes sure everyone's included", scores: { ethicist: 1, teacher: 2 } },
       { label: "💡 Comes up with the big idea",     scores: { researcher: 2 } },
+      { label: "🌉 Talks to other groups and gets what we need", scores: { connector: 2 } },
     ],
   },
   {
@@ -49,6 +52,7 @@ const QUESTIONS: Question[] = [
       { label: "🤖 Build a robot or AI system",            scores: { engineer: 2 } },
       { label: "⚖️ Make AI fair and safe for everyone",   scores: { ethicist: 2 } },
       { label: "🚀 Discover something nobody has before", scores: { researcher: 2 } },
+      { label: "🌍 Bring new AI tools to people and companies that need them", scores: { connector: 2 } },
     ],
   },
   {
@@ -58,6 +62,7 @@ const QUESTIONS: Question[] = [
       { label: "🔍 Debug it step by step until it's fixed",        scores: { engineer: 1, data: 2 } },
       { label: "💬 Think about how it affects the people using it", scores: { ethicist: 2 } },
       { label: "📖 Research the root cause deeply",                scores: { researcher: 1, data: 1 } },
+      { label: "🎯 Ask the people using it what they really need, then explain it back", scores: { connector: 2 } },
     ],
   },
   {
@@ -67,6 +72,7 @@ const QUESTIONS: Question[] = [
       { label: "🧠 Smart one",    scores: { engineer: 1, data: 1 } },
       { label: "💛 Kind one",     scores: { ethicist: 1, teacher: 2 } },
       { label: "🌍 Curious one",  scores: { researcher: 2 } },
+      { label: "🤝 Bridge-building one", scores: { connector: 2 } },
     ],
   },
 ];
@@ -106,9 +112,13 @@ const CAREERS: CareerResult[] = [
     tagline: 'You see patterns where others see chaos',
     desc: "You turn mountains of raw data into AI that actually works. You'll find the signal in the noise and teach AI what the real world looks like.",
     roles: ['Data Scientist', 'ML Data Engineer', 'Analytics Lead', 'AI Training Specialist'] },
+  { key: 'connector',  title: 'AI Connector',    emoji: '🌉', color: '#2a9fa5',
+    tagline: 'You bring AI to the people who need it',
+    desc: "You're the bridge between AI builders and the people who use it. You'll work with companies and customers to figure out what they really need, then make AI actually work for them — not just in a lab.",
+    roles: ['Forward Deployed Engineer', 'Chief Agent Officer', 'AI Sales Engineer / PreSales', 'AI Solutions Architect'] },
 ];
 
-const EMPTY_SCORES: Record<CareerKey, number> = { artist: 0, engineer: 0, teacher: 0, ethicist: 0, researcher: 0, data: 0 };
+const EMPTY_SCORES: Record<CareerKey, number> = { artist: 0, engineer: 0, teacher: 0, ethicist: 0, researcher: 0, data: 0, connector: 0 };
 
 export const KidsCareersView = ({ setView }: { setView: (v: View) => void }) => {
   const [step, setStep] = useState<'intro' | 'quiz' | 'result'>('intro');
