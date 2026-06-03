@@ -123,43 +123,70 @@ const SVG_AGENT_LOOP = `<svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000
   <text x="280" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">The Agent Loop — how AI agents solve problems</text>
 </svg>`;
 
-const SVG_CAREERS = `<svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
-  <!-- Card 1: Engineer -->
-  <rect x="20" y="50" width="100" height="120" rx="14" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
-  <text x="70" y="90" text-anchor="middle" font-size="28">⚙️</text>
-  <text x="70" y="115" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">AI</text>
-  <text x="70" y="129" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">Engineer</text>
-  <text x="70" y="148" text-anchor="middle" font-size="9" fill="#1e40af">Builds AI</text>
-  <text x="70" y="160" text-anchor="middle" font-size="9" fill="#1e40af">systems</text>
-  <!-- Card 2: Ethicist -->
-  <rect x="135" y="50" width="100" height="120" rx="14" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
-  <text x="185" y="90" text-anchor="middle" font-size="28">⚖️</text>
-  <text x="185" y="115" text-anchor="middle" font-size="11" font-weight="700" fill="#065f46">AI</text>
-  <text x="185" y="129" text-anchor="middle" font-size="11" font-weight="700" fill="#065f46">Ethicist</text>
-  <text x="185" y="148" text-anchor="middle" font-size="9" fill="#047857">Keeps AI</text>
-  <text x="185" y="160" text-anchor="middle" font-size="9" fill="#047857">fair &amp; safe</text>
-  <!-- Card 3: Data Scientist -->
-  <rect x="250" y="50" width="100" height="120" rx="14" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
-  <text x="300" y="90" text-anchor="middle" font-size="28">📊</text>
-  <text x="300" y="115" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">Data</text>
-  <text x="300" y="129" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">Scientist</text>
-  <text x="300" y="148" text-anchor="middle" font-size="9" fill="#5b21b6">Finds patterns</text>
-  <text x="300" y="160" text-anchor="middle" font-size="9" fill="#5b21b6">in data</text>
-  <!-- Card 4: Product Manager -->
-  <rect x="365" y="50" width="100" height="120" rx="14" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
-  <text x="415" y="90" text-anchor="middle" font-size="28">🎯</text>
-  <text x="415" y="115" text-anchor="middle" font-size="11" font-weight="700" fill="#92400e">AI Product</text>
-  <text x="415" y="129" text-anchor="middle" font-size="11" font-weight="700" fill="#92400e">Manager</text>
-  <text x="415" y="148" text-anchor="middle" font-size="9" fill="#78350f">Decides what</text>
-  <text x="415" y="160" text-anchor="middle" font-size="9" fill="#78350f">AI to build</text>
-  <!-- Card 5: You -->
-  <rect x="480" y="50" width="62" height="120" rx="14" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
-  <text x="511" y="90" text-anchor="middle" font-size="28">🌟</text>
-  <text x="511" y="119" text-anchor="middle" font-size="11" font-weight="700" fill="#9d174d">YOU?</text>
-  <text x="511" y="148" text-anchor="middle" font-size="9" fill="#be185d">Any</text>
-  <text x="511" y="160" text-anchor="middle" font-size="9" fill="#be185d">field!</text>
+const SVG_CAREERS = `<svg viewBox="0 0 560 380" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
   <text x="280" y="25" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">AI careers — there's a role for everyone</text>
-  <text x="280" y="200" text-anchor="middle" font-size="10" fill="#64748b">Medicine · Music · Law · Gaming · Education — AI is in all of them</text>
+
+  <!-- ── Row 1 — the builders ─────────────────────────── -->
+  <!-- Card 1: Engineer -->
+  <rect x="20" y="50" width="125" height="125" rx="14" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="82" y="90" text-anchor="middle" font-size="28">⚙️</text>
+  <text x="82" y="115" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">AI</text>
+  <text x="82" y="129" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">Engineer</text>
+  <text x="82" y="150" text-anchor="middle" font-size="9" fill="#1e40af">Builds AI</text>
+  <text x="82" y="162" text-anchor="middle" font-size="9" fill="#1e40af">systems</text>
+  <!-- Card 2: Ethicist -->
+  <rect x="158" y="50" width="125" height="125" rx="14" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="220" y="90" text-anchor="middle" font-size="28">⚖️</text>
+  <text x="220" y="115" text-anchor="middle" font-size="11" font-weight="700" fill="#065f46">AI</text>
+  <text x="220" y="129" text-anchor="middle" font-size="11" font-weight="700" fill="#065f46">Ethicist</text>
+  <text x="220" y="150" text-anchor="middle" font-size="9" fill="#047857">Keeps AI</text>
+  <text x="220" y="162" text-anchor="middle" font-size="9" fill="#047857">fair &amp; safe</text>
+  <!-- Card 3: Data Scientist -->
+  <rect x="296" y="50" width="125" height="125" rx="14" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="358" y="90" text-anchor="middle" font-size="28">📊</text>
+  <text x="358" y="115" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">Data</text>
+  <text x="358" y="129" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">Scientist</text>
+  <text x="358" y="150" text-anchor="middle" font-size="9" fill="#5b21b6">Finds patterns</text>
+  <text x="358" y="162" text-anchor="middle" font-size="9" fill="#5b21b6">in data</text>
+  <!-- Card 4: Product Manager -->
+  <rect x="434" y="50" width="125" height="125" rx="14" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="496" y="90" text-anchor="middle" font-size="28">🎯</text>
+  <text x="496" y="115" text-anchor="middle" font-size="11" font-weight="700" fill="#92400e">AI Product</text>
+  <text x="496" y="129" text-anchor="middle" font-size="11" font-weight="700" fill="#92400e">Manager</text>
+  <text x="496" y="150" text-anchor="middle" font-size="9" fill="#78350f">Decides what</text>
+  <text x="496" y="162" text-anchor="middle" font-size="9" fill="#78350f">AI to build</text>
+
+  <!-- ── Row 2 — the connectors &amp; leaders ─────────────── -->
+  <!-- Card 5: Forward Deployed Engineer -->
+  <rect x="20" y="190" width="125" height="125" rx="14" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2"/>
+  <text x="82" y="230" text-anchor="middle" font-size="28">🚀</text>
+  <text x="82" y="255" text-anchor="middle" font-size="11" font-weight="700" fill="#0f766e">Forward</text>
+  <text x="82" y="269" text-anchor="middle" font-size="11" font-weight="700" fill="#0f766e">Deployed</text>
+  <text x="82" y="290" text-anchor="middle" font-size="9" fill="#115e59">Brings AI to</text>
+  <text x="82" y="302" text-anchor="middle" font-size="9" fill="#115e59">teams in the field</text>
+  <!-- Card 6: Chief Agent Officer -->
+  <rect x="158" y="190" width="125" height="125" rx="14" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="220" y="230" text-anchor="middle" font-size="28">🧭</text>
+  <text x="220" y="255" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Chief Agent</text>
+  <text x="220" y="269" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Officer</text>
+  <text x="220" y="290" text-anchor="middle" font-size="9" fill="#312e81">Leads AI agents</text>
+  <text x="220" y="302" text-anchor="middle" font-size="9" fill="#312e81">at a company</text>
+  <!-- Card 7: AI Sales / PreSales -->
+  <rect x="296" y="190" width="125" height="125" rx="14" fill="#ffe4e6" stroke="#f43f5e" stroke-width="2"/>
+  <text x="358" y="230" text-anchor="middle" font-size="28">🤝</text>
+  <text x="358" y="255" text-anchor="middle" font-size="11" font-weight="700" fill="#9f1239">AI Sales /</text>
+  <text x="358" y="269" text-anchor="middle" font-size="11" font-weight="700" fill="#9f1239">PreSales</text>
+  <text x="358" y="290" text-anchor="middle" font-size="9" fill="#881337">Shows companies</text>
+  <text x="358" y="302" text-anchor="middle" font-size="9" fill="#881337">how AI helps</text>
+  <!-- Card 8: You -->
+  <rect x="434" y="190" width="125" height="125" rx="14" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+  <text x="496" y="230" text-anchor="middle" font-size="28">🌟</text>
+  <text x="496" y="262" text-anchor="middle" font-size="13" font-weight="700" fill="#9d174d">YOU?</text>
+  <text x="496" y="290" text-anchor="middle" font-size="9" fill="#be185d">Any field —</text>
+  <text x="496" y="302" text-anchor="middle" font-size="9" fill="#be185d">pick yours</text>
+
+  <text x="280" y="345" text-anchor="middle" font-size="10" fill="#64748b">Medicine · Music · Law · Gaming · Education — AI is in all of them</text>
+  <text x="280" y="362" text-anchor="middle" font-size="10" font-style="italic" fill="#475569">Some build the AI, some connect it to the people who use it — both matter</text>
 </svg>`;
 
 const SVG_CYBERSAFETY = `<svg viewBox="0 0 560 240" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
@@ -808,12 +835,15 @@ const aiKids: Course = {
           inlineSvgId: 'ak4l3',
           slides: [{
             heading: 'The Jobs of the Future Need You',
-            body: 'AI is creating whole new careers — and changing existing ones. The people who will shape the future of AI aren\'t just coders. They\'re also artists, ethicists, teachers, doctors, storytellers, and problem-solvers.',
+            body: 'AI is creating whole new careers — and changing existing ones. The people who will shape the future of AI aren\'t just coders. Some build the AI, and some connect it to the people who actually use it. Both kinds of jobs matter.',
             bullets: [
               'AI Engineer: builds the systems and models that power AI products',
               'AI Ethicist: makes sure AI is used fairly and safely',
               'Data Scientist: finds patterns in data that teach AI what to do',
               'AI Product Manager: decides what AI products to build and why',
+              'Forward Deployed Engineer: goes into companies and makes AI actually work for the teams there',
+              'Chief Agent Officer: a brand-new leadership job — runs the AI agents that help a whole company',
+              'AI Sales / PreSales Engineer: shows companies how AI tools can help them and helps them get started',
               'AI in Every Field: medicine, music, law, education, gaming — AI is in all of them',
             ],
           }],
