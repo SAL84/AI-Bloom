@@ -5,6 +5,14 @@ import { diagram0d } from '../svgs/diagram0d';
 import { diagram4a } from '../svgs/diagram4a';
 import { diagram4b } from '../svgs/diagram4b';
 import { diagram4c } from '../svgs/diagram4c';
+import { diagram4d } from '../svgs/diagram4d';
+import { diagram4e } from '../svgs/diagram4e';
+import { diagram4f } from '../svgs/diagram4f';
+import { diagram4g } from '../svgs/diagram4g';
+import { diagram4h } from '../svgs/diagram4h';
+import { diagram4i } from '../svgs/diagram4i';
+import { diagram4j } from '../svgs/diagram4j';
+import { diagram4k } from '../svgs/diagram4k';
 
 const aiEssentials: Course = {
   id: 'ai-essentials',
@@ -113,8 +121,93 @@ const aiEssentials: Course = {
       id: 'ae-m2',
       title: 'AI Frontiers',
       icon: 'eye',
-      summary: 'How AI crossed from text into images, audio, and video — and what computer vision unlocks across security, medicine, and automation.',
+      summary: 'The five frontiers of applied AI — NLP, multimodal, vision, robotics — and where the opportunities live for the people entering each field.',
       lessons: [
+        {
+          id: 'ae2l0',
+          title: 'Natural Language Processing',
+          inlineSvg: diagram4i,
+          inlineSvgId: 'd4i',
+          slides: [
+            {
+              heading: 'From Rules to Language Understanding',
+              body: 'Natural Language Processing (NLP) is the AI subfield that teaches machines to read, write, and understand human language. It is the oldest applied AI field — predating modern deep learning by decades — and the one that LLMs most visibly transformed. Every search box, spam filter, voice assistant, translation tool, and customer chatbot is a piece of NLP infrastructure. Understanding the field as a whole — not just the LLM era — explains why some AI products feel instant and cheap while others feel slow and expensive.',
+              bullets: [
+                '1950s — rule-based: linguists hand-encoded grammar and vocabulary; brittle, English-centric, hard to scale',
+                '1990s — statistical: n-grams, hidden Markov models, and SVMs learned from labelled data; feature engineering was the job',
+                '2013 — neural era: word2vec and recurrent networks made language a learnable representation rather than a rulebook',
+                '2018+ — transformers and LLMs: a single architecture learns every NLP task from scale alone, often without task-specific training',
+              ],
+            },
+            {
+              heading: 'The Core NLP Tasks Still Running the World',
+              body: 'Beneath the LLM headline, a small set of foundational tasks does most of the work in production systems. They show up everywhere — even when the user never sees them. Knowing the task names matters because every "AI feature" pitched to you is one or two of these in a trench coat.',
+              bullets: [
+                'Classification: spam detection, sentiment, intent routing, topic tagging — the highest-volume NLP task on the planet',
+                'Named Entity Recognition (NER): pulls structured data (names, places, CVEs, dollar amounts) out of unstructured text',
+                'Translation: 200+ languages, near-human quality for major pairs, foundation for global products',
+                'Summarisation: meeting notes, document briefs, email threads — extractive (verbatim) or abstractive (rewritten)',
+                'Question answering: closed-book (from memory) and retrieval-grounded (RAG) — the interface users now expect by default',
+                'Speech ⇄ text: Whisper, voice assistants, transcription — the glue between voice products and text-only models',
+              ],
+            },
+            {
+              heading: 'How LLMs Changed Everything — and What They Didn\'t',
+              body: 'LLMs absorbed most NLP tasks. A single prompt to GPT-4 or Claude can do classification, NER, translation, summarisation, and Q&A — often better than a fine-tuned model from two years ago, with zero training. But specialist NLP did not disappear. At very high volume — billions of spam classifications per day, real-time intent routing in call centres — a small dedicated model is still 100× cheaper and 10× faster than an LLM API call. The 2026 production pattern is hybrid: small models for the high-volume routine work, LLMs for the open-ended, judgment-heavy work.',
+              bullets: [
+                'LLMs subsume most NLP tasks zero-shot — build pipelines in days, not quarters of labelled-data work',
+                'Specialist NLP still wins on cost and latency for high-volume, narrow tasks — spam, intent, content moderation',
+                'The 2026 pattern is hybrid: small models triage and route, LLMs reason on the cases that need it',
+                'NLP didn\'t disappear into LLMs — it became the way most software talks to humans',
+              ],
+            },
+          ],
+          roleContent: [
+            {
+              role: 'general',
+              label: 'General User',
+              body: 'NLP is the technology that lets you talk to your phone, search by question instead of keyword, and read a summary instead of an entire document. Knowing the basic tasks helps you spot what an AI tool is actually doing under the hood — and where its weak spots are.',
+              bullets: [
+                'When an AI gets your intent wrong, that\'s classification or intent-recognition failing — not the AI being "broken"',
+                'Translation quality varies a lot by language pair — major European and East Asian languages are excellent; many others are still rough',
+                'Summarisation can quietly drop important details — for high-stakes documents, ask for both summary and original',
+              ],
+            },
+            {
+              role: 'security-se',
+              label: 'Security SE',
+              body: 'NLP is the unsexy half of security AI — and the half that customers actually deploy at scale. Knowing which task underpins a vendor claim lets you scope, price, and challenge without getting lost in "AI does it all" marketing.',
+              bullets: [
+                'Phishing detection, alert triage, and SOC ticket routing are classification problems — ask what model size, latency, and per-event cost the vendor commits to',
+                'Threat intel enrichment (extracting CVEs, IOCs, threat actor names from reports) is NER — ask which entity types the system recognises and the precision/recall on your corpus',
+                'Summarisation of incident reports is convenient but lossy — push for traceable summaries that link back to source spans, not just a paragraph',
+                'Voice-channel fraud detection is speech-to-text + classification + behavioural modelling stacked — probe whether the vendor owns the whole pipeline or wraps a transcription API',
+              ],
+            },
+            {
+              role: 'developer',
+              label: 'Developer',
+              body: 'Most NLP problems in production are not LLM problems — they are classification problems with awkward data. Default to the simplest model that meets the requirement, and only escalate to an LLM when the task genuinely needs reasoning.',
+              bullets: [
+                'For high-volume classification (intent, spam, sentiment), fine-tuned encoder models (DistilBERT, ModernBERT) are 50–200× cheaper than an LLM call at equivalent quality',
+                'Use an LLM to generate labelled training data, then train a small classifier on that data — it gets you the LLM\'s quality at the small model\'s cost',
+                'For NER, off-the-shelf spaCy or a fine-tuned BERT model is still the right answer in 2026 — LLM NER is convenient but inconsistent across runs',
+                'Translation: managed APIs (DeepL, Google) beat self-hosted for almost every team — quality + reliability beats DIY',
+              ],
+            },
+            {
+              role: 'consultant',
+              label: 'AI Consultant',
+              body: 'NLP is the layer where AI ROI is most measurable — and most often miscounted because clients lump it under "LLMs." Separate the layers, measure each, and the business case writes itself.',
+              bullets: [
+                'In an AI strategy audit, count classification volume separately from LLM volume — they have different cost curves and different vendors',
+                'Translation and summarisation projects almost always overshoot budget because clients underestimate the quality-assurance work, not the model cost — scope QA explicitly',
+                'For regulated industries, NER pipelines for redaction and PII handling are now compliance infrastructure — treat them as such in vendor selection',
+                'The "we need an LLM" instinct often costs 10× more than the classification model that would actually solve the problem — diagnose the task before scoping the technology',
+              ],
+            },
+          ],
+        },
         {
           id: 'ae2l1',
           title: 'Multimodal AI',
@@ -202,6 +295,8 @@ const aiEssentials: Course = {
         {
           id: 'ae2l2',
           title: 'Computer Vision',
+          inlineSvg: diagram4d,
+          inlineSvgId: 'd4d',
           slides: [
             {
               heading: 'AI That Sees: From Specialised Models to Multimodal LLMs',
@@ -280,11 +375,184 @@ const aiEssentials: Course = {
             },
           ],
         },
+        {
+          id: 'ae2l3',
+          title: 'Robotics & Automation',
+          inlineSvg: diagram4j,
+          inlineSvgId: 'd4j',
+          slides: [
+            {
+              heading: 'AI That Acts in the Physical World',
+              body: 'Robotics is what happens when AI stops generating text and starts moving things. Every robot — industrial arm, self-driving car, surgical assistant, warehouse picker, humanoid prototype — runs the same closed loop: perceive the world, plan a next action, execute it, observe what changed, repeat. The difference from purely digital AI is that mistakes have physical consequences and the environment talks back. That changes the engineering, the safety story, and the economics in important ways.',
+              bullets: [
+                'Perception: sensors (cameras, LiDAR, IMUs, force/touch) feed a model that estimates the state of the world',
+                'Planning: the robot decides what to do — a path to walk, an object to grasp, a sequence of sub-tasks to execute',
+                'Action: actuators (motors, grippers, wheels, joints) move the robot in the physical world',
+                'Closed loop: every action changes the world, the sensors re-observe, and the cycle repeats — this is what makes robotics fundamentally different from a chatbot',
+              ],
+            },
+            {
+              heading: 'Where Robotics Lives Today',
+              body: 'Robotics is not one industry — it is four very different ones, each at a different stage of maturity. Industrial robotics has been profitable for forty years. Autonomous vehicles are scaling driverless services in specific cities. Humanoids are the 2025–2027 frontier, with multiple billion-dollar companies racing to ship general-purpose robots into homes and factories. Service robotics — surgical, agricultural, inspection — is the quiet category where individual deployments are worth millions per unit.',
+              bullets: [
+                'Industrial & warehouse: mature and profitable — assembly lines, pick-and-place, Amazon fulfilment, collaborative robots (cobots) on the factory floor',
+                'Autonomous vehicles: Waymo expanding driverless service, Tesla FSD shipping in cars, trucking and middle-mile delivery emerging fast',
+                'Humanoid robots: Tesla Optimus, Figure, 1X, Boston Dynamics Atlas — the bet that a general-purpose human form factor unlocks home and labour markets',
+                'Service & surgical: da Vinci surgical robots, cleaning fleets, agricultural pickers, inspection drones — high value, regulated, often invisible to consumers',
+              ],
+            },
+            {
+              heading: 'Foundation Models for Robotics: VLAs',
+              body: 'For most of robotics history, every behaviour was hand-coded by an engineer. Pick up a red block? Write a controller. Walk up a stair? Write another controller. The 2024–2026 shift is that foundation models — specifically Vision-Language-Action (VLA) models — are starting to do for robotics what LLMs did for text. A single trained model can be told "pick up the red mug and put it on the counter" and figure out the rest, generalising across robots, environments, and tasks it has never seen before.',
+              bullets: [
+                'RT-2 (Google DeepMind): the first model to fuse vision, language, and robotic action in a single end-to-end network',
+                'PaLM-E: shows that scaling laws apply to robotics — bigger models generalise to new robots and new tasks zero-shot',
+                'π0 (Physical Intelligence): cross-embodiment foundation model trained across many robot types and tasks',
+                'OpenVLA: open-weight VLA, lowering the barrier for academic and industrial labs to build on top of foundation models',
+                'The shift: from "program every behaviour" to "give the robot a goal in natural language and let it figure out the steps"',
+              ],
+            },
+          ],
+          roleContent: [
+            {
+              role: 'general',
+              label: 'General User',
+              body: 'Robotics is the answer to "what happens when AI gets a body?" — and it\'s already shipping in cars, warehouses, hospitals, and soon homes. Knowing the four categories helps you read the news cycle without getting fooled by demos.',
+              bullets: [
+                'A robot demo on Twitter is not the same as a robot product — most clips are choreographed, not autonomous',
+                'Industrial and warehouse robotics is the boring story making real money — humanoid robotics is the loud story still proving itself',
+                'When evaluating self-driving features, watch what they do in bad weather and unusual situations — that\'s where the closed loop actually gets tested',
+              ],
+            },
+            {
+              role: 'security-se',
+              label: 'Security SE',
+              body: 'Robotics deployments are an emerging security buying centre most vendors haven\'t mapped yet. Every robot is a network-connected endpoint with sensors, an actuator surface, and an OTA update channel — the attack surface looks unfamiliar but the threat models do not.',
+              bullets: [
+                'Robot fleets are IoT at industrial scale — ask whether the customer\'s security operations covers warehouse and manufacturing robotics endpoints, not just IT laptops',
+                'Sensor spoofing (camera, LiDAR, GPS) is a robotics-specific attack class — relevant for any customer with autonomous vehicles, drones, or self-driving warehouse equipment',
+                'Foundation-model robotics changes the supply chain question: which model trained on which data is running on the robot, and what update process keeps it current?',
+                'OT/IT convergence is now AI/OT convergence — robotic safety functions and AI inference often share the same compute, raising blast-radius questions for security architecture',
+              ],
+            },
+            {
+              role: 'developer',
+              label: 'Developer',
+              body: 'Robotics has a much harder feedback loop than pure software — every bug shows up in physics, not just logs. Tooling matters, simulation matters, and ML must integrate with classical control rather than replace it.',
+              bullets: [
+                'Use high-fidelity simulators (Isaac Sim, MuJoCo, Gazebo) — train policies in sim, deploy on real robots; sim-to-real is the modern path to production',
+                'Foundation-model policies (RT-2, OpenVLA) handle perception and planning; classical control still handles low-level execution — the stack is hybrid, not pure ML',
+                'Logging in robotics means sensors + state + policy output + actuator commands — and clock-aligned across the stack — instrument from day one',
+                'Safety cases (functional safety) are non-negotiable in industrial and automotive — design the safety envelope before the ML model, not after',
+              ],
+            },
+            {
+              role: 'consultant',
+              label: 'AI Consultant',
+              body: 'Robotics projects fail at the seam between AI and ops, not at the AI model itself. Treat the deployment, the human workflow, and the maintenance plan as first-class scope — not as afterthoughts to a hardware pilot.',
+              bullets: [
+                'A robotics pilot without a clear maintenance and downtime budget is a depreciating asset on day one — scope service contracts up front',
+                'The ROI conversation for industrial robotics is labour-cost-per-unit-output, not "AI ROI" — translate AI metrics into the operations language clients already use',
+                'For humanoid and embodied AI deployments, scope sets the timeline: in 2026 these are pilots and research deals, not production rollouts — calibrate client expectations explicitly',
+                'Foundation-model robotics is where vendor lock-in is being established — include model portability and data-rights clauses in procurement before pilot lock-in compounds',
+              ],
+            },
+          ],
+        },
+        {
+          id: 'ae2l4',
+          title: 'Find Your Frontier — Where to Plant Your Flag',
+          inlineSvg: diagram4k,
+          inlineSvgId: 'd4k',
+          slides: [
+            {
+              heading: 'AI Is Five Careers, Not One',
+              body: 'The phrase "I want to work in AI" hides five very different careers behind one label. NLP engineers and robotics engineers do almost nothing in common. Multimodal product builders and frontier research scientists live in different universes. Picking the wrong field for your strengths means spending five years swimming upstream. Picking the right one means your existing experience becomes a shortcut. The point of this lesson is to give you a map so you can choose deliberately, instead of chasing whatever was loudest on social media this month.',
+              bullets: [
+                'NLP & Language: language models, search, conversational systems — the broadest entry door in 2026',
+                'Computer Vision: perception, imaging, autonomous systems — physical-world AI with deep specialist career paths',
+                'Multimodal: products that combine text, image, audio, video — where most consumer AI ships today',
+                'Robotics & Embodied AI: AI that acts in the physical world — long horizons, high leverage, hardware-bound',
+                'Frontier research: pushing the underlying model capability itself — narrow door, very long horizons, very large impact',
+              ],
+            },
+            {
+              heading: 'Where the Jobs Are by Field',
+              body: 'Each frontier has a distinct shape: who the typical employers are, what the role categories look like, and what a credible portfolio looks like. The fastest way to orient yourself is to look at job listings from three or four representative employers in the field you\'re considering. The role titles tell you what the field actually values.',
+              bullets: [
+                'NLP roles cluster around: prompt engineer · LLM app developer · NLP scientist · conversational designer · search/relevance engineer',
+                'Computer Vision roles cluster around: CV engineer · perception scientist · ML ops for edge devices · imaging specialist · annotation pipeline lead',
+                'Multimodal roles cluster around: multimodal engineer · applied AI engineer · agent builder · voice/video product engineer',
+                'Robotics roles cluster around: robotics engineer · controls or RL scientist · simulation engineer · hardware-ML hybrid · safety case engineer',
+                'Frontier research roles cluster around: research scientist · pre-training engineer · alignment researcher · evals researcher — almost always PhD or strong open record',
+              ],
+            },
+            {
+              heading: 'How to Pick Yours — Three Honest Heuristics',
+              body: 'Most career advice in AI is bad because it optimises for the giver, not the receiver. Three heuristics actually help. First: where does your existing background give you a shortcut? Second: what kind of problem do you actually enjoy thinking about for ten hours straight? Third: what are you willing to commit to for five years, given that AI fields compound on accumulated context? You don\'t have to get it perfectly right — but you do have to choose deliberately, because momentum in AI comes from going deep, not from hopping.',
+              bullets: [
+                'Existing leverage: a backend engineer has a shortcut into NLP/LLM apps; a mechanical engineer has a shortcut into robotics; a designer has a shortcut into multimodal product',
+                'Problem temperament: do you enjoy debugging language, debugging perception, or debugging physics? Each field is mostly that, every day',
+                'Time horizon: NLP/multimodal pays off in months; robotics and frontier research pay off in years — match the horizon to your patience and runway',
+                'Adjacent paths: AI product manager, AI consultant, security SE, safety & policy, data engineer, designer for AI surfaces — high-leverage roles that don\'t require shipping models',
+                'Don\'t chase the hottest field — pick the one where your existing strengths give you the largest unfair advantage',
+              ],
+            },
+          ],
+          roleContent: [
+            {
+              role: 'general',
+              label: 'General User',
+              body: 'You don\'t have to be an engineer to work in AI. The fastest-growing AI roles are at the seam between AI capability and human use — product, policy, training, design, ops. The right "frontier" for you is the one where your existing strengths are a shortcut, not the one with the loudest headlines.',
+              bullets: [
+                'AI product manager and AI consultant are both real, well-paid, and growing fast — neither requires you to write models',
+                'Domain expertise (healthcare, law, education, finance) is now a high-leverage AI skill — pair it with even basic LLM literacy and you become hard to replace',
+                'Pick the field where you already have context — adding AI to your existing skill is a faster path than starting AI from scratch',
+              ],
+            },
+            {
+              role: 'security-se',
+              label: 'Security SE',
+              body: 'Security SE is one of the most undervalued AI career frontiers in 2026 — the demand has outpaced the supply of people who can speak both languages credibly. The five-frontier map is also your discovery tool with customers: knowing where the buyer\'s problem lives shortens every conversation.',
+              bullets: [
+                'Mapping a customer problem to the right frontier is half the value of a discovery call — RAG for knowledge gaps, multimodal for screenshot/voice work, robotics for OT environments',
+                'Specialise — depth in one frontier (say, multimodal SOC tooling) beats shallow coverage across all five — customers can tell the difference',
+                'AI security itself is a sub-frontier worth claiming early: adversarial ML, prompt-injection defence, agent governance — adjacent to traditional security but with a much higher ceiling',
+                'The career stair: SE → architect → field CTO → AI advisory — every step compounds on the language you build now',
+              ],
+            },
+            {
+              role: 'developer',
+              label: 'Developer',
+              body: 'Most engineers who say "I want to work in AI" mean one of two things: build LLM apps, or join a frontier lab. The truth is broader, and the engineering stacks are very different per field. Pick a frontier, then pick the technology shortcut your background gives you into it.',
+              bullets: [
+                'Backend or web background → NLP / LLM apps is the shortest path: RAG, agents, applied multimodal — everything you ship is software-shaped',
+                'Systems or infra background → ML platform, inference optimisation, model serving — every frontier needs this and competition is thinner than research',
+                'Mechanical or controls background → robotics is the obvious door, and VLA models mean software skills now compose well with hardware careers',
+                'Don\'t try to become a research scientist by re-reading papers in your spare time — that path runs through PhDs or open research output, not part-time study',
+              ],
+            },
+            {
+              role: 'consultant',
+              label: 'AI Consultant',
+              body: 'Consulting is the meta-frontier — you don\'t pick one field, you map clients to the right one. The framework here is also your client framework: most clients describe their AI problem in language ("we want a chatbot"), when the real solution lives on a different frontier (multimodal screenshot analysis, or a robotics deployment).',
+              bullets: [
+                'Translation is the value: clients describe outcomes in business terms; your job is to map them to NLP, CV, multimodal, robotics, or frontier model choices',
+                'Industry verticals compound — pick two or three (e.g. financial services, healthcare, public sector) and become the go-to AI advisor in those specifically',
+                'Build a portfolio across at least three of the five frontiers — clients increasingly ask for cross-frontier engagements (a SOC tool with NLP + multimodal, a manufacturer with vision + robotics)',
+                'Adjacent roles are also fields: AI ethics, AI policy, AI procurement specialist — each is a defensible consulting specialism in 2026',
+              ],
+            },
+          ],
+        },
       ],
       quiz: [
         { q: 'What does "multimodal AI" mean?', options: ['AI that runs on multiple servers', 'AI that processes multiple data types such as text, image, and audio', 'AI with multiple personality modes', 'A multi-step prompting technique'], correct: 1 },
         { q: 'When would you choose a standalone computer vision model over a multimodal LLM?', options: ['When you need language reasoning about what the model sees', 'For high-volume, single-task visual classification at low cost and latency', 'When you want explanation alongside detection', 'For zero-shot generalisation to new visual categories'], correct: 1 },
         { q: 'Which attack type requires multimodal AI to detect and cannot be caught by text-only filters?', options: ['SQL injection', 'Password spraying', 'Visual phishing using spoofed logo images in screenshots', 'Credential stuffing'], correct: 2 },
+        { q: 'In a high-volume production NLP pipeline, why might a small fine-tuned classifier beat calling an LLM API?', options: ['LLMs cannot do classification', 'Small specialist models are typically far cheaper and lower-latency than LLM API calls at scale', 'LLMs do not support batching', 'Small models are always more accurate'], correct: 1 },
+        { q: 'What does a Vision-Language-Action (VLA) model do that earlier robot controllers did not?', options: ['It compresses video for storage', 'It replaces the GPU with a CPU', 'It takes a natural-language goal plus visual input and outputs robot actions, generalising across tasks', 'It runs only in simulation'], correct: 2 },
+        { q: 'Which is the most honest reason to pick one AI frontier over another?', options: ['It pays the most this quarter', 'Your existing background gives you the largest unfair advantage there', 'Your friends work in that field', 'It is most often mentioned on social media'], correct: 1 },
       ],
     },
 
@@ -383,6 +651,8 @@ const aiEssentials: Course = {
         {
           id: 'ae4l2',
           title: 'AI Safety & Alignment',
+          inlineSvg: diagram4e,
+          inlineSvgId: 'd4e',
           slides: [
             {
               heading: 'Keeping AI Aligned with Human Intent',
@@ -563,6 +833,8 @@ const aiEssentials: Course = {
         {
           id: 'ae5l2',
           title: 'Agentic AI Goes Mainstream',
+          inlineSvg: diagram4f,
+          inlineSvgId: 'd4f',
           slides: [
             {
               heading: 'From Copilot to Agent: A Qualitative Shift',
@@ -644,6 +916,8 @@ const aiEssentials: Course = {
         {
           id: 'ae5l3',
           title: 'On-Device & Open-Weight AI',
+          inlineSvg: diagram4g,
+          inlineSvgId: 'd4g',
           slides: [
             {
               heading: 'AI That Runs on Your Device',
@@ -725,6 +999,8 @@ const aiEssentials: Course = {
         {
           id: 'ae5l4',
           title: 'AI Regulation & Governance',
+          inlineSvg: diagram4h,
+          inlineSvgId: 'd4h',
           slides: [
             {
               heading: 'The Policy Layer Has Arrived',
