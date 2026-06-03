@@ -33,7 +33,12 @@ const saveProgress = (progress: Progress): void => {
 };
 
 export default function App() {
-  const [view, setViewRaw] = useState<View>({ type: 'library' });
+  const [view, setViewRaw] = useState<View>(() => {
+    if (typeof window !== 'undefined' && window.history.state?.appView) {
+      return window.history.state.appView as View;
+    }
+    return { type: 'library' };
+  });
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
   const [quizScores, setQuizScores] = useState<Record<string, number>>({});
   const [savedLessons, setSavedLessons] = useState<Record<string, boolean>>({});

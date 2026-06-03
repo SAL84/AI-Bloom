@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { COURSES } from '../../data/modules';
 import type { CourseId, View } from '../../types/course';
 import { SearchModal } from './SearchModal';
+import { VisitCounter } from './VisitCounter';
 import { EDITORS_DESK, MARGINALIA } from '../../data/reading-room';
 
 interface Props {
@@ -543,6 +544,7 @@ function StudioFooter() {
           Developed by Salih AA
         </div>
         <div className="flex flex-wrap gap-3 sm:gap-5 font-studio-mono text-[11px] text-studio-ink-mute tracking-[1px]">
+          <VisitCounter />
           <span>RSS</span><span>NEWSLETTER</span><span>SOURCE</span><span>EST. MMXXV</span>
         </div>
       </div>

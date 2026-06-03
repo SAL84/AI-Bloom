@@ -1,5 +1,6 @@
 import React from 'react';
 import type { View } from '../../types/course';
+import { VisitCounter } from './VisitCounter';
 
 interface NavLiteProps {
   crumbs: string[];
@@ -77,6 +78,7 @@ export function StudioFooter() {
           Developed by Salih AA
         </div>
         <div className="flex flex-wrap gap-3 sm:gap-5 font-studio-mono text-[11px] text-studio-ink-mute tracking-[1px]">
+          <VisitCounter />
           <span>RSS</span><span>NEWSLETTER</span><span>SOURCE</span><span>EST. MMXXV</span>
         </div>
       </div>
