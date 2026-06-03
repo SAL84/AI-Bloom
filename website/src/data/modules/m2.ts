@@ -4,13 +4,13 @@ import { diagram2c } from '../svgs/diagram2c';
 
 const m2: CourseModule = {
   id: 'm2',
-  title: 'LLMs & Generative AI',
+  title: 'Large Language Models',
   icon: 'brain',
   summary: 'The mechanics behind the magic — tokens, context, embeddings, RAG, fine-tuning, hallucinations.',
   lessons: [
     {
       id: 'm2l0',
-      title: 'The LLM Landscape — Model Quality & Architecture',
+      title: 'LLM Landscape',
       inlineSvg: diagram2,
       inlineSvgId: 'd2',
       slides: [

@@ -108,10 +108,10 @@ const aiEssentials: Course = {
       ],
     },
 
-    // ── M2: AI Frontiers — Multimodal & Vision ────────────────────────────
+    // ── M2: AI Frontiers ──────────────────────────────────────────────────
     {
       id: 'ae-m2',
-      title: 'AI Frontiers — Multimodal & Vision',
+      title: 'AI Frontiers',
       icon: 'eye',
       summary: 'How AI crossed from text into images, audio, and video — and what computer vision unlocks across security, medicine, and automation.',
       lessons: [
