@@ -7,7 +7,7 @@ const m3: CourseModule = {
   id: 'm3',
   title: 'AI Architecture: Models, MCP, Agents',
   icon: 'layers',
-  summary: 'The full stack literacy module — the layer cake every SE must be able to whiteboard.',
+  summary: 'The full stack literacy module — the layer cake anyone working with AI should be able to whiteboard.',
   lessons: [
     {
       id: 'm3l1',

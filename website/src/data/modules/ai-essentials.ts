@@ -1,6 +1,7 @@
 import type { Course } from '../../types/course';
 import m1 from './m1';
 import m2 from './m2';
+import m3 from './m3';
 import { diagram0d } from '../svgs/diagram0d';
 import { diagram4a } from '../svgs/diagram4a';
 import { diagram4b } from '../svgs/diagram4b';
@@ -121,7 +122,7 @@ const aiEssentials: Course = {
       id: 'ae-m2',
       title: 'AI Frontiers',
       icon: 'eye',
-      summary: 'The five frontiers of applied AI — NLP, multimodal, vision, robotics — and where the opportunities live for the people entering each field.',
+      summary: 'The five frontiers of applied AI — NLP, multimodal, vision, robotics, and speech — and where the opportunities live for the people entering each field.',
       lessons: [
         {
           id: 'ae2l0',
@@ -153,7 +154,7 @@ const aiEssentials: Course = {
             },
             {
               heading: 'How LLMs Changed Everything — and What They Didn\'t',
-              body: 'LLMs absorbed most NLP tasks. A single prompt to GPT-4 or Claude can do classification, NER, translation, summarisation, and Q&A — often better than a fine-tuned model from two years ago, with zero training. But specialist NLP did not disappear. At very high volume — billions of spam classifications per day, real-time intent routing in call centres — a small dedicated model is still 100× cheaper and 10× faster than an LLM API call. The 2026 production pattern is hybrid: small models for the high-volume routine work, LLMs for the open-ended, judgment-heavy work.',
+              body: 'LLMs absorbed most NLP tasks. A single prompt to a frontier model like Claude or GPT can do classification, NER, translation, summarisation, and Q&A — often better than a fine-tuned model from two years ago, with zero training. But specialist NLP did not disappear. At very high volume — billions of spam classifications per day, real-time intent routing in call centres — a small dedicated model is still 100× cheaper and 10× faster than an LLM API call. The 2026 production pattern is hybrid: small models for the high-volume routine work, LLMs for the open-ended, judgment-heavy work.',
               bullets: [
                 'LLMs subsume most NLP tasks zero-shot — build pipelines in days, not quarters of labelled-data work',
                 'Specialist NLP still wins on cost and latency for high-volume, narrow tasks — spam, intent, content moderation',
@@ -216,7 +217,7 @@ const aiEssentials: Course = {
           slides: [
             {
               heading: 'Beyond Text: One Model, Every Sense',
-              body: 'Multimodal models process and generate multiple types of data — text, images, audio, and video — in a single model. This is a major architectural shift from earlier AI where each modality required a separate specialised system. GPT-4o, Gemini Ultra, and Claude 3.7 Sonnet are all multimodal: you can send an image of an error message, a recording of a meeting, or a screenshot of a dashboard and get intelligent analysis back.',
+              body: 'Multimodal models process and generate multiple types of data — text, images, audio, and video — in a single model. This is a major architectural shift from earlier AI where each modality required a separate specialised system. GPT, Gemini, and Claude are all natively multimodal: you can send an image of an error message, a recording of a meeting, or a screenshot of a dashboard and get intelligent analysis back.',
               bullets: [
                 'Input: upload a screenshot and ask what\'s wrong here; paste audio and get a structured summary',
                 'Output: text answers, generated images, transcripts, and cross-modal analysis',
@@ -313,7 +314,7 @@ const aiEssentials: Course = {
               body: 'The choice between a dedicated computer vision model and a multimodal LLM depends on what you\'re optimising for. Standalone CV models win on speed and cost for high-volume, single-task classification. Multimodal LLMs win when you need language reasoning alongside visual understanding — asking "why is this anomalous" rather than "is this anomalous".',
               bullets: [
                 'Standalone CV (YOLO, EfficientDet): fast, cheap, ideal for real-time or high-volume single-task pipelines',
-                'Multimodal LLMs (GPT-4o, Gemini, Claude): slower, costlier, but can explain, compare, and reason across visual content',
+                'Multimodal LLMs (GPT, Gemini, Claude): slower, costlier, but can explain, compare, and reason across visual content',
                 'Hybrid: use standalone CV to detect, then multimodal LLM to interpret and recommend — best of both',
                 'The convergence direction: frontier labs are absorbing specialised CV capabilities into their multimodal models each release cycle',
               ],
@@ -460,6 +461,87 @@ const aiEssentials: Course = {
           ],
         },
         {
+          id: 'ae2l3b',
+          title: 'Speech & Audio AI',
+          slides: [
+            {
+              heading: 'Speech Recognition: From Brittle Dictation to Robust Understanding',
+              body: 'For decades, speech recognition was the AI capability that almost worked. Dictation software required training on your voice, failed on accents, and collapsed in noisy rooms. Transformer-based models changed that completely: modern automatic speech recognition (ASR) is robust across accents, background noise, and dozens of languages — often approaching or exceeding human transcription accuracy on clean audio. The practical consequence is that voice became a reliable input channel. Every meeting can be transcribed, every voicemail summarised, every spoken language translated in near real time. Speech recognition quietly became infrastructure — the invisible first stage of voice assistants, meeting tools, call analytics, and accessibility features.',
+              bullets: [
+                'Modern ASR is multilingual by default — a single model transcribes dozens of languages and can translate as it transcribes',
+                'Real-time transcription now runs live in meetings, calls, and broadcasts — not as an after-the-fact batch job',
+                'Robustness was the breakthrough: accents, crosstalk, and background noise no longer break recognition the way they once did',
+                'Accessibility impact: live captioning and voice control are now dependable enough for people who rely on them daily',
+              ],
+            },
+            {
+              heading: 'Speech Generation: Natural Voices and Their Double Edge',
+              body: 'The output side moved just as fast. Text-to-speech (TTS) crossed the naturalness threshold — modern generated voices carry intonation, emotion, and pacing that make them hard to distinguish from a human speaker. Voice cloning can reproduce a specific person\'s voice from a short sample. Music generation models compose full tracks from a text description. This is a genuine double edge. The same cloning capability that restores a voice to someone who lost theirs to illness, narrates audiobooks in the author\'s own voice, and dubs films across languages also powers deepfake fraud — cloned-voice phone scams impersonating executives and family members are among the fastest-growing social engineering attacks. The capability is not going away, so detection, consent frameworks, and healthy scepticism about voice as proof of identity all have to catch up.',
+              bullets: [
+                'Modern TTS carries emotion, emphasis, and natural pacing — the robotic voice era is over',
+                'Voice cloning from seconds of audio: transformative for accessibility and localisation, dangerous in the wrong hands',
+                'Cloned-voice fraud is a mainstream attack: a familiar voice on the phone is no longer proof of identity',
+                'Music generation produces complete tracks from text prompts — reshaping production economics and igniting licensing battles',
+              ],
+            },
+            {
+              heading: 'Voice Agents: The Hardest Modality in Production',
+              body: 'Put recognition and generation together with an LLM in the middle and you get voice agents — AI that holds a real conversation on a phone line. This is driving a renaissance of the phone channel: contact centres deploy voice agents that resolve routine calls end-to-end, book appointments, and triage support requests, escalating to humans when needed. It is also the hardest modality to ship well. A text chatbot can take three seconds to respond and nobody minds; in a voice conversation, more than about a second of silence feels broken. That latency budget must cover speech recognition, LLM inference, and speech synthesis combined — plus the conversational mechanics text never faces: interruptions, barge-in, turn-taking, and background noise. The direction is clear: natively speech-to-speech models that skip transcription entirely, and voice becoming a first-class interface for agents everywhere.',
+              bullets: [
+                'The latency budget is the defining constraint: ASR + LLM + TTS must complete in roughly a second for conversation to feel natural',
+                'Contact centres are the beachhead: voice agents resolve routine calls end-to-end and escalate the rest with full context',
+                'Voice-specific engineering: interruption handling, turn-taking, and barge-in have no text-chat equivalent',
+                'Where it is headed: native speech-to-speech models that reason directly in audio, cutting latency and preserving tone',
+              ],
+            },
+          ],
+          roleContent: [
+            {
+              role: 'general',
+              label: 'General User',
+              body: 'Speech AI is already in your day — voice assistants, meeting transcripts, live captions, voicemail summaries. The two things worth internalising: voice is now a reliable way to work with AI, and a familiar voice on the phone is no longer proof of who is speaking.',
+              bullets: [
+                'Use voice input for capture — notes, ideas, messages — it is often faster than typing and transcription quality is now dependable',
+                'Treat unexpected calls requesting money or credentials with scepticism even when the voice is familiar — agree on verification habits with family and colleagues',
+                'Live translation and captioning are mature enough to rely on for travel, meetings, and accessibility needs',
+              ],
+            },
+            {
+              role: 'security-se',
+              label: 'Security SE',
+              body: 'Speech AI cuts both ways for security: voice agents create a new authenticated channel to protect, and voice cloning breaks the assumption that a recognised voice equals a verified identity. Both are discovery conversations most customers have not had yet.',
+              bullets: [
+                'Ask: does the customer\'s fraud model account for cloned-voice attacks against their call centre and their executives?',
+                'Voice-channel authentication that relies on voiceprint alone is now a vulnerability — probe what step-up verification exists',
+                'Voice agents in contact centres handle PII and payment data in real time — ask where transcripts go, how long audio is retained, and who can access it',
+                'Deepfake audio detection is an emerging control — position it alongside, not instead of, process-based verification',
+              ],
+            },
+            {
+              role: 'developer',
+              label: 'Developer',
+              body: 'Voice is the least forgiving modality to build for: the latency budget is brutal, and conversational mechanics (interruptions, turn-taking) require engineering that text chat never needed. Architect for streaming end-to-end or the experience will feel broken.',
+              bullets: [
+                'Stream everything: streaming ASR, streaming LLM output, streaming TTS — batch processing at any stage blows the one-second conversational budget',
+                'Handle barge-in from day one: users interrupt agents constantly, and bolting it on later means re-architecting the pipeline',
+                'Measure time-to-first-audio, not time-to-complete-response — perceived latency is what users experience',
+                'Evaluate on real acoustic conditions: phone-line audio, accents, and background noise — clean-audio benchmarks overstate production quality',
+              ],
+            },
+            {
+              role: 'consultant',
+              label: 'AI Consultant',
+              body: 'Voice agents are one of the clearest AI ROI stories in the market — call volumes, handle times, and resolution rates are already measured, so the before/after case writes itself. The risk side (cloning fraud, consent, recording compliance) belongs in the same engagement.',
+              bullets: [
+                'Contact-centre voice agents have measurable baselines — cost per call and containment rate make the business case concrete in a way most AI projects cannot',
+                'Scope the escalation design as first-class work: the handoff from agent to human, with context, determines customer experience more than the voice quality does',
+                'Voice cloning risk assessment belongs in every fraud and social engineering review — especially for clients with call-centre authentication',
+                'Recording, consent, and biometric-data regulations vary by jurisdiction — voice deployments need a compliance review before pilot, not after',
+              ],
+            },
+          ],
+        },
+        {
           id: 'ae2l4',
           title: 'Find Your Frontier — Where to Plant Your Flag',
           inlineSvg: diagram4k,
@@ -553,11 +635,15 @@ const aiEssentials: Course = {
         { q: 'In a high-volume production NLP pipeline, why might a small fine-tuned classifier beat calling an LLM API?', options: ['LLMs cannot do classification', 'Small specialist models are typically far cheaper and lower-latency than LLM API calls at scale', 'LLMs do not support batching', 'Small models are always more accurate'], correct: 1 },
         { q: 'What does a Vision-Language-Action (VLA) model do that earlier robot controllers did not?', options: ['It compresses video for storage', 'It replaces the GPU with a CPU', 'It takes a natural-language goal plus visual input and outputs robot actions, generalising across tasks', 'It runs only in simulation'], correct: 2 },
         { q: 'Which is the most honest reason to pick one AI frontier over another?', options: ['It pays the most this quarter', 'Your existing background gives you the largest unfair advantage there', 'Your friends work in that field', 'It is most often mentioned on social media'], correct: 1 },
+        { q: 'Why is voice the hardest modality to ship well in production AI?', options: ['Speech recognition accuracy is still far below usable levels', 'Voice models cannot run in the cloud', 'Users prefer typing in all situations', 'The whole pipeline — recognition, LLM inference, and synthesis — must fit a roughly one-second latency budget for conversation to feel natural'], correct: 3 },
       ],
     },
 
     // ── M3: LLMs & Generative AI (imported) ──────────────────────────────
     m2,
+
+    // ── M4: AI Architecture — Models, MCP, Agents (imported) ─────────────
+    m3,
 
     // ── M4: AI Ethics & Safety ────────────────────────────────────────────
     {
@@ -644,6 +730,163 @@ const aiEssentials: Course = {
                 'Require bias audits as a contractual deliverable for any client-facing AI system making automated decisions',
                 'Historical bias is particularly acute in security and HR: past decisions reflected past analyst and hiring manager bias — surface this explicitly',
                 'Include bias risk in the AI governance framework — it belongs alongside privacy and security risk, not as an afterthought',
+              ],
+            },
+          ],
+        },
+        {
+          id: 'ae4l1b',
+          title: 'Transparency & Explainability',
+          slides: [
+            {
+              heading: 'Why Deep Models Are Opaque',
+              body: 'A deep neural network is billions of numerical weights, tuned by an optimisation process no human directed step-by-step. There is no line of code that says "reject this loan application" — there is a cascade of matrix multiplications that produces a score. This is fundamentally different from traditional software, where a developer can trace any decision back to an explicit rule. The opacity is not a bug or laziness; it is a structural property of how these systems learn. And it collides directly with a basic expectation of consequential decisions: that someone can explain why. When a model denies credit, flags a transaction, or screens out a resume, "the weights produced that output" satisfies neither the affected person, the regulator, nor often the organisation that deployed it.',
+              bullets: [
+                'A trained model is billions of learned weights, not a set of human-readable rules — there is no "if" statement to point to',
+                'The same property that makes deep learning powerful — learning representations humans didn\'t specify — is what makes it opaque',
+                'Opacity matters most where decisions are consequential: credit, hiring, healthcare, justice, security',
+                'Even the model\'s builders cannot fully explain individual outputs — this is a research frontier, not an engineering oversight',
+              ],
+            },
+            {
+              heading: 'What Explainability Actually Offers Today',
+              body: 'Explainability research has produced real but partial tools. Feature attribution methods (such as SHAP and LIME) estimate which inputs most influenced a specific prediction — useful for spotting when a model leans on a suspicious signal, but an approximation, not a ground-truth account. Model cards and system cards document what a model was trained on, evaluated against, and intended for. Chain-of-thought output from reasoning models offers a readable window into a model\'s working — genuinely useful for review, but with a known limit: the written reasoning does not always faithfully reflect the computation that produced the answer, so it should be treated as evidence, not proof. Mechanistic interpretability — reverse-engineering the circuits inside models — is advancing but remains far from explaining frontier models end to end.',
+              bullets: [
+                'Feature attribution (SHAP, LIME): estimates which inputs drove a prediction — an approximation, useful for catching suspicious signals',
+                'Model cards and system cards: document training data scope, evaluation results, intended use, and known limitations',
+                'Chain-of-thought: a readable partial window — but models can produce reasoning text that does not faithfully match their actual computation',
+                'Mechanistic interpretability: promising research, not yet a practical tool for explaining production frontier models',
+              ],
+            },
+            {
+              heading: 'What You Can Demand — and What Nobody Can Provide Yet',
+              body: 'The practical skill is knowing the difference between reasonable and impossible transparency demands. Reasonable: documentation (model cards, intended-use statements, known limitations), evaluation results relevant to your use case (including disaggregated performance across subgroups), data provenance answers (what categories of data trained this system, and is my data used for training?), audit trails of decisions, and a clear account of where humans review outputs. Not yet possible from any vendor, however sincere: a complete causal explanation of why a large model produced one specific output, or a guarantee that a model will never behave unexpectedly. A vendor who promises full explainability of a deep model is overclaiming — while a vendor who cannot produce even a model card or evaluation results has not done the basic work. Calibrated buyers ask for everything in the first list and are suspicious of anyone promising the second.',
+              bullets: [
+                'Reasonable to demand: model cards, evaluation results on your use case, data provenance, audit trails, human oversight points',
+                'Not available from anyone yet: complete causal explanations of individual frontier-model outputs',
+                'Red flag in both directions: vendors promising "fully explainable AI" and vendors who cannot produce basic documentation',
+                'For high-stakes narrow decisions, a simpler interpretable model is sometimes the right call — explainability can be a reason to choose less capable technology',
+              ],
+            },
+          ],
+          roleContent: [
+            {
+              role: 'general',
+              label: 'General User',
+              body: 'You will increasingly be on the receiving end of AI decisions — loan approvals, job screening, content moderation. Knowing what an explanation can and cannot be helps you exercise your rights without being fobbed off by either technobabble or false reassurance.',
+              bullets: [
+                'If an AI-influenced decision affects you in a regulated area, you can often request human review — use that right',
+                'An AI\'s confident, articulate explanation of its own answer is not proof the explanation is accurate — verify important claims independently',
+                'Prefer tools and vendors that publish documentation of what their AI does and how it was tested',
+              ],
+            },
+            {
+              role: 'security-se',
+              label: 'Security SE',
+              body: 'Explainability is where security AI deals are won and lost in regulated sectors — analysts must be able to validate detections and auditors must be able to review them. Knowing what is technically possible keeps your claims credible and exposes competitors who overclaim.',
+              bullets: [
+                'Position evidence-linked detections (which signals fired, which entities were involved) rather than promising full model explainability',
+                'Ask competitors\' customers: can your analysts see why the model flagged this, or just a score? — scores alone create audit findings',
+                'Chain-of-thought output from reasoning models helps analyst review, but do not sell it as a faithful account of the model\'s computation',
+              ],
+            },
+            {
+              role: 'developer',
+              label: 'Developer',
+              body: 'Transparency is an architecture decision you make at design time. You cannot fully explain the model\'s internals, but you control everything around it: logging, documentation, attribution tooling, and where humans can inspect the loop.',
+              bullets: [
+                'Log inputs, outputs, model version, and confidence for every consequential decision — the audit trail is your transparency layer even when the model is opaque',
+                'Maintain model cards and evaluation results as living documents — they are becoming regulatory table stakes, not nice-to-haves',
+                'For narrow high-stakes decisions, benchmark an interpretable baseline (logistic regression, trees) — if it is close in accuracy, its explainability may win overall',
+              ],
+            },
+            {
+              role: 'consultant',
+              label: 'AI Consultant',
+              body: 'Clients conflate three different things: interpretability of the model, documentation of the system, and auditability of the decisions. Separating them turns an impossible demand ("explain the AI") into an achievable programme with concrete deliverables.',
+              bullets: [
+                'Reframe "we need explainable AI" into a requirements matrix: who needs what explanation, for which decision, to satisfy whom?',
+                'Make documentation artefacts (model cards, eval reports, data provenance statements) contractual deliverables in AI procurement',
+                'Advise honestly on the limit: no vendor can fully explain a frontier model\'s individual outputs — governance must be designed assuming partial opacity',
+              ],
+            },
+          ],
+        },
+        {
+          id: 'ae4l1c',
+          title: 'Accountability: When AI Is Wrong, Who Answers?',
+          slides: [
+            {
+              heading: 'The Accountability Gap',
+              body: 'When a human professional makes a harmful decision, accountability has a well-worn path: the person, their employer, their professional standards body, their insurer. When an AI system contributes to the same harm, the path fragments. The model developer says the deployer used it outside intended parameters. The deployer says they relied on the vendor\'s claims. The user says they just followed the tool\'s recommendation. Everyone touched the decision; no one owns it. This is the accountability gap, and it is not an abstract philosophy problem — it determines whether a person harmed by an AI-influenced decision can get redress, and whether anyone has an incentive to prevent the next failure. A useful rule of thumb: if you cannot say in advance who answers when the system is wrong, the system is not ready for consequential decisions.',
+              bullets: [
+                'Three candidate answerers: the developer (built the model), the deployer (chose to use it here), the user (acted on its output)',
+                'Diffusion of responsibility is the failure mode: every party can point at another, so no one prevents the next incident',
+                'Automation bias compounds it: humans defer to machine recommendations, then claim they were "just following the system"',
+                'The test before deployment: can you name, in writing, who answers when this system gets it wrong?',
+              ],
+            },
+            {
+              heading: 'Where the Gap Bites: Real Domains',
+              body: 'The accountability gap is not hypothetical — it surfaces wherever AI touches consequential decisions. In hiring, screening tools have filtered out qualified candidates on biased patterns; when challenged, the question of whether the employer or the tool vendor answers is now litigated. In credit, scoring models deny loans on proxies the applicant never sees, and appeal processes have had to be rebuilt around them. In medicine, diagnostic aids raise a hard question: if a clinician overrides a correct AI and is wrong — or follows an incorrect AI and is wrong — how does liability shift? In autonomous vehicles, crashes have forced courts and regulators to decide, case by case, where driver responsibility ends and manufacturer responsibility begins. Each domain is producing its own precedents, and each precedent pushes organisations toward the same conclusion: assign responsibility before deployment, not after the incident.',
+              bullets: [
+                'Hiring: biased screening tools have triggered litigation and regulation targeting the employer, not just the vendor',
+                'Credit: automated denials must now come with appeal and explanation routes in many jurisdictions',
+                'Medicine: AI-assisted diagnosis reshapes clinician liability in both directions — overriding and deferring each carry risk',
+                'Autonomous vehicles: the clearest public test of shifting responsibility from operator to manufacturer as autonomy increases',
+              ],
+            },
+            {
+              heading: 'Emerging Answers — and What You Should Personally Do',
+              body: 'The gap is being closed from several directions at once. The EU AI Act draws the sharpest lines yet: providers of high-risk AI carry obligations for documentation, risk management, and post-market monitoring, while deployers carry duties of human oversight, appropriate use, and logging — a template other jurisdictions are watching. Audit trails turn "what happened?" from speculation into evidence. Insurance markets are pricing AI risk, which forces the discipline of quantifying it. And human-in-the-loop design is increasingly understood as liability architecture, not just quality control: a named human who reviews and signs off is an accountable party by design. The personal guidance follows directly: keep the human signature on consequential decisions. If you approve what an AI recommended, you own that approval — so review at the level the stakes demand, and never let "the AI said so" become your reason.',
+              bullets: [
+                'EU AI Act template: providers answer for the system\'s design and documentation; deployers answer for oversight and appropriate use',
+                'Audit trails are the accountability infrastructure: logged inputs, outputs, versions, and overrides make responsibility traceable',
+                'Insurance and certification are quietly enforcing standards — unquantified AI risk is becoming uninsurable AI risk',
+                'Human-in-the-loop as liability design: a named reviewer converts a diffuse failure into an owned decision',
+                'Personal rule: keep your signature on consequential decisions — delegating the work to AI never delegates the responsibility',
+              ],
+            },
+          ],
+          roleContent: [
+            {
+              role: 'general',
+              label: 'General User',
+              body: 'Accountability is your protection when AI gets it wrong about you — and your obligation when you use AI in your own work. The two sides of the same rule: demand a human answerable for decisions about you, and stay answerable for decisions you make with AI.',
+              bullets: [
+                'If an automated decision harms you, ask who is accountable and what the appeal route is — in regulated domains one increasingly must exist',
+                'When you use AI at work, the output you pass on carries your name — review it at the level the stakes demand',
+                'Be alert to automation bias in yourself: "the system recommended it" is an explanation, never a justification',
+              ],
+            },
+            {
+              role: 'security-se',
+              label: 'Security SE',
+              body: 'Accountability design is becoming a purchase criterion for security AI: when an agent closes an alert wrongly or an automated response causes an outage, the customer\'s governance team will ask who answers. Vendors who arrive with that answer win regulated-sector deals.',
+              bullets: [
+                'Discovery question: "when the AI auto-closes an alert that turns out to be real, who reviews, and what does the audit trail show?"',
+                'Map provider vs deployer obligations for the customer — under the EU AI Act both sides carry duties, and most customers have not assigned theirs',
+                'Position immutable logging and human-approval workflows as accountability infrastructure, not just compliance checkboxes',
+              ],
+            },
+            {
+              role: 'developer',
+              label: 'Developer',
+              body: 'You cannot bolt accountability on after an incident — it is built from logging, override paths, and explicit ownership decisions made at design time. Assume every consequential output will someday be examined in a dispute, and build what that examination will need.',
+              bullets: [
+                'Record who (or what) made each consequential decision, on which model version, with what inputs — attribution is the core accountability primitive',
+                'Build override and appeal paths as first-class features: a human must be able to reverse the system, and the reversal must be logged',
+                'Write down the ownership map before launch: which failures are the model\'s, the pipeline\'s, the deployer\'s, the user\'s — ambiguity here becomes liability later',
+              ],
+            },
+            {
+              role: 'consultant',
+              label: 'AI Consultant',
+              body: 'Accountability assignment is the deliverable clients most often lack: they have AI systems in production with no written answer to "who answers when it is wrong?" Making that answer explicit — roles, obligations, escalation, audit — is high-value, low-tooling consulting work.',
+              bullets: [
+                'Run a RACI exercise per AI use case: who is responsible, accountable, consulted, informed for each consequential decision the system touches',
+                'Map each deployment against provider vs deployer obligations under the EU AI Act — the split is contractual as well as regulatory',
+                'Recommend human sign-off points as liability design, and make each sign-off a named role with logged decisions — not a vague "human oversight" clause',
               ],
             },
           ],
@@ -736,6 +979,8 @@ const aiEssentials: Course = {
         { q: 'What is "representation bias" in AI?', options: ['Bias in how AI is represented in the media', 'When a group is underrepresented in training data, causing worse model performance for them', 'An error in the model\'s internal representations', 'Bias introduced by prompt engineering'], correct: 1 },
         { q: 'What does RLHF stand for?', options: ['Reinforcement Learning from Human Feedback', 'Recursive Logic for Hybrid Functions', 'Real-time Learning from Historical Frames', 'Regularised Loss for High-Fidelity models'], correct: 0 },
         { q: 'What is "Goodhart\'s Law" and why does it matter for AI?', options: ['Models always converge to the correct answer given enough training data', 'When a measure becomes a target, it ceases to be a good measure — AI systems find unexpected ways to maximise the reward signal', 'AI models cannot generalise beyond their training distribution', 'Interpretability is impossible for large neural networks'], correct: 1 },
+        { q: 'What is a known limit of chain-of-thought output as an explainability tool?', options: ['It only works for image models', 'It makes responses shorter and less detailed', 'The written reasoning does not always faithfully reflect the computation that produced the answer', 'It is prohibited under the EU AI Act'], correct: 2 },
+        { q: 'What is the "accountability gap" in AI?', options: ['Responsibility for AI-caused harm fragments between developer, deployer, and user — each can point at another, so no one clearly answers', 'AI systems cannot keep audit logs', 'Regulators have no legal authority over AI companies', 'AI decisions are always too fast for humans to review'], correct: 0 },
       ],
     },
 
@@ -744,7 +989,7 @@ const aiEssentials: Course = {
       id: 'ae-m5',
       title: 'What is Next in AI',
       icon: 'rocket',
-      summary: 'The four trends reshaping AI in 2025–2027: reasoning models, agentic systems, on-device AI, and the regulation layer that is beginning to govern all of them.',
+      summary: 'The trends reshaping AI right now: reasoning models, agentic systems, on-device AI, and the regulation layer that is beginning to govern all of them.',
       lessons: [
         {
           id: 'ae5l1',
@@ -754,7 +999,7 @@ const aiEssentials: Course = {
           slides: [
             {
               heading: 'AI That Thinks Before It Answers',
-              body: 'Reasoning models represent a qualitative shift in how AI approaches hard problems. Rather than generating a response immediately, reasoning models spend compute "thinking" — producing an explicit chain-of-thought scratchpad before committing to a final answer. OpenAI\'s o1 and o3, Anthropic\'s extended thinking, and DeepSeek-R1 are the pioneering examples. The result is dramatically better performance on tasks requiring multi-step logic, mathematics, code debugging, and structured analysis.',
+              body: 'Reasoning models represent a qualitative shift in how AI approaches hard problems. Rather than generating a response immediately, reasoning models spend compute "thinking" — producing an explicit chain-of-thought scratchpad before committing to a final answer. OpenAI\'s o-series, Anthropic\'s extended thinking, and DeepSeek-R1 were the pioneering examples — RL-trained reasoning has since become a standard capability across every major vendor\'s lineup. The result is dramatically better performance on tasks requiring multi-step logic, mathematics, code debugging, and structured analysis.',
               bullets: [
                 'Standard LLMs: generate output tokens autoregressively, one token at a time, without deliberation',
                 'Reasoning models: generate a "thinking" scratchpad first, then the final response — internal deliberation made visible',
@@ -849,10 +1094,10 @@ const aiEssentials: Course = {
             },
             {
               heading: 'Multi-Agent Systems and Protocol Infrastructure',
-              body: 'Production agents rarely act alone. Orchestrator agents delegate to specialist sub-agents, each with scoped tools and permissions. MCP (Model Context Protocol) and A2A (Agent-to-Agent) are the emerging protocol standards enabling interoperability between agents and tools across vendors.',
+              body: 'Production agents rarely act alone. Orchestrator agents delegate to specialist sub-agents, each with scoped tools and permissions. MCP (Model Context Protocol) is the established standard connecting agents to tools; A2A (Agent-to-Agent) is the emerging protocol for interoperability between agents across vendors.',
               bullets: [
                 'Orchestrator → sub-agent pattern: one orchestrator breaks a goal into tasks, delegates each to a specialised agent',
-                'MCP (Model Context Protocol): JSON-RPC standard for agents to discover and call tools — vendor-agnostic, widely adopted in 2025',
+                'MCP (Model Context Protocol): JSON-RPC standard for agents to discover and call tools — vendor-agnostic and now the established industry standard',
                 'A2A (Agent-to-Agent): emerging protocol for agent discovery and delegation across different systems and vendors',
                 'Example: a SOC orchestrator delegates to a threat intel sub-agent, an EDR sub-agent, and an IAM sub-agent — each specialised, each scoped',
                 'Governance: multi-agent systems require agent identity, privilege management, and audit logging for every action',
@@ -921,10 +1166,10 @@ const aiEssentials: Course = {
           slides: [
             {
               heading: 'AI That Runs on Your Device',
-              body: 'Until 2024, running a capable AI model required cloud infrastructure — a GPU cluster serving inference requests over an API. In 2025–2026, that assumption breaks. 7B–13B parameter models run with near-instant latency on consumer laptops and smartphones. Apple Intelligence, Google Gemini Nano, and Meta Llama 3.2 on-device are production deployments, not experiments. The implications for privacy, latency, cost, and data sovereignty are significant.',
+              body: 'Until 2024, running a capable AI model required cloud infrastructure — a GPU cluster serving inference requests over an API. That assumption has broken. Small models run with near-instant latency on consumer laptops and smartphones, and they now handle a growing share of routine tasks — summarisation, drafting, transcription, classification — that used to require a cloud call. Apple Intelligence, Google Gemini Nano, and the small open-weight model families are production deployments, not experiments. The implications for privacy, latency, cost, and data sovereignty are significant.',
               bullets: [
                 'What "on-device" means: the model weights and inference run locally — no network request, no data leaving the device',
-                'Scale: Llama 3.2 3B and 11B, Phi-4-mini, Gemini Nano — models small enough for a phone but capable enough for real tasks',
+                'Scale: small Llama 4 variants, Gemma 3, the Phi small-model line, Gemini Nano — models small enough for a phone but capable enough for real tasks',
                 'Apple Intelligence: on-device models for writing assistance, summarisation, and image generation — runs entirely on the A-series chip',
                 'Privacy benefit: sensitive data (medical records, legal documents, personal messages) never leaves the device for processing',
                 'Latency benefit: no network round-trip — responses in milliseconds, not hundreds of milliseconds',
@@ -932,12 +1177,12 @@ const aiEssentials: Course = {
             },
             {
               heading: 'Open-Weight Models: AI You Can Run Yourself',
-              body: 'Open-weight models — where the trained model weights are publicly released — have transformed the AI landscape. Llama 3, Mistral, Phi, and Qwen are now competitive with frontier closed models for a wide range of tasks, and they can be downloaded, run, and fine-tuned without API costs or vendor lock-in.',
+              body: 'Open-weight models — where the trained model weights are publicly released — have transformed the AI landscape. The Llama 4 family, the DeepSeek V3/R1 line, Qwen 3, Gemma 3, and the Phi small-model line can be downloaded, run, and fine-tuned without API costs or vendor lock-in. The honest framing of where they stand: open-weight models now trail the closed frontier by months rather than years — and for a wide range of production tasks, that gap no longer matters.',
               bullets: [
                 'Open-weight ≠ open-source: weights are published but training data and code may not be — "open" refers to the weights specifically',
-                'Llama 3 (Meta): 8B and 70B variants, permissive commercial licence, competitive with GPT-3.5 on many benchmarks',
-                'Mistral 7B / Mixtral: strong reasoning at small parameter counts, popular for on-premise deployments',
-                'Phi-4 (Microsoft): frontier-level reasoning in a 14B model — designed for devices and private deployment',
+                'Llama 4 family (Meta): open-weight models spanning on-device sizes to datacentre scale, with a permissive commercial licence',
+                'DeepSeek V3/R1 line: open-weight models — including RL-trained reasoning — that dramatically narrowed the gap with the closed frontier',
+                'Qwen 3 (Alibaba) and Gemma 3 (Google): strong multilingual open-weight families; Phi (Microsoft) continues the small-model line for devices and private deployment',
                 'Fine-tuning economics: organisations can customise open-weight models on their own data using modest GPU resources — no full pre-training required',
               ],
             },
@@ -979,7 +1224,7 @@ const aiEssentials: Course = {
               label: 'Developer',
               body: 'Open-weight models and on-device inference change the build-vs-buy calculus significantly. At sufficient scale, self-hosting beats API costs; at sufficient sensitivity, on-device beats any cloud architecture.',
               bullets: [
-                'Evaluate open-weight models against your specific task — Phi-4 and Llama 3 perform within 5–10% of GPT-4 on many standard tasks at a fraction of the inference cost',
+                'Evaluate open-weight models against your specific task — current families (Llama 4, DeepSeek, Qwen 3, Gemma 3) handle many production workloads at a fraction of frontier API inference cost',
                 'Use Ollama, vLLM, or llama.cpp for local development and testing — iterate against a local model before committing to API costs',
                 'Model quantisation (GGUF format, 4-bit or 8-bit): reduces memory requirements 2–4× with minimal quality loss — makes larger models viable on consumer hardware',
               ],
@@ -1004,10 +1249,10 @@ const aiEssentials: Course = {
           slides: [
             {
               heading: 'The Policy Layer Has Arrived',
-              body: 'For most of AI\'s history, governance was voluntary — company policies, voluntary commitments, and industry best practices. That era is ending. The EU AI Act is in force with phased compliance deadlines. The US has issued binding Executive Orders with sector-specific rules following. China, UK, Canada, and Brazil have active legislative or regulatory processes underway. Anyone building or deploying AI commercially in 2025–2026 operates within a regulatory environment — whether they know it or not.',
+              body: 'For most of AI\'s history, governance was voluntary — company policies, voluntary commitments, and industry best practices. That era has ended, but unevenly. The EU AI Act is in force, with general-purpose AI obligations already applying and high-risk obligations phasing in now. The US has moved the opposite direction federally — the 2023 Executive Order on AI was rescinded in January 2025 — leaving a growing patchwork of state laws to fill the gap. China, UK, Canada, and Brazil have active legislative or regulatory processes underway. Anyone building or deploying AI commercially today operates within a regulatory environment — whether they know it or not.',
               bullets: [
-                'EU AI Act: risk-based tiering, in force 2024, phased compliance through 2027 — the world\'s first comprehensive AI law',
-                'US: Executive Order on AI (2023) established frontier model reporting; sector-specific agencies (FDA, EEOC, CFPB) are issuing AI-specific rules',
+                'EU AI Act: risk-based tiering — entered into force August 2024; GPAI model obligations have applied since August 2025; high-risk obligations phasing in through 2026–2027 — the world\'s first comprehensive AI law',
+                'US: the 2023 Executive Order on AI was rescinded in January 2025 — federal policy has taken a deregulation turn, while a growing patchwork of state laws (e.g. the Colorado AI Act) fills the gap and NIST AI RMF remains the voluntary anchor',
                 'UK: pro-innovation principles-based approach — sector regulators apply existing powers to AI rather than a horizontal law',
                 'China: generative AI regulations (2023) requiring security assessments and content controls before deployment',
                 'The common thread: every major jurisdiction is moving from voluntary to binding — the question is when, not whether',
@@ -1021,7 +1266,7 @@ const aiEssentials: Course = {
                 'High-risk: AI used in employment decisions, credit scoring, essential services access, law enforcement, medical devices, education — requires conformity assessment, human oversight, audit trail, documentation',
                 'Limited risk: chatbots, recommendation systems — transparency obligations (disclose it\'s AI)',
                 'Minimal risk: spam filters, AI-assisted games — no specific obligations beyond general law',
-                'Timeline: prohibited practices banned from August 2024; high-risk rules phased through 2026–2027; penalties up to €35M or 7% global revenue',
+                'Timeline: the Act entered into force August 2024; prohibited practices have been banned since February 2025; GPAI obligations applied August 2025; high-risk rules phase in through 2026–2027; penalties up to €35M or 7% global revenue',
               ],
             },
             {

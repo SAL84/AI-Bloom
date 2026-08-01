@@ -3,7 +3,7 @@ import type { CourseModule } from '../../types/course';
 const m7: CourseModule = {
   id: 'm7',
   title: 'Selling AI-Enabled Security + Reference',
-  icon: '🎯',
+  icon: 'target',
   summary: 'Discovery, demos, objections, ROI, compliance, and the SE prompting playbook.',
   lessons: [
     {

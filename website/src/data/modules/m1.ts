@@ -1,6 +1,5 @@
 import type { CourseModule } from '../../types/course';
 import { diagram0a } from '../svgs/diagram0a';
-import { diagram0b } from '../svgs/diagram0b';
 import { diagram0bi } from '../svgs/diagram0bi';
 import { diagram0c } from '../svgs/diagram0c';
 import { diagram1 } from '../svgs/diagram1';
@@ -14,7 +13,7 @@ const m1: CourseModule = {
     // ── L1 ─────────────────────────────────────────────────────────────────────
     {
       id: 'm1l0a',
-      title: 'What is AI?\nDefinition and the Revolution',
+      title: 'What is AI? Definition and the Revolution',
       inlineSvg: diagram0a,
       inlineSvgId: 'd0a',
       slides: [
@@ -107,7 +106,7 @@ const m1: CourseModule = {
           body: 'When someone says "AI" they may mean any of four very different tiers — calibrate early or you will end up talking past each other.',
           bullets: [
             'Narrow AI (today): one task, one domain — superhuman within scope, helpless outside it. Chess engines, spam filters, image classifiers.',
-            'Frontier LLMs (today\'s best — Claude, GPT-4, Gemini): trained on one objective but performing across hundreds of domains. No persistent goals or memory.',
+            'Frontier LLMs (today\'s frontier models — Claude, GPT-5-class models, Gemini): trained on one objective but performing across hundreds of domains. No persistent goals or memory.',
             'AGI (not yet achieved): reasons, learns, and adapts across any domain at human level — without retraining per task. No timeline consensus.',
             'Superintelligent AI (hypothetical): surpasses human intelligence across every domain. Raises fundamental safety and alignment questions.',
           ],
@@ -198,7 +197,7 @@ const m1: CourseModule = {
           body: 'NLP\'s most powerful output is the Large Language Model — a Transformer trained on massive text. From LLMs, four distinct product patterns emerge.',
           bullets: [
             'Generative AI: produces text, code, and images on demand — the foundation of copilots and content generation tools',
-            'Multimodal: processes and generates across text, image, audio, and video simultaneously. Claude, GPT-4o, and Gemini are multimodal',
+            'Multimodal: processes and generates across text, image, audio, and video simultaneously. Today\'s frontier models — Claude, GPT, Gemini — are all natively multimodal',
             'Agentic AI: LLM + tools + planning loop — takes sequences of actions to complete multi-step goals autonomously',
             'Copilots, classifiers, search: the practical enterprise patterns that sit on top of LLMs and show up in every vendor\'s product pitch',
           ],
@@ -424,7 +423,7 @@ const m1: CourseModule = {
     },
   ],
   quiz: [
-    { q: 'A vendor says "we use AI" — what is the best discovery response?', options: ['Pitch your GenAI feature immediately', 'Ask whether they mean classical ML, deep learning, or GenAI/LLM capabilities', 'Recommend the largest model available', 'Tell them all AI is the same'], correct: 1 },
+    { q: 'A product page says "we use AI." What is the smartest first question?', options: ['Assume it uses the most advanced model available', 'Ask what specifically the AI does — which tasks it handles and how it is evaluated', 'Choose the product with the most AI features listed', 'Treat all AI products as roughly equivalent'], correct: 1 },
     { q: 'Which paradigm is most associated with anomaly detection in messy data?', options: ['Supervised', 'Unsupervised', 'Reinforcement', 'Generative'], correct: 1 },
     { q: 'A trained neural network is fundamentally:', options: ['A database of facts', 'A set of weights plus an architecture', 'A reasoning engine', 'A search index'], correct: 1 },
     { q: 'A detector is 99.9% accurate but the target base rate is 1 in 10,000. What happens?', options: ['Users get ~10 false positives for every real hit', 'The system works perfectly because 99.9% is very high', 'False positives are eliminated', 'Base rate has no effect on alert volume'], correct: 0 },
