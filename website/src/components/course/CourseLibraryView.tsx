@@ -10,6 +10,10 @@ interface Props {
   completedLessons: Record<string, boolean>;
 }
 
+function moduleCount(id: CourseId): number {
+  return COURSES[id]?.modules.length ?? 0;
+}
+
 function courseProgress(id: CourseId, done: Record<string, boolean>): number {
   const c = COURSES[id];
   if (!c) return 0;
@@ -27,7 +31,6 @@ function StudioNav({ setView, onOpenSearch }: { setView: (v: View) => void; onOp
     { label: 'Glossary', view: { type: 'glossary' } },
     { label: 'Shelf', view: { type: 'shelf' } },
     { label: 'Roadmap', view: { type: 'roadmap' } },
-    { label: 'About' },
   ];
   return (
     <nav className="flex items-center gap-3 lg:gap-6 px-4 sm:px-6 lg:px-12 py-3 lg:py-[22px] border-b border-studio-rule bg-studio-paper">
@@ -140,7 +143,7 @@ function StudioHero({ setView }: { setView: (v: View) => void }) {
             <span className="font-studio-serif italic text-studio-kids font-normal">about </span>AI?
           </h1>
           <p className="font-studio-serif italic text-[17px] sm:text-[20px] lg:text-[24px] leading-[1.4] text-studio-ink-dim mt-5 lg:mt-7 max-w-[520px] font-normal">
-            Seven courses. From eight-year-olds to enterprise sales. Everything is free, everything is real, nothing's on a corporate calendar.
+            Five courses. From eight-year-olds to enterprise sales. Everything is free, everything is real, nothing's on a corporate calendar.
           </p>
         </div>
         <aside className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 lg:p-[26px] relative mt-6">
@@ -151,7 +154,7 @@ function StudioHero({ setView }: { setView: (v: View) => void }) {
             Where do I start?
           </h3>
           <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.5] mb-[18px]">
-            Three quick questions. We'll point you at one of the seven courses.
+            Three quick questions. We'll point you at one of the five courses.
           </p>
           <div className="flex flex-col gap-2">
             {PROFILE_QUESTIONS.map(q => (
@@ -290,19 +293,19 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
   const kidsCard: CardData = {
     no: '01', title: 'AI for Kids', kicker: 'For ages 8–14', color: '#d96a3a',
     blurb: 'Foundations through stories and a career-game. The kind of book a parent reads alongside.',
-    modules: 5, level: 'Beginner', progress: pKids,
+    modules: moduleCount('ai-kids'), level: 'Beginner', progress: pKids,
     badge: pKids > 0 ? 'Resume →' : 'Open →',
     onClick: () => setView({ type: 'home', courseId: 'ai-kids' }),
   };
   const coreCards: CardData[] = [
     { no: '03', title: 'AI Essentials', kicker: 'For everyone', color: '#3f8a5e',
       blurb: "Vocabulary, history, honest limits. What an LLM is — and isn't — without the marketing.",
-      modules: 4, level: 'Beginner', progress: pEss,
+      modules: moduleCount('ai-essentials'), level: 'Beginner', progress: pEss,
       badge: pEss > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-essentials' }) },
     { no: '04', title: 'AI Deep Dive', kicker: 'For builders', color: '#5a4ec0',
       blurb: "Transformers, embeddings, fine-tuning, evals. The trade-offs that don't fit on a slide.",
-      modules: 4, level: 'Advanced', progress: pDeep,
+      modules: moduleCount('ai-deep-dive'), level: 'Advanced', progress: pDeep,
       badge: pDeep > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-deep-dive' }) },
     { no: '05', title: 'AI in Industry', kicker: 'For decision-makers', color: '#b78320',
@@ -312,9 +315,9 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       onClick: () => setView({ type: 'industry' }) },
   ];
   const industryCards: CardData[] = [
-    { no: '06', title: 'AI for Cybersecurity Sales', kicker: 'Live cohort', color: '#2c6db0',
-      blurb: 'Six weeks for SEs and AEs selling into security teams. Recorded for your time zone.',
-      modules: 3, level: 'Intermediate', progress: pCyber,
+    { no: '06', title: 'AI for Cybersecurity Sales', kicker: 'For security sellers', color: '#2c6db0',
+      blurb: 'For SEs and AEs selling into security teams — the AI security stack, the attack surface, the vendors, and how to position.',
+      modules: moduleCount('ai-cybersec-se'), level: 'Intermediate', progress: pCyber,
       badge: pCyber > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-cybersec-se' }) },
   ];
@@ -328,7 +331,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
     <section className="px-4 sm:px-6 lg:px-12 pt-6 pb-10 lg:pb-14">
       <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4 mb-6 lg:mb-7">
         <h2 className="font-studio-display text-[32px] sm:text-[38px] lg:text-[44px] text-studio-ink m-0 font-normal tracking-[-0.6px] lg:tracking-[-0.8px]">
-          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— six on the shelf</span>
+          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— five on the shelf, one in the kiln</span>
         </h2>
         <div className="flex flex-wrap gap-2">
           {filterBtns.map(({ key, label }) => (
@@ -417,8 +420,8 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
 // ── Side stuff ────────────────────────────────────────────────────────────────
 
 function StudioSideStuff({ setView }: { setView: (v: View) => void }) {
-  const playgroundItems = [['Tokenizer', 'See how your sentence becomes numbers'], ['Embedding map', 'Words plotted in 2D — drag them around'], ['Prompt diff', 'Two prompts, side by side, same model'], ['Temperature dial', 'Same prompt, ten temperatures']];
-  const agenticItems = [['I.', "What an agent actually is (and isn't)", '8 min'], ['II.', 'The loop, and why it gets stuck', '11 min'], ['III.', 'Tool use without prayer', '14 min'], ['IV.', 'Memory: the parts that work', '9 min']];
+  const playgroundItems = [['Tokeniser', 'See how your sentence becomes numbers'], ['Context window', 'Watch a conversation outgrow its memory'], ['Temperature', 'Same prompt, different levels of adventurous'], ['Embeddings', 'How close in meaning are two sentences?']];
+  const agenticItems = [['I.', 'The agent loop — how agents think and act', 'anatomy'], ['II.', 'Alert triage: account compromise, step by step', 'scenario'], ['III.', 'Breach responder: ransomware scope & containment', 'scenario'], ['IV.', 'Patch advisor: vulnerability prioritisation', 'scenario']];
   return (
     <section className="px-4 sm:px-6 lg:px-12 pb-10 lg:pb-14">
       <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3 mb-5 lg:mb-6">
@@ -448,7 +451,7 @@ function StudioSideStuff({ setView }: { setView: (v: View) => void }) {
               ))}
             </ul>
             <div className="flex justify-between items-center pt-3.5 border-t border-studio-rule font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px]">
-              <span>12 toys · all in-browser · no API keys</span>
+              <span>4 toys · all in-browser · no API keys</span>
               <span className="text-studio-ink font-medium">Open the room →</span>
             </div>
           </div>
@@ -463,7 +466,7 @@ function StudioSideStuff({ setView }: { setView: (v: View) => void }) {
             <div className="font-studio-serif italic text-[30px] leading-none" style={{ color: 'rgba(255,255,255,0.7)' }}>¶</div>
           </div>
           <div className="px-[26px] py-5 flex-1 flex flex-col gap-4">
-            <p className="font-studio-sans text-[13.5px] text-studio-ink-dim leading-[1.55] m-0">Tools, memory, the loop. A working developer's tour of why agents fail in production — published as essays while the proper course is still in the kiln.</p>
+            <p className="font-studio-sans text-[13.5px] text-studio-ink-dim leading-[1.55] m-0">Tools, memory, the loop. Watch an agent reason, call tools, and act — an interactive anatomy plus three step-by-step investigation scenarios.</p>
             <ul className="list-none p-0 m-0">
               {agenticItems.map(([k, t, dur], i) => (
                 <li key={i} className="grid grid-cols-[32px_1fr_auto] gap-3 items-baseline py-2.5 border-t border-dashed border-studio-rule">
@@ -474,7 +477,7 @@ function StudioSideStuff({ setView }: { setView: (v: View) => void }) {
               ))}
             </ul>
             <div className="flex justify-between items-center pt-3.5 border-t border-studio-rule font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px]">
-              <span>4 essays so far · new one most weeks</span>
+              <span>1 interactive anatomy · 3 scenarios</span>
               <span className="text-studio-ink font-medium">Read the notes →</span>
             </div>
           </div>

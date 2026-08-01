@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Home, CheckCircle2, Circle, Award, Search, Sparkles, Map,
-  Zap, Brain, Layers, Shield, ShieldAlert,
+  Zap, Brain, Layers, Shield, ShieldAlert, Target,
   Building2, FlaskConical, Bot, Star, Cpu, Baby, GraduationCap, Briefcase, ChevronDown,
   Gamepad2, Rocket
 } from 'lucide-react';
@@ -14,6 +14,7 @@ const MODULE_ICONS: Record<string, React.ReactNode> = {
   shield: <Shield className="w-4 h-4" />,
   'shield-alert': <ShieldAlert className="w-4 h-4" />,
   'building-2': <Building2 className="w-4 h-4" />,
+  target: <Target className="w-4 h-4" />,
 };
 
 interface SidebarProps {

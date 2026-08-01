@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { COURSES, COURSE } from '../../data/modules';
+import { COURSES } from '../../data/modules';
+import { GLOSSARY } from '../../data/glossary';
 import type { CourseId, View } from '../../types/course';
 
 interface Props {
@@ -46,7 +47,7 @@ function searchAll(rawQuery: string): Result[] {
     }
   }
 
-  for (const entry of COURSE.glossary) {
+  for (const entry of GLOSSARY) {
     if (entry.term.toLowerCase().includes(q) || entry.def.toLowerCase().includes(q)) {
       results.push({
         kind: 'glossary',

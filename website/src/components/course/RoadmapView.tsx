@@ -43,29 +43,29 @@ const ENTRIES: CourseEntry[] = [
     view: { type: 'home', courseId: 'ai-kids' },
   },
   {
-    id: 'ai-essentials', no: '02', title: 'AI Essentials', track: 'Literacy',
+    id: 'ai-essentials', no: '03', title: 'AI Essentials', track: 'Literacy',
     color: '#3f8a5e', status: 'live',
-    note: 'Complete course with role-specific content tabs across all lessons.',
+    note: 'Complete course — foundations, frontiers, LLMs, the agent stack, ethics, and what is next. Role-specific tabs on key lessons.',
     view: { type: 'home', courseId: 'ai-essentials' },
   },
   {
-    id: 'ai-deep-dive', no: '03', title: 'AI Deep Dive', track: 'Building',
+    id: 'ai-deep-dive', no: '04', title: 'AI Deep Dive', track: 'Building',
     color: '#5a4ec0', status: 'expanding',
-    note: 'Core modules live. Technical depth being added to slides.',
-    gaps: ['Deeper technical slides for M3 / M4', 'Evals module in draft'],
+    note: 'All four modules at practitioner depth — architecture, training, agents, evals, and the frontier.',
+    gaps: ['Diagrams for the newer lessons', 'Hands-on exercises'],
     view: { type: 'home', courseId: 'ai-deep-dive' },
   },
   {
-    id: 'ai-industry', no: '04', title: 'AI in Industry', track: 'Orientation',
+    id: 'ai-industry', no: '05', title: 'AI in Industry', track: 'Orientation',
     color: '#b78320', status: 'partial',
     note: 'Landscape map and category overview live. Per-product breakdowns pending.',
     gaps: ['Product breakdown cards for all 5 categories — Q3 2026'],
     view: { type: 'industry' },
   },
   {
-    id: 'ai-cybersec-se', no: '05', title: 'AI for Cybersecurity Sales', track: 'Vertical',
+    id: 'ai-cybersec-se', no: '06', title: 'AI for Cybersecurity Sales', track: 'Vertical',
     color: '#2c6db0', status: 'live',
-    note: 'Three-module course for security SEs and AEs. Full lesson and quiz coverage.',
+    note: 'Four-module course for security SEs and AEs — the stack, the adversarial side, the vendors, and how to sell it. Full quiz coverage.',
     view: { type: 'home', courseId: 'ai-cybersec-se' },
   },
   {
@@ -84,11 +84,10 @@ const PLANNED_COURSES = [
 ];
 
 const PLANNED_FEATURES = [
-  { title: 'Browser back / forward navigation', note: 'History API wiring so the browser back button works inside the portal.' },
-  { title: 'Mobile layout', note: 'Responsive breakpoints for phones and tablets.' },
   { title: 'Course completion certificates', note: 'Printable PDF on completion — no account required.' },
-  { title: 'Full-text search', note: 'Search across lessons, glossary, and course descriptions.' },
   { title: 'Dark mode', note: 'Light, dark, and midnight theme toggle in the nav. Toggle component built; needs dark variants for the Studio palette.' },
+  { title: 'Search everywhere', note: 'Search is live on the library page (courses, lessons, glossary) — next: reachable from every view, with a keyboard shortcut and deep links into glossary terms.' },
+  { title: 'Full-text lesson search', note: 'Today search covers titles and glossary terms; slide bodies are next.' },
 ];
 
 export const RoadmapView = ({ setView }: Props) => (

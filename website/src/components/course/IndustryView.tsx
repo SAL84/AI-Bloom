@@ -45,7 +45,7 @@ export const IndustryView = ({ setView }: Props) => (
 
     <div className="px-4 sm:px-6 lg:px-12 pt-8 lg:pt-12 pb-6 lg:pb-8 border-b border-studio-rule" style={{ background: '#b78320' }}>
       <div className="font-studio-mono text-[10.5px] lg:text-[11px] tracking-[1.6px] uppercase mb-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
-        Catalog №04 · Product landscape
+        Catalog №05 · Product landscape
       </div>
       <h1 className="font-studio-display text-[32px] sm:text-[40px] lg:text-[52px] font-normal tracking-[-0.6px] lg:tracking-[-1px] text-white leading-[1.0] mb-3">
         AI in Industry

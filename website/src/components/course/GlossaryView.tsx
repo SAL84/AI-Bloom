@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StudioNavLite, StudioFooter } from './StudioChrome';
 import type { View } from '../../types/course';
-import { COURSE } from '../../data/modules';
+import { CORE_GLOSSARY, SECURITY_GLOSSARY } from '../../data/glossary';
 
 interface GlossaryViewProps {
   setView: (view: View) => void;
@@ -9,10 +9,13 @@ interface GlossaryViewProps {
 
 export const GlossaryView = ({ setView }: GlossaryViewProps) => {
   const [search, setSearch] = useState('');
-  const filtered = COURSE.glossary.filter(g =>
+  const match = (g: { term: string; def: string }) =>
     g.term.toLowerCase().includes(search.toLowerCase()) ||
-    g.def.toLowerCase().includes(search.toLowerCase())
-  );
+    g.def.toLowerCase().includes(search.toLowerCase());
+  const sections = [
+    { label: 'Core AI vocabulary', entries: CORE_GLOSSARY.filter(match) },
+    { label: 'Security & agent-platform terms', entries: SECURITY_GLOSSARY.filter(match) },
+  ].filter(s => s.entries.length > 0);
 
   return (
     <div className="bg-studio-bg min-h-screen">
@@ -24,7 +27,7 @@ export const GlossaryView = ({ setView }: GlossaryViewProps) => {
           Glossary
         </h1>
         <p className="font-studio-serif italic text-[16px] lg:text-[18px] text-studio-ink-dim leading-[1.5] mb-8 lg:mb-10">
-          Every term used across the courses — keep it open during prospect calls.
+          Every term used across the courses — keep it open while you read.
         </p>
 
         <div className="mb-8">
@@ -36,12 +39,19 @@ export const GlossaryView = ({ setView }: GlossaryViewProps) => {
           />
         </div>
 
-        {filtered.length > 0 ? (
-          <div className="divide-y divide-studio-rule border-t border-studio-rule">
-            {filtered.map((g, i) => (
-              <div key={i} className="py-5">
-                <div className="font-studio-serif italic text-[20px] text-studio-ink mb-1.5 font-normal">{g.term}</div>
-                <p className="font-studio-sans text-[14px] text-studio-ink-dim leading-[1.65]">{g.def}</p>
+        {sections.length > 0 ? (
+          <div>
+            {sections.map(section => (
+              <div key={section.label} className="mb-8">
+                <div className="font-studio-mono text-[10.5px] text-studio-kids tracking-[1.6px] uppercase mb-2">{section.label}</div>
+                <div className="divide-y divide-studio-rule border-t border-studio-rule">
+                  {section.entries.map((g, i) => (
+                    <div key={i} className="py-5">
+                      <div className="font-studio-serif italic text-[20px] text-studio-ink mb-1.5 font-normal">{g.term}</div>
+                      <p className="font-studio-sans text-[14px] text-studio-ink-dim leading-[1.65]">{g.def}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
