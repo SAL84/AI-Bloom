@@ -47,6 +47,7 @@ const adM2: CourseModule = {
     },
     {
       id: 'ad2l1b',
+      diagram: 'MoE',
       title: 'Beyond Vanilla Transformers: MoE and Friends',
       slides: [
         {
@@ -79,6 +80,7 @@ const adM2: CourseModule = {
     },
     {
       id: 'ad2l2',
+      diagram: 'AIPipeline',
       title: 'Pre-training & Fine-tuning Pipeline',
       slides: [
         {
@@ -150,6 +152,7 @@ const adM2: CourseModule = {
     },
     {
       id: 'ad2l4',
+      diagram: 'InferenceServing',
       title: 'Inference & Latency Optimisation',
       slides: [
         {

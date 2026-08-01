@@ -8,6 +8,7 @@ const adM4: CourseModule = {
   lessons: [
     {
       id: 'ad4l1',
+      diagram: 'ReasoningCompute',
       title: 'Reasoning Models',
       sectionLabel: 'Current Frontier',
       slides: [
@@ -98,6 +99,8 @@ const adM4: CourseModule = {
     },
     {
       id: 'ad4l2',
+      diagram: 'MultimodalUnderstanding',
+      extraDiagram: 'GenerativeArchitectures',
       title: 'Multimodal Architecture',
       slides: [
         {
@@ -144,6 +147,7 @@ const adM4: CourseModule = {
     },
     {
       id: 'ad4l3',
+      diagram: 'AlignmentStack',
       title: 'Alignment Research',
       slides: [
         {
@@ -200,6 +204,7 @@ const adM4: CourseModule = {
     },
     {
       id: 'ad4l4',
+      diagram: 'GovernanceLandscape',
       title: 'AI Governance & Regulation',
       slides: [
         {
@@ -289,6 +294,7 @@ const adM4: CourseModule = {
     },
     {
       id: 'ad4l5',
+      diagram: 'HorizonMap',
       title: 'The Road Ahead',
       slides: [
         {

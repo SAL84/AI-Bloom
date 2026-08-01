@@ -8,6 +8,7 @@ const adM1: CourseModule = {
   lessons: [
     {
       id: 'ad1l1',
+      diagram: 'NestedAI',
       title: 'AI Paradigms: Symbolic vs Connectionist',
       sectionLabel: 'Foundations',
       slides: [
@@ -51,6 +52,7 @@ const adM1: CourseModule = {
     },
     {
       id: 'ad1l2',
+      diagram: 'ScalingLaws',
       title: 'Scaling Laws',
       slides: [
         {
@@ -102,6 +104,7 @@ const adM1: CourseModule = {
     },
     {
       id: 'ad1l3',
+      diagram: 'ComputeStack',
       title: 'The Compute Stack',
       slides: [
         {
@@ -221,6 +224,7 @@ const adM1: CourseModule = {
     },
     {
       id: 'ad1l5',
+      diagram: 'WhyNow',
       title: 'Why This Moment Is Different',
       slides: [
         {
@@ -263,6 +267,7 @@ const adM1: CourseModule = {
     },
     {
       id: 'ad1l6',
+      diagram: 'AIEconomics',
       title: 'The Economics of Intelligence',
       slides: [
         {

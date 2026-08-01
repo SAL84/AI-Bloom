@@ -9,4 +9,6 @@ dist/
 .gstack/
 elements-of-ai-course.md
 Design_Handoff_Studio/
-Diagrams/
+/Diagrams/
+CLAUDE.md
+archive/

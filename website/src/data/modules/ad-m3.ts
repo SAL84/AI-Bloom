@@ -89,6 +89,7 @@ const adM3: CourseModule = {
     },
     {
       id: 'ad3l2',
+      diagram: 'Subagents',
       title: 'Orchestration Frameworks',
       slides: [
         {
@@ -312,7 +313,7 @@ const adM3: CourseModule = {
     {
       id: 'ad3l6',
       title: 'Context Engineering',
-      diagram: 'Subagents',
+      diagram: 'ContextEngineering',
       slides: [
         {
           heading: 'The Context Window Is a Budget',
@@ -358,6 +359,7 @@ const adM3: CourseModule = {
     },
     {
       id: 'ad3l7',
+      diagram: 'EvalStack',
       title: 'Evaluating LLMs and Agents',
       slides: [
         {

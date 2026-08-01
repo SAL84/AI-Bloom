@@ -463,6 +463,7 @@ const aiEssentials: Course = {
         },
         {
           id: 'ae2l3b',
+          diagram: 'SpeechAudio',
           title: 'Speech & Audio AI',
           slides: [
             {
@@ -737,6 +738,7 @@ const aiEssentials: Course = {
         },
         {
           id: 'ae4l1b',
+          diagram: 'ExplainabilityLayers',
           title: 'Transparency & Explainability',
           slides: [
             {
@@ -815,6 +817,7 @@ const aiEssentials: Course = {
         },
         {
           id: 'ae4l1c',
+          diagram: 'AccountabilityChain',
           title: 'Accountability: When AI Is Wrong, Who Answers?',
           slides: [
             {

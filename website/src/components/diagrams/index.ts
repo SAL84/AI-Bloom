@@ -7,6 +7,9 @@ import { GoogleStackDiagram, GoogleSecOpsDiagram, SecOpsAgentsDiagram, Competiti
 import { SOCCopilotsDiagram, ThreatIntelHuntingDiagram, DataGovernanceDiagram, DefenseReframingDiagram } from './soc-ops-diagrams';
 import { GoogleAgentInfraDiagram, GTISCCWizDiagram, AgenticDefenseDiagram, TalkTracksDiagram } from './google-product-diagrams';
 import { DemoFrameworkDiagram, ObjectionHandlingDiagram, ROIComplianceDiagram, CustomerArchetypesDiagram, SEPromptingPlaybookDiagram } from './sales-diagrams';
+import { ScalingLawsDiagram, ComputeStackDiagram, MoEDiagram, InferenceServingDiagram, AIEconomicsDiagram, EvalStackDiagram } from './deep-dive-diagrams-a';
+import { ReasoningComputeDiagram, GenerativeArchitecturesDiagram, MultimodalUnderstandingDiagram, AlignmentStackDiagram, GovernanceLandscapeDiagram, ContextEngineeringDiagram } from './deep-dive-diagrams-b';
+import { AISecurityFrameworksDiagram, SpeechAudioDiagram, ExplainabilityLayersDiagram, AccountabilityChainDiagram, WhyNowDiagram, HorizonMapDiagram } from './course-gap-diagrams';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -57,4 +60,22 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   ROICompliance: ROIComplianceDiagram,
   CustomerArchetypes: CustomerArchetypesDiagram,
   SEPromptingPlaybook: SEPromptingPlaybookDiagram,
+  ScalingLaws: ScalingLawsDiagram,
+  ComputeStack: ComputeStackDiagram,
+  MoE: MoEDiagram,
+  InferenceServing: InferenceServingDiagram,
+  AIEconomics: AIEconomicsDiagram,
+  EvalStack: EvalStackDiagram,
+  ReasoningCompute: ReasoningComputeDiagram,
+  GenerativeArchitectures: GenerativeArchitecturesDiagram,
+  MultimodalUnderstanding: MultimodalUnderstandingDiagram,
+  AlignmentStack: AlignmentStackDiagram,
+  GovernanceLandscape: GovernanceLandscapeDiagram,
+  ContextEngineering: ContextEngineeringDiagram,
+  AISecurityFrameworks: AISecurityFrameworksDiagram,
+  SpeechAudio: SpeechAudioDiagram,
+  ExplainabilityLayers: ExplainabilityLayersDiagram,
+  AccountabilityChain: AccountabilityChainDiagram,
+  WhyNow: WhyNowDiagram,
+  HorizonMap: HorizonMapDiagram,
 };

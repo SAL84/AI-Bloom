@@ -44,6 +44,7 @@ const m5: CourseModule = {
     },
     {
       id: 'm5l5',
+      diagram: 'AISecurityFrameworks',
       title: 'The Frameworks: OWASP, ATLAS, SAIF',
       slides: [
         { heading: 'OWASP Top 10 for LLM Applications', body: 'The industry-standard vocabulary for LLM risk. The headline entries: prompt injection (LLM01 — always first), sensitive information disclosure, supply chain vulnerabilities, data and model poisoning, improper output handling, excessive agency (the agent-era entry: too much autonomy, too many permissions, too little oversight), system prompt leakage, and unbounded consumption. You do not need to memorize the list — you need to recognize that when a security-mature customer says "LLM01" they mean prompt injection, and that "excessive agency" is the entry that maps to everything this course says about scoped tools and approval gates.' },
