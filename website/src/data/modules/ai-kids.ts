@@ -1,4 +1,5 @@
 import type { Course } from '../../types/course';
+import { KIDS_GLOSSARY } from '../glossary';
 
 // ── Inline SVG diagrams for kids ─────────────────────────────────────────────
 
@@ -555,7 +556,7 @@ const aiKids: Course = {
   id: 'ai-kids',
   title: 'AI for Kids',
   subtitle: 'Discover how AI works, what it can do, and where YOU fit in the future it\'s creating',
-  glossary: [],
+  glossary: KIDS_GLOSSARY,
   modules: [
     {
       id: 'ak-m1',

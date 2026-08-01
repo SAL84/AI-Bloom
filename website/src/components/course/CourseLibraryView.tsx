@@ -210,11 +210,11 @@ function RowLabel({ children, sub }: { children: React.ReactNode; sub?: string }
 
 interface CardData {
   no: string; title: string; kicker: string; blurb: string;
-  modules: number; level: string; progress: number; badge: string;
+  modules: number; unit?: string; level: string; progress: number; badge: string;
   color: string; onClick: () => void;
 }
 
-function CatalogCard({ no, title, kicker, blurb, modules, level, progress, badge, color, onClick }: CardData) {
+function CatalogCard({ no, title, kicker, blurb, modules, unit = 'modules', level, progress, badge, color, onClick }: CardData) {
   return (
     <article onClick={onClick}
       className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden flex flex-col cursor-pointer hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200">
@@ -238,7 +238,7 @@ function CatalogCard({ no, title, kicker, blurb, modules, level, progress, badge
           </div>
         )}
         <div className="flex justify-between items-center pt-3.5 border-t border-dashed border-studio-rule font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px]">
-          <span>{modules} modules · {level}</span>
+          <span>{modules} {unit} · {level}</span>
           <span className="text-studio-ink font-medium">{badge}</span>
         </div>
       </div>
@@ -310,7 +310,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       onClick: () => setView({ type: 'home', courseId: 'ai-deep-dive' }) },
     { no: '05', title: 'AI in Industry', kicker: 'For decision-makers', color: '#b78320',
       blurb: 'A field map of products, providers, use-cases. Updated as the landscape shifts.',
-      modules: 6, level: 'Intermediate', progress: 0,
+      modules: 5, unit: 'categories', level: 'Intermediate', progress: 0,
       badge: 'Open →',
       onClick: () => setView({ type: 'industry' }) },
   ];

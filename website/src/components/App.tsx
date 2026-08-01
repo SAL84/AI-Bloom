@@ -128,7 +128,7 @@ export default function App() {
       {view.type === 'quiz' && currentModule && (
         <QuizView module={currentModule} modules={activeCourse.modules} courseId={activeCourseId} setView={setView} recordQuizScore={recordQuizScore} />
       )}
-      {view.type === 'glossary' && <GlossaryView setView={setView} />}
+      {view.type === 'glossary' && <GlossaryView setView={setView} courseId={view.courseId} />}
       {view.type === 'roadmap' && <RoadmapView setView={setView} />}
       {view.type === 'shelf' && <ShelfView setView={setView} savedLessons={savedLessons} toggleSaved={toggleSaved} completedLessons={completedLessons} />}
       {view.type === 'playground' && <AIPlaygroundsView setView={setView} initialSection="playgrounds" />}

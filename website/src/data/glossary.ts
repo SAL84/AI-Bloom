@@ -63,5 +63,23 @@ export const SECURITY_GLOSSARY: GlossaryEntry[] = [
   { term: 'YARA-L 2.0', def: 'Detection rule language used by Google SecOps. Now supports multi-stage queries for sophisticated detection logic.' },
 ];
 
-// Full merged glossary — used by the cybersecurity course and global search.
+// Kid-friendly definitions for the AI for Kids course (ages 8–14).
+export const KIDS_GLOSSARY: GlossaryEntry[] = [
+  { term: 'Agent', def: 'An AI that doesn\'t just answer you — it goes and does things. It makes a plan, uses tools like search or a calendar, checks how it went, and tries again if it needs to.' },
+  { term: 'AI (Artificial Intelligence)', def: 'Software that learns patterns from lots of examples instead of being told every rule. That\'s why AI can recognise your friend\'s face in a photo without anyone describing that face in code.' },
+  { term: 'Bias', def: 'When AI is unfair because of what it learned. If a model only ever saw pictures of golden retrievers, it might decide a chihuahua isn\'t a dog. Nobody meant to be unfair — the examples were lopsided.' },
+  { term: 'Chatbot', def: 'An AI you can have a conversation with by typing or talking. It replies by predicting what words should come next — it isn\'t looking up answers in a big book.' },
+  { term: 'Deepfake', def: 'A fake photo, video, or voice made by AI that looks or sounds like a real person. It\'s why "I saw the video" isn\'t proof anymore — always double-check with a grown-up and a trusted news source.' },
+  { term: 'Hallucination', def: 'When AI makes something up but says it with total confidence. It isn\'t lying on purpose — it\'s guessing what sounds right. Always check important facts somewhere else.' },
+  { term: 'LLM (Large Language Model)', def: 'The "brain" behind a chatbot. It read an enormous amount of text and got very good at predicting which word comes next — do that over and over and you get whole sentences.' },
+  { term: 'Model', def: 'The thing that does the learning. Training a model is like practising a skill; using a model is like doing the skill. You practise riding a bike once, then you can just ride it.' },
+  { term: 'Multimodal', def: 'An AI that handles more than one kind of thing — words, pictures, and sounds together. It can look at a photo of your lunch and describe it out loud.' },
+  { term: 'Personal Information', def: 'Facts that identify you: your full name, address, school, phone number, passwords. Treat a chat like a postcard, not a diary — someone else might read it, so keep these to yourself.' },
+  { term: 'Prompt', def: 'What you say or type to an AI. A vague prompt gets a vague answer; a clear one that says who it\'s for, how long, and what style gets a much better result.' },
+  { term: 'Robot', def: 'A machine that can move and do things in the real world. Not every robot has AI, and most AI isn\'t in a robot — the AI is the thinking part, the robot is the body.' },
+  { term: 'Training', def: 'How AI learns — showing it millions of examples and letting it correct its own mistakes over and over until it gets good at spotting the pattern.' },
+  { term: 'Training Data', def: 'All the examples an AI learns from — photos, text, sounds. What goes in shapes what comes out, which is why missing examples cause unfair results.' },
+];
+
+// Full merged glossary — used for global search across the library.
 export const GLOSSARY: GlossaryEntry[] = [...CORE_GLOSSARY, ...SECURITY_GLOSSARY];

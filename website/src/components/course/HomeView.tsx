@@ -333,7 +333,7 @@ export const HomeView = ({ setView, course, completedLessons, quizScores, savedL
           )}
           <div className="flex justify-between mt-3 font-studio-mono text-[10.5px] text-studio-ink-mute tracking-[0.6px]">
             <span>Library №{meta.no}</span>
-            <button onClick={() => setView({ type: 'glossary' })} className="text-studio-ink hover:underline">↗ Glossary</button>
+            <button onClick={() => setView({ type: 'glossary', courseId: course.id })} className="text-studio-ink hover:underline">↗ Glossary</button>
           </div>
         </aside>
       </header>

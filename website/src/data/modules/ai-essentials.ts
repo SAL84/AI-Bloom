@@ -14,12 +14,13 @@ import { diagram4h } from '../svgs/diagram4h';
 import { diagram4i } from '../svgs/diagram4i';
 import { diagram4j } from '../svgs/diagram4j';
 import { diagram4k } from '../svgs/diagram4k';
+import { CORE_GLOSSARY } from '../glossary';
 
 const aiEssentials: Course = {
   id: 'ai-essentials',
   title: 'AI Essentials',
   subtitle: 'The complete foundation — from what AI is to how agents think and act',
-  glossary: [],
+  glossary: CORE_GLOSSARY,
   modules: [
     // ── M1: AI Basics & Journey ───────────────────────────────────────────
     {

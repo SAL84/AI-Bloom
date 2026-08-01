@@ -69,7 +69,7 @@ export type View =
   | { type: 'module'; courseId?: CourseId; moduleId: string }
   | { type: 'lesson'; courseId?: CourseId; moduleId: string; lessonId: string }
   | { type: 'quiz'; courseId?: CourseId; moduleId: string }
-  | { type: 'glossary' }
+  | { type: 'glossary'; courseId?: CourseId }
   | { type: 'roadmap' }
   | { type: 'shelf' }
   | { type: 'playground' }

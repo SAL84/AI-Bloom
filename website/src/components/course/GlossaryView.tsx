@@ -1,25 +1,39 @@
 import React, { useState } from 'react';
 import { StudioNavLite, StudioFooter } from './StudioChrome';
-import type { View } from '../../types/course';
-import { CORE_GLOSSARY, SECURITY_GLOSSARY } from '../../data/glossary';
+import type { CourseId, View } from '../../types/course';
+import { CORE_GLOSSARY, SECURITY_GLOSSARY, KIDS_GLOSSARY } from '../../data/glossary';
+import { COURSES } from '../../data/modules';
 
 interface GlossaryViewProps {
   setView: (view: View) => void;
+  courseId?: CourseId;
 }
 
-export const GlossaryView = ({ setView }: GlossaryViewProps) => {
+// Kids get their own plain-language definitions; the security course gets the
+// security terms on top of the core vocabulary; everyone else gets the core set.
+function sectionsFor(courseId?: CourseId) {
+  if (courseId === 'ai-kids') return [{ label: 'Words to know', entries: KIDS_GLOSSARY }];
+  const core = { label: 'Core AI vocabulary', entries: CORE_GLOSSARY };
+  if (courseId === 'ai-cybersec-se') {
+    return [core, { label: 'Security & agent-platform terms', entries: SECURITY_GLOSSARY }];
+  }
+  if (courseId) return [core];
+  return [core, { label: 'Security & agent-platform terms', entries: SECURITY_GLOSSARY }];
+}
+
+export const GlossaryView = ({ setView, courseId }: GlossaryViewProps) => {
   const [search, setSearch] = useState('');
   const match = (g: { term: string; def: string }) =>
     g.term.toLowerCase().includes(search.toLowerCase()) ||
     g.def.toLowerCase().includes(search.toLowerCase());
-  const sections = [
-    { label: 'Core AI vocabulary', entries: CORE_GLOSSARY.filter(match) },
-    { label: 'Security & agent-platform terms', entries: SECURITY_GLOSSARY.filter(match) },
-  ].filter(s => s.entries.length > 0);
+  const course = courseId ? COURSES[courseId] : undefined;
+  const sections = sectionsFor(courseId)
+    .map(s => ({ ...s, entries: s.entries.filter(match) }))
+    .filter(s => s.entries.length > 0);
 
   return (
     <div className="bg-studio-bg min-h-screen">
-      <StudioNavLite crumbs={['Glossary']} setView={setView} />
+      <StudioNavLite crumbs={course ? [course.title, 'Glossary'] : ['Glossary']} setView={setView} />
 
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 lg:py-14">
         <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-3 lg:mb-4">◆ Reference</div>
@@ -27,7 +41,11 @@ export const GlossaryView = ({ setView }: GlossaryViewProps) => {
           Glossary
         </h1>
         <p className="font-studio-serif italic text-[16px] lg:text-[18px] text-studio-ink-dim leading-[1.5] mb-8 lg:mb-10">
-          Every term used across the courses — keep it open while you read.
+          {courseId === 'ai-kids'
+            ? 'Every tricky word in this course, explained simply. Keep it open while you read.'
+            : course
+              ? `The terms used in ${course.title} — keep it open while you read.`
+              : 'Every term used across the courses — keep it open while you read.'}
         </p>
 
         <div className="mb-8">
