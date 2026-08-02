@@ -81,6 +81,7 @@ const atM4: CourseModule = {
     },
     {
       id: 'at4l3',
+      diagram: 'BiasInEverydayAI',
       title: 'Bias: Where It Actually Shows Up',
       slides: [
         {

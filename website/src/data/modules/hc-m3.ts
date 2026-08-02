@@ -205,6 +205,7 @@ const hcM3: CourseModule = {
     },
     {
       id: 'hc3l5',
+      diagram: 'ClinicalDriftMonitoring',
       title: 'Drift and Monitoring After Go-Live',
       slides: [
         {

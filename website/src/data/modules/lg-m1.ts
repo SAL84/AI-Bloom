@@ -127,6 +127,7 @@ const lgM1: CourseModule = {
     },
     {
       id: 'lg1l4',
+      diagram: 'ReviewBurdenShift',
       title: 'The Review Burden AI Shifts, Not Removes',
       slides: [
         {

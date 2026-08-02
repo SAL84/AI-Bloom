@@ -42,6 +42,7 @@ const hcM2: CourseModule = {
     },
     {
       id: 'hc2l2',
+      diagram: 'ReaderAssistanceModes',
       title: 'Reader Assistance vs Autonomous Reading',
       slides: [
         {

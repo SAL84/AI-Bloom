@@ -274,6 +274,7 @@ const evM2: CourseModule = {
     },
     {
       id: 'ev2l6',
+      diagram: 'EvalStatistics',
       title: 'Agreement, Significance, and Sample Size',
       slides: [
         {

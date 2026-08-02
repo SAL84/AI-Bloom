@@ -102,6 +102,7 @@ const evM4: CourseModule = {
     },
     {
       id: 'ev4l2',
+      diagram: 'JailbreakTaxonomy',
       title: 'A Jailbreak Taxonomy',
       slides: [
         {

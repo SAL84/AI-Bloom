@@ -45,6 +45,7 @@ const atM5: CourseModule = {
     },
     {
       id: 'at5l2',
+      diagram: 'AICareerMap',
       title: 'Jobs Now and Jobs Emerging',
       slides: [
         {

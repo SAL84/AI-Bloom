@@ -265,6 +265,7 @@ const evM3: CourseModule = {
     },
     {
       id: 'ev3l6',
+      diagram: 'CostLatencyFrontier',
       title: 'Cost and Latency as First-Class Metrics',
       slides: [
         {

@@ -80,6 +80,7 @@ const hcM4: CourseModule = {
     },
     {
       id: 'hc4l3',
+      diagram: 'ModelChangeControl',
       title: 'Change Control for Models That Update',
       slides: [
         {

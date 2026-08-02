@@ -8,6 +8,7 @@ const atM3: CourseModule = {
   lessons: [
     {
       id: 'at3l1',
+      diagram: 'SyntheticMediaTypes',
       title: 'Synthetic Media: Seeing Is No Longer Believing',
       slides: [
         {

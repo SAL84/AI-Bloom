@@ -18,6 +18,8 @@ import { TokensAndContextDiagram, RecommendationFeedDiagram, ConsentAndImagesDia
 import { AmbientScribeFlowDiagram, AutomationBiasDiagram, ClauseExtractionDiagram, RetrievalLimitsDiagram, SupervisionChainDiagram } from './course-diagrams-d';
 import { WhyItMakesThingsUpDiagram, AcademicHonestyLineDiagram, SkillsShiftDiagram, BenchmarkHonestyDiagram, TaskVsQualityMetricsDiagram } from './course-diagrams-e';
 import { ObservabilityLoopDiagram, SensitivitySpecificityDiagram, LocalValidationDiagram, TARPrecedentDiagram, HumanReviewProtocolDiagram } from './course-diagrams-f';
+import { SyntheticMediaTypesDiagram, BiasInEverydayAIDiagram, AICareerMapDiagram, EvalStatisticsDiagram, JailbreakTaxonomyDiagram } from './course-diagrams-g';
+import { CostLatencyFrontierDiagram, ReaderAssistanceModesDiagram, ClinicalDriftMonitoringDiagram, ModelChangeControlDiagram, ReviewBurdenShiftDiagram } from './course-diagrams-h';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -126,4 +128,14 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   LocalValidation: LocalValidationDiagram,
   TARPrecedent: TARPrecedentDiagram,
   HumanReviewProtocol: HumanReviewProtocolDiagram,
+  SyntheticMediaTypes: SyntheticMediaTypesDiagram,
+  BiasInEverydayAI: BiasInEverydayAIDiagram,
+  AICareerMap: AICareerMapDiagram,
+  EvalStatistics: EvalStatisticsDiagram,
+  JailbreakTaxonomy: JailbreakTaxonomyDiagram,
+  CostLatencyFrontier: CostLatencyFrontierDiagram,
+  ReaderAssistanceModes: ReaderAssistanceModesDiagram,
+  ClinicalDriftMonitoring: ClinicalDriftMonitoringDiagram,
+  ModelChangeControl: ModelChangeControlDiagram,
+  ReviewBurdenShift: ReviewBurdenShiftDiagram,
 };
