@@ -43,6 +43,12 @@ const ENTRIES: CourseEntry[] = [
     view: { type: 'home', courseId: 'ai-kids' },
   },
   {
+    id: 'ai-teens', no: '02', title: 'AI for School Students', track: 'Foundations',
+    color: '#c4623a', status: 'live',
+    note: 'Five modules for ages 14-18 — how AI works, using it well in school, deepfakes, data, and careers.',
+    view: { type: 'home', courseId: 'ai-teens' },
+  },
+  {
     id: 'ai-essentials', no: '03', title: 'AI Essentials', track: 'Literacy',
     color: '#3f8a5e', status: 'live',
     note: 'Complete course — foundations, frontiers, LLMs, the agent stack, ethics, and what is next. Role-specific tabs on key lessons.',
@@ -69,6 +75,26 @@ const ENTRIES: CourseEntry[] = [
     view: { type: 'home', courseId: 'ai-cybersec-se' },
   },
   {
+    id: 'ai-evals', no: '07', title: 'Evals & Red-teaming', track: 'Safety',
+    color: '#c9421f', status: 'live',
+    note: 'Four modules on eval sets, LLM-as-judge, regression suites, and adversarial testing of systems you own.',
+    view: { type: 'home', courseId: 'ai-evals' },
+  },
+  {
+    id: 'ai-healthcare', no: '08', title: 'AI for Healthcare', track: 'Vertical',
+    color: '#0f8a7a', status: 'live',
+    note: 'Orientation, not clinical guidance — where AI sits in care, reading the evidence, bias, and regulation.',
+    gaps: ['Awaiting review by a practising clinician'],
+    view: { type: 'home', courseId: 'ai-healthcare' },
+  },
+  {
+    id: 'ai-legal', no: '09', title: 'AI for Legal', track: 'Vertical',
+    color: '#5a4ec0', status: 'live',
+    note: 'Not legal advice — task suitability, contracts and discovery, the citation problem, and professional duties.',
+    gaps: ['Awaiting review by a practising lawyer', 'Jurisdiction-specific detail kept deliberately general'],
+    view: { type: 'home', courseId: 'ai-legal' },
+  },
+  {
     id: 'agentic-ai', no: '¶', title: 'Agentic AI', track: 'Building · field notes',
     color: '#5d5045', status: 'field-notes',
     note: 'Live agent anatomy diagram and three interactive scenarios. Full course in development.',
@@ -78,9 +104,8 @@ const ENTRIES: CourseEntry[] = [
 ];
 
 const PLANNED_COURSES = [
-  { no: '06', title: 'Evals & Red-teaming', track: 'Safety', color: '#c9421f', target: 'Q3 2026', note: 'How to know if your AI system works. And how to break it.' },
-  { no: '07', title: 'AI for Healthcare', track: 'Vertical', color: '#2c6db0', target: 'Q4 2026', note: 'Clinical decision support, imaging AI, and the regulatory landscape.' },
-  { no: '08', title: 'AI for Legal', track: 'Vertical', color: '#5a4ec0', target: 'TBD', note: 'Contracts, discovery, and the liability questions practitioners actually ask.' },
+  { no: '10', title: 'AI for Educators', track: 'Vertical', color: '#3f8a5e', target: 'TBD', note: 'Assessment design, academic honesty, and using AI to teach rather than to grade.' },
+  { no: '11', title: 'AI for Finance', track: 'Vertical', color: '#b78320', target: 'TBD', note: 'Risk models, fraud detection, and what regulators expect you to be able to explain.' },
 ];
 
 const PLANNED_FEATURES = [

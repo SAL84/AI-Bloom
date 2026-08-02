@@ -6,13 +6,8 @@ import { DIAGRAM_REGISTRY } from '../diagrams';
 import { InlineSVGDiagram } from '../diagrams/InlineSVGDiagram';
 import { RoleTabPanel } from './RoleTabPanel';
 import { CourseNav } from './CourseNav';
+import { courseColor } from '../../data/course-colors';
 
-const COURSE_COLORS: Record<string, string> = {
-  'ai-kids':       '#d96a3a',
-  'ai-essentials': '#3f8a5e',
-  'ai-deep-dive':  '#5a4ec0',
-  'ai-cybersec-se':'#2c6db0',
-};
 
 // ── Diagram zoom modal ───────────────────────────────────────────────────────
 interface SvgZoomModalProps {
@@ -124,7 +119,7 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
   const DiagramComponent = effectiveDiagramKey ? DIAGRAM_REGISTRY[effectiveDiagramKey] : null;
   const ExtraDiagramComponent = lesson.extraDiagram ? DIAGRAM_REGISTRY[lesson.extraDiagram] : null;
   const hasInlineSvg = !!lesson.inlineSvg;
-  const color = COURSE_COLORS[courseId] ?? '#5b5347';
+  const color = courseColor(courseId);
   const course = COURSES[courseId];
 
   const goNext = () => {

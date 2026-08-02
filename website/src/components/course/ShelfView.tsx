@@ -2,6 +2,7 @@ import React from 'react';
 import { StudioNavLite, StudioFooter } from './StudioChrome';
 import { COURSES } from '../../data/modules';
 import type { View, CourseId, Course, Lesson, CourseModule } from '../../types/course';
+import { COURSE_COLORS } from '../../data/course-colors';
 
 interface Props {
   setView: (view: View) => void;
@@ -10,12 +11,6 @@ interface Props {
   completedLessons: Record<string, boolean>;
 }
 
-const COURSE_COLORS: Record<CourseId, string> = {
-  'ai-kids':       '#d96a3a',
-  'ai-essentials': '#3f8a5e',
-  'ai-deep-dive':  '#5a4ec0',
-  'ai-cybersec-se':'#2c6db0',
-};
 
 interface SavedItem {
   course: Course;

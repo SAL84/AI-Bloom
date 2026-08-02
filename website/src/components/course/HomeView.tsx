@@ -14,6 +14,15 @@ interface Props {
 
 type ModStatus = 'done' | 'now' | 'next'; // used by getStatuses
 
+const TRACK_CRUMB: Partial<Record<CourseId, string>> = {
+  'ai-kids': 'Kids',
+  'ai-teens': 'Kids',
+  'ai-cybersec-se': 'Industry',
+  'ai-healthcare': 'Industry',
+  'ai-legal': 'Industry',
+  'ai-evals': 'Safety',
+};
+
 const META: Record<CourseId, {
   color: string; no: string; kicker: string;
   level: string; duration: string;
@@ -56,6 +65,54 @@ const META: Record<CourseId, {
       { no: '03', title: 'AI Essentials', sub: "Start here if you haven't", color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
       { no: '05', title: 'AI in Industry', sub: 'Where this goes in the real world', color: '#b78320', view: { type: 'industry' } },
       { no: '¶', title: 'Agentic AI', sub: 'The next logical step', color: '#5d5045', view: { type: 'agentic-ai' } },
+    ],
+  },
+  'ai-teens': {
+    color: '#c4623a', no: '02', kicker: 'Catalog №02 · Foundations track',
+    level: 'Beginner', duration: '3h',
+    outcomes: ['How AI actually works — prediction, training, and why it makes things up', 'Prompting as a real skill, and where the line sits on schoolwork', 'How to spot deepfakes and check a claim before you share it', 'Which skills gain value in an AI world — and what to study'],
+    audience: ['◆ Students aged 14–18 who want the real explanation', '◆ Teachers and parents looking for something honest to hand over', '◇ Not for: younger readers (try AI for Kids) or engineers (try Deep Dive)'],
+    quote: '"Written for people old enough to be told the truth about how this works — including the parts adults are still arguing about."',
+    related: [
+      { no: '01', title: 'AI for Kids', sub: 'For a younger sibling', color: '#d96a3a', view: { type: 'home', courseId: 'ai-kids' } },
+      { no: '03', title: 'AI Essentials', sub: 'The next step up', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
+      { no: '§', title: 'AI Playgrounds', sub: 'Try things, break things', color: '#3f8a5e', view: { type: 'playground' } },
+    ],
+  },
+  'ai-evals': {
+    color: '#c9421f', no: '07', kicker: 'Catalog №07 · Safety track',
+    level: 'Advanced', duration: '4h',
+    outcomes: ['Build eval sets that reflect what users actually need', 'Use LLM-as-judge without inheriting its biases', 'Ship a regression suite that survives model upgrades', 'Red-team your own system before someone else does'],
+    audience: ['◆ Engineers and leads shipping AI systems to real users', '◆ QA and safety people who inherited "test the AI"', '◇ Not for: people who have not built with AI yet (try Deep Dive)'],
+    quote: '"Evals are the difference between an AI product that improves and one that only changes."',
+    related: [
+      { no: '04', title: 'AI Deep Dive', sub: 'The engineering foundation', color: '#5a4ec0', view: { type: 'home', courseId: 'ai-deep-dive' } },
+      { no: '¶', title: 'Agentic AI', sub: 'What you will be testing', color: '#5d5045', view: { type: 'agentic-ai' } },
+      { no: '06', title: 'Cybersec Sales', sub: 'The adversarial view', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
+    ],
+  },
+  'ai-healthcare': {
+    color: '#0f8a7a', no: '08', kicker: 'Catalog №08 · Vertical track',
+    level: 'Intermediate', duration: '3h',
+    outcomes: ['Map where AI genuinely helps in care — and where pilots die', 'Read an AI clinical study critically', 'Recognise how dataset bias causes documented harm in health', 'Navigate SaMD, privacy, and institutional governance'],
+    audience: ['◆ Clinicians and administrators evaluating AI tools', '◆ Health-tech builders who need the regulatory picture', '◇ Not clinical guidance — orientation only, never a substitute for professional judgement'],
+    quote: '"The most useful thing this course can tell you is where the evidence is thin. So it does."',
+    related: [
+      { no: '03', title: 'AI Essentials', sub: 'Prerequisite vocabulary', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
+      { no: '07', title: 'Evals & Red-teaming', sub: 'How to validate a model', color: '#c9421f', view: { type: 'home', courseId: 'ai-evals' } },
+      { no: '05', title: 'AI in Industry', sub: 'The wider field map', color: '#b78320', view: { type: 'industry' } },
+    ],
+  },
+  'ai-legal': {
+    color: '#5a4ec0', no: '09', kicker: 'Catalog №09 · Vertical track',
+    level: 'Intermediate', duration: '3h',
+    outcomes: ['Sort legal tasks by how safely AI can touch them', 'Run contract review and discovery with a real supervision protocol', 'Never file a hallucinated citation — and know why they happen', 'Handle confidentiality, competence, and firm AI policy'],
+    audience: ['◆ Lawyers, paralegals, and legal ops adopting AI tools', '◆ Legal-tech builders who need the professional-duty picture', '◇ Not legal advice — obligations vary by jurisdiction and bar'],
+    quote: '"The citation problem is not a quirk to work around. It is the whole reason this course exists."',
+    related: [
+      { no: '03', title: 'AI Essentials', sub: 'Prerequisite vocabulary', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
+      { no: '08', title: 'AI for Healthcare', sub: 'The other regulated vertical', color: '#0f8a7a', view: { type: 'home', courseId: 'ai-healthcare' } },
+      { no: '05', title: 'AI in Industry', sub: 'The wider field map', color: '#b78320', view: { type: 'industry' } },
     ],
   },
   'ai-cybersec-se': {
@@ -280,7 +337,7 @@ export const HomeView = ({ setView, course, completedLessons, quizScores, savedL
     ? { type: 'lesson', courseId: course.id, moduleId: resumeModule.id, lessonId: resumeLesson.id }
     : undefined;
 
-  const crumbs = ['Catalog', course.id === 'ai-kids' ? 'Kids' : course.id === 'ai-cybersec-se' ? 'Industry' : 'AI Literacy', course.title];
+  const crumbs = ['Catalog', TRACK_CRUMB[course.id] ?? 'AI Literacy', course.title];
 
   return (
     <div className="bg-studio-bg text-studio-ink font-studio-sans min-h-screen">

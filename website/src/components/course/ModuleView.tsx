@@ -2,13 +2,8 @@ import React from 'react';
 import { COURSES } from '../../data/modules';
 import { StudioNavLite, StudioFooter } from './StudioChrome';
 import type { CourseModule, CourseId, View } from '../../types/course';
+import { courseColor } from '../../data/course-colors';
 
-const COURSE_COLORS: Record<string, string> = {
-  'ai-kids':       '#d96a3a',
-  'ai-essentials': '#3f8a5e',
-  'ai-deep-dive':  '#5a4ec0',
-  'ai-cybersec-se':'#2c6db0',
-};
 
 interface ModuleViewProps {
   module: CourseModule;
@@ -22,7 +17,7 @@ interface ModuleViewProps {
 export const ModuleView = ({ module, modules, courseId, setView, completedLessons, quizScores }: ModuleViewProps) => {
   const moduleIndex = modules.findIndex(m => m.id === module.id);
   const completedCount = module.lessons.filter(l => completedLessons[l.id]).length;
-  const color = COURSE_COLORS[courseId] ?? '#5b5347';
+  const color = courseColor(courseId);
   const course = COURSES[courseId];
 
   return (

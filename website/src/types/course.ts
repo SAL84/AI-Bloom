@@ -47,7 +47,15 @@ export interface GlossaryEntry {
   def: string;
 }
 
-export type CourseId = 'ai-essentials' | 'ai-deep-dive' | 'ai-kids' | 'ai-cybersec-se';
+export type CourseId =
+  | 'ai-essentials'
+  | 'ai-deep-dive'
+  | 'ai-kids'
+  | 'ai-teens'
+  | 'ai-cybersec-se'
+  | 'ai-evals'
+  | 'ai-healthcare'
+  | 'ai-legal';
 
 export interface Course {
   id: CourseId;

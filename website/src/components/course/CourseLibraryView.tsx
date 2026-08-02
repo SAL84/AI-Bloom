@@ -143,7 +143,7 @@ function StudioHero({ setView }: { setView: (v: View) => void }) {
             <span className="font-studio-serif italic text-studio-kids font-normal">about </span>AI?
           </h1>
           <p className="font-studio-serif italic text-[17px] sm:text-[20px] lg:text-[24px] leading-[1.4] text-studio-ink-dim mt-5 lg:mt-7 max-w-[520px] font-normal">
-            Five courses. From eight-year-olds to enterprise sales. Everything is free, everything is real, nothing's on a corporate calendar.
+            Eight courses. From eight-year-olds to regulated industries. Everything is free, everything is real, nothing's on a corporate calendar.
           </p>
         </div>
         <aside className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 lg:p-[26px] relative mt-6">
@@ -154,7 +154,7 @@ function StudioHero({ setView }: { setView: (v: View) => void }) {
             Where do I start?
           </h3>
           <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.5] mb-[18px]">
-            Three quick questions. We'll point you at one of the five courses.
+            Three quick questions. We'll point you at one of the eight courses.
           </p>
           <div className="flex flex-col gap-2">
             {PROFILE_QUESTIONS.map(q => (
@@ -289,6 +289,10 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
   const pEss   = courseProgress('ai-essentials', completedLessons);
   const pDeep  = courseProgress('ai-deep-dive', completedLessons);
   const pCyber = courseProgress('ai-cybersec-se', completedLessons);
+  const pTeens = courseProgress('ai-teens', completedLessons);
+  const pEvals = courseProgress('ai-evals', completedLessons);
+  const pHealth = courseProgress('ai-healthcare', completedLessons);
+  const pLegal = courseProgress('ai-legal', completedLessons);
 
   const kidsCard: CardData = {
     no: '01', title: 'AI for Kids', kicker: 'For ages 8–14', color: '#d96a3a',
@@ -296,6 +300,13 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
     modules: moduleCount('ai-kids'), level: 'Beginner', progress: pKids,
     badge: pKids > 0 ? 'Resume →' : 'Open →',
     onClick: () => setView({ type: 'home', courseId: 'ai-kids' }),
+  };
+  const teensCard: CardData = {
+    no: '02', title: 'AI for School Students', kicker: 'For ages 14–18', color: '#c4623a',
+    blurb: 'How LLMs actually work, prompting as a real skill, deepfakes, and where the line sits on schoolwork.',
+    modules: moduleCount('ai-teens'), level: 'Beginner', progress: pTeens,
+    badge: pTeens > 0 ? 'Resume →' : 'Open →',
+    onClick: () => setView({ type: 'home', courseId: 'ai-teens' }),
   };
   const coreCards: CardData[] = [
     { no: '03', title: 'AI Essentials', kicker: 'For everyone', color: '#3f8a5e',
@@ -322,6 +333,26 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       onClick: () => setView({ type: 'home', courseId: 'ai-cybersec-se' }) },
   ];
 
+  const evalsCard: CardData = {
+    no: '07', title: 'Evals & Red-teaming', kicker: 'Safety track', color: '#c9421f',
+    blurb: 'How to know your AI system works — and how to break it before someone else does.',
+    modules: moduleCount('ai-evals'), level: 'Advanced', progress: pEvals,
+    badge: pEvals > 0 ? 'Resume →' : 'Open →',
+    onClick: () => setView({ type: 'home', courseId: 'ai-evals' }),
+  };
+  const verticalCards: CardData[] = [
+    { no: '08', title: 'AI for Healthcare', kicker: 'For clinical & health-tech', color: '#0f8a7a',
+      blurb: 'Where AI actually sits in care, how to read the evidence, and the regulatory reality. Orientation, not clinical guidance.',
+      modules: moduleCount('ai-healthcare'), level: 'Intermediate', progress: pHealth,
+      badge: pHealth > 0 ? 'Resume →' : 'Open →',
+      onClick: () => setView({ type: 'home', courseId: 'ai-healthcare' }) },
+    { no: '09', title: 'AI for Legal', kicker: 'For legal practice', color: '#5a4ec0',
+      blurb: 'Contracts, discovery, and the citation problem that has already cost lawyers their credibility.',
+      modules: moduleCount('ai-legal'), level: 'Intermediate', progress: pLegal,
+      badge: pLegal > 0 ? 'Resume →' : 'Open →',
+      onClick: () => setView({ type: 'home', courseId: 'ai-legal' }) },
+  ];
+
   const filterBtns: Array<{ key: Filter; label: string }> = [
     { key: 'all', label: 'All' }, { key: 'kids', label: 'For kids' },
     { key: 'core', label: 'Core literacy' }, { key: 'industry', label: 'Industry' },
@@ -331,7 +362,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
     <section className="px-4 sm:px-6 lg:px-12 pt-6 pb-10 lg:pb-14">
       <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4 mb-6 lg:mb-7">
         <h2 className="font-studio-display text-[32px] sm:text-[38px] lg:text-[44px] text-studio-ink m-0 font-normal tracking-[-0.6px] lg:tracking-[-0.8px]">
-          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— five on the shelf, one in the kiln</span>
+          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— eight on the shelf</span>
         </h2>
         <div className="flex flex-wrap gap-2">
           {filterBtns.map(({ key, label }) => (
@@ -345,28 +376,10 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
 
       {(filter === 'all' || filter === 'kids') && (
         <div className="mb-7 lg:mb-9">
-          <RowLabel sub="Start here if there's a curious 10-year-old at the table">For kids · ages 8–14</RowLabel>
+          <RowLabel sub="Two courses — one for 8–14, a deeper one for 14–18">For young readers · ages 8–18</RowLabel>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
             <CatalogCard {...kidsCard} />
-            <article
-              className="bg-studio-paper border border-dashed border-studio-rule rounded-[4px] overflow-hidden flex flex-col cursor-not-allowed opacity-90"
-              aria-disabled="true"
-            >
-              <div className="px-6 py-[22px] flex justify-between items-start" style={{ background: '#c4623a' }}>
-                <div>
-                  <div className="font-studio-mono text-[10.5px] tracking-[1.4px] uppercase" style={{ color: 'rgba(255,255,255,0.85)' }}>For ages 14–18</div>
-                  <h3 className="font-studio-display text-[30px] text-white mt-1.5 leading-[1.04] font-normal tracking-[-0.5px]">AI for School Students</h3>
-                </div>
-                <div className="font-studio-serif italic text-[32px] leading-none font-normal" style={{ color: 'rgba(255,255,255,0.7)' }}>№02</div>
-              </div>
-              <div className="px-6 py-5 flex-1 flex flex-col gap-4">
-                <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.55] m-0 flex-1">A deeper take for teens — how LLMs actually work, prompting like a power user, and the careers AI is opening up. Coming next.</p>
-                <div className="flex justify-between items-center pt-3.5 border-t border-dashed border-studio-rule font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px]">
-                  <span>In the kiln</span>
-                  <span className="font-studio-mono text-[10.5px] tracking-[1.2px] uppercase px-2.5 py-1 rounded-full border border-studio-rule text-studio-ink-dim bg-studio-bg">In progress</span>
-                </div>
-              </div>
-            </article>
+            <CatalogCard {...teensCard} />
             <button
               onClick={() => setView({ type: 'kids-games' })}
               className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden text-left cursor-pointer flex flex-col hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200"
@@ -392,7 +405,10 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       {(filter === 'all' || filter === 'core') && (
         <div className="mb-7 lg:mb-9">
           <RowLabel sub="Read in any order — each stands alone">Core literacy</RowLabel>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">{coreCards.map(c => <CatalogCard key={c.no} {...c} />)}</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+            {coreCards.map(c => <CatalogCard key={c.no} {...c} />)}
+            <CatalogCard {...evalsCard} />
+          </div>
         </div>
       )}
       {(filter === 'all' || filter === 'industry') && (
@@ -400,6 +416,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
           <RowLabel sub="Vertical, role-specific. More on the way.">Industry courses</RowLabel>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
             {industryCards.map(c => <CatalogCard key={c.no} {...c} />)}
+            {verticalCards.map(c => <CatalogCard key={c.no} {...c} />)}
             <div className="border-[1.5px] border-dashed border-studio-rule rounded-[4px] p-7 flex flex-col justify-center gap-2">
               <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1.4px] uppercase">In the kiln</div>
               <div className="font-studio-serif italic text-[22px] text-studio-ink-dim leading-[1.2]">More verticals next quarter</div>

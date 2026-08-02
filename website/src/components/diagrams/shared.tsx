@@ -7,6 +7,7 @@ export const COLORS = {
   cyan: '#06b6d4',
   slate900: '#0f172a',
   slate700: '#334155',
+  slate600: '#475569',
   slate500: '#64748b',
   slate400: '#94a3b8',
   slate300: '#cbd5e1',

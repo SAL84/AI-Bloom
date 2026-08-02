@@ -2,13 +2,8 @@ import React, { useState, useMemo } from 'react';
 import { COURSES } from '../../data/modules';
 import { StudioNavLite, StudioFooter } from './StudioChrome';
 import type { CourseModule, CourseId, View } from '../../types/course';
+import { courseColor } from '../../data/course-colors';
 
-const COURSE_COLORS: Record<string, string> = {
-  'ai-kids':       '#d96a3a',
-  'ai-essentials': '#3f8a5e',
-  'ai-deep-dive':  '#5a4ec0',
-  'ai-cybersec-se':'#2c6db0',
-};
 
 interface QuizViewProps {
   module: CourseModule;
@@ -22,7 +17,7 @@ export const QuizView = ({ module, modules, courseId, setView, recordQuizScore }
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [submitted, setSubmitted] = useState(false);
   const moduleIdx = modules.findIndex(m => m.id === module.id);
-  const color = COURSE_COLORS[courseId] ?? '#5b5347';
+  const color = courseColor(courseId);
   const course = COURSES[courseId];
 
   const score = useMemo(() => module.quiz.filter((q, i) => answers[i] === q.correct).length, [answers, module.quiz]);

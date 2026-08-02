@@ -6,6 +6,10 @@ import { GLOSSARY } from '../glossary';
 import aiEssentials from './ai-essentials';
 import aiDeepDive from './ai-deep-dive';
 import aiKids from './ai-kids';
+import aiTeens from './ai-teens';
+import aiEvals from './ai-evals';
+import aiHealthcare from './ai-healthcare';
+import aiLegal from './ai-legal';
 import type { Course, CourseId } from '../../types/course';
 
 const CYBERSEC_SE: Course = {
@@ -21,6 +25,10 @@ export const COURSES: Record<CourseId, Course> = {
   'ai-essentials': aiEssentials,
   'ai-deep-dive': aiDeepDive,
   'ai-kids': aiKids,
+  'ai-teens': aiTeens,
+  'ai-evals': aiEvals,
+  'ai-healthcare': aiHealthcare,
+  'ai-legal': aiLegal,
 };
 
 export const COURSE = CYBERSEC_SE;
