@@ -119,6 +119,7 @@ const atM1: CourseModule = {
     },
     {
       id: 'at1l4',
+      diagram: 'WhyItMakesThingsUp',
       title: 'Why It Makes Things Up',
       slides: [
         {

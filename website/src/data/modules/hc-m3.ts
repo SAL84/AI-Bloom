@@ -169,6 +169,7 @@ const hcM3: CourseModule = {
     },
     {
       id: 'hc3l4',
+      diagram: 'LocalValidation',
       title: 'Local Validation Is a Requirement',
       slides: [
         {

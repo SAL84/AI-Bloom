@@ -8,6 +8,7 @@ const evM3: CourseModule = {
   lessons: [
     {
       id: 'ev3l1',
+      diagram: 'BenchmarkHonesty',
       title: 'Reading Public Benchmarks Honestly',
       sectionLabel: 'Measurement',
       slides: [
@@ -172,6 +173,7 @@ const evM3: CourseModule = {
     },
     {
       id: 'ev3l5',
+      diagram: 'ObservabilityLoop',
       title: 'Observability and Closing the Loop',
       slides: [
         {

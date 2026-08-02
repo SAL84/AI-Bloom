@@ -8,6 +8,7 @@ const atM5: CourseModule = {
   lessons: [
     {
       id: 'at5l1',
+      diagram: 'SkillsShift',
       title: 'Which Skills Gain Value, Which Lose It',
       slides: [
         {

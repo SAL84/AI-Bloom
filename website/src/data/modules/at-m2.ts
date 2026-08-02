@@ -91,6 +91,7 @@ const atM2: CourseModule = {
     },
     {
       id: 'at2l3',
+      diagram: 'AcademicHonestyLine',
       title: 'Academic Honesty, Concretely',
       slides: [
         {

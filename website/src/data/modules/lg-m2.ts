@@ -117,6 +117,7 @@ const lgM2: CourseModule = {
     },
     {
       id: 'lg2l4',
+      diagram: 'TARPrecedent',
       title: 'E-Discovery and the TAR Precedent',
       slides: [
         {
@@ -153,6 +154,7 @@ const lgM2: CourseModule = {
     },
     {
       id: 'lg2l5',
+      diagram: 'HumanReviewProtocol',
       title: 'A Human Review Protocol That Is Actually Followed',
       slides: [
         {

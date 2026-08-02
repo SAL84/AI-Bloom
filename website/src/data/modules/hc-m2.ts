@@ -76,6 +76,7 @@ const hcM2: CourseModule = {
     },
     {
       id: 'hc2l3',
+      diagram: 'SensitivitySpecificity',
       title: 'Sensitivity, Specificity, and Population',
       slides: [
         {

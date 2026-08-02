@@ -101,6 +101,7 @@ const evM2: CourseModule = {
     },
     {
       id: 'ev2l3',
+      diagram: 'TaskVsQualityMetrics',
       title: 'Task Completion vs Output Quality',
       slides: [
         {

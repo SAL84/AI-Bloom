@@ -16,6 +16,8 @@ import { CareAIMapDiagram, PilotToProductionDiagram, DistributionShiftDiagram, C
 import { LegalTaskSuitabilityDiagram, CitationVerificationDiagram, HallucinatedCitationDiagram, PrivilegeDataFlowDiagram, FirmAIPolicyDiagram } from './legal-diagrams';
 import { TokensAndContextDiagram, RecommendationFeedDiagram, ConsentAndImagesDiagram, GoodhartsTrapDiagram, NonDeterminismTestingDiagram } from './course-diagrams-c';
 import { AmbientScribeFlowDiagram, AutomationBiasDiagram, ClauseExtractionDiagram, RetrievalLimitsDiagram, SupervisionChainDiagram } from './course-diagrams-d';
+import { WhyItMakesThingsUpDiagram, AcademicHonestyLineDiagram, SkillsShiftDiagram, BenchmarkHonestyDiagram, TaskVsQualityMetricsDiagram } from './course-diagrams-e';
+import { ObservabilityLoopDiagram, SensitivitySpecificityDiagram, LocalValidationDiagram, TARPrecedentDiagram, HumanReviewProtocolDiagram } from './course-diagrams-f';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -114,4 +116,14 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   ClauseExtraction: ClauseExtractionDiagram,
   RetrievalLimits: RetrievalLimitsDiagram,
   SupervisionChain: SupervisionChainDiagram,
+  WhyItMakesThingsUp: WhyItMakesThingsUpDiagram,
+  AcademicHonestyLine: AcademicHonestyLineDiagram,
+  SkillsShift: SkillsShiftDiagram,
+  BenchmarkHonesty: BenchmarkHonestyDiagram,
+  TaskVsQualityMetrics: TaskVsQualityMetricsDiagram,
+  ObservabilityLoop: ObservabilityLoopDiagram,
+  SensitivitySpecificity: SensitivitySpecificityDiagram,
+  LocalValidation: LocalValidationDiagram,
+  TARPrecedent: TARPrecedentDiagram,
+  HumanReviewProtocol: HumanReviewProtocolDiagram,
 };
