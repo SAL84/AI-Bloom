@@ -8,6 +8,7 @@ const hcM3: CourseModule = {
   lessons: [
     {
       id: 'hc3l1',
+      diagram: 'ClinicalEvidenceLadder',
       title: 'How to Read an AI Study Critically',
       slides: [
         {

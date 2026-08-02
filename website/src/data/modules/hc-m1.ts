@@ -53,6 +53,7 @@ const hcM1: CourseModule = {
     },
     {
       id: 'hc1l2',
+      diagram: 'CareAIMap',
       title: 'The Honest Map of Clinical AI',
       slides: [
         {
@@ -209,6 +210,7 @@ const hcM1: CourseModule = {
     },
     {
       id: 'hc1l5',
+      diagram: 'PilotToProduction',
       title: 'From Demo to Deployment: Why Pilots Stall',
       slides: [
         {

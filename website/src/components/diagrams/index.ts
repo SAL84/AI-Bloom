@@ -10,6 +10,10 @@ import { DemoFrameworkDiagram, ObjectionHandlingDiagram, ROIComplianceDiagram, C
 import { ScalingLawsDiagram, ComputeStackDiagram, MoEDiagram, InferenceServingDiagram, AIEconomicsDiagram, EvalStackDiagram } from './deep-dive-diagrams-a';
 import { ReasoningComputeDiagram, GenerativeArchitecturesDiagram, MultimodalUnderstandingDiagram, AlignmentStackDiagram, GovernanceLandscapeDiagram, ContextEngineeringDiagram } from './deep-dive-diagrams-b';
 import { AISecurityFrameworksDiagram, SpeechAudioDiagram, ExplainabilityLayersDiagram, AccountabilityChainDiagram, WhyNowDiagram, HorizonMapDiagram } from './course-gap-diagrams';
+import { NextWordPredictionDiagram, TrainingVsUsingDiagram, PromptAnatomyDiagram, VerifyBeforeYouShareDiagram, DigitalFootprintDiagram } from './teens-diagrams';
+import { EvalDrivenLoopDiagram, GoldenDatasetDiagram, LLMJudgeBiasDiagram, RegressionSuiteDiagram, RedTeamLoopDiagram } from './evals-diagrams';
+import { CareAIMapDiagram, PilotToProductionDiagram, DistributionShiftDiagram, ClinicalEvidenceLadderDiagram, SaMDGovernanceDiagram } from './healthcare-diagrams';
+import { LegalTaskSuitabilityDiagram, CitationVerificationDiagram, HallucinatedCitationDiagram, PrivilegeDataFlowDiagram, FirmAIPolicyDiagram } from './legal-diagrams';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -78,4 +82,24 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AccountabilityChain: AccountabilityChainDiagram,
   WhyNow: WhyNowDiagram,
   HorizonMap: HorizonMapDiagram,
+  CareAIMap: CareAIMapDiagram,
+  PilotToProduction: PilotToProductionDiagram,
+  DistributionShift: DistributionShiftDiagram,
+  ClinicalEvidenceLadder: ClinicalEvidenceLadderDiagram,
+  SaMDGovernance: SaMDGovernanceDiagram,
+  LegalTaskSuitability: LegalTaskSuitabilityDiagram,
+  CitationVerification: CitationVerificationDiagram,
+  HallucinatedCitation: HallucinatedCitationDiagram,
+  PrivilegeDataFlow: PrivilegeDataFlowDiagram,
+  FirmAIPolicy: FirmAIPolicyDiagram,
+  NextWordPrediction: NextWordPredictionDiagram,
+  TrainingVsUsing: TrainingVsUsingDiagram,
+  PromptAnatomy: PromptAnatomyDiagram,
+  VerifyBeforeYouShare: VerifyBeforeYouShareDiagram,
+  DigitalFootprint: DigitalFootprintDiagram,
+  EvalDrivenLoop: EvalDrivenLoopDiagram,
+  GoldenDataset: GoldenDatasetDiagram,
+  LLMJudgeBias: LLMJudgeBiasDiagram,
+  RegressionSuite: RegressionSuiteDiagram,
+  RedTeamLoop: RedTeamLoopDiagram,
 };

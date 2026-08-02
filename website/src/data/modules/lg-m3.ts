@@ -8,6 +8,7 @@ const lgM3: CourseModule = {
   lessons: [
     {
       id: 'lg3l1',
+      diagram: 'HallucinatedCitation',
       title: 'Why Models Invent Case Law',
       slides: [
         {
@@ -162,6 +163,7 @@ const lgM3: CourseModule = {
     },
     {
       id: 'lg3l4',
+      diagram: 'CitationVerification',
       title: 'A Verification Workflow You Can Run',
       slides: [
         {

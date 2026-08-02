@@ -8,6 +8,7 @@ const atM2: CourseModule = {
   lessons: [
     {
       id: 'at2l1',
+      diagram: 'PromptAnatomy',
       title: 'Prompting Is a Real Skill',
       slides: [
         {

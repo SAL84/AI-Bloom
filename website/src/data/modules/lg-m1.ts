@@ -44,6 +44,7 @@ const lgM1: CourseModule = {
     },
     {
       id: 'lg1l2',
+      diagram: 'LegalTaskSuitability',
       title: 'The Honest Map of Task Suitability',
       slides: [
         {

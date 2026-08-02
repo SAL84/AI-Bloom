@@ -110,6 +110,7 @@ const hcM2: CourseModule = {
     },
     {
       id: 'hc2l4',
+      diagram: 'DistributionShift',
       title: 'Distribution Shift: Scanners, Sites, and People',
       slides: [
         {

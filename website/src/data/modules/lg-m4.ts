@@ -44,6 +44,7 @@ const lgM4: CourseModule = {
     },
     {
       id: 'lg4l2',
+      diagram: 'PrivilegeDataFlow',
       title: 'Confidentiality and Privilege',
       slides: [
         {
@@ -218,6 +219,7 @@ const lgM4: CourseModule = {
     },
     {
       id: 'lg4l5',
+      diagram: 'FirmAIPolicy',
       title: 'Building a Firm AI Policy',
       slides: [
         {

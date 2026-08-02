@@ -8,6 +8,7 @@ const atM1: CourseModule = {
   lessons: [
     {
       id: 'at1l1',
+      diagram: 'NextWordPrediction',
       title: 'Prediction, Not Understanding',
       slides: [
         {
@@ -80,6 +81,7 @@ const atM1: CourseModule = {
     },
     {
       id: 'at1l3',
+      diagram: 'TrainingVsUsing',
       title: 'Trained Once, Used Millions of Times',
       slides: [
         {

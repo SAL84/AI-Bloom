@@ -8,6 +8,7 @@ const evM4: CourseModule = {
   lessons: [
     {
       id: 'ev4l1',
+      diagram: 'RedTeamLoop',
       title: 'Adversarial Testing as a Discipline',
       sectionLabel: 'Adversarial',
       slides: [

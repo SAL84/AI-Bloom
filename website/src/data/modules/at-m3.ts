@@ -116,6 +116,7 @@ const atM3: CourseModule = {
     },
     {
       id: 'at3l4',
+      diagram: 'VerifyBeforeYouShare',
       title: 'How to Check a Claim in Two Minutes',
       slides: [
         {

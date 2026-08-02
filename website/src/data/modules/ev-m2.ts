@@ -54,6 +54,7 @@ const evM2: CourseModule = {
     },
     {
       id: 'ev2l2',
+      diagram: 'GoldenDataset',
       title: 'Golden Datasets and Curation',
       slides: [
         {
@@ -180,6 +181,7 @@ const evM2: CourseModule = {
     },
     {
       id: 'ev2l5',
+      diagram: 'LLMJudgeBias',
       title: 'LLM-as-Judge, Done Properly',
       slides: [
         {

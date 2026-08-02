@@ -8,6 +8,7 @@ const atM4: CourseModule = {
   lessons: [
     {
       id: 'at4l1',
+      diagram: 'DigitalFootprint',
       title: 'What Happens to What You Type',
       slides: [
         {

@@ -114,6 +114,7 @@ const evM1: CourseModule = {
     },
     {
       id: 'ev1l4',
+      diagram: 'EvalDrivenLoop',
       title: 'Eval-Driven Development',
       slides: [
         {

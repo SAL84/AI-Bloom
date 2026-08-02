@@ -8,6 +8,7 @@ const hcM4: CourseModule = {
   lessons: [
     {
       id: 'hc4l1',
+      diagram: 'SaMDGovernance',
       title: 'Software as a Medical Device and Intended Use',
       slides: [
         {

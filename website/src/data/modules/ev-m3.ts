@@ -45,6 +45,7 @@ const evM3: CourseModule = {
     },
     {
       id: 'ev3l2',
+      diagram: 'RegressionSuite',
       title: 'Regression Suites That Survive Model Upgrades',
       slides: [
         {
