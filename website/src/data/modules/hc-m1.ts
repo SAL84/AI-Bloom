@@ -8,6 +8,7 @@ const hcM1: CourseModule = {
   lessons: [
     {
       id: 'hc1l1',
+      diagram: 'CourseScopeSafety',
       title: 'Read This First: Scope and Safety',
       sectionLabel: 'Start here',
       slides: [
@@ -177,6 +178,7 @@ const hcM1: CourseModule = {
     },
     {
       id: 'hc1l4',
+      diagram: 'DecisionSupportSpectrum',
       title: 'Decision Support, Triage, and Patient-Facing Tools',
       slides: [
         {

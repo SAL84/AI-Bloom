@@ -45,6 +45,7 @@ const hcM3: CourseModule = {
     },
     {
       id: 'hc3l2',
+      diagram: 'AUCvsUtility',
       title: 'AUC Is Not Clinical Utility',
       slides: [
         {

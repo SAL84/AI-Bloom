@@ -147,6 +147,7 @@ const evM2: CourseModule = {
     },
     {
       id: 'ev2l4',
+      diagram: 'SharedRubric',
       title: 'Rubrics Humans and Models Can Both Apply',
       slides: [
         {

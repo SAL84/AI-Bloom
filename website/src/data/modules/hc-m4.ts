@@ -44,6 +44,7 @@ const hcM4: CourseModule = {
     },
     {
       id: 'hc4l2',
+      diagram: 'RegulatoryLandscapeHC',
       title: 'The Regulatory Landscape, Conceptually',
       slides: [
         {
@@ -116,6 +117,7 @@ const hcM4: CourseModule = {
     },
     {
       id: 'hc4l4',
+      diagram: 'DeidentificationConsent',
       title: 'Patient Data, De-identification, and Consent',
       slides: [
         {

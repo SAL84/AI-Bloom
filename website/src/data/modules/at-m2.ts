@@ -55,6 +55,7 @@ const atM2: CourseModule = {
     },
     {
       id: 'at2l2',
+      diagram: 'StudyingWithAI',
       title: 'Studying With AI vs Letting It Study For You',
       slides: [
         {
@@ -217,6 +218,7 @@ const atM2: CourseModule = {
     },
     {
       id: 'at2l5',
+      diagram: 'WhenNotToUseAI',
       title: 'When Not to Use AI',
       slides: [
         {

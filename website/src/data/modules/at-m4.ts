@@ -45,6 +45,7 @@ const atM4: CourseModule = {
     },
     {
       id: 'at4l2',
+      diagram: 'FootprintOverTime',
       title: 'Your Digital Footprint',
       slides: [
         {

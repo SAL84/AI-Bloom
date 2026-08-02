@@ -8,6 +8,7 @@ const lgM1: CourseModule = {
   lessons: [
     {
       id: 'lg1l1',
+      diagram: 'LegalScopeSafety',
       title: 'Read This First',
       slides: [
         {
@@ -91,6 +92,7 @@ const lgM1: CourseModule = {
     },
     {
       id: 'lg1l3',
+      diagram: 'WhyLegalExposed',
       title: 'Why Legal Work Is Unusually Exposed',
       slides: [
         {

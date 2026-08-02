@@ -22,6 +22,12 @@ import { SyntheticMediaTypesDiagram, BiasInEverydayAIDiagram, AICareerMapDiagram
 import { CostLatencyFrontierDiagram, ReaderAssistanceModesDiagram, ClinicalDriftMonitoringDiagram, ModelChangeControlDiagram, ReviewBurdenShiftDiagram } from './course-diagrams-h';
 import { CheckingAIOutputDiagram, MisinformationScaleDiagram, AmplifierNotReplacementDiagram, EvalsAsUnitTestsDiagram, SourcingEvalCasesDiagram } from './course-diagrams-i';
 import { SafetyDisclosureFlowDiagram, ImagingAICapabilitiesDiagram, HealthDatasetBiasDiagram, ClinicalGovernanceCommitteeDiagram, DiligenceAtVolumeDiagram } from './course-diagrams-j';
+import { StudyingWithAIDiagram, WhenNotToUseAIDiagram, ScepticalNotParanoidDiagram, FootprintOverTimeDiagram } from './course-diagrams-k';
+import { WhatToStudyDiagram, KeepLearningDiagram, VibesDontScaleDiagram, CostOfNoEvalsDiagram } from './course-diagrams-l';
+import { SharedRubricDiagram, CIForPromptsAndAgentsDiagram, AutomatedRedTeamLimitsDiagram, AUCvsUtilityDiagram } from './course-diagrams-m';
+import { CourseScopeSafetyDiagram, DecisionSupportSpectrumDiagram, RegulatoryLandscapeHCDiagram, DeidentificationConsentDiagram } from './course-diagrams-n';
+import { LegalScopeSafetyDiagram, WhyLegalExposedDiagram, RedliningFlowDiagram, SanctionsPatternDiagram } from './course-diagrams-o';
+import { SupervisingJuniorsDiagram, TechCompetenceDiagram, BillingConsentMalpracticeDiagram } from './course-diagrams-p';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -150,4 +156,27 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   HealthDatasetBias: HealthDatasetBiasDiagram,
   ClinicalGovernanceCommittee: ClinicalGovernanceCommitteeDiagram,
   DiligenceAtVolume: DiligenceAtVolumeDiagram,
+  StudyingWithAI: StudyingWithAIDiagram,
+  WhenNotToUseAI: WhenNotToUseAIDiagram,
+  ScepticalNotParanoid: ScepticalNotParanoidDiagram,
+  FootprintOverTime: FootprintOverTimeDiagram,
+  WhatToStudy: WhatToStudyDiagram,
+  KeepLearning: KeepLearningDiagram,
+  VibesDontScale: VibesDontScaleDiagram,
+  CostOfNoEvals: CostOfNoEvalsDiagram,
+  SharedRubric: SharedRubricDiagram,
+  CIForPromptsAndAgents: CIForPromptsAndAgentsDiagram,
+  AutomatedRedTeamLimits: AutomatedRedTeamLimitsDiagram,
+  AUCvsUtility: AUCvsUtilityDiagram,
+  CourseScopeSafety: CourseScopeSafetyDiagram,
+  DecisionSupportSpectrum: DecisionSupportSpectrumDiagram,
+  RegulatoryLandscapeHC: RegulatoryLandscapeHCDiagram,
+  DeidentificationConsent: DeidentificationConsentDiagram,
+  LegalScopeSafety: LegalScopeSafetyDiagram,
+  WhyLegalExposed: WhyLegalExposedDiagram,
+  RedliningFlow: RedliningFlowDiagram,
+  SanctionsPattern: SanctionsPatternDiagram,
+  SupervisingJuniors: SupervisingJuniorsDiagram,
+  TechCompetence: TechCompetenceDiagram,
+  BillingConsentMalpractice: BillingConsentMalpracticeDiagram,
 };

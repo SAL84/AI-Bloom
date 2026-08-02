@@ -235,6 +235,7 @@ const evM4: CourseModule = {
     },
     {
       id: 'ev4l5',
+      diagram: 'AutomatedRedTeamLimits',
       title: 'Automated Red-teaming and Its Limits',
       slides: [
         {

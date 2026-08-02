@@ -45,6 +45,7 @@ const lgM3: CourseModule = {
     },
     {
       id: 'lg3l2',
+      diagram: 'SanctionsPattern',
       title: 'The Sanctions Pattern',
       slides: [
         {
@@ -201,6 +202,7 @@ const lgM3: CourseModule = {
     },
     {
       id: 'lg3l5',
+      diagram: 'SupervisingJuniors',
       title: 'Supervising Juniors Who Use These Tools',
       slides: [
         {

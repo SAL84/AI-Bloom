@@ -8,6 +8,7 @@ const lgM4: CourseModule = {
   lessons: [
     {
       id: 'lg4l1',
+      diagram: 'TechCompetence',
       title: 'Competence Now Includes Technology',
       slides: [
         {
@@ -174,6 +175,7 @@ const lgM4: CourseModule = {
     },
     {
       id: 'lg4l4',
+      diagram: 'BillingConsentMalpractice',
       title: 'Billing, Consent, and Malpractice',
       slides: [
         {

@@ -91,6 +91,7 @@ const evM3: CourseModule = {
     },
     {
       id: 'ev3l3',
+      diagram: 'CIForPromptsAndAgents',
       title: 'CI for Prompts and Agents',
       slides: [
         {

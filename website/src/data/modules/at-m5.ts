@@ -82,6 +82,7 @@ const atM5: CourseModule = {
     },
     {
       id: 'at5l3',
+      diagram: 'WhatToStudy',
       title: 'What to Study',
       slides: [
         {
@@ -197,6 +198,7 @@ const atM5: CourseModule = {
     },
     {
       id: 'at5l5',
+      diagram: 'KeepLearning',
       title: 'How to Keep Learning',
       slides: [
         {

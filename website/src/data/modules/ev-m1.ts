@@ -8,6 +8,7 @@ const evM1: CourseModule = {
   lessons: [
     {
       id: 'ev1l1',
+      diagram: 'VibesDontScale',
       title: 'Vibes Don\'t Scale',
       sectionLabel: 'Foundations',
       slides: [
@@ -82,6 +83,7 @@ const evM1: CourseModule = {
     },
     {
       id: 'ev1l3',
+      diagram: 'CostOfNoEvals',
       title: 'The Cost of Not Having Them',
       slides: [
         {

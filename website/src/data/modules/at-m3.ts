@@ -198,6 +198,7 @@ const atM3: CourseModule = {
     },
     {
       id: 'at3l5',
+      diagram: 'ScepticalNotParanoid',
       title: 'Sceptical, Not Paranoid',
       slides: [
         {

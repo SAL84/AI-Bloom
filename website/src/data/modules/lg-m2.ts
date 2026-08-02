@@ -45,6 +45,7 @@ const lgM2: CourseModule = {
     },
     {
       id: 'lg2l2',
+      diagram: 'RedliningFlow',
       title: 'Redlining and First-Pass Markup',
       slides: [
         {
