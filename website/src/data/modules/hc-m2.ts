@@ -145,6 +145,7 @@ const hcM2: CourseModule = {
     },
     {
       id: 'hc2l5',
+      diagram: 'AutomationBias',
       title: 'Automation Bias and Deployment Design',
       slides: [
         {

@@ -80,6 +80,7 @@ const atM3: CourseModule = {
     },
     {
       id: 'at3l3',
+      diagram: 'RecommendationFeed',
       title: 'The Feed Is Not Neutral',
       slides: [
         {

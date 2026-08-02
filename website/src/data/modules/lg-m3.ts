@@ -127,6 +127,7 @@ const lgM3: CourseModule = {
     },
     {
       id: 'lg3l3',
+      diagram: 'RetrievalLimits',
       title: 'Retrieval Helps. It Does Not Cure.',
       slides: [
         {

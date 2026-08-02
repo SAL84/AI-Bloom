@@ -131,6 +131,7 @@ const hcM1: CourseModule = {
     },
     {
       id: 'hc1l3',
+      diagram: 'AmbientScribeFlow',
       title: 'Documentation and Ambient Scribes',
       slides: [
         {

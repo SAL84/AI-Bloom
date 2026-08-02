@@ -8,6 +8,7 @@ const lgM2: CourseModule = {
   lessons: [
     {
       id: 'lg2l1',
+      diagram: 'ClauseExtraction',
       title: 'Clause Extraction and Playbook Comparison',
       slides: [
         {

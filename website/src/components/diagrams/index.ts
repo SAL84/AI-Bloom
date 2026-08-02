@@ -14,6 +14,8 @@ import { NextWordPredictionDiagram, TrainingVsUsingDiagram, PromptAnatomyDiagram
 import { EvalDrivenLoopDiagram, GoldenDatasetDiagram, LLMJudgeBiasDiagram, RegressionSuiteDiagram, RedTeamLoopDiagram } from './evals-diagrams';
 import { CareAIMapDiagram, PilotToProductionDiagram, DistributionShiftDiagram, ClinicalEvidenceLadderDiagram, SaMDGovernanceDiagram } from './healthcare-diagrams';
 import { LegalTaskSuitabilityDiagram, CitationVerificationDiagram, HallucinatedCitationDiagram, PrivilegeDataFlowDiagram, FirmAIPolicyDiagram } from './legal-diagrams';
+import { TokensAndContextDiagram, RecommendationFeedDiagram, ConsentAndImagesDiagram, GoodhartsTrapDiagram, NonDeterminismTestingDiagram } from './course-diagrams-c';
+import { AmbientScribeFlowDiagram, AutomationBiasDiagram, ClauseExtractionDiagram, RetrievalLimitsDiagram, SupervisionChainDiagram } from './course-diagrams-d';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -102,4 +104,14 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   LLMJudgeBias: LLMJudgeBiasDiagram,
   RegressionSuite: RegressionSuiteDiagram,
   RedTeamLoop: RedTeamLoopDiagram,
+  TokensAndContext: TokensAndContextDiagram,
+  RecommendationFeed: RecommendationFeedDiagram,
+  ConsentAndImages: ConsentAndImagesDiagram,
+  GoodhartsTrap: GoodhartsTrapDiagram,
+  NonDeterminismTesting: NonDeterminismTestingDiagram,
+  AmbientScribeFlow: AmbientScribeFlowDiagram,
+  AutomationBias: AutomationBiasDiagram,
+  ClauseExtraction: ClauseExtractionDiagram,
+  RetrievalLimits: RetrievalLimitsDiagram,
+  SupervisionChain: SupervisionChainDiagram,
 };

@@ -204,6 +204,7 @@ const evM1: CourseModule = {
     },
     {
       id: 'ev1l5',
+      diagram: 'GoodhartsTrap',
       title: 'What Good Looks Like — and Goodhart\'s Trap',
       slides: [
         {

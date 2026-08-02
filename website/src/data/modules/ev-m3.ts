@@ -135,6 +135,7 @@ const evM3: CourseModule = {
     },
     {
       id: 'ev3l4',
+      diagram: 'NonDeterminismTesting',
       title: 'Testing Around Non-Determinism',
       slides: [
         {

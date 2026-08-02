@@ -45,6 +45,7 @@ const atM1: CourseModule = {
     },
     {
       id: 'at1l2',
+      diagram: 'TokensAndContext',
       title: 'Tokens and Context: The Units It Thinks In',
       slides: [
         {

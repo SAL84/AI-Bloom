@@ -139,6 +139,7 @@ const evM4: CourseModule = {
     },
     {
       id: 'ev4l3',
+      diagram: 'PromptInjection',
       title: 'Prompt Injection: Direct and Indirect',
       slides: [
         {
@@ -186,6 +187,7 @@ const evM4: CourseModule = {
     },
     {
       id: 'ev4l4',
+      diagram: 'AgentAttackSurface',
       title: 'Red-teaming Agents',
       slides: [
         {

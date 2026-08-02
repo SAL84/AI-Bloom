@@ -117,6 +117,7 @@ const atM4: CourseModule = {
     },
     {
       id: 'at4l4',
+      diagram: 'ConsentAndImages',
       title: 'Consent and Images of Real People',
       slides: [
         {

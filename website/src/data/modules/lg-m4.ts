@@ -137,6 +137,7 @@ const lgM4: CourseModule = {
     },
     {
       id: 'lg4l3',
+      diagram: 'SupervisionChain',
       title: 'Supervision, Candour, and the Tribunal',
       slides: [
         {
