@@ -80,6 +80,7 @@ const hcM3: CourseModule = {
     },
     {
       id: 'hc3l3',
+      diagram: 'HealthDatasetBias',
       title: 'Dataset Bias and Documented Harms',
       slides: [
         {

@@ -8,6 +8,7 @@ const hcM2: CourseModule = {
   lessons: [
     {
       id: 'hc2l1',
+      diagram: 'ImagingAICapabilities',
       title: 'What Imaging AI Genuinely Does Well',
       slides: [
         {

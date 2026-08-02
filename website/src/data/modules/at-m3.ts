@@ -45,6 +45,7 @@ const atM3: CourseModule = {
     },
     {
       id: 'at3l2',
+      diagram: 'MisinformationScale',
       title: 'Misinformation That Scales',
       slides: [
         {

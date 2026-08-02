@@ -81,6 +81,7 @@ const lgM2: CourseModule = {
     },
     {
       id: 'lg2l3',
+      diagram: 'DiligenceAtVolume',
       title: 'Obligations, Risk Terms, and Diligence at Volume',
       slides: [
         {

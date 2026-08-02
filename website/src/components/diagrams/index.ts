@@ -20,6 +20,8 @@ import { WhyItMakesThingsUpDiagram, AcademicHonestyLineDiagram, SkillsShiftDiagr
 import { ObservabilityLoopDiagram, SensitivitySpecificityDiagram, LocalValidationDiagram, TARPrecedentDiagram, HumanReviewProtocolDiagram } from './course-diagrams-f';
 import { SyntheticMediaTypesDiagram, BiasInEverydayAIDiagram, AICareerMapDiagram, EvalStatisticsDiagram, JailbreakTaxonomyDiagram } from './course-diagrams-g';
 import { CostLatencyFrontierDiagram, ReaderAssistanceModesDiagram, ClinicalDriftMonitoringDiagram, ModelChangeControlDiagram, ReviewBurdenShiftDiagram } from './course-diagrams-h';
+import { CheckingAIOutputDiagram, MisinformationScaleDiagram, AmplifierNotReplacementDiagram, EvalsAsUnitTestsDiagram, SourcingEvalCasesDiagram } from './course-diagrams-i';
+import { SafetyDisclosureFlowDiagram, ImagingAICapabilitiesDiagram, HealthDatasetBiasDiagram, ClinicalGovernanceCommitteeDiagram, DiligenceAtVolumeDiagram } from './course-diagrams-j';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -138,4 +140,14 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   ClinicalDriftMonitoring: ClinicalDriftMonitoringDiagram,
   ModelChangeControl: ModelChangeControlDiagram,
   ReviewBurdenShift: ReviewBurdenShiftDiagram,
+  CheckingAIOutput: CheckingAIOutputDiagram,
+  MisinformationScale: MisinformationScaleDiagram,
+  AmplifierNotReplacement: AmplifierNotReplacementDiagram,
+  EvalsAsUnitTests: EvalsAsUnitTestsDiagram,
+  SourcingEvalCases: SourcingEvalCasesDiagram,
+  SafetyDisclosureFlow: SafetyDisclosureFlowDiagram,
+  ImagingAICapabilities: ImagingAICapabilitiesDiagram,
+  HealthDatasetBias: HealthDatasetBiasDiagram,
+  ClinicalGovernanceCommittee: ClinicalGovernanceCommitteeDiagram,
+  DiligenceAtVolume: DiligenceAtVolumeDiagram,
 };

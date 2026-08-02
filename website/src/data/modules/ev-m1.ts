@@ -38,6 +38,7 @@ const evM1: CourseModule = {
     },
     {
       id: 'ev1l2',
+      diagram: 'EvalsAsUnitTests',
       title: 'Evals as the Unit Test of Probabilistic Systems',
       slides: [
         {

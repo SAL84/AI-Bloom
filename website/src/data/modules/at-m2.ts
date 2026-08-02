@@ -180,6 +180,7 @@ const atM2: CourseModule = {
     },
     {
       id: 'at2l4',
+      diagram: 'CheckingAIOutput',
       title: 'Checking What It Gives You',
       slides: [
         {

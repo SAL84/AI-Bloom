@@ -271,6 +271,7 @@ const evM4: CourseModule = {
     },
     {
       id: 'ev4l6',
+      diagram: 'SafetyDisclosureFlow',
       title: 'Safety Evals, Reports, and Disclosure',
       slides: [
         {

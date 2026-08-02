@@ -8,6 +8,7 @@ const evM2: CourseModule = {
   lessons: [
     {
       id: 'ev2l1',
+      diagram: 'SourcingEvalCases',
       title: 'Sourcing Real Cases',
       sectionLabel: 'Data',
       slides: [

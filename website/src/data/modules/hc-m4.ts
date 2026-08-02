@@ -152,6 +152,7 @@ const hcM4: CourseModule = {
     },
     {
       id: 'hc4l5',
+      diagram: 'ClinicalGovernanceCommittee',
       title: 'Accountability and the Governance Committee',
       slides: [
         {

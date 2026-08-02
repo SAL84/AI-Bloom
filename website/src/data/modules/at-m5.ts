@@ -118,6 +118,7 @@ const atM5: CourseModule = {
     },
     {
       id: 'at5l4',
+      diagram: 'AmplifierNotReplacement',
       title: 'Amplifier, Not Replacement',
       slides: [
         {
