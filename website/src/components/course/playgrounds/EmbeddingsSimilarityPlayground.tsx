@@ -47,10 +47,10 @@ function cosineSimilarity(text1: string, text2: string): { score: number; shared
 }
 
 const EXAMPLES = [
-  { label: 'Identical',      a: 'A firewall blocks unauthorized network traffic.',              b: 'A firewall blocks unauthorized network traffic.' },
-  { label: 'Similar meaning', a: 'The firewall blocked the intrusion attempt.',                 b: 'The network security device prevented the attack.' },
-  { label: 'Same topic',     a: 'Phishing emails steal credentials from users.',               b: 'Cybersecurity teams defend against social engineering attacks.' },
-  { label: 'Unrelated',      a: 'Machine learning models require large training datasets.',    b: 'The coffee shop opens at 7am on weekdays.' },
+  { label: 'Identical',       a: 'The train leaves the station at nine.',                   b: 'The train leaves the station at nine.' },
+  { label: 'Similar meaning', a: 'The doctor examined the patient carefully.',              b: 'The physician checked the patient thoroughly.' },
+  { label: 'Same topic',      a: 'Rain flooded the road overnight.',                        b: 'The storm made driving conditions dangerous.' },
+  { label: 'Unrelated',       a: 'Machine learning models need large training datasets.',   b: 'The coffee shop opens at 7am on weekdays.' },
 ];
 
 function getLabel(score: number): { text: string; color: string } {

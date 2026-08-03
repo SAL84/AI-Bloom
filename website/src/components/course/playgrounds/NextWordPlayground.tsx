@@ -1,46 +1,46 @@
 import React, { useState } from 'react';
 import { MessageSquareText, RotateCcw, Dices } from 'lucide-react';
 
-const STEM = 'The security team reviewed the';
+const STEM = 'The old lighthouse keeper opened the';
 
 type Cand = [string, number];
 
 // A word ending in "." is terminal — the model has emitted its stop token.
 const TREE: Record<string, Cand[]> = {
-  '': [['alert', 30], ['logs', 25], ['incident', 18], ['report', 13], ['request', 9], ['footage', 5]],
+  '': [['door', 30], ['window', 25], ['logbook', 18], ['letter', 13], ['gate', 9], ['crate', 5]],
 
-  'alert': [['and', 44], ['but', 22], ['again.', 20], ['twice.', 14]],
-  'logs': [['and', 38], ['from', 28], ['again.', 20], ['twice.', 14]],
-  'incident': [['and', 41], ['report', 25], ['again.', 20], ['quietly.', 14]],
-  'report': [['and', 40], ['before', 26], ['again.', 20], ['twice.', 14]],
-  'request': [['and', 46], ['from', 24], ['again.', 18], ['twice.', 12]],
-  'footage': [['and', 42], ['from', 26], ['again.', 20], ['twice.', 12]],
+  'door': [['and', 44], ['but', 22], ['slowly.', 20], ['again.', 14]],
+  'window': [['and', 38], ['to', 28], ['slowly.', 20], ['again.', 14]],
+  'logbook': [['and', 41], ['to', 25], ['carefully.', 20], ['again.', 14]],
+  'letter': [['and', 40], ['from', 26], ['carefully.', 20], ['twice.', 14]],
+  'gate': [['and', 46], ['for', 24], ['slowly.', 18], ['again.', 12]],
+  'crate': [['and', 42], ['from', 26], ['carefully.', 20], ['twice.', 12]],
 
-  'alert and': [['escalated', 48], ['closed.', 34], ['ignored.', 18]],
-  'alert but': [['found', 52], ['missed.', 28], ['ignored.', 20]],
-  'logs and': [['found', 50], ['flagged.', 31], ['archived.', 19]],
-  'logs from': [['the', 58], ['yesterday.', 25], ['everywhere.', 17]],
-  'incident and': [['escalated', 45], ['closed.', 33], ['reopened.', 22]],
-  'incident report': [['and', 47], ['twice.', 30], ['carefully.', 23]],
-  'report and': [['found', 49], ['signed.', 30], ['filed.', 21]],
-  'report before': [['the', 55], ['lunch.', 26], ['anyone.', 19]],
-  'request and': [['approved', 46], ['denied.', 32], ['escalated.', 22]],
-  'request from': [['the', 57], ['legal.', 24], ['nowhere.', 19]],
-  'footage and': [['found', 47], ['saw.', 30], ['archived.', 23]],
-  'footage from': [['the', 56], ['yesterday.', 26], ['outside.', 18]],
+  'door and': [['stepped', 48], ['waited.', 34], ['listened.', 18]],
+  'door but': [['found', 52], ['hesitated.', 28], ['stopped.', 20]],
+  'window and': [['looked', 50], ['waited.', 31], ['listened.', 19]],
+  'window to': [['the', 58], ['listen.', 25], ['breathe.', 17]],
+  'logbook and': [['wrote', 45], ['read.', 33], ['sighed.', 22]],
+  'logbook to': [['the', 47], ['check.', 30], ['remember.', 23]],
+  'letter and': [['read', 49], ['paused.', 30], ['smiled.', 21]],
+  'letter from': [['the', 55], ['home.', 26], ['nowhere.', 19]],
+  'gate and': [['walked', 46], ['waited.', 32], ['listened.', 22]],
+  'gate for': [['the', 57], ['nobody.', 24], ['hours.', 19]],
+  'crate and': [['found', 47], ['paused.', 30], ['frowned.', 23]],
+  'crate from': [['the', 56], ['storage.', 26], ['harbour.', 18]],
 
-  'alert and escalated': [['it.', 61], ['immediately.', 24], ['everything.', 15]],
-  'alert but found': [['nothing.', 55], ['everything.', 26], ['three.', 19]],
-  'logs and found': [['nothing.', 52], ['evidence.', 29], ['everything.', 19]],
-  'logs from the': [['firewall.', 46], ['endpoint.', 33], ['printer.', 21]],
-  'incident and escalated': [['it.', 60], ['immediately.', 25], ['nothing.', 15]],
-  'incident report and': [['signed.', 48], ['filed.', 33], ['shredded.', 19]],
-  'report and found': [['nothing.', 54], ['errors.', 28], ['everything.', 18]],
-  'report before the': [['meeting.', 51], ['deadline.', 30], ['weekend.', 19]],
-  'request and approved': [['it.', 63], ['everything.', 22], ['nothing.', 15]],
-  'request from the': [['vendor.', 43], ['auditor.', 33], ['intern.', 24]],
-  'footage and found': [['nothing.', 53], ['someone.', 28], ['everything.', 19]],
-  'footage from the': [['garage.', 45], ['lobby.', 30], ['rooftop.', 25]],
+  'door and stepped': [['outside.', 61], ['back.', 24], ['through.', 15]],
+  'door but found': [['nothing.', 55], ['someone.', 26], ['everything.', 19]],
+  'window and looked': [['out.', 52], ['down.', 29], ['away.', 19]],
+  'window to the': [['sea.', 46], ['storm.', 33], ['garden.', 21]],
+  'logbook and wrote': [['nothing.', 48], ['everything.', 27], ['slowly.', 25]],
+  'logbook to the': [['date.', 51], ['end.', 30], ['margin.', 19]],
+  'letter and read': [['it.', 60], ['aloud.', 25], ['nothing.', 15]],
+  'letter from the': [['mainland.', 43], ['harbour.', 33], ['company.', 24]],
+  'gate and walked': [['through.', 53], ['away.', 28], ['back.', 19]],
+  'gate for the': [['visitor.', 45], ['delivery.', 30], ['storm.', 25]],
+  'crate and found': [['nothing.', 53], ['papers.', 28], ['everything.', 19]],
+  'crate from the': [['harbour.', 45], ['cellar.', 30], ['ship.', 25]],
 };
 
 const BAR_COLORS = [

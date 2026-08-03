@@ -11,6 +11,7 @@ import { EvalConfidencePlayground } from './playgrounds/EvalConfidencePlayground
 import { AgentAnatomy } from './agentic/AgentAnatomy';
 import { AgentScenario } from './agentic/AgentScenario';
 import type { ScenarioStep } from './agentic/AgentScenario';
+import { RESEARCH_ASSISTANT, TRIP_PLANNER, BUG_INVESTIGATION } from './agentic/general-scenarios';
 
 interface AIPlaygroundsViewProps {
   setView: (view: View) => void;
@@ -31,10 +32,13 @@ type PlaygroundTabId = typeof PLAYGROUND_TABS[number]['id'];
 
 // ── Agentic tab config ───────────────────────────────────────────────────────
 const AGENTIC_TABS = [
-  { id: 'anatomy', label: 'The Agent Loop',   glyph: '◎', desc: 'How agents think and act' },
-  { id: 'triage',  label: 'Alert Triage',     glyph: '⚑', desc: 'Account compromise investigation' },
-  { id: 'breach',  label: 'Breach Responder', glyph: '◈', desc: 'Ransomware scope & containment' },
-  { id: 'patch',   label: 'Patch Advisor',    glyph: '◇', desc: 'Vulnerability prioritisation' },
+  { id: 'anatomy',  label: 'The Agent Loop',    glyph: '◎', desc: 'How agents think and act' },
+  { id: 'research', label: 'Research Assistant', glyph: '◍', desc: 'Sources disagree — the agent notices and digs deeper' },
+  { id: 'trip',     label: 'Trip Planner',      glyph: '◔', desc: 'Constraints, a wrong turn, and a human approval gate' },
+  { id: 'bug',      label: 'Bug Investigation', glyph: '◌', desc: 'A hypothesis that turns out wrong, then the real cause' },
+  { id: 'triage',   label: 'Security: Triage',  glyph: '⚑', desc: 'Account compromise investigation' },
+  { id: 'breach',   label: 'Security: Breach',  glyph: '◈', desc: 'Ransomware scope & containment' },
+  { id: 'patch',    label: 'Security: Patching', glyph: '◇', desc: 'Vulnerability prioritisation' },
 ] as const;
 type AgenticTabId = typeof AGENTIC_TABS[number]['id'];
 
@@ -198,6 +202,9 @@ export const AIPlaygroundsView = ({ setView, initialSection = 'playgrounds' }: A
           {section === 'playgrounds' && playgroundTab === 'baserate'    && <BaseRatePlayground />}
           {section === 'playgrounds' && playgroundTab === 'evalci'      && <EvalConfidencePlayground />}
           {section === 'agentic' && agenticTab === 'anatomy' && <AgentAnatomy />}
+          {section === 'agentic' && agenticTab === 'research' && <AgentScenario trigger='Should we adopt approach A or approach B for the team? Give me a recommendation with your reasoning.' steps={RESEARCH_ASSISTANT} />}
+          {section === 'agentic' && agenticTab === 'trip'     && <AgentScenario trigger='Book me three nights next month, under budget, somewhere I can get to without flying.' steps={TRIP_PLANNER} />}
+          {section === 'agentic' && agenticTab === 'bug'      && <AgentScenario trigger="Error rate jumped from baseline to roughly 8% after this morning's deploy. Find out why." steps={BUG_INVESTIGATION} />}
           {section === 'agentic' && agenticTab === 'triage'  && <AgentScenario trigger='47 failed logins then successful authentication from Russia — user: j.chen@company.com' steps={ALERT_TRIAGE} />}
           {section === 'agentic' && agenticTab === 'breach'  && <AgentScenario trigger='Ransomware indicators on HOST-MFG-07 — files renamed with .enc extension. OT environment.' steps={BREACH_RESPONDER} />}
           {section === 'agentic' && agenticTab === 'patch'   && <AgentScenario trigger='Monthly vulnerability scan complete — 52 findings in production. Prioritise for this sprint.' steps={PATCH_ADVISOR} />}

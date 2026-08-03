@@ -170,7 +170,7 @@ export const BaseRatePlayground: React.FC = () => {
             <>Of <strong>{fmt(flagged)}</strong> alerts raised, <strong>none</strong> are real — every single one is a false alarm.</>
           ) : (
             <>
-              Of <strong>{fmt(flagged)}</strong> alerts raised, <strong>{fmt(tp)}</strong> are real — your analysts chase{' '}
+              Of <strong>{fmt(flagged)}</strong> alerts raised, <strong>{fmt(tp)}</strong> are real — you chase{' '}
               <strong>{falsePerReal < 10 ? falsePerReal.toFixed(1) : fmt(falsePerReal)}</strong> false alarms for every real case.
               {fn > 0 && <> Meanwhile <strong>{fmt(fn)}</strong> real cases are missed entirely.</>}
             </>

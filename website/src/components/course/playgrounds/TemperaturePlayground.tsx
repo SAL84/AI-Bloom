@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
 import { Thermometer, RefreshCw } from 'lucide-react';
 
-const PROMPT = 'Describe what a firewall does in one sentence.';
+const PROMPT = 'Explain what a volcano is in one sentence.';
 
 const RESPONSES: Record<string, string[]> = {
   '0': [
-    'A firewall monitors and controls incoming and outgoing network traffic based on predetermined security rules, acting as a barrier between trusted and untrusted networks.',
+    'A volcano is an opening in a planet\'s crust through which molten rock, ash, and gases from below the surface are able to escape.',
   ],
   '0.5': [
-    'A firewall filters network traffic according to security rules, blocking unauthorized access while allowing legitimate communications through.',
-    'A firewall enforces security policies by inspecting network packets and allowing or blocking them based on configured rules.',
-    'A firewall monitors network traffic and blocks unauthorized connections according to a defined set of security rules.',
+    'A volcano is a rupture in the Earth\'s crust that allows molten rock, ash, and gas to escape from deep beneath the surface.',
+    'A volcano is an opening in the Earth\'s surface through which magma, ash, and volcanic gases erupt from the interior.',
+    'A volcano is a vent in the Earth\'s crust where molten rock and gases from below can reach the surface.',
   ],
   '1': [
-    'A firewall acts as a gatekeeper for your network, examining each data packet and deciding whether to allow or block it based on security policy.',
-    'Firewalls sit between your network and the outside world, evaluating incoming and outgoing traffic against a ruleset to stop unauthorized access.',
-    'A firewall protects a network by scrutinising all traffic that passes through it, permitting legitimate communications while blocking potential threats.',
+    'A volcano is a place where the Earth\'s crust has cracked open, letting molten rock from deep underground rise and erupt at the surface.',
+    'A volcano forms where pressure drives magma up through a weakness in the crust until it breaks out as lava, ash, and gas.',
+    'A volcano is the Earth\'s pressure valve — an opening where heat and molten rock from far below finally find their way out.',
   ],
   '1.5': [
-    "Think of a firewall as a bouncer for your network — it checks every packet at the door and turns away anything that doesn't match the guest list.",
-    "A firewall is essentially your network's immune system: constantly scanning traffic for anything that looks like it doesn't belong, then blocking it.",
-    "A firewall is the wall it sounds like — a barrier deciding what gets in and out of your network based on rules your security team hopefully thought through.",
+    'A volcano is a mountain with a temper: it spends most of its life quiet, then reminds everyone that the planet underneath is still molten.',
+    'Think of a volcano as a chimney for the Earth\'s furnace — a crack that lets a few hundred kilometres of trapped heat make a dramatic exit.',
+    'A volcano is what happens when the planet has been holding something in for ten thousand years and finally lets it out all at once.',
   ],
   '2': [
-    "Behold the firewall: ancient guardian of packets, slayer of unauthorised SYN flags, and the reason your printer still can't reach the internet — which is fine, actually.",
-    'A firewall is what happens when someone decided "just let all the traffic in" was a bad policy, which was, statistically, correct in 1988 and remains correct today.',
-    "Firewall = big digital NO sitting at your network edge going 'not today' to suspicious packets, which sounds simple until you're debugging why Zoom won't connect at 8:59am.",
+    'Volcano: the Earth clearing its throat, except the throat is nine kilometres of rock and the phlegm is at eleven hundred degrees.',
+    'A volcano is geology\'s way of announcing that it was never actually solid ground, it was just solid ground for now, and "now" is a geological unit that owes you nothing.',
+    'Picture a mountain that is technically a lid. Now picture the lid losing an argument with the thing underneath it. That is a volcano, and it has been winning that argument since before there were witnesses.',
   ],
 };
 
