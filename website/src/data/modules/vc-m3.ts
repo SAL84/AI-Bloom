@@ -194,7 +194,7 @@ const vcM3: CourseModule = {
         {
           role: 'developer',
           label: 'If You Have Some Technical Skill',
-          body: 'You can shorten the loop dramatically. Read the change itself, not only its description, and use proper version control rather than dated folders.',
+          body: 'You can shorten the loop dramatically. Read the change itself, not only its description. Use proper version control rather than dated folders.',
           bullets: [
             'Read the diff before accepting — the summary and the change sometimes disagree',
             'Commit each verified step, so reverting is one command rather than a folder hunt',

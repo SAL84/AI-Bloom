@@ -23,6 +23,7 @@ const TRACK_CRUMB: Partial<Record<CourseId, string>> = {
   'ai-evals': 'Build · Test · Secure',
   'ai-secure': 'Build · Test · Secure',
   'ai-vibecoding': 'Build · Test · Secure',
+  'ai-agents': 'Build · Test · Secure',
 };
 
 const META: Record<CourseId, {
@@ -127,6 +128,18 @@ const META: Record<CourseId, {
       { no: '03', title: 'AI Essentials', sub: 'Why prompts behave this way', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
       { no: '10', title: 'Vibecoding', sub: 'Prompting to build something', color: '#d4711f', view: { type: 'home', courseId: 'ai-vibecoding' } },
       { no: '§', title: 'AI Playgrounds', sub: 'Try it hands-on', color: '#3f8a5e', view: { type: 'playground' } },
+    ],
+  },
+  'ai-agents': {
+    color: '#5d5045', no: '12', kicker: 'Catalog №12 · Build · Test · Secure',
+    level: 'Advanced', duration: '4.5h',
+    outcomes: ['Design a loop that terminates, with step budgets and cost ceilings', 'Spend the context window deliberately instead of filling it', 'Write tool definitions the model can actually use and recover from', 'Place approval gates so they are used rather than clicked through'],
+    audience: ['◆ Engineers who have called an LLM API and now want something that runs unattended', '◆ Technical leads owning an agent in production', '◇ Not for: people new to building with AI (try Deep Dive first)'],
+    quote: '"The model is the easy part. Everything that makes it reliable is the harness around it."',
+    related: [
+      { no: '04', title: 'AI Deep Dive', sub: 'The architecture underneath', color: '#5a4ec0', view: { type: 'home', courseId: 'ai-deep-dive' } },
+      { no: '07', title: 'Does Your AI Work?', sub: 'Testing what you built', color: '#c9421f', view: { type: 'home', courseId: 'ai-evals' } },
+      { no: '09', title: 'Securing AI Systems', sub: 'Defending what you built', color: '#8b2f5f', view: { type: 'home', courseId: 'ai-secure' } },
     ],
   },
   'ai-healthcare': {

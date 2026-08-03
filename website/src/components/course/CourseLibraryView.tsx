@@ -147,7 +147,7 @@ function StudioHero({ setView }: { setView: (v: View) => void }) {
             <span className="font-studio-serif italic text-studio-kids font-normal">about </span>AI?
           </h1>
           <p className="font-studio-serif italic text-[17px] sm:text-[20px] lg:text-[24px] leading-[1.4] text-studio-ink-dim mt-5 lg:mt-7 max-w-[520px] font-normal">
-            Eleven courses. From eight-year-olds to regulated industries. Everything is free, everything is real, nothing's on a corporate calendar.
+            Twelve courses. From eight-year-olds to regulated industries. Everything is free, everything is real, nothing's on a corporate calendar.
           </p>
         </div>
         <aside className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 lg:p-[26px] relative mt-6">
@@ -158,7 +158,7 @@ function StudioHero({ setView }: { setView: (v: View) => void }) {
             Where do I start?
           </h3>
           <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.5] mb-[18px]">
-            Three quick questions. We'll point you at one of the eleven courses.
+            Three quick questions. We'll point you at one of the twelve courses.
           </p>
           <div className="flex flex-col gap-2">
             {PROFILE_QUESTIONS.map(q => (
@@ -300,6 +300,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
   const pSecure = courseProgress('ai-secure', completedLessons);
   const pVibe = courseProgress('ai-vibecoding', completedLessons);
   const pPrompt = courseProgress('ai-prompting', completedLessons);
+  const pAgents = courseProgress('ai-agents', completedLessons);
 
   const kidsCard: CardData = {
     no: '01', title: 'AI for Kids', kicker: 'For ages 8–14', color: '#d96a3a',
@@ -332,8 +333,8 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       badge: pPrompt > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-prompting' }) },
     { no: '05', title: 'AI in Industry', kicker: 'For decision-makers', color: '#b78320',
-      blurb: 'A field map of products, providers, use-cases. Updated as the landscape shifts.',
-      modules: 5, unit: 'categories', level: 'Intermediate', progress: 0,
+      blurb: 'Twelve categories, from silicon to vertical apps. A map of the landscape, not a ranking — and the page that dates fastest.',
+      modules: 12, unit: 'categories', level: 'Intermediate', progress: 0,
       badge: 'Open →',
       onClick: () => setView({ type: 'industry' }) },
   ];
@@ -351,12 +352,17 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       modules: moduleCount('ai-vibecoding'), level: 'Beginner', progress: pVibe,
       badge: pVibe > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-vibecoding' }) },
-    { no: '07', title: 'Does Your AI Actually Work?', kicker: '② Test it', color: '#c9421f',
+    { no: '12', title: 'Agent Engineering', kicker: '② Engineer it', color: '#5d5045',
+      blurb: 'The scaffolding that turns a model into a working system — loops, context, tools, and the failures that only appear in production.',
+      modules: moduleCount('ai-agents'), level: 'Advanced', progress: pAgents,
+      badge: pAgents > 0 ? 'Resume →' : 'Open →',
+      onClick: () => setView({ type: 'home', courseId: 'ai-agents' }) },
+    { no: '07', title: 'Does Your AI Actually Work?', kicker: '③ Test it', color: '#c9421f',
       blurb: 'An eval is a test for AI. Build real test cases, judge quality honestly, and catch problems before your users find them.',
       modules: moduleCount('ai-evals'), level: 'Advanced', progress: pEvals,
       badge: pEvals > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-evals' }) },
-    { no: '09', title: 'Securing AI Systems', kicker: '③ Secure it', color: '#8b2f5f',
+    { no: '09', title: 'Securing AI Systems', kicker: '④ Secure it', color: '#8b2f5f',
       blurb: 'Threat-model, harden and red-team AI and agentic systems. The hands-on counterpart to the sales course.',
       modules: moduleCount('ai-secure'), level: 'Advanced', progress: pSecure,
       badge: pSecure > 0 ? 'Resume →' : 'Open →',
@@ -384,7 +390,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
     <section className="px-4 sm:px-6 lg:px-12 pt-6 pb-10 lg:pb-14">
       <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4 mb-6 lg:mb-7">
         <h2 className="font-studio-display text-[32px] sm:text-[38px] lg:text-[44px] text-studio-ink m-0 font-normal tracking-[-0.6px] lg:tracking-[-0.8px]">
-          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— eleven on the shelf</span>
+          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— twelve on the shelf</span>
         </h2>
         <div className="flex flex-wrap gap-2">
           {filterBtns.map(({ key, label }) => (

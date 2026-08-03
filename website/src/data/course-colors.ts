@@ -13,6 +13,7 @@ export const COURSE_COLORS: Record<CourseId, string> = {
   'ai-secure':      '#8b2f5f',
   'ai-vibecoding':  '#d4711f',
   'ai-prompting':   '#1f7a8c',
+  'ai-agents':      '#5d5045',
 };
 
 export const DEFAULT_COURSE_COLOR = '#5b5347';

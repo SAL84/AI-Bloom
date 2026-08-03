@@ -58,7 +58,8 @@ export type CourseId =
   | 'ai-legal'
   | 'ai-secure'
   | 'ai-vibecoding'
-  | 'ai-prompting';
+  | 'ai-prompting'
+  | 'ai-agents';
 
 export interface Course {
   id: CourseId;

@@ -13,6 +13,7 @@ import aiLegal from './ai-legal';
 import aiSecure from './ai-secure';
 import aiVibecoding from './ai-vibecoding';
 import aiPrompting from './ai-prompting';
+import aiAgents from './ai-agents';
 import type { Course, CourseId } from '../../types/course';
 
 const CYBERSEC_SE: Course = {
@@ -35,6 +36,7 @@ export const COURSES: Record<CourseId, Course> = {
   'ai-secure': aiSecure,
   'ai-vibecoding': aiVibecoding,
   'ai-prompting': aiPrompting,
+  'ai-agents': aiAgents,
 };
 
 export const COURSE = CYBERSEC_SE;

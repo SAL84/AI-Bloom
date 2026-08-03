@@ -4,7 +4,7 @@ const vcM1: CourseModule = {
   id: 'vc-m1',
   title: 'What You Can Actually Build Now',
   icon: 'zap',
-  summary: 'What vibecoding means in practice, the things a non-engineer can genuinely build today, the things that still need a professional, and how to cut an idea down to a first version that can exist by Sunday night.',
+  summary: 'What vibecoding means in practice, and what a non-engineer can genuinely build today. The things that still need a professional, and how to cut an idea down to a first version that can exist by Sunday night.',
   lessons: [
     {
       id: 'vc1l1',
@@ -138,11 +138,11 @@ const vcM1: CourseModule = {
         {
           role: 'developer',
           label: 'If You Have Some Technical Skill',
-          body: 'Your advantage is not writing code faster. It is being able to read what came back, and to spot when it is structurally wrong rather than merely ugly.',
+          body: 'Your advantage is not writing code faster. It is reading what came back. You can spot when it is structurally wrong, rather than merely ugly.',
           bullets: [
-            'Skim generated code for where data is stored and who can read it, before anything else',
-            'Watch for the classic prototype shortcuts: no input checks, no access checks, secrets sitting in the code',
-            'You can safely attempt projects a step above this list, because you can inspect the result',
+            'First, skim the generated code for where data is stored and who can read it',
+            'Watch for classic prototype shortcuts: no input checks, no access checks, secrets in the code',
+            'You can attempt projects a step above this list, because you can inspect the result',
           ],
         },
         {
@@ -209,7 +209,7 @@ const vcM1: CourseModule = {
         },
         {
           heading: 'What Changes at Each Step',
-          body: 'Moving between stages is not about polish. Prototype to friends-can-try means it lives somewhere other than your laptop. Other people\'s data appears, and your keys and passwords must stop sitting in the code. Friends to strangers asks more again. You need to know when it breaks without being told. You need a copy of the data if something is deleted, a cap on what it can cost you, and a plan for the day it goes wrong while you are asleep. None of that is visible in the interface, which is exactly why people skip it. The user-facing part of your app may be entirely finished while the product part has not been started. Those are separate axes of progress.',
+          body: 'Moving between stages is not about polish. Prototype to friends-can-try means it lives somewhere other than your laptop. Other people\'s data appears, and your keys and passwords must stop sitting in the code. Friends to strangers asks more again. You need to know when it breaks without being told. You need a copy of the data if something is deleted, and a cap on what it can cost you. You need a plan for the day it goes wrong while you are asleep. None of that is visible in the interface, which is exactly why people skip it. The user-facing part of your app may be entirely finished while the product part has not been started. Those are separate axes of progress.',
           bullets: [
             'Prototype to friends: it leaves your laptop and real data arrives',
             'Friends to strangers: monitoring, backups, cost caps, and a plan for failure',
@@ -219,7 +219,7 @@ const vcM1: CourseModule = {
         },
         {
           heading: 'Say Which One You Have',
-          body: 'Be precise about this out loud, especially with other people. Tell an investor, a client or your own team that you "have an app" when you have a prototype, and you set an expectation you will pay for later — usually in public. The accurate version costs you nothing and buys credibility. "This is a working prototype. It proves the flow, and it is not ready for customers yet." Nobody sensible is disappointed by that sentence. It is a genuinely impressive thing to have made in a weekend. What damages trust is a demo that looked finished, followed by three months of silence. Naming the stage also keeps you honest with yourself about how much work remains. That is the number people most consistently underestimate.',
+          body: 'Be precise about this out loud, especially with other people. Tell an investor, a client or your own team that you "have an app" when you have a prototype. You have just set an expectation you will pay for later, usually in public. The accurate version costs you nothing and buys credibility. "This is a working prototype. It proves the flow, and it is not ready for customers yet." Nobody sensible is disappointed by that sentence. It is a genuinely impressive thing to have made in a weekend. What damages trust is a demo that looked finished, followed by three months of silence. Naming the stage also keeps you honest with yourself about how much work remains. That is the number people most consistently underestimate.',
           bullets: [
             'Say "working prototype" out loud rather than letting people assume "product"',
             'The gap between demo and product is where reputations are lost',

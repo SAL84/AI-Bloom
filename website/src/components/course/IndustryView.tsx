@@ -8,34 +8,76 @@ interface Props {
 
 const CATEGORIES = [
   {
-    glyph: '☁', color: '#2c6db0',
-    title: 'Cloud AI Platforms',
-    summary: 'AWS, Azure, and Google Cloud — the infrastructure layer powering most enterprise AI deployments.',
-    examples: ['AWS Bedrock', 'Azure OpenAI Service', 'Google Vertex AI', 'Cloudflare AI'],
-  },
-  {
     glyph: '◎', color: '#5a4ec0',
     title: 'Foundation Model Providers',
-    summary: 'The labs building and serving frontier models that everyone else builds on.',
-    examples: ['OpenAI (GPT-4o, o3)', 'Anthropic (Claude)', 'Google (Gemini)', 'Meta (Llama)', 'Mistral', 'Cohere'],
+    summary: 'The labs that train and serve general-purpose models, absorbing the cost of frontier research so everyone downstream can rent capability instead of building it.',
+    examples: ['OpenAI', 'Anthropic', 'Google DeepMind', 'Meta AI', 'Mistral AI', 'Cohere'],
   },
   {
-    glyph: '◈', color: '#c9421f',
-    title: 'AI-Powered Security Tools',
-    summary: 'Security vendors embedding AI into detection, response, and analyst assistance workflows.',
-    examples: ['CrowdStrike Charlotte AI', 'Microsoft Security Copilot', 'Darktrace', 'Palo Alto Precision AI', 'Google SecOps AI'],
+    glyph: '☁', color: '#2c6db0',
+    title: 'Cloud AI Platforms',
+    summary: 'The hyperscaler layer that packages models with identity, networking, billing and data residency, so an enterprise can adopt AI inside the account and contracts it already has.',
+    examples: ['Amazon Bedrock', 'Azure AI Foundry', 'Google Vertex AI', 'IBM watsonx', 'Cloudflare Workers AI'],
+  },
+  {
+    glyph: '▦', color: '#c9421f',
+    title: 'AI Infrastructure & Silicon',
+    summary: 'The physical layer — accelerators, high-bandwidth memory, interconnect, and the data centres around them — that sets the ceiling on how much AI anyone can actually run.',
+    examples: ['NVIDIA', 'AMD', 'Google TPU', 'AWS Trainium', 'Broadcom', 'SK hynix'],
+  },
+  {
+    glyph: '⟐', color: '#0f8a7a',
+    title: 'Agent Platforms & Orchestration',
+    summary: 'Frameworks and runtimes for building systems that plan, call tools and act over many steps, plus the permissions and handoffs that keep those actions accountable.',
+    examples: ['LangChain', 'LlamaIndex', 'Claude Agent SDK', 'Microsoft AutoGen', 'CrewAI', 'Temporal'],
   },
   {
     glyph: '⌥', color: '#3f8a5e',
     title: 'AI Developer Tools',
-    summary: 'Tools that put AI into the hands of developers — from code completion to full agent frameworks.',
-    examples: ['GitHub Copilot', 'Cursor', 'Claude Code', 'Amazon Q Developer', 'Tabnine'],
+    summary: 'Assistants that sit inside the software development loop — reading a codebase, writing and reviewing changes, or turning a prompt into a working application.',
+    examples: ['GitHub Copilot', 'Cursor', 'Claude Code', 'Amazon Q Developer', 'Replit', 'Lovable'],
+  },
+  {
+    glyph: '⊞', color: '#b78320',
+    title: 'Retrieval & Vector Data',
+    summary: 'Storage and search layers that find the right passages, records or documents at query time, so a model answers from your material rather than from memory alone.',
+    examples: ['Pinecone', 'Weaviate', 'Qdrant', 'Elastic', 'pgvector', 'Chroma'],
+  },
+  {
+    glyph: '⌗', color: '#3b82f6',
+    title: 'Evaluation & Observability',
+    summary: 'Tooling that measures whether an AI system is behaving — test sets and scoring before release, tracing and monitoring after it, because non-deterministic systems drift quietly.',
+    examples: ['LangSmith', 'Braintrust', 'Arize', 'Weights & Biases', 'Langfuse', 'Datadog'],
+  },
+  {
+    glyph: '⚖', color: '#8b2f5f',
+    title: 'Guardrails, Safety & Governance',
+    summary: 'Controls that screen inputs and outputs, enforce policy at runtime, and produce the audit trail that regulators, security teams and customers ask for.',
+    examples: ['NVIDIA NeMo Guardrails', 'Guardrails AI', 'Lakera', 'Protect AI', 'Credo AI', 'HiddenLayer'],
+  },
+  {
+    glyph: '⬡', color: '#3f8a5e',
+    title: 'Open-Weight Models & Self-Hosting',
+    summary: 'Downloadable model weights and the serving stack around them, for teams that need to run inference on their own hardware, inspect what they deploy, or avoid a vendor dependency.',
+    examples: ['Hugging Face', 'Meta Llama', 'Mistral', 'Qwen', 'vLLM', 'Ollama'],
+  },
+  {
+    glyph: '✦', color: '#c9421f',
+    title: 'Generative Media',
+    summary: 'Systems that produce images, video, music, speech and sound, changing what a small team can create and forcing new questions about provenance and consent.',
+    examples: ['Midjourney', 'Adobe Firefly', 'Runway', 'ElevenLabs', 'Black Forest Labs', 'Suno'],
   },
   {
     glyph: '⋈', color: '#b78320',
     title: 'AI in Business Applications',
-    summary: 'Enterprise software embedding AI into workflows that millions of people use every day.',
-    examples: ['Salesforce Einstein', 'ServiceNow AI', 'Workday AI', 'Microsoft 365 Copilot', 'Notion AI'],
+    summary: 'AI folded into the software people already open every day — CRM, HR, ticketing, documents and email — where adoption happens without anyone choosing a model.',
+    examples: ['Microsoft 365 Copilot', 'Salesforce Agentforce', 'ServiceNow', 'Workday', 'SAP', 'Notion'],
+  },
+  {
+    glyph: '◈', color: '#5a4ec0',
+    title: 'Vertical AI',
+    summary: 'Products built for one sector, where the value is in the domain data, workflow and regulation around the model rather than in the model itself.',
+    examples: ['CrowdStrike', 'Microsoft Security Copilot', 'Darktrace', 'Abridge', 'Harvey', 'Ramp'],
   },
 ];
 
@@ -56,7 +98,11 @@ export const IndustryView = ({ setView }: Props) => (
     </div>
 
     <div className="px-4 sm:px-6 lg:px-12 py-8 lg:py-10 max-w-4xl">
-      <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-5 lg:mb-6">◆ Five sectors</div>
+      <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-5 lg:mb-6">◆ Twelve categories</div>
+
+      <p className="font-studio-sans text-[13.5px] lg:text-[14px] text-studio-ink-dim leading-[1.6] mb-6 lg:mb-8">
+        This is a map of categories, not a ranking or a recommendation — nothing here is an endorsement of one vendor over another. The company names are examples at the time of writing and will go out of date faster than anything else in this library; the categories are the part worth remembering.
+      </p>
 
       <div className="divide-y divide-studio-rule border-t border-studio-rule">
         {CATEGORIES.map((cat, i) => (

@@ -156,11 +156,11 @@ const prM5: CourseModule = {
       q: 'Which task is the best candidate for building a reusable prompt template?',
       options: [
         'A one-off creative brainstorm you may never repeat',
-        'A weekly status summary you write in roughly the same way every time',
         'The single hardest analytical question you have faced this year',
         'Anything you have only ever done once',
+        'A weekly status summary you write in roughly the same way every time',
       ],
-      correct: 1,
+      correct: 3,
     },
     {
       q: 'You are testing a prompt template you plan to share. What is the most important thing to test?',
@@ -175,12 +175,12 @@ const prM5: CourseModule = {
     {
       q: 'Why does one successful run not prove a template is reliable?',
       options: [
-        'Templates degrade after their first use',
         'Output varies between runs, so a single result is weak evidence',
+        'Templates degrade after their first use',
         'The first run always uses different settings',
         'Reliability can only be measured over hundreds of runs',
       ],
-      correct: 1,
+      correct: 0,
     },
     {
       q: 'What is the most valuable thing to record alongside a shared team prompt?',
@@ -206,11 +206,11 @@ const prM5: CourseModule = {
       q: 'Your prompt now contains branching rules — "if it is a refund do X, unless the customer is on the old plan, then Y". What does this usually indicate?',
       options: [
         'The prompt is maturing and should be shared widely',
-        'You are writing software in prose and have reached the ceiling of prompting',
         'The model needs the rules repeated for emphasis',
         'You should convert the rules to bullet points',
+        'You are writing software in prose and have reached the ceiling of prompting',
       ],
-      correct: 1,
+      correct: 3,
     },
     {
       q: 'A colleague cannot get good answers about a topic where the needed information was never written down anywhere. What kind of gap is this?',

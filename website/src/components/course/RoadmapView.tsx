@@ -64,8 +64,8 @@ const ENTRIES: CourseEntry[] = [
   {
     id: 'ai-industry', no: '05', title: 'AI in Industry', track: 'Orientation',
     color: '#b78320', status: 'partial',
-    note: 'Landscape map and category overview live. Per-product breakdowns pending.',
-    gaps: ['Product breakdown cards for all 5 categories — Q3 2026'],
+    note: 'Twelve-category landscape map, deliberately kept as a map rather than a course — vendor names date too fast to quiz on.',
+    gaps: ['Needs a refresh pass whenever the landscape shifts'],
     view: { type: 'industry' },
   },
   {
@@ -113,10 +113,15 @@ const ENTRIES: CourseEntry[] = [
     view: { type: 'home', courseId: 'ai-prompting' },
   },
   {
-    id: 'agentic-ai', no: '¶', title: 'Agentic AI', track: 'Building · field notes',
-    color: '#5d5045', status: 'field-notes',
-    note: 'Live agent anatomy diagram and three interactive scenarios. Full course in development.',
-    gaps: ['Structured module format', 'Hands-on exercises'],
+    id: 'ai-agents', no: '12', title: 'Agent Engineering', track: 'Build · Test · Secure',
+    color: '#5d5045', status: 'live',
+    note: 'Five modules on the loop, context engineering, tool design, reliability, and human oversight. Promotes the old Agentic AI field notes into a full course.',
+    view: { type: 'home', courseId: 'ai-agents' },
+  },
+  {
+    id: 'agentic-ai', no: '¶', title: 'Agentic AI · interactive', track: 'Companion to Agent Engineering',
+    color: '#5d5045', status: 'live',
+    note: 'The agent-loop anatomy and four step-by-step scenarios. No longer a course-in-waiting — it is the hands-on companion to Agent Engineering.',
     view: { type: 'agentic-ai' },
   },
 ];

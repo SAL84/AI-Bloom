@@ -59,7 +59,7 @@ const vcM2: CourseModule = {
       slides: [
         {
           heading: 'Why Big Requests Fail',
-          body: 'Asking for everything at once feels efficient, and it is the most reliable way to get stuck. A large request produces a large amount of code, all of it arriving untested together. When something is wrong, you cannot tell which part caused it. So you describe the problem vaguely, more code changes, and you lose track of what was ever working. A small request produces something you can check in a minute. If it works, you have a solid floor to stand on. If it does not, there is exactly one recent change to suspect. This is not about being cautious. It is about keeping the number of possible causes down to one, which is the only thing that makes bug-hunting manageable when you cannot read the code.',
+          body: 'Asking for everything at once feels efficient, and it is the most reliable way to get stuck. A large request produces a large amount of code, all of it arriving untested together. When something is wrong, you cannot tell which part caused it. So you describe the problem vaguely, more code changes, and you lose track of what was ever working. A small request produces something you can check in a minute. If it works, you have a solid floor to stand on. If it does not, there is exactly one recent change to suspect. This is not about being cautious. It is about keeping the number of possible causes down to one. That is the only thing that makes bug-hunting manageable when you cannot read the code.',
           bullets: [
             'One change at a time means one suspect when something breaks',
             'Large batches arrive untested together and hide which part failed',
@@ -115,7 +115,7 @@ const vcM2: CourseModule = {
         },
         {
           heading: 'Borrow Instead of Inventing',
-          body: 'You do not have to describe common patterns from scratch, and you would do it worse than the conventions people already understand. Say "like a normal checkout", or "a two-column layout with the list on the left and the details on the right", or "the same sign-in flow every site uses". Naming an established pattern communicates a great deal in a few words. It also produces something users already know how to operate. It is fine to point at an existing site you like and describe the specific thing you want from it: "the way their pricing page lays out three tiers side by side". Be specific about which part you mean. "Make it like theirs", without saying which aspect, gets you a coin flip.',
+          body: 'You do not have to describe common patterns from scratch, and you would do it worse than the conventions people already understand. Say "like a normal checkout", or "a two-column layout with the list on the left and the details on the right", or "the same sign-in flow every site uses". Naming an established pattern communicates a great deal in a few words. It also produces something users already know how to operate. It is fine to point at an existing site you like. Describe the specific thing you want from it: "the way their pricing page lays out three tiers side by side". Be specific about which part you mean. "Make it like theirs", without saying which aspect, gets you a coin flip.',
           bullets: [
             'Name familiar patterns rather than describing them element by element',
             'Conventional layouts are conventional because people already understand them',
