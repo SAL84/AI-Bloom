@@ -122,6 +122,7 @@ function recommendCourse(a: ProfileAnswers): { view: View; label: string; why: s
   if (a.role === 'builder' || a.goal === 'depth') {
     return { view: { type: 'home', courseId: 'ai-deep-dive' }, label: 'AI Deep Dive', why: 'transformers, evals, the failure modes' };
   }
+  if (a.goal === 'vocab' && a.time !== 'short') return { view: { type: 'home', courseId: 'ai-prompting' }, label: 'Prompting', why: 'the skill that improves everything else' };
   if (a.time === 'short')   return { view: { type: 'home', courseId: 'ai-essentials' }, label: 'AI Essentials',               why: 'shortest path to literacy' };
   return { view: { type: 'home', courseId: 'ai-essentials' },   label: 'AI Essentials',               why: 'the right starting point if only one' };
 }
@@ -146,7 +147,7 @@ function StudioHero({ setView }: { setView: (v: View) => void }) {
             <span className="font-studio-serif italic text-studio-kids font-normal">about </span>AI?
           </h1>
           <p className="font-studio-serif italic text-[17px] sm:text-[20px] lg:text-[24px] leading-[1.4] text-studio-ink-dim mt-5 lg:mt-7 max-w-[520px] font-normal">
-            Ten courses. From eight-year-olds to regulated industries. Everything is free, everything is real, nothing's on a corporate calendar.
+            Eleven courses. From eight-year-olds to regulated industries. Everything is free, everything is real, nothing's on a corporate calendar.
           </p>
         </div>
         <aside className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 lg:p-[26px] relative mt-6">
@@ -157,7 +158,7 @@ function StudioHero({ setView }: { setView: (v: View) => void }) {
             Where do I start?
           </h3>
           <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.5] mb-[18px]">
-            Three quick questions. We'll point you at one of the ten courses.
+            Three quick questions. We'll point you at one of the eleven courses.
           </p>
           <div className="flex flex-col gap-2">
             {PROFILE_QUESTIONS.map(q => (
@@ -298,6 +299,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
   const pLegal = courseProgress('ai-legal', completedLessons);
   const pSecure = courseProgress('ai-secure', completedLessons);
   const pVibe = courseProgress('ai-vibecoding', completedLessons);
+  const pPrompt = courseProgress('ai-prompting', completedLessons);
 
   const kidsCard: CardData = {
     no: '01', title: 'AI for Kids', kicker: 'For ages 8–14', color: '#d96a3a',
@@ -324,6 +326,11 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       modules: moduleCount('ai-deep-dive'), level: 'Advanced', progress: pDeep,
       badge: pDeep > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-deep-dive' }) },
+    { no: '11', title: 'Prompting', kicker: 'The everyday skill', color: '#1f7a8c',
+      blurb: 'The one skill that improves everything else you do with AI. Built on before-and-after examples, not abstract advice.',
+      modules: moduleCount('ai-prompting'), level: 'Beginner', progress: pPrompt,
+      badge: pPrompt > 0 ? 'Resume →' : 'Open →',
+      onClick: () => setView({ type: 'home', courseId: 'ai-prompting' }) },
     { no: '05', title: 'AI in Industry', kicker: 'For decision-makers', color: '#b78320',
       blurb: 'A field map of products, providers, use-cases. Updated as the landscape shifts.',
       modules: 5, unit: 'categories', level: 'Intermediate', progress: 0,
@@ -377,7 +384,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
     <section className="px-4 sm:px-6 lg:px-12 pt-6 pb-10 lg:pb-14">
       <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4 mb-6 lg:mb-7">
         <h2 className="font-studio-display text-[32px] sm:text-[38px] lg:text-[44px] text-studio-ink m-0 font-normal tracking-[-0.6px] lg:tracking-[-0.8px]">
-          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— ten on the shelf</span>
+          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— eleven on the shelf</span>
         </h2>
         <div className="flex flex-wrap gap-2">
           {filterBtns.map(({ key, label }) => (

@@ -308,6 +308,55 @@ const secM2: CourseModule = {
         },
       ],
     },
+    {
+      id: 'sec2l7',
+      diagram: 'JailbreakTaxonomy',
+      title: 'A Jailbreak Taxonomy',
+      slides: [
+        {
+          heading: 'Why the Taxonomy Is the Durable Artefact',
+          body: 'Collections of jailbreak strings circulate widely and age badly. Providers patch specific phrasings, so a corpus of literal payloads decays into a suite that measures which strings have already been blocked rather than whether your deployment is robust. Categories persist because they name the mechanism — the reason a class of framing shifts the model\'s inference about what it is being asked to do — and mechanisms outlive their instantiations. There is a handling argument too. A maintained library of working payloads is itself an asset an attacker would like, and storing it raises the questions of who may read it and what happens when it leaks. Keep the taxonomy, the detection rules and the measurement method under version control; generate fresh concrete attempts within each category at test time and discard them afterwards. What you carry forward is the category list and the per-category success rate, which is the only thing that makes two releases comparable.',
+          bullets: [
+            'Specific strings get patched; the mechanism they exploit does not',
+            'A stored library of working payloads is a liability with its own access problem',
+            'Generate fresh attempts each cycle — keep the method, not the exploits',
+            'Per-category success rate is what makes two releases comparable at all',
+          ],
+        },
+        {
+          heading: 'The Mechanism Families',
+          body: 'A small number of families cover most of what you will encounter, and they are worth holding by mechanism rather than by example. Framing recasts the request as fiction, role-play, research, or an authorised exception, so the prohibited content becomes incidental to a context that reads as legitimate. Obfuscation hides intent from surface inspection through encoding, translation, character substitution, or splitting a request into pieces that are only harmful once assembled in context. Instruction-hierarchy attacks target the learned preference for system content, including refusal suppression that pre-commits the model to a compliant output format before the substance arrives. Multi-turn escalation moves gradually, so each step is small relative to accumulated context and no single message looks like an attack. Context pressure exploits in-context learning by filling a long window with examples of the behaviour being requested. And multimodal delivery routes any of the above through an image, document or audio track rather than text.',
+          bullets: [
+            'Framing: fiction, role-play, research pretext, claimed authorisation',
+            'Obfuscation: encoding, translation, substitution, request splitting',
+            'Hierarchy attacks: override attempts and refusal suppression by format pre-commitment',
+            'Multi-turn escalation and long-context pressure exploit accumulated context',
+            'Multimodal delivery bypasses anything that only inspects the text path',
+          ],
+        },
+        {
+          heading: 'What Each Family Implies for Detection',
+          body: 'The reason to organise by mechanism is that each family defeats a different control, so the taxonomy doubles as a coverage map for your defences. Framing is invisible to keyword inspection and needs either a classifier that reasons about the request net of its wrapper or an output-side check on the content actually produced. Obfuscation argues for normalising before inspection — decode, transliterate, reassemble split content — and for accepting that you cannot normalise everything, which pushes weight onto the output side. Hierarchy attacks are contained structurally rather than textually: the question is not whether the model can be persuaded but what the runtime will let a persuaded model do. Multi-turn escalation defeats per-message screening entirely, so scoring has to happen over the conversation, and context pressure over the shape of the window. Multimodal delivery requires that every modality reaching the model passes the inspection the text path already has, which is the gap teams discover last.',
+          bullets: [
+            'Map each family to the control that would catch it; the empty cells are the finding',
+            'Normalise encodings before inspection, and expect residual coverage loss',
+            'Per-message screening cannot see escalation — score the whole conversation',
+            'Hierarchy attacks are bounded by capability limits, not by better wording',
+            'Every modality needs the inspection the text path already receives',
+          ],
+        },
+        {
+          heading: 'Measuring Robustness Without Flattering Yourself',
+          body: 'A success on the fiftieth attempt and a success on the second describe very different systems, so record effort as part of the finding: attempts, successes, turns required, and whether the attacker had feedback between tries. Report a rate rather than a verdict, because a stochastic system sampled repeatedly will eventually produce an outlier and an automated loop is precisely the thing that will find it — robustness means resisting the loop, not surviving one try. Three further requirements keep the number honest. Test the deployed stack with its input and output filtering in place, since the bare model and the shipped product behave differently enough that only one of them is evidence. Test against an adaptive attacker who knows what the defence is, because a control evaluated only against attacks that predate it will always look excellent. And measure over-refusal in the same exercise: a system that blocks everything scores perfectly on harm and is useless to the professionals who most need borderline material.',
+          bullets: [
+            'Log attempts, successes, turns, and whether the attacker received feedback',
+            'Report rates — robustness is resisting repeated sampling, not one attempt',
+            'Evaluate the deployed stack, and against an attacker who knows the defence',
+            'Track false refusals alongside harmful compliance; both are failures',
+          ],
+        },
+      ],
+    },
   ],
   quiz: [
     { q: 'Why can a language model not reliably separate instructions from data?', options: ['Because most providers disable the feature for cost reasons', 'Because everything arrives as one token sequence and role is inferred from learned patterns rather than enforced by a parser', 'Because system prompts are always shorter than user input', 'Because tokenisation discards punctuation'], correct: 1 },
@@ -318,6 +367,7 @@ const secM2: CourseModule = {
     { q: 'Why is memory contamination more serious than a session-scoped injection?', options: ['Memory writes are more expensive to store', 'It prevents the agent from calling tools', 'It persists after the hostile content is gone, and typically re-enters context looking like trusted internal content', 'It only affects multi-tenant systems'], correct: 2 },
     { q: 'Which of these is the correct decomposition of excessive agency?', options: ['Latency, cost, and token consumption', 'Training data, fine-tuning, and evaluation', 'Excessive functionality, excessive permission, and excessive autonomy', 'Direct, indirect, and multimodal injection'], correct: 2 },
     { q: 'A team purges a poisoned document from the retrieval corpus but the agent still behaves oddly on that topic. What is the most likely explanation?', options: ['Derived artefacts — embeddings, caches, summaries, memory entries — were not cleared by the purge', 'The model memorised the document during training', 'The corpus index is encrypted', 'Purging requires a model restart to take effect'], correct: 0 },
+    { q: 'Why organise jailbreak testing around mechanism categories rather than a maintained library of known payloads?', options: ['Category names are easier to present to executives than technical detail', 'Payload libraries cannot be run inside a continuous integration pipeline', 'Specific strings get patched and decay into a test of what is already blocked, while categories name mechanisms that persist and give comparable rates across releases', 'Working with categories removes the need to test the deployed guardrail stack'], correct: 2 },
   ],
 };
 

@@ -57,7 +57,8 @@ export type CourseId =
   | 'ai-healthcare'
   | 'ai-legal'
   | 'ai-secure'
-  | 'ai-vibecoding';
+  | 'ai-vibecoding'
+  | 'ai-prompting';
 
 export interface Course {
   id: CourseId;

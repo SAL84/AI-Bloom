@@ -77,7 +77,7 @@ const ENTRIES: CourseEntry[] = [
   {
     id: 'ai-evals', no: '07', title: 'Does Your AI Actually Work?', track: 'Build · Test · Secure',
     color: '#c9421f', status: 'live',
-    note: 'Four modules on eval sets, LLM-as-judge, regression suites, and adversarial testing of systems you own.',
+    note: 'Four modules on building eval sets, judging quality, catching regressions, and testing what you actually ship — RAG, agents, and production A/B.',
     view: { type: 'home', courseId: 'ai-evals' },
   },
   {
@@ -105,6 +105,12 @@ const ENTRIES: CourseEntry[] = [
     color: '#d4711f', status: 'live',
     note: 'Idea to working prototype with no coding background — including the honest module on what has to be true before anyone else uses it.',
     view: { type: 'home', courseId: 'ai-vibecoding' },
+  },
+  {
+    id: 'ai-prompting', no: '11', title: 'Prompting', track: 'Literacy',
+    color: '#1f7a8c', status: 'live',
+    note: 'Five modules on the one skill that improves every other use of AI — built on before-and-after examples rather than abstract advice.',
+    view: { type: 'home', courseId: 'ai-prompting' },
   },
   {
     id: 'agentic-ai', no: '¶', title: 'Agentic AI', track: 'Building · field notes',

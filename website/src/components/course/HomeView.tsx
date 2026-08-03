@@ -117,6 +117,18 @@ const META: Record<CourseId, {
       { no: '¶', title: 'Agentic AI', sub: 'What you are defending', color: '#5d5045', view: { type: 'agentic-ai' } },
     ],
   },
+  'ai-prompting': {
+    color: '#1f7a8c', no: '11', kicker: 'Catalog №11 · AI Literacy track',
+    level: 'Beginner', duration: '3h',
+    outcomes: ['Write a prompt that gets the answer you wanted the first time', 'Show the model what good looks like instead of describing it', 'Get output in a shape you can actually use', 'Diagnose a bad answer instead of asking again louder'],
+    audience: ['◆ Anyone who uses AI and suspects they are getting less out of it than they could', '◆ Professionals doing the same kind of task repeatedly', '◇ Not for: people wanting model internals (try Deep Dive)'],
+    quote: '"The gap between a mediocre answer and an excellent one is usually the request, not the model."',
+    related: [
+      { no: '03', title: 'AI Essentials', sub: 'Why prompts behave this way', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
+      { no: '10', title: 'Vibecoding', sub: 'Prompting to build something', color: '#d4711f', view: { type: 'home', courseId: 'ai-vibecoding' } },
+      { no: '§', title: 'AI Playgrounds', sub: 'Try it hands-on', color: '#3f8a5e', view: { type: 'playground' } },
+    ],
+  },
   'ai-healthcare': {
     color: '#0f8a7a', no: '08', kicker: 'Catalog №08 · Vertical track',
     level: 'Intermediate', duration: '3h',

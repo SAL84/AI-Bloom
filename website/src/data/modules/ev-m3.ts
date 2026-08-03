@@ -311,6 +311,55 @@ const evM3: CourseModule = {
         },
       ],
     },
+    {
+      id: 'ev3l7',
+      diagram: 'SafetyDisclosureFlow',
+      title: 'Safety Evals: Testing for Harm',
+      slides: [
+        {
+          heading: 'What a Safety Eval Measures That a Quality Eval Does Not',
+          body: 'A quality eval asks whether the output is good; a safety eval asks whether it is harmful, and the difference runs deeper than subject matter. Quality is usually graded on a scale and reported as an average, and a mediocre answer costs you a little. Safety behaves like a floor: one harmful output to one user can be the entire incident, so the meaningful statistic is the rate of the worst outcome rather than the mean of a score, and an aggregate that looks excellent can still be unacceptable. The input distribution differs too — quality cases are drawn from what users typically do, safety cases from what a small minority occasionally do plus whatever your domain makes dangerous. And the failure is frequently invisible in the metric you already track, because a confidently wrong dosage, a discriminatory hiring rationale, or a disclosed personal record all score comfortably on a helpfulness rubric.',
+          bullets: [
+            'Quality is an average; safety is a floor — report worst-case rate, not the mean',
+            'Safety cases come from atypical use and domain-specific danger, not typical traffic',
+            'Harmful outputs often score well on helpfulness — the existing rubric will not catch them',
+            'One harmful output to one user can be the whole incident',
+          ],
+        },
+        {
+          heading: 'Building a Safety Eval Set',
+          body: 'Start from a written harm taxonomy for your product rather than a generic list, because what counts as harmful is domain-specific: unsafe advice in a clinical assistant, unqualified conclusions in a legal tool, disclosure of another tenant\'s data in an internal search product, discriminatory reasoning in anything touching hiring or credit. For each category, write cases at three levels — plainly prohibited requests, borderline ones where reasonable people disagree, and benign requests that superficially resemble the prohibited set. Source them from policy documents, from complaints and incidents, from domain experts who know what actually goes wrong in the field, and from production traces. Record the expected behaviour per case explicitly, since refusing and answering carefully with a caveat are different correct answers and no grader can infer which one you meant. Keep safety cases in the same suite as quality cases so they run on every model and prompt change.',
+          bullets: [
+            'Derive the harm taxonomy from your domain and policy, not from a generic list',
+            'Three levels per category: prohibited, borderline, and benign look-alikes',
+            'Write the expected behaviour down — refusal and careful answering are different targets',
+            'Recruit domain experts; engineers systematically miss field-specific harms',
+            'Run safety cases on every change, not only before launch',
+          ],
+        },
+        {
+          heading: 'Over-Refusal Is the Other Half of the Score',
+          body: 'A safety eval that measures only harmful compliance drives the system toward uselessness, because the trivially perfect score is refusing everything. Always run the benign look-alike set alongside the adversarial one: a security team asking about attack techniques in order to defend, a clinician discussing overdose thresholds, a researcher quoting extremist rhetoric in order to analyse it. Report harmful-compliance rate and false-refusal rate together, and treat a change that improves one while degrading the other as the trade-off it is rather than as a win. The costs of over-refusal are real and asymmetric: users route around the tool to something unmonitored, trust in the safety layer erodes so its warnings stop being read, and the population hit hardest is usually the professional audience with the most legitimate need for borderline content. Neither number is a score on its own.',
+          bullets: [
+            'The perfect harm score is achieved by refusing everything — always pair the sets',
+            'Report harmful compliance and false refusal together, never one alone',
+            'Over-refusal pushes users to unmonitored tools, which is itself a safety outcome',
+            'Domain professionals absorb most of the cost of a blunt refusal policy',
+          ],
+        },
+        {
+          heading: 'Grading, Slicing, and What Gates a Release',
+          body: 'Safety grading is harder than quality grading because the judgement is contested and the cost of a wrong label is asymmetric. Use explicit criteria written from your policy rather than a general question about whether something is safe, validate the judge against human labels on a set that deliberately includes borderline cases, and route anything the judge is unsure about to a person — false negatives are the expensive direction here, so bias the threshold accordingly. Slice results by user group, language, and topic, because an aggregate rate hides exactly the disparity that matters most: a system that behaves well overall and badly for one population has a fairness failure the average will never surface. Then make the gating explicit. Safety criteria are the clearest candidate for a hard gate, and a floor per slice rather than only on the aggregate is what prevents shipping a small overall gain paid for by a large loss on one group.',
+          bullets: [
+            'Grade against written policy criteria, not a general safety question',
+            'Validate the safety judge on human labels that include borderline cases',
+            'Bias toward escalation — a false negative costs more than a reviewed false positive',
+            'Slice by group, language, and topic; aggregates hide disparity',
+            'Hard-gate on safety with a floor per slice, not only on the overall rate',
+          ],
+        },
+      ],
+    },
   ],
   quiz: [
     { q: 'What is the most defensible use of public benchmark scores?', options: ['Selecting the production model for a specific workload', 'Coarse shortlisting and tracking capability trends, with private evals making the decision', 'Setting acceptance criteria in a customer contract', 'Estimating cost per task at production volume'], correct: 1 },
@@ -321,6 +370,7 @@ const evM3: CourseModule = {
     { q: 'Given a fixed eval budget, what generally yields more information?', options: ['More runs per existing case, since variance is the main problem', 'More cases, since case diversity samples the input distribution', 'A larger judge model applied to the same cases', 'Longer timeouts per run'], correct: 1 },
     { q: 'Your offline eval scores stay flat while production quality complaints rise. What is the most likely explanation?', options: ['The judge model needs a higher temperature', 'Production is running a different random seed', 'The eval set no longer represents current traffic, or has been tuned against', 'Tracing overhead is degrading responses'], correct: 2 },
     { q: 'Why is cost per successful task a better metric than cost per API call for agents?', options: ['Because providers bill agents differently from single calls', 'Because it includes retries, failed attempts, and every loop iteration that a per-call figure hides', 'Because per-call pricing changes too frequently to track', 'Because latency and cost are the same measurement'], correct: 1 },
+    { q: 'Why is a mean score the wrong way to report a safety eval?', options: ['Because safety graders cannot produce numeric scores at all', 'Because safety sets always contain fewer cases than quality sets', 'Because harmful outputs are reliably caught by the existing helpfulness rubric', 'Because safety behaves like a floor — a single harmful output can be the whole incident, so the worst-case rate matters more than the average'], correct: 3 },
   ],
 };
 
