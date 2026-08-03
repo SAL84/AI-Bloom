@@ -438,7 +438,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
 
 function StudioSideStuff({ setView }: { setView: (v: View) => void }) {
   const playgroundItems = [['Next word', 'Watch a sentence get predicted, one word at a time'], ['Base rate', 'Why an accurate detector still cries wolf'], ['Eval confidence', 'Is that improvement real, or is it noise?'], ['Tokeniser', 'See how your sentence becomes numbers']];
-  const agenticItems = [['I.', 'The agent loop — how agents think and act', 'anatomy'], ['II.', 'Alert triage: account compromise, step by step', 'scenario'], ['III.', 'Breach responder: ransomware scope & containment', 'scenario'], ['IV.', 'Patch advisor: vulnerability prioritisation', 'scenario']];
+  const agenticItems = [['I.', 'The agent loop — how agents think and act', 'anatomy'], ['II.', 'Research: when the sources disagree', 'scenario'], ['III.', 'Trip planner: stopped at the payment gate', 'scenario'], ['IV.', 'Bug hunt: the first hypothesis was wrong', 'scenario']];
   return (
     <section className="px-4 sm:px-6 lg:px-12 pb-10 lg:pb-14">
       <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3 mb-5 lg:mb-6">

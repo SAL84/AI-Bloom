@@ -52,6 +52,7 @@ const m6: CourseModule = {
     },
     {
       id: 'm6l5',
+      extraDiagram: 'SOCPatchScenario',
       title: 'GTI, SCC, and Wiz',
       diagram: 'GTISCCWiz',
       slides: [

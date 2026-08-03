@@ -124,7 +124,7 @@ const META: Record<CourseId, {
     related: [
       { no: '03', title: 'AI Essentials', sub: 'Prerequisite reading', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
       { no: '04', title: 'AI Deep Dive', sub: 'When customers go deeper', color: '#5a4ec0', view: { type: 'home', courseId: 'ai-deep-dive' } },
-      { no: '05', title: 'AI in Industry', sub: 'The competitive landscape', color: '#b78320', view: { type: 'industry' } },
+      { no: '¶', title: 'Agentic AI', sub: 'Watch an agent reason and act', color: '#5d5045', view: { type: 'agentic-ai' } },
     ],
   },
 };

@@ -28,6 +28,7 @@ import { SharedRubricDiagram, CIForPromptsAndAgentsDiagram, AutomatedRedTeamLimi
 import { CourseScopeSafetyDiagram, DecisionSupportSpectrumDiagram, RegulatoryLandscapeHCDiagram, DeidentificationConsentDiagram } from './course-diagrams-n';
 import { LegalScopeSafetyDiagram, WhyLegalExposedDiagram, RedliningFlowDiagram, SanctionsPatternDiagram } from './course-diagrams-o';
 import { SupervisingJuniorsDiagram, TechCompetenceDiagram, BillingConsentMalpracticeDiagram } from './course-diagrams-p';
+import { SOCTriageScenarioDiagram, SOCBreachScenarioDiagram, SOCPatchScenarioDiagram } from '../course/agentic/SOCScenarioDiagrams';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -179,4 +180,7 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   SupervisingJuniors: SupervisingJuniorsDiagram,
   TechCompetence: TechCompetenceDiagram,
   BillingConsentMalpractice: BillingConsentMalpracticeDiagram,
+  SOCTriageScenario: SOCTriageScenarioDiagram,
+  SOCBreachScenario: SOCBreachScenarioDiagram,
+  SOCPatchScenario: SOCPatchScenarioDiagram,
 };

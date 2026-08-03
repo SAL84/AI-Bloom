@@ -38,6 +38,7 @@ const m4: CourseModule = {
     },
     {
       id: 'm4l3',
+      extraDiagram: 'SOCBreachScenario',
       title: 'EDR and Behavioral Analysis',
       diagram: 'EDRBehavioral',
       slides: [
@@ -56,6 +57,7 @@ const m4: CourseModule = {
     },
     {
       id: 'm4l5',
+      extraDiagram: 'SOCTriageScenario',
       title: 'SOC Copilots and Autonomous Triage',
       diagram: 'SOCCopilots',
       slides: [
