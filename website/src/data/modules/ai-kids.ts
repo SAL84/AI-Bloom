@@ -258,7 +258,7 @@ const SVG_TIMELINE = `<svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/s
   <text x="80" y="140" text-anchor="middle" font-size="9" fill="#64748b">First ideas</text>
   <circle cx="200" cy="100" r="22" fill="#fee2e2" stroke="#f87171" stroke-width="2.5"/>
   <text x="200" y="96" text-anchor="middle" font-size="16">♟️</text>
-  <text x="200" y="108" text-anchor="middle" font-size="8" fill="#991b1b" font-weight="700">1980s</text>
+  <text x="200" y="108" text-anchor="middle" font-size="8" fill="#991b1b" font-weight="700">1997</text>
   <text x="200" y="140" text-anchor="middle" font-size="9" fill="#64748b">Chess AI</text>
   <circle cx="310" cy="100" r="22" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
   <text x="310" y="96" text-anchor="middle" font-size="16">👁️</text>
@@ -608,8 +608,8 @@ const aiKids: Course = {
             body: 'People have dreamed about thinking machines for a long time. Let\'s take a quick trip through the highlights — from robots in stories to the AI assistants you can talk to today.',
             bullets: [
               '1950s: Scientists started wondering — could a machine ever be smart like a person? They got curious and went looking for the answer',
-              '1980s: AI could beat humans at chess — but only at chess',
-              '2012: AI learned to recognise pictures better than humans — a big breakthrough',
+              '1997: a computer beat the world chess champion — but it could only play chess',
+              '2012: AI got dramatically better at recognising pictures — a big breakthrough',
               '2017: A new invention called the "transformer" made language AI possible',
               '2022: ChatGPT launched — and AI became something everyone could use',
             ],
@@ -771,7 +771,7 @@ const aiKids: Course = {
             ],
           }, {
             heading: 'Become a Fact-Checking Hero',
-            body: 'So how do you catch a hallucination? With a two-minute check. First, ask yourself: does this actually matter? If AI names the wrong colour for a dragon in your story, no problem. If it\'s a fact for homework, a health question, or something you\'ll tell friends — check it. Look for the same fact in a place that\'s careful about truth: a school book, an encyclopedia, a trusted website, or just ask an adult. Bonus trick: ask the AI "Are you sure? How do you know?" — sometimes it corrects itself on the spot. Fact-checking is a superpower, and you can start today.',
+            body: 'So how do you catch a hallucination? With a two-minute check. First, ask yourself: does this actually matter? If AI names the wrong colour for a dragon in your story, no problem. If it\'s a fact for homework, a health question, or something you\'ll tell friends — check it. Look for the same fact in a place that\'s careful about truth: a school book, an encyclopedia, a trusted website, or just ask an adult. One thing that does NOT work: asking the AI "Are you sure?" It will often just agree with you — even when it was right the first time. That is why you check a real source instead of asking the AI to mark its own homework. Fact-checking is a superpower, and you can start today.',
             bullets: [
               'Small stuff for fun? Relax. Facts for school or health? Always check',
               'Compare with a source that\'s careful about truth — books, encyclopedias, trusted sites',

@@ -5,6 +5,9 @@ import { TokenizerPlayground } from './playgrounds/TokenizerPlayground';
 import { ContextWindowPlayground } from './playgrounds/ContextWindowPlayground';
 import { TemperaturePlayground } from './playgrounds/TemperaturePlayground';
 import { EmbeddingsSimilarityPlayground } from './playgrounds/EmbeddingsSimilarityPlayground';
+import { BaseRatePlayground } from './playgrounds/BaseRatePlayground';
+import { NextWordPlayground } from './playgrounds/NextWordPlayground';
+import { EvalConfidencePlayground } from './playgrounds/EvalConfidencePlayground';
 import { AgentAnatomy } from './agentic/AgentAnatomy';
 import { AgentScenario } from './agentic/AgentScenario';
 import type { ScenarioStep } from './agentic/AgentScenario';
@@ -20,6 +23,9 @@ const PLAYGROUND_TABS = [
   { id: 'context',     label: 'Context Window',  glyph: '¶' },
   { id: 'temperature', label: 'Temperature',     glyph: '~' },
   { id: 'embeddings',  label: 'Embeddings',      glyph: '∿' },
+  { id: 'nextword',    label: 'Next Word',       glyph: '→' },
+  { id: 'baserate',    label: 'Base Rate',       glyph: '%' },
+  { id: 'evalci',      label: 'Eval Confidence', glyph: '±' },
 ] as const;
 type PlaygroundTabId = typeof PLAYGROUND_TABS[number]['id'];
 
@@ -188,6 +194,9 @@ export const AIPlaygroundsView = ({ setView, initialSection = 'playgrounds' }: A
           {section === 'playgrounds' && playgroundTab === 'context'     && <ContextWindowPlayground />}
           {section === 'playgrounds' && playgroundTab === 'temperature' && <TemperaturePlayground />}
           {section === 'playgrounds' && playgroundTab === 'embeddings'  && <EmbeddingsSimilarityPlayground />}
+          {section === 'playgrounds' && playgroundTab === 'nextword'    && <NextWordPlayground />}
+          {section === 'playgrounds' && playgroundTab === 'baserate'    && <BaseRatePlayground />}
+          {section === 'playgrounds' && playgroundTab === 'evalci'      && <EvalConfidencePlayground />}
           {section === 'agentic' && agenticTab === 'anatomy' && <AgentAnatomy />}
           {section === 'agentic' && agenticTab === 'triage'  && <AgentScenario trigger='47 failed logins then successful authentication from Russia — user: j.chen@company.com' steps={ALERT_TRIAGE} />}
           {section === 'agentic' && agenticTab === 'breach'  && <AgentScenario trigger='Ransomware indicators on HOST-MFG-07 — files renamed with .enc extension. OT environment.' steps={BREACH_RESPONDER} />}

@@ -437,7 +437,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
 // ── Side stuff ────────────────────────────────────────────────────────────────
 
 function StudioSideStuff({ setView }: { setView: (v: View) => void }) {
-  const playgroundItems = [['Tokeniser', 'See how your sentence becomes numbers'], ['Context window', 'Watch a conversation outgrow its memory'], ['Temperature', 'Same prompt, different levels of adventurous'], ['Embeddings', 'How close in meaning are two sentences?']];
+  const playgroundItems = [['Next word', 'Watch a sentence get predicted, one word at a time'], ['Base rate', 'Why an accurate detector still cries wolf'], ['Eval confidence', 'Is that improvement real, or is it noise?'], ['Tokeniser', 'See how your sentence becomes numbers']];
   const agenticItems = [['I.', 'The agent loop — how agents think and act', 'anatomy'], ['II.', 'Alert triage: account compromise, step by step', 'scenario'], ['III.', 'Breach responder: ransomware scope & containment', 'scenario'], ['IV.', 'Patch advisor: vulnerability prioritisation', 'scenario']];
   return (
     <section className="px-4 sm:px-6 lg:px-12 pb-10 lg:pb-14">
@@ -468,7 +468,7 @@ function StudioSideStuff({ setView }: { setView: (v: View) => void }) {
               ))}
             </ul>
             <div className="flex justify-between items-center pt-3.5 border-t border-studio-rule font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px]">
-              <span>4 toys · all in-browser · no API keys</span>
+              <span>7 toys · all in-browser · no API keys</span>
               <span className="text-studio-ink font-medium">Open the room →</span>
             </div>
           </div>

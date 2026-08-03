@@ -28,10 +28,10 @@ const m1: CourseModule = {
         },
         {
           heading: 'The Cognitive Loop',
-          body: 'Every AI system does the same five things — this is the loop that underpins every product claim you will encounter:',
+          body: 'Most AI products can be described with the same handful of steps. Note where learning sits: it happens during training, before the product ships — not while you are using it.',
           bullets: [
             'Perceive — takes in data: text, images, sensor feeds, events',
-            'Learn — finds patterns in data and adjusts internal weights',
+            'Learn — happens during training, in advance: patterns are found and weights are set, then frozen',
             'Reason — draws conclusions by combining knowledge and context',
             'Decide — weighs options and chooses the best next action',
             'Act — generates output or triggers something in the world',
