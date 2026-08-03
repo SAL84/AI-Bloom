@@ -116,7 +116,10 @@ type ProfileAnswers = { role?: string; time?: string; goal?: string };
 function recommendCourse(a: ProfileAnswers): { view: View; label: string; why: string } {
   if (a.role === 'parent')  return { view: { type: 'home', courseId: 'ai-kids' },        label: 'AI for Kids',                 why: 'made to read with an 8–14-year-old' };
   if (a.role === 'seller')  return { view: { type: 'home', courseId: 'ai-cybersec-se' }, label: 'AI for Cybersecurity Sales',  why: 'for SEs and AEs in security' };
-  if (a.role === 'builder' || a.goal === 'depth' || a.goal === 'ship') {
+  if (a.goal === 'ship') {
+    return { view: { type: 'home', courseId: 'ai-vibecoding' }, label: 'Vibecoding', why: 'idea to working prototype, no coding background needed' };
+  }
+  if (a.role === 'builder' || a.goal === 'depth') {
     return { view: { type: 'home', courseId: 'ai-deep-dive' }, label: 'AI Deep Dive', why: 'transformers, evals, the failure modes' };
   }
   if (a.time === 'short')   return { view: { type: 'home', courseId: 'ai-essentials' }, label: 'AI Essentials',               why: 'shortest path to literacy' };
@@ -143,7 +146,7 @@ function StudioHero({ setView }: { setView: (v: View) => void }) {
             <span className="font-studio-serif italic text-studio-kids font-normal">about </span>AI?
           </h1>
           <p className="font-studio-serif italic text-[17px] sm:text-[20px] lg:text-[24px] leading-[1.4] text-studio-ink-dim mt-5 lg:mt-7 max-w-[520px] font-normal">
-            Eight courses. From eight-year-olds to regulated industries. Everything is free, everything is real, nothing's on a corporate calendar.
+            Ten courses. From eight-year-olds to regulated industries. Everything is free, everything is real, nothing's on a corporate calendar.
           </p>
         </div>
         <aside className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 lg:p-[26px] relative mt-6">
@@ -154,7 +157,7 @@ function StudioHero({ setView }: { setView: (v: View) => void }) {
             Where do I start?
           </h3>
           <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.5] mb-[18px]">
-            Three quick questions. We'll point you at one of the eight courses.
+            Three quick questions. We'll point you at one of the ten courses.
           </p>
           <div className="flex flex-col gap-2">
             {PROFILE_QUESTIONS.map(q => (
@@ -280,7 +283,7 @@ function FeaturedCard({ no, title, kicker, blurb, modules, level, progress, badg
   );
 }
 
-type Filter = 'all' | 'kids' | 'core' | 'industry';
+type Filter = 'all' | 'kids' | 'core' | 'build' | 'industry';
 
 function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => void; completedLessons: Record<string, boolean> }) {
   const [filter, setFilter] = useState<Filter>('all');
@@ -293,6 +296,8 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
   const pEvals = courseProgress('ai-evals', completedLessons);
   const pHealth = courseProgress('ai-healthcare', completedLessons);
   const pLegal = courseProgress('ai-legal', completedLessons);
+  const pSecure = courseProgress('ai-secure', completedLessons);
+  const pVibe = courseProgress('ai-vibecoding', completedLessons);
 
   const kidsCard: CardData = {
     no: '01', title: 'AI for Kids', kicker: 'For ages 8–14', color: '#d96a3a',
@@ -333,13 +338,23 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       onClick: () => setView({ type: 'home', courseId: 'ai-cybersec-se' }) },
   ];
 
-  const evalsCard: CardData = {
-    no: '07', title: 'Evals & Red-teaming', kicker: 'Safety track', color: '#c9421f',
-    blurb: 'How to know your AI system works — and how to break it before someone else does.',
-    modules: moduleCount('ai-evals'), level: 'Advanced', progress: pEvals,
-    badge: pEvals > 0 ? 'Resume →' : 'Open →',
-    onClick: () => setView({ type: 'home', courseId: 'ai-evals' }),
-  };
+  const buildTestSecureCards: CardData[] = [
+    { no: '10', title: 'Vibecoding', kicker: '① Build it', color: '#d4711f',
+      blurb: 'Turn an idea into a working prototype using AI — with no coding background, and knowing what you have actually got.',
+      modules: moduleCount('ai-vibecoding'), level: 'Beginner', progress: pVibe,
+      badge: pVibe > 0 ? 'Resume →' : 'Open →',
+      onClick: () => setView({ type: 'home', courseId: 'ai-vibecoding' }) },
+    { no: '07', title: 'Does Your AI Actually Work?', kicker: '② Test it', color: '#c9421f',
+      blurb: 'An eval is a test for AI. Build real test cases, judge quality honestly, and catch problems before your users find them.',
+      modules: moduleCount('ai-evals'), level: 'Advanced', progress: pEvals,
+      badge: pEvals > 0 ? 'Resume →' : 'Open →',
+      onClick: () => setView({ type: 'home', courseId: 'ai-evals' }) },
+    { no: '09', title: 'Securing AI Systems', kicker: '③ Secure it', color: '#8b2f5f',
+      blurb: 'Threat-model, harden and red-team AI and agentic systems. The hands-on counterpart to the sales course.',
+      modules: moduleCount('ai-secure'), level: 'Advanced', progress: pSecure,
+      badge: pSecure > 0 ? 'Resume →' : 'Open →',
+      onClick: () => setView({ type: 'home', courseId: 'ai-secure' }) },
+  ];
   const verticalCards: CardData[] = [
     { no: '08', title: 'AI for Healthcare', kicker: 'For clinical & health-tech', color: '#0f8a7a',
       blurb: 'Where AI actually sits in care, how to read the evidence, and the regulatory reality. Orientation, not clinical guidance.',
@@ -355,14 +370,14 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
 
   const filterBtns: Array<{ key: Filter; label: string }> = [
     { key: 'all', label: 'All' }, { key: 'kids', label: 'For kids' },
-    { key: 'core', label: 'Core literacy' }, { key: 'industry', label: 'Industry' },
+    { key: 'core', label: 'Core literacy' }, { key: 'build', label: 'Build · Test · Secure' }, { key: 'industry', label: 'Industry' },
   ];
 
   return (
     <section className="px-4 sm:px-6 lg:px-12 pt-6 pb-10 lg:pb-14">
       <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4 mb-6 lg:mb-7">
         <h2 className="font-studio-display text-[32px] sm:text-[38px] lg:text-[44px] text-studio-ink m-0 font-normal tracking-[-0.6px] lg:tracking-[-0.8px]">
-          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— eight on the shelf</span>
+          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— ten on the shelf</span>
         </h2>
         <div className="flex flex-wrap gap-2">
           {filterBtns.map(({ key, label }) => (
@@ -407,7 +422,14 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
           <RowLabel sub="Read in any order — each stands alone">Core literacy</RowLabel>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
             {coreCards.map(c => <CatalogCard key={c.no} {...c} />)}
-            <CatalogCard {...evalsCard} />
+          </div>
+        </div>
+      )}
+      {(filter === 'all' || filter === 'build') && (
+        <div className="mb-7 lg:mb-9">
+          <RowLabel sub="Read in order — this is the path from idea to something real people use">Build · Test · Secure</RowLabel>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+            {buildTestSecureCards.map(c => <CatalogCard key={c.no} {...c} />)}
           </div>
         </div>
       )}

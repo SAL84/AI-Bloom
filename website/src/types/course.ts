@@ -55,7 +55,9 @@ export type CourseId =
   | 'ai-cybersec-se'
   | 'ai-evals'
   | 'ai-healthcare'
-  | 'ai-legal';
+  | 'ai-legal'
+  | 'ai-secure'
+  | 'ai-vibecoding';
 
 export interface Course {
   id: CourseId;

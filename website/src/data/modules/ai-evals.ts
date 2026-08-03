@@ -7,8 +7,8 @@ import evM4 from './ev-m4';
 
 const aiEvals: Course = {
   id: 'ai-evals',
-  title: 'Evals & Red-teaming',
-  subtitle: 'How to know your AI system works — and how to break it before someone else does',
+  title: 'Does Your AI Actually Work?',
+  subtitle: 'Testing AI systems properly — building eval sets, judging quality, and catching regressions before your users do',
   glossary: CORE_GLOSSARY,
   modules: [evM1, evM2, evM3, evM4],
 };

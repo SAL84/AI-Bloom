@@ -75,7 +75,7 @@ const ENTRIES: CourseEntry[] = [
     view: { type: 'home', courseId: 'ai-cybersec-se' },
   },
   {
-    id: 'ai-evals', no: '07', title: 'Evals & Red-teaming', track: 'Safety',
+    id: 'ai-evals', no: '07', title: 'Does Your AI Actually Work?', track: 'Build · Test · Secure',
     color: '#c9421f', status: 'live',
     note: 'Four modules on eval sets, LLM-as-judge, regression suites, and adversarial testing of systems you own.',
     view: { type: 'home', courseId: 'ai-evals' },
@@ -93,6 +93,18 @@ const ENTRIES: CourseEntry[] = [
     note: 'Not legal advice — task suitability, contracts and discovery, the citation problem, and professional duties.',
     gaps: ['Awaiting review by a practising lawyer', 'Jurisdiction-specific detail kept deliberately general'],
     view: { type: 'home', courseId: 'ai-legal' },
+  },
+  {
+    id: 'ai-secure', no: '09', title: 'Securing AI Systems', track: 'Build · Test · Secure',
+    color: '#8b2f5f', status: 'live',
+    note: 'Hands-on counterpart to the sales course — threat modelling, hardening, red-team practice, and AI incident response.',
+    view: { type: 'home', courseId: 'ai-secure' },
+  },
+  {
+    id: 'ai-vibecoding', no: '10', title: 'Vibecoding', track: 'Build · Test · Secure',
+    color: '#d4711f', status: 'live',
+    note: 'Idea to working prototype with no coding background — including the honest module on what has to be true before anyone else uses it.',
+    view: { type: 'home', courseId: 'ai-vibecoding' },
   },
   {
     id: 'agentic-ai', no: '¶', title: 'Agentic AI', track: 'Building · field notes',

@@ -20,7 +20,9 @@ const TRACK_CRUMB: Partial<Record<CourseId, string>> = {
   'ai-cybersec-se': 'Industry',
   'ai-healthcare': 'Industry',
   'ai-legal': 'Industry',
-  'ai-evals': 'Safety',
+  'ai-evals': 'Build · Test · Secure',
+  'ai-secure': 'Build · Test · Secure',
+  'ai-vibecoding': 'Build · Test · Secure',
 };
 
 const META: Record<CourseId, {
@@ -80,15 +82,39 @@ const META: Record<CourseId, {
     ],
   },
   'ai-evals': {
-    color: '#c9421f', no: '07', kicker: 'Catalog №07 · Safety track',
+    color: '#c9421f', no: '07', kicker: 'Catalog №07 · Build · Test · Secure',
     level: 'Advanced', duration: '4h',
-    outcomes: ['Build eval sets that reflect what users actually need', 'Use LLM-as-judge without inheriting its biases', 'Ship a regression suite that survives model upgrades', 'Red-team your own system before someone else does'],
+    outcomes: ['Build a set of real test cases that reflect what users actually need', 'Use one AI to grade another without inheriting its biases', 'Catch quality regressions before your users do', 'Tell a real improvement apart from random noise'],
     audience: ['◆ Engineers and leads shipping AI systems to real users', '◆ QA and safety people who inherited "test the AI"', '◇ Not for: people who have not built with AI yet (try Deep Dive)'],
-    quote: '"Evals are the difference between an AI product that improves and one that only changes."',
+    quote: '"An eval is just a test for something that gives a different answer every time. It is the difference between an AI product that improves and one that only changes."',
     related: [
       { no: '04', title: 'AI Deep Dive', sub: 'The engineering foundation', color: '#5a4ec0', view: { type: 'home', courseId: 'ai-deep-dive' } },
       { no: '¶', title: 'Agentic AI', sub: 'What you will be testing', color: '#5d5045', view: { type: 'agentic-ai' } },
       { no: '06', title: 'Cybersec Sales', sub: 'The adversarial view', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
+    ],
+  },
+  'ai-vibecoding': {
+    color: '#d4711f', no: '10', kicker: 'Catalog №10 · Build · Test · Secure',
+    level: 'Beginner', duration: '3.5h',
+    outcomes: ['Tell what you can genuinely build without an engineer from what you cannot', 'Write a plain-language spec an AI can actually build from', 'Get out of the loop where every fix breaks something else', 'Know what has to be true before you let anyone else use it'],
+    audience: ['◆ Founders and small-business owners with an idea and no engineer', '◆ Product, ops and marketing people who want to build the thing themselves', '◇ Not for: engineers (try Deep Dive) — this assumes no coding background'],
+    quote: '"You can get a working prototype without an engineer. You cannot get a safe production system without understanding what you shipped — this course covers both halves."',
+    related: [
+      { no: '07', title: 'Does Your AI Work?', sub: 'Test what you built', color: '#c9421f', view: { type: 'home', courseId: 'ai-evals' } },
+      { no: '09', title: 'Securing AI Systems', sub: 'Before real users arrive', color: '#8b2f5f', view: { type: 'home', courseId: 'ai-secure' } },
+      { no: '03', title: 'AI Essentials', sub: 'The vocabulary underneath', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
+    ],
+  },
+  'ai-secure': {
+    color: '#8b2f5f', no: '09', kicker: 'Catalog №09 · Build · Test · Secure',
+    level: 'Advanced', duration: '4h',
+    outcomes: ['Threat-model an AI feature, including when the model itself is untrusted input', 'Recognise why input filtering alone never stops prompt injection', 'Apply least privilege, sandboxing and approval gates to agents', 'Run an authorised red-team exercise and respond to an AI incident'],
+    audience: ['◆ Security engineers and AI engineers who own the risk', '◆ Architects designing agentic systems that touch real data', '◇ Not for: selling security products (try Cybersec Sales) — this is hands-on'],
+    quote: '"The sales course teaches you to talk about this. This one teaches you to do it."',
+    related: [
+      { no: '07', title: 'Does Your AI Work?', sub: 'Testing, the sibling discipline', color: '#c9421f', view: { type: 'home', courseId: 'ai-evals' } },
+      { no: '06', title: 'Cybersec Sales', sub: 'The commercial view', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
+      { no: '¶', title: 'Agentic AI', sub: 'What you are defending', color: '#5d5045', view: { type: 'agentic-ai' } },
     ],
   },
   'ai-healthcare': {
@@ -99,7 +125,7 @@ const META: Record<CourseId, {
     quote: '"The most useful thing this course can tell you is where the evidence is thin. So it does."',
     related: [
       { no: '03', title: 'AI Essentials', sub: 'Prerequisite vocabulary', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
-      { no: '07', title: 'Evals & Red-teaming', sub: 'How to validate a model', color: '#c9421f', view: { type: 'home', courseId: 'ai-evals' } },
+      { no: '07', title: 'Does Your AI Work?', sub: 'Testing what you built', color: '#c9421f', view: { type: 'home', courseId: 'ai-evals' } },
       { no: '05', title: 'AI in Industry', sub: 'The wider field map', color: '#b78320', view: { type: 'industry' } },
     ],
   },
