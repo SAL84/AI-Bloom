@@ -1,5 +1,4 @@
 import type { CourseModule } from '../../types/course';
-import { diagram2b } from '../svgs/diagram2b';
 
 const adM2: CourseModule = {
   id: 'ad-m2',
@@ -387,8 +386,7 @@ const adM2: CourseModule = {
     {
       id: 'ad2l8',
       title: 'LLM Governance & Safety — When Each Layer Applies',
-      inlineSvg: diagram2b,
-      inlineSvgId: 'd2b',
+      diagram: 'LLMGovernanceLayers',
       slides: [
         {
           heading: 'Safety Is Not One Thing',

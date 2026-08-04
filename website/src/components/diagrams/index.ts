@@ -51,6 +51,7 @@ import { LengthAndToneDiagram, EditableDraftsDiagram, MakeItAskQuestionsDiagram,
 import { SycophancyTrapDiagram, ConfidentFabricationDiagram, ModelSimplyWrongDiagram, ReusablePromptsDiagram, TeamPromptAssetsDiagram } from './course-diagrams-aj';
 import { OwnMaterialDiagram, PromptingCeilingDiagram, DocAnswerTestingDiagram, MultiStepAgentTestingDiagram } from './course-diagrams-ak';
 import { ScalableHumanReviewDiagram, ProductionTestingDiagram, QualityCostLatencyDiagram, EvalTeamHabitDiagram } from './course-diagrams-al';
+import { LLMGovernanceLayersDiagram, AIMisconceptionsDiagram, LLMInfrastructureDiagram } from './course-diagrams-am';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -312,4 +313,7 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   ProductionTesting: ProductionTestingDiagram,
   QualityCostLatency: QualityCostLatencyDiagram,
   EvalTeamHabit: EvalTeamHabitDiagram,
+  LLMGovernanceLayers: LLMGovernanceLayersDiagram,
+  AIMisconceptions: AIMisconceptionsDiagram,
+  LLMInfrastructure: LLMInfrastructureDiagram,
 };

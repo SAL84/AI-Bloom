@@ -1,7 +1,6 @@
 import type { CourseModule } from '../../types/course';
 import { diagram0a } from '../svgs/diagram0a';
 import { diagram0bi } from '../svgs/diagram0bi';
-import { diagram0c } from '../svgs/diagram0c';
 import { diagram1 } from '../svgs/diagram1';
 
 const m1: CourseModule = {
@@ -354,8 +353,7 @@ const m1: CourseModule = {
     {
       id: 'm1l4',
       title: 'AI Top Misconceptions',
-      inlineSvg: diagram0c,
-      inlineSvgId: 'd0c',
+      diagram: 'AIMisconceptions',
       slides: [
         {
           heading: 'Misconception 1 — "More Accuracy = Better AI"',

@@ -1,6 +1,5 @@
 import type { CourseModule } from '../../types/course';
 import { diagram2 } from '../svgs/diagram2';
-import { diagram2c } from '../svgs/diagram2c';
 
 const m2: CourseModule = {
   id: 'm2',
@@ -313,8 +312,7 @@ const m2: CourseModule = {
       id: 'm2l6',
       title: 'LLM Infrastructure',
       sectionLabel: 'Advanced',
-      inlineSvg: diagram2c,
-      inlineSvgId: 'd2c',
+      diagram: 'LLMInfrastructure',
       slides: [
         {
           heading: 'Three Layers Between the Model and the User',
