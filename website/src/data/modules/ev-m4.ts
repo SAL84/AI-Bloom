@@ -10,6 +10,7 @@ const evM4: CourseModule = {
       id: 'ev4l1',
       title: 'Testing a System That Answers From Your Documents',
       sectionLabel: 'Applied',
+      diagram: 'DocAnswerTesting',
       slides: [
         {
           heading: 'Two Failures Wearing One Face',
@@ -56,6 +57,7 @@ const evM4: CourseModule = {
     {
       id: 'ev4l2',
       title: 'Testing Agents That Take Several Steps',
+      diagram: 'MultiStepAgentTesting',
       slides: [
         {
           heading: 'Outcome and Trajectory Are Different Questions',
@@ -147,6 +149,7 @@ const evM4: CourseModule = {
     {
       id: 'ev4l3',
       title: 'Human Review That Scales',
+      diagram: 'ScalableHumanReview',
       slides: [
         {
           heading: 'Where Judgement Cannot Be Delegated',
@@ -193,6 +196,7 @@ const evM4: CourseModule = {
     {
       id: 'ev4l4',
       title: 'Testing in Production: A/B and Guardrails',
+      diagram: 'ProductionTesting',
       slides: [
         {
           heading: 'Why Offline Ever Disagrees With Online',
@@ -239,6 +243,7 @@ const evM4: CourseModule = {
     {
       id: 'ev4l5',
       title: 'Quality Against Cost and Latency',
+      diagram: 'QualityCostLatency',
       slides: [
         {
           heading: 'Evaluate on the Frontier, Not on Quality Alone',
@@ -275,6 +280,7 @@ const evM4: CourseModule = {
     {
       id: 'ev4l6',
       title: 'Making Evals a Team Habit',
+      diagram: 'EvalTeamHabit',
       slides: [
         {
           heading: 'Someone Owns the Eval Set',

@@ -47,6 +47,10 @@ import { IrreversibleActionGatesDiagram, StructuredOutputControlDiagram, Guardra
 import { SecurityRegressionCIDiagram, AutoAdversarialTestingDiagram, AIIncidentDetectionDiagram, ModelIncidentResponseDiagram, PostIncidentGovernanceDiagram } from './course-diagrams-af';
 import { EverythingInTheBoxDiagram, NoMemoryDiagram, WordingMattersDiagram, CommonPromptMistakeDiagram, RolePerspectiveDiagram } from './course-diagrams-ag';
 import { ContextConstraintsDiagram, TaskAsOutcomeDiagram, ShowDontTellDiagram, ReasoningFirstDiagram, AskForStructureDiagram } from './course-diagrams-ah';
+import { LengthAndToneDiagram, EditableDraftsDiagram, MakeItAskQuestionsDiagram, FourReasonsBadDiagram, DescribeAnswerGapDiagram } from './course-diagrams-ai';
+import { SycophancyTrapDiagram, ConfidentFabricationDiagram, ModelSimplyWrongDiagram, ReusablePromptsDiagram, TeamPromptAssetsDiagram } from './course-diagrams-aj';
+import { OwnMaterialDiagram, PromptingCeilingDiagram, DocAnswerTestingDiagram, MultiStepAgentTestingDiagram } from './course-diagrams-ak';
+import { ScalableHumanReviewDiagram, ProductionTestingDiagram, QualityCostLatencyDiagram, EvalTeamHabitDiagram } from './course-diagrams-al';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -290,4 +294,22 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   ShowDontTell: ShowDontTellDiagram,
   ReasoningFirst: ReasoningFirstDiagram,
   AskForStructure: AskForStructureDiagram,
+  LengthAndTone: LengthAndToneDiagram,
+  EditableDrafts: EditableDraftsDiagram,
+  MakeItAskQuestions: MakeItAskQuestionsDiagram,
+  FourReasonsBad: FourReasonsBadDiagram,
+  DescribeAnswerGap: DescribeAnswerGapDiagram,
+  SycophancyTrap: SycophancyTrapDiagram,
+  ConfidentFabrication: ConfidentFabricationDiagram,
+  ModelSimplyWrong: ModelSimplyWrongDiagram,
+  ReusablePrompts: ReusablePromptsDiagram,
+  TeamPromptAssets: TeamPromptAssetsDiagram,
+  OwnMaterial: OwnMaterialDiagram,
+  PromptingCeiling: PromptingCeilingDiagram,
+  DocAnswerTesting: DocAnswerTestingDiagram,
+  MultiStepAgentTesting: MultiStepAgentTestingDiagram,
+  ScalableHumanReview: ScalableHumanReviewDiagram,
+  ProductionTesting: ProductionTestingDiagram,
+  QualityCostLatency: QualityCostLatencyDiagram,
+  EvalTeamHabit: EvalTeamHabitDiagram,
 };

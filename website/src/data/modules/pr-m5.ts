@@ -9,6 +9,7 @@ const prM5: CourseModule = {
     {
       id: 'pr5l1',
       title: 'Prompts You Reuse',
+      diagram: 'ReusablePrompts',
       slides: [
         {
           heading: 'Stop Rewriting the Same Prompt',
@@ -45,6 +46,7 @@ const prM5: CourseModule = {
     {
       id: 'pr5l2',
       title: 'Prompts as Team Assets',
+      diagram: 'TeamPromptAssets',
       slides: [
         {
           heading: 'One Person\'s Good Prompt Is Everyone\'s',
@@ -81,6 +83,7 @@ const prM5: CourseModule = {
     {
       id: 'pr5l3',
       title: 'Giving It Your Own Material',
+      diagram: 'OwnMaterial',
       slides: [
         {
           heading: 'Your Material Beats Its General Knowledge',
@@ -117,6 +120,7 @@ const prM5: CourseModule = {
     {
       id: 'pr5l4',
       title: 'The Ceiling of Prompting',
+      diagram: 'PromptingCeiling',
       slides: [
         {
           heading: 'Prompting Fixes Some Problems and Not Others',

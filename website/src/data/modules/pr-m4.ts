@@ -9,6 +9,7 @@ const prM4: CourseModule = {
     {
       id: 'pr4l1',
       title: 'Four Reasons an Answer Is Bad',
+      diagram: 'FourReasonsBad',
       slides: [
         {
           heading: 'Diagnose Before You Retry',
@@ -45,6 +46,7 @@ const prM4: CourseModule = {
     {
       id: 'pr4l2',
       title: 'Describe the Gap',
+      diagram: 'DescribeAnswerGap',
       slides: [
         {
           heading: 'Say What Is Missing, Not That It Is Wrong',
@@ -81,6 +83,7 @@ const prM4: CourseModule = {
     {
       id: 'pr4l3',
       title: 'The Sycophancy Trap',
+      diagram: 'SycophancyTrap',
       slides: [
         {
           heading: 'It Tends to Agree With You',
@@ -117,6 +120,7 @@ const prM4: CourseModule = {
     {
       id: 'pr4l4',
       title: 'Confident Fabrication',
+      diagram: 'ConfidentFabrication',
       slides: [
         {
           heading: 'Fluency Is Not Evidence',
@@ -153,6 +157,7 @@ const prM4: CourseModule = {
     {
       id: 'pr4l5',
       title: 'When the Model Is Simply Wrong',
+      diagram: 'ModelSimplyWrong',
       slides: [
         {
           heading: 'Not Every Failure Is a Prompting Failure',

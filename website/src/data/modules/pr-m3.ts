@@ -46,6 +46,7 @@ const prM3: CourseModule = {
     {
       id: 'pr3l2',
       title: 'Length and Tone on Purpose',
+      diagram: 'LengthAndTone',
       slides: [
         {
           heading: 'Length Controls That Actually Work',
@@ -82,6 +83,7 @@ const prM3: CourseModule = {
     {
       id: 'pr3l3',
       title: 'Drafts You Can Edit',
+      diagram: 'EditableDrafts',
       slides: [
         {
           heading: 'Aim for Editable, Not Finished',
@@ -118,6 +120,7 @@ const prM3: CourseModule = {
     {
       id: 'pr3l4',
       title: 'Make It Ask You Questions',
+      diagram: 'MakeItAskQuestions',
       slides: [
         {
           heading: 'Invert the Direction',
