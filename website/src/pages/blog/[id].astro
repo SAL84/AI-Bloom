@@ -1,0 +1,70 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BlogLayout title={post.data.title} description={post.data.description}>
+  <article>
+    <div class="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1.2px] uppercase mb-3">
+      Published {fmt(post.data.pubDate)}
+      {post.data.updatedDate && <span> · Updated {fmt(post.data.updatedDate)}</span>}
+    </div>
+    <h1 class="font-studio-display text-[34px] sm:text-[42px] text-studio-ink font-normal tracking-[-0.6px] leading-[1.08] mb-8" style="text-wrap: balance">
+      {post.data.title}
+    </h1>
+    <div class="post-prose">
+      <Content />
+    </div>
+  </article>
+</BlogLayout>
+
+<style is:global>
+  .post-prose {
+    font-family: var(--font-studio-sans);
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--color-studio-ink);
+  }
+  .post-prose p { margin: 0 0 1.15em; }
+  .post-prose h2 {
+    font-family: var(--font-studio-display);
+    font-weight: 400;
+    font-size: 25px;
+    letter-spacing: -0.3px;
+    line-height: 1.15;
+    margin: 1.7em 0 0.6em;
+  }
+  .post-prose h3 {
+    font-family: var(--font-studio-sans);
+    font-weight: 600;
+    font-size: 17px;
+    margin: 1.5em 0 0.5em;
+  }
+  .post-prose a {
+    color: var(--color-studio-cyber);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .post-prose ul, .post-prose ol { margin: 0 0 1.15em; padding-left: 1.3em; }
+  .post-prose li { margin-bottom: 0.4em; }
+  .post-prose strong { font-weight: 600; }
+  .post-prose blockquote {
+    font-family: var(--font-studio-serif);
+    font-style: italic;
+    color: var(--color-studio-ink-dim);
+    border-left: 2px solid var(--color-studio-rule);
+    margin: 1.3em 0;
+    padding-left: 1.1em;
+  }
+  .post-prose hr { border: 0; border-top: 1px solid var(--color-studio-rule); margin: 2em 0; }
+</style>

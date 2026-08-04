@@ -56,6 +56,12 @@ export function StudioNavLite({ crumbs, crumbViews, setView }: NavLiteProps) {
           </svg>
           Shelf
         </button>
+        <a
+          href="/blog/"
+          className="hidden sm:inline-flex items-center font-studio-sans text-[13px] text-studio-ink-dim hover:text-studio-ink hover:underline decoration-studio-ink-dim underline-offset-[3px] decoration-1 transition-colors duration-100 whitespace-nowrap no-underline"
+        >
+          Journal
+        </a>
         <button
           onClick={() => setView({ type: 'playground' })}
           className="font-studio-sans text-[12.5px] sm:text-[13px] text-white px-3 sm:px-[18px] py-2 sm:py-[9px] rounded-full font-medium hover:opacity-90 transition-opacity duration-150 whitespace-nowrap"
@@ -79,7 +85,8 @@ export function StudioFooter() {
         </div>
         <div className="flex flex-wrap gap-3 sm:gap-5 font-studio-mono text-[11px] text-studio-ink-mute tracking-[1px]">
           <VisitCounter />
-          <span>RSS</span><span>NEWSLETTER</span><span>SOURCE</span><span>EST. MMXXV</span>
+          <a href="/blog/" className="text-studio-ink-mute hover:text-studio-ink no-underline">JOURNAL</a>
+          <span>NEWSLETTER</span><span>SOURCE</span><span>EST. MMXXV</span>
         </div>
       </div>
     </footer>

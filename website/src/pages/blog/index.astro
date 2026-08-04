@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BlogLayout
+  title="Journal"
+  description="Essays on AI and work, tools, and learning — from the AI Learning Hub, a free public library for AI literacy."
+>
+  <div class="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-4">◆ The journal</div>
+  <h1 class="font-studio-display text-[36px] sm:text-[44px] text-studio-ink font-normal tracking-[-0.6px] leading-[1.05] mb-3">
+    Notes from the library
+  </h1>
+  <p class="font-studio-serif italic text-[17px] text-studio-ink-dim leading-[1.5] mb-10">
+    Dated essays on the questions people actually type into search bars. Opinions age; we stamp everything and say so.
+  </p>
+
+  <div class="divide-y divide-studio-rule border-t border-studio-rule">
+    {posts.map((post) => (
+      <article class="py-7">
+        <div class="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1.2px] uppercase mb-2">
+          {fmt(post.data.pubDate)}
+        </div>
+        <h2 class="font-studio-display text-[24px] sm:text-[28px] font-normal tracking-[-0.4px] leading-[1.15] m-0 mb-2">
+          <a href={`/blog/${post.id}/`} class="text-studio-ink no-underline hover:underline">{post.data.title}</a>
+        </h2>
+        <p class="font-studio-sans text-[14px] text-studio-ink-dim leading-[1.6] m-0">{post.data.description}</p>
+      </article>
+    ))}
+  </div>
+</BlogLayout>
