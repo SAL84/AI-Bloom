@@ -9,6 +9,7 @@ const prM3: CourseModule = {
     {
       id: 'pr3l1',
       title: 'Ask for Structure',
+      diagram: 'AskForStructure',
       slides: [
         {
           heading: 'Structure Makes an Answer Checkable',

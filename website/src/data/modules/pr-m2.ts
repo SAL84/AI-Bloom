@@ -9,6 +9,7 @@ const prM2: CourseModule = {
     {
       id: 'pr2l1',
       title: 'Role and Perspective',
+      diagram: 'RolePerspective',
       slides: [
         {
           heading: 'A Perspective Sets the Register',
@@ -45,6 +46,7 @@ const prM2: CourseModule = {
     {
       id: 'pr2l2',
       title: 'Context and Constraints',
+      diagram: 'ContextConstraints',
       slides: [
         {
           heading: 'Context Is the Information Only You Have',
@@ -81,6 +83,7 @@ const prM2: CourseModule = {
     {
       id: 'pr2l3',
       title: 'The Task as an Outcome',
+      diagram: 'TaskAsOutcome',
       slides: [
         {
           heading: 'Describe the Result, Not the Activity',
@@ -117,6 +120,7 @@ const prM2: CourseModule = {
     {
       id: 'pr2l4',
       title: 'Show, Do Not Tell',
+      diagram: 'ShowDontTell',
       slides: [
         {
           heading: 'One Example Beats a Paragraph of Instruction',
@@ -195,6 +199,7 @@ const prM2: CourseModule = {
     {
       id: 'pr2l5',
       title: 'Reasoning First, and the Weakness of Negatives',
+      diagram: 'ReasoningFirst',
       slides: [
         {
           heading: 'Ask for the Working Before the Answer',

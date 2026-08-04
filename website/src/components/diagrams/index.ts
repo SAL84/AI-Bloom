@@ -45,6 +45,8 @@ import { MitreAtlasDiagram, AcceptedRisksDiagram, PromptInjectionDepthDiagram, I
 import { ToolPoisoningDiagram, MemoryContaminationDiagram, ExcessiveAgencyDiagram, AgentLeastPrivilegeDiagram, SandboxEgressDiagram } from './course-diagrams-ad';
 import { IrreversibleActionGatesDiagram, StructuredOutputControlDiagram, GuardrailModelsDiagram, DefenseInDepthAIDiagram, AuthorisedExerciseDiagram } from './course-diagrams-ae';
 import { SecurityRegressionCIDiagram, AutoAdversarialTestingDiagram, AIIncidentDetectionDiagram, ModelIncidentResponseDiagram, PostIncidentGovernanceDiagram } from './course-diagrams-af';
+import { EverythingInTheBoxDiagram, NoMemoryDiagram, WordingMattersDiagram, CommonPromptMistakeDiagram, RolePerspectiveDiagram } from './course-diagrams-ag';
+import { ContextConstraintsDiagram, TaskAsOutcomeDiagram, ShowDontTellDiagram, ReasoningFirstDiagram, AskForStructureDiagram } from './course-diagrams-ah';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -278,4 +280,14 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIIncidentDetection: AIIncidentDetectionDiagram,
   ModelIncidentResponse: ModelIncidentResponseDiagram,
   PostIncidentGovernance: PostIncidentGovernanceDiagram,
+  EverythingInTheBox: EverythingInTheBoxDiagram,
+  NoMemory: NoMemoryDiagram,
+  WordingMatters: WordingMattersDiagram,
+  CommonPromptMistake: CommonPromptMistakeDiagram,
+  RolePerspective: RolePerspectiveDiagram,
+  ContextConstraints: ContextConstraintsDiagram,
+  TaskAsOutcome: TaskAsOutcomeDiagram,
+  ShowDontTell: ShowDontTellDiagram,
+  ReasoningFirst: ReasoningFirstDiagram,
+  AskForStructure: AskForStructureDiagram,
 };

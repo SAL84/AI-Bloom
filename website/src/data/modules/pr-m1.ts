@@ -9,6 +9,7 @@ const prM1: CourseModule = {
     {
       id: 'pr1l1',
       title: 'Everything in the Box',
+      diagram: 'EverythingInTheBox',
       slides: [
         {
           heading: 'Four Kinds of Content, One Request',
@@ -45,6 +46,7 @@ const prM1: CourseModule = {
     {
       id: 'pr1l2',
       title: 'It Does Not Remember You',
+      diagram: 'NoMemory',
       slides: [
         {
           heading: 'Each Request Starts From Nothing',
@@ -81,6 +83,7 @@ const prM1: CourseModule = {
     {
       id: 'pr1l3',
       title: 'Why Wording Changes the Answer',
+      diagram: 'WordingMatters',
       slides: [
         {
           heading: 'You Are Steering, Not Just Asking',
@@ -117,6 +120,7 @@ const prM1: CourseModule = {
     {
       id: 'pr1l4',
       title: 'The Mistake Almost Everyone Makes',
+      diagram: 'CommonPromptMistake',
       slides: [
         {
           heading: 'Asking for a Thing With No Reader and No Purpose',
