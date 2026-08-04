@@ -7,7 +7,6 @@ import { QuizView } from './course/QuizView';
 import { GlossaryView } from './course/GlossaryView';
 import { RoadmapView } from './course/RoadmapView';
 import { AIPlaygroundsView } from './course/AIPlaygroundsView';
-import { IndustryView } from './course/IndustryView';
 import { CourseLibraryView } from './course/CourseLibraryView';
 import { KidsGamesView } from './course/kids/KidsGamesView';
 import { KidsCareersView } from './course/kids/KidsCareersView';
@@ -133,7 +132,6 @@ export default function App() {
       {view.type === 'shelf' && <ShelfView setView={setView} savedLessons={savedLessons} toggleSaved={toggleSaved} completedLessons={completedLessons} />}
       {view.type === 'playground' && <AIPlaygroundsView setView={setView} initialSection="playgrounds" />}
       {view.type === 'agentic-ai' && <AIPlaygroundsView setView={setView} initialSection="agentic" />}
-      {view.type === 'industry' && <IndustryView setView={setView} />}
       {view.type === 'kids-games' && <KidsGamesView setView={setView} />}
       {view.type === 'kids-careers' && <KidsCareersView setView={setView} />}
     </>

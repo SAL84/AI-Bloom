@@ -86,6 +86,5 @@ export type View =
   | { type: 'shelf' }
   | { type: 'playground' }
   | { type: 'agentic-ai' }
-  | { type: 'industry' }
   | { type: 'kids-games' }
   | { type: 'kids-careers' };

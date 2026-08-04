@@ -62,33 +62,26 @@ const ENTRIES: CourseEntry[] = [
     view: { type: 'home', courseId: 'ai-deep-dive' },
   },
   {
-    id: 'ai-industry', no: '05', title: 'AI in Industry', track: 'Orientation',
-    color: '#b78320', status: 'partial',
-    note: 'Twelve-category landscape map, deliberately kept as a map rather than a course — vendor names date too fast to quiz on.',
-    gaps: ['Needs a refresh pass whenever the landscape shifts'],
-    view: { type: 'industry' },
-  },
-  {
-    id: 'ai-cybersec-se', no: '06', title: 'AI for Cybersecurity Sales', track: 'Vertical',
+    id: 'ai-cybersec-se', no: '10', title: 'AI for Cybersecurity Sales', track: 'Vertical',
     color: '#2c6db0', status: 'live',
     note: 'Four-module course for security SEs and AEs — the stack, the adversarial side, the vendors, and how to sell it. Full quiz coverage.',
     view: { type: 'home', courseId: 'ai-cybersec-se' },
   },
   {
-    id: 'ai-evals', no: '07', title: 'Does Your AI Actually Work?', track: 'Build · Test · Secure',
+    id: 'ai-evals', no: '08', title: 'Does Your AI Actually Work?', track: 'Build · Test · Secure',
     color: '#c9421f', status: 'live',
     note: 'Four modules on building eval sets, judging quality, catching regressions, and testing what you actually ship — RAG, agents, and production A/B.',
     view: { type: 'home', courseId: 'ai-evals' },
   },
   {
-    id: 'ai-healthcare', no: '08', title: 'AI for Healthcare', track: 'Vertical',
+    id: 'ai-healthcare', no: '11', title: 'AI for Healthcare', track: 'Vertical',
     color: '#0f8a7a', status: 'live',
     note: 'Orientation, not clinical guidance — where AI sits in care, reading the evidence, bias, and regulation.',
     gaps: ['Awaiting review by a practising clinician'],
     view: { type: 'home', courseId: 'ai-healthcare' },
   },
   {
-    id: 'ai-legal', no: '09', title: 'AI for Legal', track: 'Vertical',
+    id: 'ai-legal', no: '12', title: 'AI for Legal', track: 'Vertical',
     color: '#5a4ec0', status: 'live',
     note: 'Not legal advice — task suitability, contracts and discovery, the citation problem, and professional duties.',
     gaps: ['Awaiting review by a practising lawyer', 'Jurisdiction-specific detail kept deliberately general'],
@@ -101,19 +94,19 @@ const ENTRIES: CourseEntry[] = [
     view: { type: 'home', courseId: 'ai-secure' },
   },
   {
-    id: 'ai-vibecoding', no: '10', title: 'Vibecoding', track: 'Build · Test · Secure',
+    id: 'ai-vibecoding', no: '06', title: 'Vibecoding', track: 'Build · Test · Secure',
     color: '#d4711f', status: 'live',
     note: 'Idea to working prototype with no coding background — including the honest module on what has to be true before anyone else uses it.',
     view: { type: 'home', courseId: 'ai-vibecoding' },
   },
   {
-    id: 'ai-prompting', no: '11', title: 'Prompting', track: 'Literacy',
+    id: 'ai-prompting', no: '05', title: 'Prompting', track: 'Literacy',
     color: '#1f7a8c', status: 'live',
     note: 'Five modules on the one skill that improves every other use of AI — built on before-and-after examples rather than abstract advice.',
     view: { type: 'home', courseId: 'ai-prompting' },
   },
   {
-    id: 'ai-agents', no: '12', title: 'Agent Engineering', track: 'Build · Test · Secure',
+    id: 'ai-agents', no: '07', title: 'Agent Engineering', track: 'Build · Test · Secure',
     color: '#5d5045', status: 'live',
     note: 'Five modules on the loop, context engineering, tool design, reliability, and human oversight. Promotes the old Agentic AI field notes into a full course.',
     view: { type: 'home', courseId: 'ai-agents' },
@@ -127,8 +120,8 @@ const ENTRIES: CourseEntry[] = [
 ];
 
 const PLANNED_COURSES = [
-  { no: '10', title: 'AI for Educators', track: 'Vertical', color: '#3f8a5e', target: 'TBD', note: 'Assessment design, academic honesty, and using AI to teach rather than to grade.' },
-  { no: '11', title: 'AI for Finance', track: 'Vertical', color: '#b78320', target: 'TBD', note: 'Risk models, fraud detection, and what regulators expect you to be able to explain.' },
+  { no: '13', title: 'AI for Educators', track: 'Vertical', color: '#3f8a5e', target: 'TBD', note: 'Assessment design, academic honesty, and using AI to teach rather than to grade.' },
+  { no: '14', title: 'AI for Finance', track: 'Vertical', color: '#b78320', target: 'TBD', note: 'Risk models, fraud detection, and what regulators expect you to be able to explain.' },
 ];
 
 const PLANNED_FEATURES = [

@@ -199,20 +199,6 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId,
               <ModuleList courseId={c.id} />
             </React.Fragment>
           ))}
-          <button
-            onClick={() => { setView({ type: 'industry' }); setOpen(false); }}
-            className={`w-full text-left px-3 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition border ${
-              view.type === 'industry'
-                ? 'bg-blue-600 text-white border-transparent'
-                : `${UNIFIED} border`
-            }`}
-          >
-            <Briefcase className="w-4 h-4 text-blue-400 flex-shrink-0" />
-            <span className="flex-1 min-w-0">
-              <span className="block font-semibold leading-tight">AI in the Industry</span>
-              <span className="text-xs text-slate-400">Products · providers · use cases</span>
-            </span>
-          </button>
 
           {/* ── AI FOR CYBERSECURITY ── */}
           <div className="pt-3 pb-1 px-3 text-xs uppercase tracking-wider text-slate-500 font-semibold">AI for Cybersecurity</div>
