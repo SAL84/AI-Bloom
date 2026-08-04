@@ -71,8 +71,8 @@ If you are neither: you no longer need permission to build software. Try describ
 
 The AI Learning Hub is a free AI-literacy library with twelve courses, and two of them pick up exactly where this post leaves off.
 
-**[Vibecoding: Build Your Idea with AI](/)** is for non-engineers: it walks you through turning an idea into a working prototype by describing it to AI, and — just as important — teaches you to understand what you have actually built and where you still need a professional.
+**[Vibecoding: Build Your Idea with AI](/courses/ai-vibecoding/)** is for non-engineers: it walks you through turning an idea into a working prototype by describing it to AI, and — just as important — teaches you to understand what you have actually built and where you still need a professional.
 
-**[Agent Engineering: Building the Harness](/)** is for engineers moving toward where the field is going: it covers the scaffolding — loops, context, tools — that turns an AI model into a system that can work reliably without a human watching every step.
+**[Agent Engineering: Building the Harness](/courses/ai-agents/)** is for engineers moving toward where the field is going: it covers the scaffolding — loops, context, tools — that turns an AI model into a system that can work reliably without a human watching every step.
 
 Both are free. Pick the one that matches which side of this story you are on.

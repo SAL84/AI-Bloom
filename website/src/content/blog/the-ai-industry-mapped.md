@@ -65,4 +65,4 @@ The map also explains why "who is winning AI?" has no single answer: a company c
 
 ## Where to go deeper
 
-If the vocabulary here felt new, [AI Essentials](/) is the foundation course: what an LLM is and isn't, without the marketing. If you want the machinery underneath these categories — how models are trained, served, and evaluated — [AI Deep Dive](/) goes to practitioner depth. Both are free, like everything on the AI Learning Hub.
+If the vocabulary here felt new, [AI Essentials](/courses/ai-essentials/) is the foundation course: what an LLM is and isn't, without the marketing. If you want the machinery underneath these categories — how models are trained, served, and evaluated — [AI Deep Dive](/courses/ai-deep-dive/) goes to practitioner depth. Both are free, like everything on the AI Learning Hub.

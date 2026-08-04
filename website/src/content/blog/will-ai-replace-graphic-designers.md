@@ -60,8 +60,8 @@ The job title "graphic designer" will survive. The version of the job that meant
 
 Everything above gets easier to navigate when you understand what these tools actually are and how to get reliable results out of them. Two free courses on this site cover exactly that.
 
-**[AI Essentials](/)** is the foundation: what AI actually is and how it works under the hood, from the basics through how modern AI agents think and act — built for any professional, no technical background needed.
+**[AI Essentials](/courses/ai-essentials/)** is the foundation: what AI actually is and how it works under the hood, from the basics through how modern AI agents think and act — built for any professional, no technical background needed.
 
-**[Prompting: Getting What You Want From AI](/)** teaches the one skill that improves everything else you do with these tools: what a prompt really is, how to build one, and what to do when the answer comes back wrong.
+**[Prompting: Getting What You Want From AI](/courses/ai-prompting/)** teaches the one skill that improves everything else you do with these tools: what a prompt really is, how to build one, and what to do when the answer comes back wrong.
 
 Both are free, and both were written for people who'd rather understand the change than be surprised by it.

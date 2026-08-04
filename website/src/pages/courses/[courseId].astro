@@ -1,0 +1,59 @@
+---
+import { COURSES } from '../../data/modules';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+export function getStaticPaths() {
+  return Object.keys(COURSES).map((courseId) => ({ params: { courseId } }));
+}
+
+const { courseId } = Astro.params;
+const course = COURSES[courseId as keyof typeof COURSES];
+const lessonCount = course.modules.reduce((n, m) => n + m.lessons.length, 0);
+const description = course.subtitle.length <= 155
+  ? course.subtitle
+  : course.subtitle.slice(0, 152) + '…';
+---
+
+<BlogLayout title={course.title} description={description}>
+  <article>
+    <div class="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-4">
+      ◆ Free course · {course.modules.length} modules · {lessonCount} lessons
+    </div>
+    <h1 class="font-studio-display text-[34px] sm:text-[44px] text-studio-ink font-normal tracking-[-0.6px] leading-[1.08] mb-3" style="text-wrap: balance">
+      {course.title}
+    </h1>
+    <p class="font-studio-serif italic text-[17px] lg:text-[18px] text-studio-ink-dim leading-[1.5] mb-7">
+      {course.subtitle}
+    </p>
+
+    <a href="/" class="inline-block font-studio-sans text-[14px] font-medium text-white px-5 py-2.5 rounded-full no-underline hover:opacity-90 transition-opacity mb-10" style="background: #b85c3a">
+      Read it in the library →
+    </a>
+
+    <div class="divide-y divide-studio-rule border-t border-studio-rule">
+      {course.modules.map((mod, i) => (
+        <section class="py-7">
+          <div class="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1.2px] uppercase mb-2">
+            Module {i + 1} · {mod.lessons.length} lessons
+          </div>
+          <h2 class="font-studio-display text-[24px] sm:text-[27px] text-studio-ink font-normal tracking-[-0.4px] leading-[1.15] m-0 mb-2">
+            {mod.title}
+          </h2>
+          <p class="font-studio-sans text-[14px] text-studio-ink-dim leading-[1.6] m-0 mb-4">{mod.summary}</p>
+          <ol class="m-0 pl-5 font-studio-sans text-[14px] text-studio-ink leading-[1.9]">
+            {mod.lessons.map((lesson) => (
+              <li>{lesson.title}</li>
+            ))}
+          </ol>
+        </section>
+      ))}
+    </div>
+
+    <div class="mt-8 px-5 py-4 bg-studio-paper border border-studio-rule rounded-[4px]">
+      <p class="font-studio-sans text-[13.5px] text-studio-ink-dim leading-[1.6] m-0">
+        Every lesson is free, with no sign-up. Reading happens in the
+        <a href="/" class="text-studio-ink underline underline-offset-2">library</a>, where your progress is saved on your device.
+      </p>
+    </div>
+  </article>
+</BlogLayout>
