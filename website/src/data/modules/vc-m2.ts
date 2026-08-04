@@ -10,6 +10,7 @@ const vcM2: CourseModule = {
       id: 'vc2l1',
       title: 'Writing a Spec in Plain Language',
       sectionLabel: 'Describing What You Want',
+      diagram: 'PlainLanguageSpec',
       slides: [
         {
           heading: 'Three Questions That Are Your Whole Spec',
@@ -56,6 +57,7 @@ const vcM2: CourseModule = {
     {
       id: 'vc2l2',
       title: 'One Thing at a Time',
+      diagram: 'OneThingAtATime',
       slides: [
         {
           heading: 'Why Big Requests Fail',
@@ -92,6 +94,7 @@ const vcM2: CourseModule = {
     {
       id: 'vc2l3',
       title: 'Describing Screens and Flows',
+      diagram: 'ScreensAndFlows',
       slides: [
         {
           heading: 'Describe It Like a Room',
@@ -128,6 +131,7 @@ const vcM2: CourseModule = {
     {
       id: 'vc2l4',
       title: 'When It Is Not What You Pictured',
+      diagram: 'NotWhatYouPictured',
       slides: [
         {
           heading: 'This Is Normal, Not Failure',
@@ -164,6 +168,7 @@ const vcM2: CourseModule = {
     {
       id: 'vc2l5',
       title: 'Iterating by Describing the Gap',
+      diagram: 'DescribeTheGap',
       slides: [
         {
           heading: 'Describe the Gap, Not the Verdict',

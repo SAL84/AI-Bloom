@@ -10,6 +10,7 @@ const vcM3: CourseModule = {
       id: 'vc3l1',
       title: 'It Will Break, and That Is Normal',
       sectionLabel: 'The Reality',
+      diagram: 'BreakingIsNormal',
       slides: [
         {
           heading: 'The Feeling Is Part of the Job',
@@ -46,6 +47,7 @@ const vcM3: CourseModule = {
     {
       id: 'vc3l2',
       title: 'Reading an Error Message',
+      diagram: 'ReadingErrors',
       slides: [
         {
           heading: 'You Do Not Need to Understand It',
@@ -92,6 +94,7 @@ const vcM3: CourseModule = {
     {
       id: 'vc3l3',
       title: 'Giving the AI What It Needs',
+      diagram: 'GivingAIContext',
       slides: [
         {
           heading: 'The Three-Part Report',
@@ -128,6 +131,7 @@ const vcM3: CourseModule = {
     {
       id: 'vc3l4',
       title: 'The Doom Loop',
+      diagram: 'DoomLoop',
       slides: [
         {
           heading: 'How It Starts',
@@ -216,6 +220,7 @@ const vcM3: CourseModule = {
     {
       id: 'vc3l5',
       title: 'When the Tool Is Wrong for the Job',
+      diagram: 'WrongTool',
       slides: [
         {
           heading: 'Signals You Have Hit a Ceiling',

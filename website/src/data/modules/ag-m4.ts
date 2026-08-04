@@ -10,6 +10,7 @@ const agM4: CourseModule = {
       id: 'ag4l1',
       title: 'Non-Determinism as an Engineering Constraint',
       sectionLabel: 'Operations',
+      diagram: 'NonDeterminism',
       slides: [
         {
           heading: 'The Same Input Will Not Give the Same Run',
@@ -46,6 +47,7 @@ const agM4: CourseModule = {
     {
       id: 'ag4l2',
       title: 'Tracing a Reconstructable Run',
+      diagram: 'RunTracing',
       slides: [
         {
           heading: 'The Run Is a Tree',
@@ -82,6 +84,7 @@ const agM4: CourseModule = {
     {
       id: 'ag4l3',
       title: 'The Failure Taxonomy You Will Actually Meet',
+      diagram: 'AgentFailureTaxonomy',
       slides: [
         {
           heading: 'Wrong Tool, and Right Tool Wrong Arguments',
@@ -128,6 +131,7 @@ const agM4: CourseModule = {
     {
       id: 'ag4l4',
       title: 'Cost and Latency as Requirements',
+      diagram: 'CostLatencyRequirements',
       slides: [
         {
           heading: 'Write the Numbers Down Before You Build',
@@ -164,6 +168,7 @@ const agM4: CourseModule = {
     {
       id: 'ag4l5',
       title: 'Degrading Gracefully',
+      diagram: 'GracefulDegradation',
       slides: [
         {
           heading: 'Every Run Should Have an Exit That Is Not Success',
@@ -200,6 +205,7 @@ const agM4: CourseModule = {
     {
       id: 'ag4l6',
       title: 'What to Log and What Never To',
+      diagram: 'AgentLogging',
       slides: [
         {
           heading: 'A Trace Contains Everything the Model Saw',

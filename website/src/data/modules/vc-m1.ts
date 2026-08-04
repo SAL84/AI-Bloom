@@ -10,6 +10,7 @@ const vcM1: CourseModule = {
       id: 'vc1l1',
       title: 'What Vibecoding Actually Means',
       sectionLabel: 'Getting Oriented',
+      diagram: 'VibecodingMeaning',
       slides: [
         {
           heading: 'Describing, Not Typing',
@@ -46,6 +47,7 @@ const vcM1: CourseModule = {
     {
       id: 'vc1l2',
       title: 'What You Can Genuinely Build',
+      diagram: 'WhatYouCanBuild',
       slides: [
         {
           heading: 'Pages, Tools and Automations',
@@ -82,6 +84,7 @@ const vcM1: CourseModule = {
     {
       id: 'vc1l3',
       title: 'What Not to Build This Way',
+      diagram: 'WhatNotToBuild',
       slides: [
         {
           heading: 'Money, Health and Safety',
@@ -160,6 +163,7 @@ const vcM1: CourseModule = {
     {
       id: 'vc1l4',
       title: 'Sizing an Idea Down to a Weekend',
+      diagram: 'WeekendSizing',
       slides: [
         {
           heading: 'Find the One Thing',
@@ -196,6 +200,7 @@ const vcM1: CourseModule = {
     {
       id: 'vc1l5',
       title: 'Prototype, Something Friends Can Try, Real Product',
+      diagram: 'PrototypeStages',
       slides: [
         {
           heading: 'Three Different Things',
@@ -232,6 +237,7 @@ const vcM1: CourseModule = {
     {
       id: 'vc1l6',
       title: 'Which Tools, and Why This Page Ages Fastest',
+      diagram: 'VibecodingTools',
       slides: [
         {
           heading: 'Why This Page Ages Fastest',

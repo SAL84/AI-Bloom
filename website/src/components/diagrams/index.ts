@@ -29,6 +29,22 @@ import { CourseScopeSafetyDiagram, DecisionSupportSpectrumDiagram, RegulatoryLan
 import { LegalScopeSafetyDiagram, WhyLegalExposedDiagram, RedliningFlowDiagram, SanctionsPatternDiagram } from './course-diagrams-o';
 import { SupervisingJuniorsDiagram, TechCompetenceDiagram, BillingConsentMalpracticeDiagram } from './course-diagrams-p';
 import { SOCTriageScenarioDiagram, SOCBreachScenarioDiagram, SOCPatchScenarioDiagram } from '../course/agentic/SOCScenarioDiagrams';
+import { LoopOwnershipDiagram, RunTerminationDiagram, AgentBudgetsDiagram, StuckAgentDetectionDiagram, ScriptVsAgentDiagram } from './course-diagrams-q';
+import { ContextAssemblyDiagram, ContextCurationDiagram, ContextOrderingDiagram, ContextCompactionDiagram, MemoryLifetimesDiagram } from './course-diagrams-r';
+import { CacheAwareLayoutDiagram, ToolApiDesignDiagram, ToolSchemasDiagram, ToolReturnRecoveryDiagram, ToolErrorsSideEffectsDiagram } from './course-diagrams-s';
+import { LoopVerificationDiagram, SubAgentDelegationDiagram, NonDeterminismDiagram, RunTracingDiagram, AgentFailureTaxonomyDiagram } from './course-diagrams-t';
+import { CostLatencyRequirementsDiagram, GracefulDegradationDiagram, AgentLoggingDiagram, ApprovalGateDesignDiagram, EscalationOutcomeDiagram } from './course-diagrams-u';
+import { RunPresentationDiagram, TrustCurveDiagram, OversightAtVolumeDiagram, ForbiddenActionsDiagram } from './course-diagrams-v';
+import { VibecodingMeaningDiagram, WhatYouCanBuildDiagram, WhatNotToBuildDiagram, WeekendSizingDiagram, PrototypeStagesDiagram } from './course-diagrams-w';
+import { VibecodingToolsDiagram, PlainLanguageSpecDiagram, OneThingAtATimeDiagram, ScreensAndFlowsDiagram, NotWhatYouPicturedDiagram } from './course-diagrams-x';
+import { DescribeTheGapDiagram, BreakingIsNormalDiagram, ReadingErrorsDiagram, GivingAIContextDiagram, DoomLoopDiagram } from './course-diagrams-y';
+import { WrongToolDiagram, GoodLooksLikeDiagram, WholeListEveryTimeDiagram, TestWithOthersDiagram, WorkedWhenITriedDiagram } from './course-diagrams-z';
+import { AIFeatureWrongDiagram, OtherPeoplesDataDiagram, SecretsAndKeysDiagram, RunawayCostsDiagram, WorksOnMyMachineDiagram, UnreadableCodeDiagram } from './course-diagrams-aa';
+import { ClassicThreatModelsDiagram, AIAttackSurfaceMapDiagram, UntrustedModelBoundaryDiagram, LLMDataFlowDiagram } from './course-diagrams-ab';
+import { MitreAtlasDiagram, AcceptedRisksDiagram, PromptInjectionDepthDiagram, IndirectInjectionDiagram, LethalTrifectaDiagram } from './course-diagrams-ac';
+import { ToolPoisoningDiagram, MemoryContaminationDiagram, ExcessiveAgencyDiagram, AgentLeastPrivilegeDiagram, SandboxEgressDiagram } from './course-diagrams-ad';
+import { IrreversibleActionGatesDiagram, StructuredOutputControlDiagram, GuardrailModelsDiagram, DefenseInDepthAIDiagram, AuthorisedExerciseDiagram } from './course-diagrams-ae';
+import { SecurityRegressionCIDiagram, AutoAdversarialTestingDiagram, AIIncidentDetectionDiagram, ModelIncidentResponseDiagram, PostIncidentGovernanceDiagram } from './course-diagrams-af';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -183,4 +199,83 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   SOCTriageScenario: SOCTriageScenarioDiagram,
   SOCBreachScenario: SOCBreachScenarioDiagram,
   SOCPatchScenario: SOCPatchScenarioDiagram,
+  LoopOwnership: LoopOwnershipDiagram,
+  RunTermination: RunTerminationDiagram,
+  AgentBudgets: AgentBudgetsDiagram,
+  StuckAgentDetection: StuckAgentDetectionDiagram,
+  ScriptVsAgent: ScriptVsAgentDiagram,
+  ContextAssembly: ContextAssemblyDiagram,
+  ContextCuration: ContextCurationDiagram,
+  ContextOrdering: ContextOrderingDiagram,
+  ContextCompaction: ContextCompactionDiagram,
+  MemoryLifetimes: MemoryLifetimesDiagram,
+  CacheAwareLayout: CacheAwareLayoutDiagram,
+  ToolApiDesign: ToolApiDesignDiagram,
+  ToolSchemas: ToolSchemasDiagram,
+  ToolReturnRecovery: ToolReturnRecoveryDiagram,
+  ToolErrorsSideEffects: ToolErrorsSideEffectsDiagram,
+  LoopVerification: LoopVerificationDiagram,
+  SubAgentDelegation: SubAgentDelegationDiagram,
+  NonDeterminism: NonDeterminismDiagram,
+  RunTracing: RunTracingDiagram,
+  AgentFailureTaxonomy: AgentFailureTaxonomyDiagram,
+  CostLatencyRequirements: CostLatencyRequirementsDiagram,
+  GracefulDegradation: GracefulDegradationDiagram,
+  AgentLogging: AgentLoggingDiagram,
+  ApprovalGateDesign: ApprovalGateDesignDiagram,
+  EscalationOutcome: EscalationOutcomeDiagram,
+  RunPresentation: RunPresentationDiagram,
+  TrustCurve: TrustCurveDiagram,
+  OversightAtVolume: OversightAtVolumeDiagram,
+  ForbiddenActions: ForbiddenActionsDiagram,
+  VibecodingMeaning: VibecodingMeaningDiagram,
+  WhatYouCanBuild: WhatYouCanBuildDiagram,
+  WhatNotToBuild: WhatNotToBuildDiagram,
+  WeekendSizing: WeekendSizingDiagram,
+  PrototypeStages: PrototypeStagesDiagram,
+  VibecodingTools: VibecodingToolsDiagram,
+  PlainLanguageSpec: PlainLanguageSpecDiagram,
+  OneThingAtATime: OneThingAtATimeDiagram,
+  ScreensAndFlows: ScreensAndFlowsDiagram,
+  NotWhatYouPictured: NotWhatYouPicturedDiagram,
+  DescribeTheGap: DescribeTheGapDiagram,
+  BreakingIsNormal: BreakingIsNormalDiagram,
+  ReadingErrors: ReadingErrorsDiagram,
+  GivingAIContext: GivingAIContextDiagram,
+  DoomLoop: DoomLoopDiagram,
+  WrongTool: WrongToolDiagram,
+  GoodLooksLike: GoodLooksLikeDiagram,
+  WholeListEveryTime: WholeListEveryTimeDiagram,
+  TestWithOthers: TestWithOthersDiagram,
+  WorkedWhenITried: WorkedWhenITriedDiagram,
+  AIFeatureWrong: AIFeatureWrongDiagram,
+  OtherPeoplesData: OtherPeoplesDataDiagram,
+  SecretsAndKeys: SecretsAndKeysDiagram,
+  RunawayCosts: RunawayCostsDiagram,
+  WorksOnMyMachine: WorksOnMyMachineDiagram,
+  UnreadableCode: UnreadableCodeDiagram,
+  ClassicThreatModels: ClassicThreatModelsDiagram,
+  AIAttackSurfaceMap: AIAttackSurfaceMapDiagram,
+  UntrustedModelBoundary: UntrustedModelBoundaryDiagram,
+  LLMDataFlow: LLMDataFlowDiagram,
+  MitreAtlas: MitreAtlasDiagram,
+  AcceptedRisks: AcceptedRisksDiagram,
+  PromptInjectionDepth: PromptInjectionDepthDiagram,
+  IndirectInjection: IndirectInjectionDiagram,
+  LethalTrifecta: LethalTrifectaDiagram,
+  ToolPoisoning: ToolPoisoningDiagram,
+  MemoryContamination: MemoryContaminationDiagram,
+  ExcessiveAgency: ExcessiveAgencyDiagram,
+  AgentLeastPrivilege: AgentLeastPrivilegeDiagram,
+  SandboxEgress: SandboxEgressDiagram,
+  IrreversibleActionGates: IrreversibleActionGatesDiagram,
+  StructuredOutputControl: StructuredOutputControlDiagram,
+  GuardrailModels: GuardrailModelsDiagram,
+  DefenseInDepthAI: DefenseInDepthAIDiagram,
+  AuthorisedExercise: AuthorisedExerciseDiagram,
+  SecurityRegressionCI: SecurityRegressionCIDiagram,
+  AutoAdversarialTesting: AutoAdversarialTestingDiagram,
+  AIIncidentDetection: AIIncidentDetectionDiagram,
+  ModelIncidentResponse: ModelIncidentResponseDiagram,
+  PostIncidentGovernance: PostIncidentGovernanceDiagram,
 };

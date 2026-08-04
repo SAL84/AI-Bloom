@@ -10,6 +10,7 @@ const agM2: CourseModule = {
       id: 'ag2l1',
       title: 'Context Is Assembled, Not Accumulated',
       sectionLabel: 'Assembly',
+      diagram: 'ContextAssembly',
       slides: [
         {
           heading: 'Make It a Function',
@@ -46,6 +47,7 @@ const agM2: CourseModule = {
     {
       id: 'ag2l2',
       title: 'What Earns Its Place',
+      diagram: 'ContextCuration',
       slides: [
         {
           heading: 'Six Claimants, Different Justifications',
@@ -82,6 +84,7 @@ const agM2: CourseModule = {
     {
       id: 'ag2l3',
       title: 'Ordering, Recency and Attention',
+      diagram: 'ContextOrdering',
       slides: [
         {
           heading: 'Position Is Not Neutral',
@@ -118,6 +121,7 @@ const agM2: CourseModule = {
     {
       id: 'ag2l4',
       title: 'Compaction Without Losing the Thread',
+      diagram: 'ContextCompaction',
       slides: [
         {
           heading: 'Compaction Is a Protocol, Not a Summary',
@@ -154,6 +158,7 @@ const agM2: CourseModule = {
     {
       id: 'ag2l5',
       title: 'Memory by Lifetime',
+      diagram: 'MemoryLifetimes',
       slides: [
         {
           heading: 'Three Lifetimes, Three Different Problems',
@@ -190,6 +195,7 @@ const agM2: CourseModule = {
     {
       id: 'ag2l6',
       title: 'Cache-Aware Layout and What Actually Moves Quality',
+      diagram: 'CacheAwareLayout',
       slides: [
         {
           heading: 'Stable Prefix, Volatile Suffix',

@@ -10,6 +10,7 @@ const agM3: CourseModule = {
       id: 'ag3l1',
       title: 'Tool Design Is API Design',
       sectionLabel: 'Tools',
+      diagram: 'ToolApiDesign',
       slides: [
         {
           heading: 'Your Consumer Cannot Ask Questions',
@@ -46,6 +47,7 @@ const agM3: CourseModule = {
     {
       id: 'ag3l2',
       title: 'Descriptions and Schemas the Model Actually Reads',
+      diagram: 'ToolSchemas',
       slides: [
         {
           heading: 'A Badly Described Tool Is Worse Than No Tool',
@@ -127,6 +129,7 @@ const agM3: CourseModule = {
     {
       id: 'ag3l3',
       title: 'Return Values That Enable Recovery',
+      diagram: 'ToolReturnRecovery',
       slides: [
         {
           heading: 'The Return Is the Next Prompt',
@@ -163,6 +166,7 @@ const agM3: CourseModule = {
     {
       id: 'ag3l4',
       title: 'Errors, Retries and Side Effects',
+      diagram: 'ToolErrorsSideEffects',
       slides: [
         {
           heading: 'Retry Below the Loop, Not Inside It',
@@ -199,6 +203,7 @@ const agM3: CourseModule = {
     {
       id: 'ag3l5',
       title: 'Verification Inside the Loop',
+      diagram: 'LoopVerification',
       slides: [
         {
           heading: 'Build the Check In, Do Not Request It',
@@ -235,6 +240,7 @@ const agM3: CourseModule = {
     {
       id: 'ag3l6',
       title: 'Sub-Agents and the Cost of Delegation',
+      diagram: 'SubAgentDelegation',
       slides: [
         {
           heading: 'Delegation Buys Context, Not Intelligence',

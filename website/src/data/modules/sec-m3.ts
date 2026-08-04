@@ -10,6 +10,7 @@ const secM3: CourseModule = {
       id: 'sec3l1',
       title: 'Least Privilege for Agents',
       sectionLabel: 'Controls',
+      diagram: 'AgentLeastPrivilege',
       slides: [
         {
           heading: 'Design the Toolset as a Permission Set',
@@ -91,6 +92,7 @@ const secM3: CourseModule = {
     {
       id: 'sec3l2',
       title: 'Sandboxing and Egress Control',
+      diagram: 'SandboxEgress',
       slides: [
         {
           heading: 'Contain Execution Before You Trust Behaviour',
@@ -127,6 +129,7 @@ const secM3: CourseModule = {
     {
       id: 'sec3l3',
       title: 'Approval Gates on Irreversible Actions',
+      diagram: 'IrreversibleActionGates',
       slides: [
         {
           heading: 'Gate by Consequence, Not by Category',
@@ -173,6 +176,7 @@ const secM3: CourseModule = {
     {
       id: 'sec3l4',
       title: 'Structured Output and Constrained Decoding',
+      diagram: 'StructuredOutputControl',
       slides: [
         {
           heading: 'Constraining the Shape of What the Model Can Emit',
@@ -209,6 +213,7 @@ const secM3: CourseModule = {
     {
       id: 'sec3l5',
       title: 'Guardrail Models and Their False-Positive Cost',
+      diagram: 'GuardrailModels',
       slides: [
         {
           heading: 'What a Guardrail Layer Is For',
@@ -245,6 +250,7 @@ const secM3: CourseModule = {
     {
       id: 'sec3l6',
       title: 'Identity, Audit Trails, and Defence in Depth',
+      diagram: 'DefenseInDepthAI',
       slides: [
         {
           heading: 'Agents Need Identities, Not Borrowed Ones',

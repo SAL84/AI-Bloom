@@ -10,6 +10,7 @@ const secM4: CourseModule = {
       id: 'sec4l1',
       title: 'Running an Authorised Exercise',
       sectionLabel: 'Assurance',
+      diagram: 'AuthorisedExercise',
       slides: [
         {
           heading: 'Authorisation and Scope Come First',
@@ -102,6 +103,7 @@ const secM4: CourseModule = {
     {
       id: 'sec4l2',
       title: 'Security Regression Tests in CI',
+      diagram: 'SecurityRegressionCI',
       slides: [
         {
           heading: 'Every Finding Becomes a Test',
@@ -148,6 +150,7 @@ const secM4: CourseModule = {
     {
       id: 'sec4l3',
       title: 'Automated Adversarial Testing and Its Limits',
+      diagram: 'AutoAdversarialTesting',
       slides: [
         {
           heading: 'What Automation Does Well',
@@ -184,6 +187,7 @@ const secM4: CourseModule = {
     {
       id: 'sec4l4',
       title: 'Detecting an AI Incident in Production',
+      diagram: 'AIIncidentDetection',
       slides: [
         {
           heading: 'What an AI Incident Looks Like',
@@ -220,6 +224,7 @@ const secM4: CourseModule = {
     {
       id: 'sec4l5',
       title: 'Response When the Failure Is a Model',
+      diagram: 'ModelIncidentResponse',
       slides: [
         {
           heading: 'Containment Actions That Exist Here',
@@ -266,6 +271,7 @@ const secM4: CourseModule = {
     {
       id: 'sec4l6',
       title: 'Post-Incident Review and Governance',
+      diagram: 'PostIncidentGovernance',
       slides: [
         {
           heading: 'Reviewing Without Blaming the Model',

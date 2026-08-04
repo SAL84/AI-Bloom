@@ -10,6 +10,7 @@ const vcM4: CourseModule = {
       id: 'vc4l1',
       title: 'Write Down What Good Looks Like First',
       sectionLabel: 'Knowing What You Have',
+      diagram: 'GoodLooksLike',
       slides: [
         {
           heading: 'Five to Ten Sentences',
@@ -56,6 +57,7 @@ const vcM4: CourseModule = {
     {
       id: 'vc4l2',
       title: 'Run the Whole List Every Time',
+      diagram: 'WholeListEveryTime',
       slides: [
         {
           heading: 'The Change You Made Is Not the Only Thing That Changed',
@@ -92,6 +94,7 @@ const vcM4: CourseModule = {
     {
       id: 'vc4l3',
       title: 'Test With Someone Who Is Not You',
+      diagram: 'TestWithOthers',
       slides: [
         {
           heading: 'You Cannot Test Your Own Thing',
@@ -128,6 +131,7 @@ const vcM4: CourseModule = {
     {
       id: 'vc4l4',
       title: '"It Worked When I Tried It"',
+      diagram: 'WorkedWhenITried',
       slides: [
         {
           heading: 'One Success Is Not Evidence',
@@ -164,6 +168,7 @@ const vcM4: CourseModule = {
     {
       id: 'vc4l5',
       title: 'When the AI Inside Your App Can Be Wrong',
+      diagram: 'AIFeatureWrong',
       slides: [
         {
           heading: 'Confidently Wrong Looks Exactly Like Right',

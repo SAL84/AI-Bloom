@@ -10,6 +10,7 @@ const secM2: CourseModule = {
       id: 'sec2l1',
       title: 'Prompt Injection at Engineering Depth',
       sectionLabel: 'Mechanisms',
+      diagram: 'PromptInjectionDepth',
       slides: [
         {
           heading: 'Why the Model Cannot Separate Instruction from Data',
@@ -56,6 +57,7 @@ const secM2: CourseModule = {
     {
       id: 'sec2l2',
       title: 'Indirect Injection and the Ingestion Inventory',
+      diagram: 'IndirectInjection',
       slides: [
         {
           heading: 'The Channel Inventory Is the Work',
@@ -92,6 +94,7 @@ const secM2: CourseModule = {
     {
       id: 'sec2l3',
       title: 'The Lethal Trifecta as a Design Test',
+      diagram: 'LethalTrifecta',
       slides: [
         {
           heading: 'Three Properties, Applied Per Component',
@@ -173,6 +176,7 @@ const secM2: CourseModule = {
     {
       id: 'sec2l4',
       title: 'Tool Poisoning and the MCP Supply Chain',
+      diagram: 'ToolPoisoning',
       slides: [
         {
           heading: 'The Tool Definition Is Prompt Content',
@@ -219,6 +223,7 @@ const secM2: CourseModule = {
     {
       id: 'sec2l5',
       title: 'Memory and Context Contamination',
+      diagram: 'MemoryContamination',
       slides: [
         {
           heading: 'Persistence Turns an Event into a Condition',
@@ -265,6 +270,7 @@ const secM2: CourseModule = {
     {
       id: 'sec2l6',
       title: 'Excessive Agency and Exfiltration Paths',
+      diagram: 'ExcessiveAgency',
       slides: [
         {
           heading: 'Three Dimensions of Excessive Agency',

@@ -10,6 +10,7 @@ const agM5: CourseModule = {
       id: 'ag5l1',
       title: 'Designing a Gate Someone Actually Uses',
       sectionLabel: 'Oversight',
+      diagram: 'ApprovalGateDesign',
       slides: [
         {
           heading: 'A Gate Is an Interruption You Are Asking Someone to Absorb',
@@ -46,6 +47,7 @@ const agM5: CourseModule = {
     {
       id: 'ag5l2',
       title: 'Escalation as a First-Class Outcome',
+      diagram: 'EscalationOutcome',
       slides: [
         {
           heading: 'Asking for Help Should Be an Available Action',
@@ -82,6 +84,7 @@ const agM5: CourseModule = {
     {
       id: 'ag5l3',
       title: 'Presenting a Run So a Human Can Judge It',
+      diagram: 'RunPresentation',
       slides: [
         {
           heading: 'The Explanation Is Model Output',
@@ -118,6 +121,7 @@ const agM5: CourseModule = {
     {
       id: 'ag5l4',
       title: 'The Trust Curve',
+      diagram: 'TrustCurve',
       slides: [
         {
           heading: 'Autonomy Is Widened, Not Chosen',
@@ -199,6 +203,7 @@ const agM5: CourseModule = {
     {
       id: 'ag5l5',
       title: 'The Honest Limits of Oversight at Volume',
+      diagram: 'OversightAtVolume',
       slides: [
         {
           heading: 'At Volume, Humans Cannot Be the Control',
@@ -235,6 +240,7 @@ const agM5: CourseModule = {
     {
       id: 'ag5l6',
       title: 'Writing Down What the Agent May Not Do',
+      diagram: 'ForbiddenActions',
       slides: [
         {
           heading: 'The Prohibition List Is a Real Artefact',

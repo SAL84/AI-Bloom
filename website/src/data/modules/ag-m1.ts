@@ -10,6 +10,7 @@ const agM1: CourseModule = {
       id: 'ag1l1',
       title: 'The Loop Is Yours, Not the Model\'s',
       sectionLabel: 'Control flow',
+      diagram: 'LoopOwnership',
       slides: [
         {
           heading: 'Who Actually Iterates',
@@ -56,6 +57,7 @@ const agM1: CourseModule = {
     {
       id: 'ag1l2',
       title: 'Ending a Run on Purpose',
+      diagram: 'RunTermination',
       slides: [
         {
           heading: 'Until It Is Done Is the Most Common Bug',
@@ -102,6 +104,7 @@ const agM1: CourseModule = {
     {
       id: 'ag1l3',
       title: 'Budgets and Cost Ceilings',
+      diagram: 'AgentBudgets',
       slides: [
         {
           heading: 'Four Budgets, Not One',
@@ -148,6 +151,7 @@ const agM1: CourseModule = {
     {
       id: 'ag1l4',
       title: 'Detecting a Stuck or Looping Agent',
+      diagram: 'StuckAgentDetection',
       slides: [
         {
           heading: 'Stuck Looks Exactly Like Working',
@@ -194,6 +198,7 @@ const agM1: CourseModule = {
     {
       id: 'ag1l5',
       title: 'When a Script Beats an Agent',
+      diagram: 'ScriptVsAgent',
       slides: [
         {
           heading: 'Put the Model Where the Variance Is',

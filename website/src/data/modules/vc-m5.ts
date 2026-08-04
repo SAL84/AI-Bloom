@@ -10,6 +10,7 @@ const vcM5: CourseModule = {
       id: 'vc5l1',
       title: 'Other People\'s Data',
       sectionLabel: 'Duty of Care',
+      diagram: 'OtherPeoplesData',
       slides: [
         {
           heading: 'The Moment the Stakes Change',
@@ -56,6 +57,7 @@ const vcM5: CourseModule = {
     {
       id: 'vc5l2',
       title: 'Secrets and Keys, Plainly',
+      diagram: 'SecretsAndKeys',
       slides: [
         {
           heading: 'What a Key Actually Is',
@@ -92,6 +94,7 @@ const vcM5: CourseModule = {
     {
       id: 'vc5l3',
       title: 'Costs That Run Away While You Sleep',
+      diagram: 'RunawayCosts',
       slides: [
         {
           heading: 'Pay-Per-Use Has No Ceiling',
@@ -128,6 +131,7 @@ const vcM5: CourseModule = {
     {
       id: 'vc5l4',
       title: 'What "It Works on My Machine" Hides',
+      diagram: 'WorksOnMyMachine',
       slides: [
         {
           heading: 'Your Machine Is Not Neutral',
@@ -164,6 +168,7 @@ const vcM5: CourseModule = {
     {
       id: 'vc5l5',
       title: 'Code You Cannot Read, and When to Stop',
+      diagram: 'UnreadableCode',
       slides: [
         {
           heading: 'The Honest Version of the Risk',

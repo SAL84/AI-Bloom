@@ -10,6 +10,7 @@ const secM1: CourseModule = {
       id: 'sec1l1',
       title: 'Why Classic Threat Models Miss AI',
       sectionLabel: 'Foundations',
+      diagram: 'ClassicThreatModels',
       slides: [
         {
           heading: 'The Assumptions That Break',
@@ -101,6 +102,7 @@ const secM1: CourseModule = {
     {
       id: 'sec1l2',
       title: 'Mapping the Attack Surface',
+      diagram: 'AIAttackSurfaceMap',
       slides: [
         {
           heading: 'Seven Components, Enumerated Separately',
@@ -147,6 +149,7 @@ const secM1: CourseModule = {
     {
       id: 'sec1l3',
       title: 'Trust Boundaries When the Model Is Untrusted',
+      diagram: 'UntrustedModelBoundary',
       slides: [
         {
           heading: 'Draw the Boundary Around the Model, Not Behind It',
@@ -193,6 +196,7 @@ const secM1: CourseModule = {
     {
       id: 'sec1l4',
       title: 'Data-Flow Diagramming an LLM Feature',
+      diagram: 'LLMDataFlow',
       slides: [
         {
           heading: 'A Worked Subject',
@@ -239,6 +243,7 @@ const secM1: CourseModule = {
     {
       id: 'sec1l5',
       title: 'Enumerating Techniques with MITRE ATLAS',
+      diagram: 'MitreAtlas',
       slides: [
         {
           heading: 'What ATLAS Actually Gives You',
@@ -285,6 +290,7 @@ const secM1: CourseModule = {
     {
       id: 'sec1l6',
       title: 'Deciding What You Will Not Defend',
+      diagram: 'AcceptedRisks',
       slides: [
         {
           heading: 'Every Threat Model Has an Out-of-Scope List',
