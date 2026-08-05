@@ -254,6 +254,63 @@ const vcM5: CourseModule = {
         },
       ],
     },
+    {
+      id: 'vc5l6',
+      title: 'The Whole Method, Once Through',
+      sectionLabel: 'Capstone',
+      diagram: 'CapstoneWalkthrough',
+      slides: [
+        {
+          heading: 'Sizing It Down: The Weekend Version',
+          body: 'This course handed you a method in pieces. To close, let us walk one idea through the whole of it, start to finish. The idea is deliberately modest: a booking page for a dog-grooming business. Be clear about what this is — a worked example, a teaching device. Nobody built this, no customers appear in it, and no results are claimed for it. Your own project will look different at every step; the method is what transfers. The full idea arrives the way full ideas always do: customer accounts, online payment, text reminders, a loyalty scheme, an app. That is a year of work. Module one\'s move is to find the one sentence with one verb: "a dog owner picks a free slot, and the groomer gets an email." Then the weekend test, written out: "A page where a dog owner picks a free slot and I get an email. The first users are the Saturday regulars. It will teach me whether people will book online at all." Three sentences, one first user, one thing to learn. Everything else is cut, or done by hand.',
+          bullets: [
+            'A worked example, not a story about a real launch — no feedback or numbers are claimed',
+            'The full idea: accounts, payments, reminders, a loyalty scheme, an app — a year of work',
+            'The one sentence: "a dog owner picks a free slot, and the groomer gets an email"',
+            'Payments become an invoice sent by hand; reminders become a note in a calendar',
+          ],
+        },
+        {
+          heading: 'The Spec and the First Build Loop',
+          body: 'Module two says answer three questions in plain sentences, so answer them for this idea. Who is it for? A dog owner on a phone, in a hurry, not technical. What must it do? Show the next two weeks of open slots, let them pick one, take a name and an email, show a confirmation, and email the groomer. What must it never do? Show one customer another customer\'s booking, let the same slot be booked twice, or ask for anything beyond a name and an email. Paste that in, then ask for one small piece: a page with the slots on screen, nothing working yet. Then the booking action end to end. Then the wrong cases. Then the looks — last. A realistic first result: a calendar of the entire year, plus a phone-number field nobody asked for. The useful reply describes the gap, not a verdict: "The page shows every week of the year, but it should show only the next two weeks. Remove the phone-number field. Keep everything else." Then save a copy of the version that works, and only then ask for the next thing.',
+          bullets: [
+            'Who it is for, what it must do, what it must never do — written before any tool opens',
+            'Build order: something on screen, the core action end to end, wrong cases, then looks',
+            'React with a gap, not a verdict: what I see, what I expected, the difference',
+            'Save a working copy after every step that passes — this matters in the next slide',
+          ],
+        },
+        {
+          heading: 'When It Broke: The Bad Afternoon',
+          body: 'Now give the example its bad afternoon, because a real build would have one. Suppose you ask for a small change — a thank-you message after booking — and the slot calendar goes blank. In the browser console sits a red line: "TypeError: Cannot read properties of undefined (reading \'date\')", with a file name and a line number. You do not need to understand it. Module three\'s three-part report is enough: "I pressed Confirm on a Tuesday slot. I expected a thank-you message and an email. Instead the page went blank, and this appeared in the console: [the whole message, pasted]. It worked before the thank-you change." A first fix comes back — the error goes, but now every slot shows as taken. A second fix — the slots return, but Confirm does nothing. Here is the doom-loop near-miss: the tempting move is one more quick fix, stacked on two unverified ones. The rule decided in advance says stop. Go back to the saved copy from before the thank-you message, and ask for the same change in a fresh conversation, spec pasted in, clean. One change, check the whole list, save.',
+          bullets: [
+            'Capture the error exactly — paste all of it, file name and line number included',
+            'What I did, what I expected, what actually happened, and the last change before it broke',
+            'Two fixes that each break something new is the doom loop starting — do not stack a third',
+            'The way out is backwards: the saved working copy, then a fresh conversation with the spec',
+          ],
+        },
+        {
+          heading: 'Is It Good Enough to Share?',
+          body: 'Module four says write the checklist before you trust anything, so write it for this example. Five lines: a dog owner can book a slot and the groomer gets the email within a minute; a taken slot never shows as free; nobody can see anyone else\'s booking; an empty form or a nonsense email is refused with a clear message; it all works on a phone, signed out, in a private window. Run the whole list after every change — the whole list every time, not just the part you touched — then twice in a row, then again tomorrow. Hand it to one friend with a task, "book yourself a slot for next Tuesday", and stay silent while they try. Then this module\'s duty-of-care checks, before the link goes out. Whose data? A name and an email, nothing else — the phone-number field stayed deleted. Which secrets? One email-sending key, living in the platform\'s settings, not in the code. What costs? A cap on the email service and an alert below it. Only then share, with a few forgiving people first. Your project will diverge from this example at every step — that is normal. The example does not transfer. The method does.',
+          bullets: [
+            'A checklist written for this app, including the nevers nobody would ever report',
+            'One friend, one task, and silence — the hesitations are the findings',
+            'Whose data, which secrets, what costs — answered out loud before the link goes out',
+            'Every project diverges from the example at every step; the method is what transfers',
+          ],
+          exercise: {
+            task: 'Run your own idea through the same four stations in one sitting: size it down, write the spec, build one thing at a time, and stop at the gate before anyone else sees it. Fill in the scaffold below on paper before you open any tool.',
+            copyText: 'Station 1 — the weekend version:\n[my idea in one sentence, with exactly one verb]\n\nStation 2 — the three-sentence spec:\nWho it is for: [ ]\nWhat it must do: [ ]\nWhat it must never do: [ ]\n\nStation 3 — my bug report template:\nWhat I did: [ ]\nWhat I expected: [ ]\nWhat actually happened: [paste the whole error]\nLast change before it broke: [ ]\n\nStation 4 — my five-line checklist:\n[the core action works end to end]\n[one thing that must never happen]\n[whose data it holds, and the fields I cut]\n[keys out of the code, spending caps set]\n[tested signed out, on a phone]',
+            selfCheck: [
+              'You have a saved working copy from at least two points during the build',
+              'One person who is not you completed the core action without your help',
+              'You can say out loud what it stores, where the keys live, and what it can cost you',
+            ],
+          },
+        },
+      ],
+    },
   ],
   quiz: [
     {

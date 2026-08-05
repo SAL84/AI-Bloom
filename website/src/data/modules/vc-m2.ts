@@ -52,6 +52,19 @@ const vcM2: CourseModule = {
             'A spec plus a narrow request beats a wish plus a wide one every time',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'You sized your idea down to a weekend at the end of module one. Now write the spec for that version — the document you will paste into every building session from here on.',
+          exercise: {
+            task: 'Fill in the scaffold below for your weekend version, in ordinary sentences, and save it as a file you can paste again later. Spend the most time on the last section.',
+            copyText: 'What it is: [one or two plain sentences]\n\nWho uses it: [one specific person — what they know, what device they are on]\n\nThe screens: [each screen top to bottom, every control, and what pressing it does]\n\nWhat happens when things go wrong: [empty fields, wrong values, pressing a button twice]\n\nWhat it must never do: [the boundaries — who must not see what, what must never happen without you]',
+            selfCheck: [
+            'Someone who has never heard your idea could build a rough version from the spec alone',
+            'The never section has at least two lines in it',
+            'The spec lives in a file you can paste again, not only in a chat window',
+            ],
+          },
+        },
       ],
     },
     {

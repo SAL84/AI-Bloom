@@ -195,6 +195,19 @@ const vcM1: CourseModule = {
             'If you cannot describe it, you cannot prompt for it either',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'Shrinking an idea is a skill you only learn on your own idea. Take the one you keep coming back to and put it through the four cuts, on paper, before you open any tool.',
+          exercise: {
+            task: 'Write your own app idea out four times, each version smaller than the last, using the scaffold below. Do it in writing — the cuts only become real when you can see them.',
+            copyText: 'My full idea: [the whole system, exactly as you picture it — every feature]\n\nThe one action that matters: [one sentence with exactly one verb]\n\nWhat I could fake by hand: [the features you would quietly do yourself for the first twenty users]\n\nThe weekend version: [what it is, who tries it first, what you will learn from it]',
+            selfCheck: [
+            'Your one action fits in a single sentence with a single verb',
+            'At least two features from the full idea moved to the fake-by-hand list',
+            'The weekend version names one real first user and one thing you will learn',
+            ],
+          },
+        },
       ],
     },
     {

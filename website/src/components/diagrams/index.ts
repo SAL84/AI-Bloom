@@ -51,6 +51,7 @@ import { ScalableHumanReviewDiagram, ProductionTestingDiagram, QualityCostLatenc
 import { LLMGovernanceLayersDiagram, AIMisconceptionsDiagram, LLMInfrastructureDiagram } from './course-diagrams-am';
 import { VendorDueDiligenceDiagram, SkepticalDemoDiagram, VendorPushbackDiagram, HonestBusinessCaseDiagram, BuyerSituationsDiagram, SecurityPromptingDiagram } from './course-diagrams-an';
 import { FirstUseCaseDiagram, ProvingPilotDiagram, SOCMetricsDiagram, AnalystRoleShiftDiagram, StagedAutonomyDiagram } from './course-diagrams-ao';
+import { CapstoneWalkthroughDiagram } from './course-diagrams-ap';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -312,4 +313,5 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   SOCMetrics: SOCMetricsDiagram,
   AnalystRoleShift: AnalystRoleShiftDiagram,
   StagedAutonomy: StagedAutonomyDiagram,
+  CapstoneWalkthrough: CapstoneWalkthroughDiagram,
 };

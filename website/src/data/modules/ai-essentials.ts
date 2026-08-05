@@ -113,7 +113,7 @@ const aiEssentials: Course = {
         },
       ],
       quiz: [
-        { q: 'What is the most accurate way to describe AI in everyday life in 2026?', options: ['A future technology people will adopt eventually', 'A substrate already underneath the tools people use daily', 'A specialist tool only for engineers', 'A passing trend driven by marketing'], correct: 1 },
+        { q: 'What is the most accurate way to describe AI in everyday life in 2026?', options: ['A future technology people will adopt eventually', 'A passing trend driven by marketing', 'A specialist tool only for engineers', 'A substrate already underneath the tools people use daily'], correct: 3 },
         ...m1.quiz,
       ],
     },
@@ -246,6 +246,19 @@ const aiEssentials: Course = {
                 'Security: screenshot-based phishing detection, deepfake audio analysis, visual anomaly detection in camera feeds',
                 'Healthcare: medical imaging analysis, lab result interpretation from scanned reports',
               ],
+            },
+            {
+              heading: 'Try It Yourself',
+              body: 'The fastest way to feel what multimodal changes is to stop retyping and start showing. Grab one real image from your day and let the AI read it.',
+              exercise: {
+                task: 'Find one real image from today — a screenshot of a confusing bill, error message, or settings screen, or a photo of a form or whiteboard — and upload it to your AI tool instead of describing it. Ask it to explain what it sees and pull out the details that matter to you.',
+                copyText: 'Here is a [screenshot/photo] of [what it is]. Explain what this shows in plain language, then list:\n1. The key details I should care about\n2. Anything that looks wrong or unusual\n3. Anything you cannot read or are unsure about',
+                selfCheck: [
+                  'The AI correctly identified what the image was without you spelling it out',
+                  'It pulled out at least one detail you would otherwise have retyped by hand',
+                  'You know which parts it read reliably and which you would still verify yourself',
+                ],
+              },
             },
           ],
           roleContent: [
@@ -631,12 +644,12 @@ const aiEssentials: Course = {
         },
       ],
       quiz: [
-        { q: 'What does "multimodal AI" mean?', options: ['AI that runs on multiple servers', 'AI that processes multiple data types such as text, image, and audio', 'AI with multiple personality modes', 'A multi-step prompting technique'], correct: 1 },
+        { q: 'What does "multimodal AI" mean?', options: ['AI that processes multiple data types such as text, image, and audio', 'AI that runs on multiple servers', 'AI with multiple personality modes', 'A multi-step prompting technique'], correct: 0 },
         { q: 'When would you choose a standalone computer vision model over a multimodal LLM?', options: ['When you need language reasoning about what the model sees', 'For high-volume, single-task visual classification at low cost and latency', 'When you want explanation alongside detection', 'For zero-shot generalisation to new visual categories'], correct: 1 },
         { q: 'Which attack type requires multimodal AI to detect and cannot be caught by text-only filters?', options: ['SQL injection', 'Password spraying', 'Visual phishing using spoofed logo images in screenshots', 'Credential stuffing'], correct: 2 },
         { q: 'In a high-volume production NLP pipeline, why might a small fine-tuned classifier beat calling an LLM API?', options: ['LLMs cannot do classification', 'Small specialist models are typically far cheaper and lower-latency than LLM API calls at scale', 'LLMs do not support batching', 'Small models are always more accurate'], correct: 1 },
         { q: 'What does a Vision-Language-Action (VLA) model do that earlier robot controllers did not?', options: ['It compresses video for storage', 'It replaces the GPU with a CPU', 'It takes a natural-language goal plus visual input and outputs robot actions, generalising across tasks', 'It runs only in simulation'], correct: 2 },
-        { q: 'Which is the most honest reason to pick one AI frontier over another?', options: ['It pays the most this quarter', 'Your existing background gives you the largest unfair advantage there', 'Your friends work in that field', 'It is most often mentioned on social media'], correct: 1 },
+        { q: 'Which is the most honest reason to pick one AI frontier over another?', options: ['It pays the most this quarter', 'It is most often mentioned on social media', 'Your friends work in that field', 'Your existing background gives you the largest unfair advantage there'], correct: 3 },
         { q: 'Why is voice the hardest modality to ship well in production AI?', options: ['Speech recognition accuracy is still far below usable levels', 'Voice models cannot run in the cloud', 'Users prefer typing in all situations', 'The whole pipeline — recognition, LLM inference, and synthesis — must fit a roughly one-second latency budget for conversation to feel natural'], correct: 3 },
       ],
     },
@@ -851,6 +864,18 @@ const aiEssentials: Course = {
                 'Personal rule: keep your signature on consequential decisions — delegating the work to AI never delegates the responsibility',
               ],
             },
+            {
+              heading: 'Try It Yourself',
+              body: 'The accountability gap feels theoretical until you run the test on a decision that touched you. Pick one and see how far down the chain you can actually get.',
+              exercise: {
+                task: 'Think of one automated or AI-influenced decision that touched you recently — a job application filtered, a loan or insurance quote, a fraud block on your card, a post that got moderated. Write down who the developer, the deployer, and the user were in that decision, and who you would actually contact to appeal it.',
+                selfCheck: [
+                  'You could name all three parties — or found the exact point where the chain goes dark',
+                  'You know whether an appeal route exists and where it starts',
+                  'You can say in one sentence who answers if that decision was wrong',
+                ],
+              },
+            },
           ],
           roleContent: [
             {
@@ -1033,6 +1058,19 @@ const aiEssentials: Course = {
                 'Engineering: architecture review, security code auditing, debugging complex distributed system failures',
                 'The new benchmark: if a reasoning model can handle 70% of a senior analyst\'s hard cases, the workflow changes — not just the tools',
               ],
+            },
+            {
+              heading: 'Try It Yourself',
+              body: 'The "would a smart human benefit from thinking for 30 seconds" test only becomes a habit once you have run it on a problem of your own. Run it now, on something real.',
+              exercise: {
+                task: 'Pick one genuinely hard problem from your own work or life — a tricky decision, a plan with competing constraints, a multi-step puzzle — and ask it twice: once in your AI tool\'s standard mode, once with reasoning or extended thinking turned on. Compare the two answers side by side.',
+                copyText: 'I need help with a multi-step problem: [describe your situation].\nConstraints: [what must be true for a solution to work]\nA good answer would: [what would make it genuinely useful]\nWalk me through your reasoning, not just the conclusion.',
+                selfCheck: [
+                  'You can point to a concrete difference between the two answers — or confirm there was none',
+                  'You applied the 30-second test and can say whether this task genuinely needed deliberation',
+                  'You know which mode you would reach for next time a task like this comes up',
+                ],
+              },
             },
           ],
           roleContent: [
@@ -1330,7 +1368,7 @@ const aiEssentials: Course = {
         },
       ],
       quiz: [
-        { q: 'What distinguishes a reasoning model from a standard LLM?', options: ['It has a larger context window', 'It generates an explicit chain-of-thought scratchpad during inference before producing a final answer', 'It is trained on more data', 'It uses retrieval augmentation by default'], correct: 1 },
+        { q: 'What distinguishes a reasoning model from a standard LLM?', options: ['It generates an explicit chain-of-thought scratchpad during inference before producing a final answer', 'It has a larger context window', 'It is trained on more data', 'It uses retrieval augmentation by default'], correct: 0 },
         { q: 'What is the defining characteristic of an AI agent versus a copilot?', options: ['Agents use larger models', 'Agents autonomously pursue a goal across multiple steps using tools, rather than assisting a human on a single task', 'Agents are always cloud-hosted', 'Agents require no human oversight'], correct: 1 },
         { q: 'Which EU AI Act risk tier requires conformity assessments, human oversight, and audit trails?', options: ['Unacceptable risk', 'High risk', 'Limited risk', 'Minimal risk'], correct: 1 },
         { q: 'What is the key privacy advantage of on-device AI models?', options: ['They are more accurate than cloud models', 'They are always free to use', 'Data is processed locally and never sent to a third-party server', 'They require no configuration'], correct: 2 },

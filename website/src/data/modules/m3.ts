@@ -126,7 +126,19 @@ const m3: CourseModule = {
         { heading: 'What Makes Something an Agent', body: 'Three things: (1) goal-directedness — pursues an objective rather than answering one prompt, (2) tool use — can take actions in the world, not just produce text, (3) autonomy — decides next steps based on outcomes, with iteration. Anything missing those is not really an agent, marketing claims notwithstanding. The planning loop (observe → plan → act → reflect) is the mechanical expression of all three: it iterates toward a goal using tool results, with the LLM making each routing decision.' },
         { heading: 'Guardrails, Human-in-the-Loop, and the Integration Layer', body: 'Two cross-cutting control bands run across the entire agent anatomy. Guardrails (safety, scope, policy) constrain every action — they are not agent code; they are enforced at the execution boundary as hooks that intercept before actions fire. Human-in-the-loop (HITL) intercepts when confidence is low, stakes are high, or a defined threshold is crossed. Both operate as pre/post hooks in the execution pipeline, not as logic inside the LLM. Below the agent sits the integration layer: MCP connectors, A2A coordination, external APIs, vector databases, sandboxes, orchestration frameworks, and hooks/skill managers. The integration layer is infrastructure — agent logic above it should never contain hardcoded knowledge of how tools are physically connected.' },
         { heading: 'Orchestrator-Subagent Pattern', body: 'The most common enterprise architecture: one orchestrator agent receives the high-level goal, decomposes it into tasks, and delegates to specialized subagents. The orchestrator manages state and decides when the goal is satisfied. In SecOps: an orchestrator receives an alert, delegates enrichment to an IOC-lookup subagent, delegates sandbox analysis to a malware subagent, then synthesizes findings. This is why "agent" as a single monolithic loop rarely scales.' },
-        { heading: 'Where Multi-Agent Adds Risk', body: 'Each agent handoff is a trust boundary. If the orchestrator blindly trusts subagent output without validation, a poisoned subagent response can corrupt the entire investigation chain. Security design must treat inter-agent messages with the same skepticism as user input — especially in security-sensitive workflows. This is not theoretical: it is the same confused-deputy pattern that plagued service-to-service calls in microservices architectures.' }
+        { heading: 'Where Multi-Agent Adds Risk', body: 'Each agent handoff is a trust boundary. If the orchestrator blindly trusts subagent output without validation, a poisoned subagent response can corrupt the entire investigation chain. Security design must treat inter-agent messages with the same skepticism as user input — especially in security-sensitive workflows. This is not theoretical: it is the same confused-deputy pattern that plagued service-to-service calls in microservices architectures.' },
+        {
+          heading: 'Try It Yourself',
+          body: 'The anatomy is easier to remember once you have found it in the wild. Any product that claims to "do tasks for you" will show you all the parts — or reveal that some are missing.',
+          exercise: {
+            task: 'Pick one AI product from your own work or feed that claims to act for you — a deep-research mode, a coding assistant, an email or scheduling agent — and map it against the anatomy: what triggers it, which tools it can use, and how it decides it is done. Then note where a human approves anything, if anywhere.',
+            selfCheck: [
+              'You can name the trigger, at least two tools, and the stopping rule',
+              'You can say whether it is genuinely an agent or a single-prompt tool with agent marketing',
+              'You identified where a human stays in the loop — or noticed that nowhere does',
+            ],
+          },
+        }
       ],
       roleContent: [
         {
@@ -495,12 +507,12 @@ const m3: CourseModule = {
   ],
   quiz: [
     { q: 'What problem does MCP primarily solve?', options: ['Model training cost', 'N×M integration complexity between AI hosts and tools', 'Hallucinations', 'Token pricing'], correct: 1 },
-    { q: 'A customer wants an "agent" that just summarizes alerts. The honest assessment:', options: ['Yes, it is an agent', 'It is likely an automated workflow, not really an agent — no goal-directed iteration', 'Does not matter', 'Only if it uses GPT-4'], correct: 1 },
+    { q: 'A customer wants an "agent" that just summarizes alerts. The honest assessment:', options: ['Yes, it is an agent', 'Only if it uses GPT-4', 'Does not matter', 'It is likely an automated workflow, not really an agent — no goal-directed iteration'], correct: 3 },
     { q: 'For most enterprise security deployments, the right default autonomy level is:', options: ['Level 0 — approve every step', 'Level 1 — approve consequential steps, autonomous on routine', 'Level 3 — full autonomy', 'No autonomy at all'], correct: 1 },
     { q: 'A2A is to ___ as MCP is to ___', options: ['agent-to-agent ; agent-to-tool', 'agent-to-tool ; agent-to-agent', 'training ; inference', 'They are the same protocol'], correct: 0 },
     { q: 'When a prospect says "plugin," the right redirect is:', options: ['Agree and use their terminology', 'Redirect to MCP — the standardized, security-conscious evolution of the plugin model', 'Tell them plugins are deprecated', 'Ask which vendor they mean'], correct: 1 },
-    { q: 'A subagent should receive privileges by:', options: ['Inheriting all orchestrator privileges', 'Delegation — only the minimum required for its specific task', 'Reading from a shared credential store', 'Requesting privileges at runtime from the user'], correct: 1 },
-    { q: 'A prospect asks "how do we enforce policy on our agents?" They are asking for:', options: ['A new model', 'Hooks — pre/post execution interceptors that validate, filter, approve, and log', 'More RAM', 'A different prompt'], correct: 1 },
+    { q: 'A subagent should receive privileges by:', options: ['Inheriting all orchestrator privileges', 'Reading from a shared credential store', 'Delegation — only the minimum required for its specific task', 'Requesting privileges at runtime from the user'], correct: 2 },
+    { q: 'A prospect asks "how do we enforce policy on our agents?" They are asking for:', options: ['A new model', 'A different prompt', 'More RAM', 'Hooks — pre/post execution interceptors that validate, filter, approve, and log'], correct: 3 },
     { q: 'Which hook type requires human approval before a high-consequence action fires?', options: ['Input hook', 'Output hook', 'Action hook', 'Audit hook'], correct: 2 }
   ]
 };

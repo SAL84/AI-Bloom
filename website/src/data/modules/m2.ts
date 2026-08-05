@@ -192,6 +192,19 @@ const m2: CourseModule = {
         { heading: 'Not Lying', body: 'Hallucination is the model producing fluent, confident output that isn\'t grounded in reality. The model isn\'t deceiving — it\'s sampling probable next-tokens, and probable doesn\'t mean true. This framing matters because customers often anthropomorphize the failure mode.' },
         { heading: 'Mitigation Stack', body: 'Grounding (RAG with citations), constrained output formats, retrieval verification, model-as-judge approaches, human-in-the-loop checkpoints. No single technique eliminates hallucinations; defence is layered. Each layer catches what the one below missed.' },
         { heading: 'Talk Track for Skeptics', body: 'Suggested framing: "You\'re right that LLMs hallucinate. That\'s why every response is grounded in retrieved evidence with citations, outputs are constrained to validated formats, and analyst confirmation stays in the loop for high-impact actions. The system isn\'t replacing human judgment — it\'s removing the work that doesn\'t need human judgment."' },
+        {
+          heading: 'Try It Yourself',
+          body: 'Hallucination stops being abstract the first time you catch one in a subject you know cold. Ten minutes of fact-checking will calibrate your trust better than any definition.',
+          exercise: {
+            task: 'Pick a topic you know better than almost anyone — your hometown, your profession, a hobby you have spent years on — and ask your AI tool for a detailed briefing on it. Read the answer like a fact-checker and hunt for the small things it gets subtly wrong.',
+            copyText: 'Give me a detailed overview of [topic you know deeply]. Include specific names, dates, numbers, and commonly misunderstood points. Be specific rather than general.',
+            selfCheck: [
+              'You found at least one confident claim that was wrong or slightly off',
+              'The wrong parts sounded exactly as fluent as the right parts',
+              'You can explain why a confident tone is not evidence of accuracy',
+            ],
+          },
+        },
       ],
       roleContent: [
         {
@@ -400,11 +413,11 @@ const m2: CourseModule = {
     },
   ],
   quiz: [
-    { q: 'A team wants an AI assistant that answers questions using their internal documents. What is the right architectural answer?', options: ['Fine-tune a custom model on the documents', 'Use RAG to retrieve relevant document sections at query time', 'Train a model from scratch', 'Just use a larger context window'], correct: 1 },
+    { q: 'A team wants an AI assistant that answers questions using their internal documents. What is the right architectural answer?', options: ['Use RAG to retrieve relevant document sections at query time', 'Fine-tune a custom model on the documents', 'Train a model from scratch', 'Just use a larger context window'], correct: 0 },
     { q: 'Why might a 2M-token context window not solve "analyse our entire knowledge base"?', options: ['It is too expensive', 'Models often degrade attention mid-context (lost in the middle)', 'It is technically impossible', 'Tokens are not real'], correct: 1 },
-    { q: 'A hallucination is best described as:', options: ['The model intentionally lying', 'Fluent output not grounded in reality — probable tokens, not true facts', 'A bug in the code', 'A jailbreak attempt'], correct: 1 },
+    { q: 'A hallucination is best described as:', options: ['The model intentionally lying', 'A bug in the code', 'Fluent output not grounded in reality — probable tokens, not true facts', 'A jailbreak attempt'], correct: 2 },
     { q: 'Someone says "we need to fine-tune the AI on our company data." The most likely honest diagnosis is:', options: ['They genuinely need fine-tuning', 'It is a RAG request in disguise — they need knowledge injection, not behaviour change', 'They need RLHF applied to their environment', 'Fine-tuning is always the right choice for domain data'], correct: 1 },
-    { q: 'What does low temperature (near 0) mean for a classification task?', options: ['The model runs faster', 'Outputs are maximally deterministic — the model always picks the most probable token', 'The model uses less GPU', 'Responses will be more creative'], correct: 1 },
+    { q: 'What does low temperature (near 0) mean for a classification task?', options: ['The model runs faster', 'Responses will be more creative', 'The model uses less GPU', 'Outputs are maximally deterministic — the model always picks the most probable token'], correct: 3 },
     { q: 'Embeddings let a system spot a scam email it has never seen before because:', options: ['They match exact keyword strings', 'Semantically similar concepts cluster together in vector space regardless of exact wording', 'They retrain the model on new patterns', 'They increase the context window'], correct: 1 },
   ],
 };

@@ -126,6 +126,19 @@ const vcM3: CourseModule = {
             'The explanations accumulate into real understanding over weeks',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'The worst moment to learn how to report a bug is while something is broken. Set the report up now, calmly, so the panicked version of you only has to fill in blanks.',
+          exercise: {
+            task: 'Save the template below as a note next to your spec, before anything is broken. The next time something breaks, fill in every line before you send anything to the AI.',
+            copyText: 'What I did: [the exact steps, in order, ending with what you pressed]\n\nWhat I expected: [what should have happened]\n\nWhat happened instead: [what you actually saw on screen]\n\nThe full error, pasted: [the complete message — file names, line numbers, all of it]',
+            selfCheck: [
+            'The template sits next to your spec, ready before anything went wrong',
+            'Your next report went out with the complete error text pasted, not a summary of it',
+            'The fix that came back targeted the right thing without a round of guessing first',
+            ],
+          },
+        },
       ],
     },
     {

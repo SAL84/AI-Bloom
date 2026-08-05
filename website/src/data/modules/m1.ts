@@ -375,6 +375,18 @@ const m1: CourseModule = {
           heading: 'Three Questions to Ask Any AI Vendor',
           body: 'Instead of "how accurate is your AI?", ask three sharper questions: (1) What is the base rate of the thing you detect, in a real deployment environment? (2) What does the model output when it does not know the answer — does it say so, or does it guess confidently? (3) How often is it retrained, and on what signal? Vendors who answer all three cleanly are typically the ones worth a deeper conversation. Vendors who deflect any of the three usually have something to hide in that answer.',
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'The base rate trap lands differently when the numbers are your own. This takes five minutes, no AI tool — just rough arithmetic on a system you already live with.',
+          exercise: {
+            task: 'Pick one detection or screening system from your own life — spam filtering, a fraud alert on your card, a smoke alarm, a medical screening you have had. Estimate how rare the real event actually is (say 1 in 100 or 1 in 1,000), assume the system is 99% accurate, and work out roughly how many false alarms it produces for every real catch.',
+            selfCheck: [
+              'You wrote down an actual base rate estimate, not just "it is rare"',
+              'You can say roughly how many false alarms come with each real hit',
+              'You can explain why "99% accurate" sounded better before you did the math',
+            ],
+          },
+        },
       ],
       roleContent: [
         {
@@ -421,7 +433,7 @@ const m1: CourseModule = {
     },
   ],
   quiz: [
-    { q: 'A product page says "we use AI." What is the smartest first question?', options: ['Assume it uses the most advanced model available', 'Ask what specifically the AI does — which tasks it handles and how it is evaluated', 'Choose the product with the most AI features listed', 'Treat all AI products as roughly equivalent'], correct: 1 },
+    { q: 'A product page says "we use AI." What is the smartest first question?', options: ['Assume it uses the most advanced model available', 'Treat all AI products as roughly equivalent', 'Choose the product with the most AI features listed', 'Ask what specifically the AI does — which tasks it handles and how it is evaluated'], correct: 3 },
     { q: 'Which paradigm is most associated with anomaly detection in messy data?', options: ['Supervised', 'Unsupervised', 'Reinforcement', 'Generative'], correct: 1 },
     { q: 'A trained neural network is fundamentally:', options: ['A database of facts', 'A set of weights plus an architecture', 'A reasoning engine', 'A search index'], correct: 1 },
     { q: 'A detector is 99.9% accurate but the target base rate is 1 in 10,000. What happens?', options: ['Users get ~10 false positives for every real hit', 'The system works perfectly because 99.9% is very high', 'False positives are eliminated', 'Base rate has no effect on alert volume'], correct: 0 },

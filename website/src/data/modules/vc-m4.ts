@@ -52,6 +52,19 @@ const vcM4: CourseModule = {
             'If a run takes more than about five minutes, it is too long to survive',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'You have just read why the list has to come before the building. So stop here and write yours — for the project you are actually making — before you change another thing.',
+          exercise: {
+            task: 'Fill in the scaffold below for your own project, with each item checkable by hand in under a minute. Then run the list once, today, and see what fails.',
+            copyText: 'My checklist:\n1. [the core action, end to end — who does what, and what happens]\n2. [what you receive when it works — the email, the record, the message]\n3. [what a wrong input gets — refused, with a clear message]\n4. [something that must work on a phone]\n5. [one more thing that would genuinely matter if it broke]\n\nNEVER: [the one thing that must not happen, even once]',
+            selfCheck: [
+            'Every item on the list can be checked by hand in under a minute',
+            'At least one item failed when you ran the list today',
+            'The NEVER line describes a failure nobody would report on their own',
+            ],
+          },
+        },
       ],
     },
     {
