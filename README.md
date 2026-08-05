@@ -19,7 +19,7 @@ Live at **[aibloom.io](https://aibloom.io)**.
 | 07 | Agent Engineering | Engineers shipping agents |
 | 08 | Does Your AI Actually Work? | Testing without statistics |
 | 09 | Securing AI Systems | Defending what you built |
-| 10 | AI for Cybersecurity Sales | Security SEs and AEs |
+| 10 | AI for Cybersecurity | Security teams, both directions |
 | 11 | AI for Healthcare | Orientation, not clinical guidance |
 | 12 | AI for Legal | Orientation, not legal advice |
 

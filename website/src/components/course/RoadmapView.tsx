@@ -62,9 +62,9 @@ const ENTRIES: CourseEntry[] = [
     view: { type: 'home', courseId: 'ai-deep-dive' },
   },
   {
-    id: 'ai-cybersec-se', no: '10', title: 'AI for Cybersecurity Sales', track: 'Vertical',
+    id: 'ai-cybersec-se', no: '10', title: 'AI for Cybersecurity', track: 'Vertical',
     color: '#2c6db0', status: 'live',
-    note: 'Four-module course for security SEs and AEs — the stack, the adversarial side, the vendors, and how to sell it. Full quiz coverage.',
+    note: 'Reshaped from the sales course: AI in the security stack, the adversarial side, adopting AI in the SOC, and evaluating the products.',
     view: { type: 'home', courseId: 'ai-cybersec-se' },
   },
   {

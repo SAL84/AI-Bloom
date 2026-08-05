@@ -3,9 +3,8 @@ import { AIBasicsOverviewDiagram, NestedAIDiagram, BaseRateDiagram, LearningPara
 import { TokenizationDiagram, EmbeddingsDiagram, RAGFlowDiagram, FTvsPromptingDiagram, HallucinationMitigationDiagram } from './m2-diagrams';
 import { AIStackDiagram, MCPDiagram, AgentTopologyDiagram, AutonomyLevelsDiagram, A2AvsMCPDiagram, SkillsPluginsDiagram, SubagentsDiagram, HooksDiagram, PhishingTriageDiagram } from './m3-diagrams';
 import { SOCArchDiagram, PromptInjectionDiagram, AgentAttackSurfaceDiagram, EDRBehavioralDiagram, EmailIdentityDiagram, AIAttackAccelerationDiagram, SOAREvolutionDiagram, SIEMXDRDiagram } from './m4-diagrams';
-import { GoogleStackDiagram, GoogleSecOpsDiagram, SecOpsAgentsDiagram, CompetitiveQuadrantDiagram, DiscoveryFunnelDiagram } from './m5-diagrams';
+import { DiscoveryFunnelDiagram } from './m5-diagrams';
 import { SOCCopilotsDiagram, ThreatIntelHuntingDiagram, DataGovernanceDiagram, DefenseReframingDiagram } from './soc-ops-diagrams';
-import { GoogleAgentInfraDiagram, GTISCCWizDiagram, AgenticDefenseDiagram, TalkTracksDiagram } from './google-product-diagrams';
 import { DemoFrameworkDiagram, ObjectionHandlingDiagram, ROIComplianceDiagram, CustomerArchetypesDiagram, SEPromptingPlaybookDiagram } from './sales-diagrams';
 import { ScalingLawsDiagram, ComputeStackDiagram, MoEDiagram, InferenceServingDiagram, AIEconomicsDiagram, EvalStackDiagram } from './deep-dive-diagrams-a';
 import { ReasoningComputeDiagram, GenerativeArchitecturesDiagram, MultimodalUnderstandingDiagram, AlignmentStackDiagram, GovernanceLandscapeDiagram, ContextEngineeringDiagram } from './deep-dive-diagrams-b';
@@ -88,15 +87,7 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   ThreatIntelHunting: ThreatIntelHuntingDiagram,
   DataGovernance: DataGovernanceDiagram,
   DefenseReframing: DefenseReframingDiagram,
-  GoogleStack: GoogleStackDiagram,
-  GoogleSecOps: GoogleSecOpsDiagram,
-  SecOpsAgents: SecOpsAgentsDiagram,
-  CompetitiveQuadrant: CompetitiveQuadrantDiagram,
   DiscoveryFunnel: DiscoveryFunnelDiagram,
-  GoogleAgentInfra: GoogleAgentInfraDiagram,
-  GTISCCWiz: GTISCCWizDiagram,
-  AgenticDefense: AgenticDefenseDiagram,
-  TalkTracks: TalkTracksDiagram,
   DemoFramework: DemoFrameworkDiagram,
   ObjectionHandling: ObjectionHandlingDiagram,
   ROICompliance: ROIComplianceDiagram,

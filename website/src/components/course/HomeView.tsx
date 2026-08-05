@@ -43,7 +43,7 @@ const META: Record<CourseId, {
     related: [
       { no: '03', title: 'AI Essentials', sub: 'The grown-up version', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
       { no: '§', title: 'AI Playgrounds', sub: 'Try things, break things', color: '#3f8a5e', view: { type: 'playground' } },
-      { no: '10', title: 'Cybersec Sales', sub: 'When the kid grows up', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
+      { no: '10', title: 'AI for Cybersecurity', sub: 'When the kid grows up', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
     ],
   },
   'ai-essentials': {
@@ -91,7 +91,7 @@ const META: Record<CourseId, {
     related: [
       { no: '04', title: 'AI Deep Dive', sub: 'The engineering foundation', color: '#5a4ec0', view: { type: 'home', courseId: 'ai-deep-dive' } },
       { no: '¶', title: 'Agentic AI', sub: 'What you will be testing', color: '#5d5045', view: { type: 'agentic-ai' } },
-      { no: '10', title: 'Cybersec Sales', sub: 'The adversarial view', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
+      { no: '10', title: 'AI for Cybersecurity', sub: 'The adversarial view', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
     ],
   },
   'ai-vibecoding': {
@@ -110,11 +110,11 @@ const META: Record<CourseId, {
     color: '#8b2f5f', no: '09', kicker: 'Catalog №09 · Build · Test · Secure',
     level: 'Advanced', duration: '4h',
     outcomes: ['Threat-model an AI feature, including when the model itself is untrusted input', 'Recognise why input filtering alone never stops prompt injection', 'Apply least privilege, sandboxing and approval gates to agents', 'Run an authorised red-team exercise and respond to an AI incident'],
-    audience: ['◆ Security engineers and AI engineers who own the risk', '◆ Architects designing agentic systems that touch real data', '◇ Not for: selling security products (try Cybersec Sales) — this is hands-on'],
+    audience: ['◆ Security engineers and AI engineers who own the risk', '◆ Architects designing agentic systems that touch real data', '◇ Not for: the operational overview (try AI for Cybersecurity) — this is hands-on'],
     quote: '"The sales course teaches you to talk about this. This one teaches you to do it."',
     related: [
       { no: '08', title: 'Does Your AI Work?', sub: 'Testing, the sibling discipline', color: '#c9421f', view: { type: 'home', courseId: 'ai-evals' } },
-      { no: '10', title: 'Cybersec Sales', sub: 'The commercial view', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
+      { no: '10', title: 'AI for Cybersecurity', sub: 'The operational view', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
       { no: '¶', title: 'Agentic AI', sub: 'What you are defending', color: '#5d5045', view: { type: 'agentic-ai' } },
     ],
   },
@@ -169,9 +169,9 @@ const META: Record<CourseId, {
   'ai-cybersec-se': {
     color: '#2c6db0', no: '10', kicker: 'Catalog №10 · Vertical track',
     level: 'Intermediate', duration: '3h',
-    outcomes: ['Explain AI/ML/LLM/agent concepts in customer language', 'Whiteboard the AI stack — MCP, A2A, and agent identity', 'Understand how major security vendors are embedding AI', 'Run discovery, demos, and objection handling that set you apart'],
-    audience: ['◆ Cybersecurity SEs and AEs selling into security teams', '◆ Security architects evaluating AI-powered products', '◇ Not for: people without a security sales context'],
-    quote: '"The only course that treats security sales engineers as the technical people they are."',
+    outcomes: ['Map where AI actually sits in the security stack — SIEM, XDR, EDR, SOC copilots', 'Understand how attackers use AI, and how AI systems get attacked', 'Evaluate AI security products with due-diligence questions, not vendor demos', 'Know when to go deeper: the bridge into hands-on AI security engineering'],
+    audience: ['◆ Security analysts, engineers and leaders watching AI enter their stack', '◆ CISOs and architects evaluating AI-powered security products', '◇ Not for: hands-on hardening of AI systems (try Securing AI Systems)'],
+    quote: '"Two questions, one course: what does AI do to security work — and what does security work do about AI."',
     related: [
       { no: '03', title: 'AI Essentials', sub: 'Prerequisite reading', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
       { no: '04', title: 'AI Deep Dive', sub: 'When customers go deeper', color: '#5a4ec0', view: { type: 'home', courseId: 'ai-deep-dive' } },

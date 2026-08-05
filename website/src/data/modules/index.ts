@@ -1,6 +1,5 @@
 import m4 from './m4';
 import m5 from './m5';
-import m6 from './m6';
 import m7 from './m7';
 import { GLOSSARY } from '../glossary';
 import aiEssentials from './ai-essentials';
@@ -18,9 +17,9 @@ import type { Course, CourseId } from '../../types/course';
 
 const CYBERSEC_SE: Course = {
   id: 'ai-cybersec-se',
-  title: 'AI for Cybersecurity Sales Engineers',
-  subtitle: 'From foundational concepts to practical positioning, with architectural diagrams',
-  modules: [m4, m5, m6, m7],
+  title: 'AI for Cybersecurity',
+  subtitle: 'Defending with AI, and defending the AI you deploy — for security teams on both sides of the shift',
+  modules: [m4, m5, m7],
   glossary: GLOSSARY,
 };
 

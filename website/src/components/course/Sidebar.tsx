@@ -212,7 +212,7 @@ export const Sidebar = ({ open, setOpen, view, setView, modules, activeCourseId,
           >
             <GraduationCap className="w-4 h-4 text-sky-400 flex-shrink-0" />
             <span className="flex-1 min-w-0">
-              <span className="block font-semibold text-sky-300 leading-tight">AI for Cybersecurity Sales</span>
+              <span className="block font-semibold text-sky-300 leading-tight">AI for Cybersecurity</span>
               <span className="text-xs text-slate-400">6 modules · Live now</span>
             </span>
             <ChevronDown className={`w-4 h-4 flex-shrink-0 text-slate-400 transition-transform duration-200 ${expandedCourseId === 'ai-cybersec-se' ? 'rotate-180' : ''}`} />

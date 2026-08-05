@@ -270,8 +270,8 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       onClick: () => setView({ type: 'home', courseId: 'ai-prompting' }) },
   ];
   const industryCards: CardData[] = [
-    { no: '10', title: 'AI for Cybersecurity Sales', kicker: 'For security sellers', color: '#2c6db0',
-      blurb: 'For SEs and AEs selling into security teams — the AI security stack, the attack surface, the vendors, and how to position.',
+    { no: '10', title: 'AI for Cybersecurity', kicker: 'For security teams', color: '#2c6db0',
+      blurb: 'AI in the security stack and the security of AI itself — defence, the adversarial side, and how to evaluate the products.',
       modules: moduleCount('ai-cybersec-se'), level: 'Intermediate', progress: pCyber,
       badge: pCyber > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-cybersec-se' }) },

@@ -1,6 +1,6 @@
 import type { ScenarioStep } from './AgentScenario';
 
-// Security operations scenarios. These live in the AI for Cybersecurity Sales
+// Security operations scenarios. These live in the AI for Cybersecurity
 // course (embedded in the lessons they illustrate), not on the general
 // Agentic AI page.
 
