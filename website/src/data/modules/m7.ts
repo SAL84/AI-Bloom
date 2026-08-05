@@ -9,6 +9,7 @@ const m7: CourseModule = {
     {
       id: 'm7l1',
       title: 'The Questions That Cut Through',
+      diagram: 'VendorDueDiligence',
       slides: [
         {
           heading: 'Start With the Model, Not the Marketing',
@@ -55,6 +56,7 @@ const m7: CourseModule = {
     {
       id: 'm7l2',
       title: 'Reading a Demo Skeptically',
+      diagram: 'SkepticalDemo',
       slides: [
         {
           heading: 'Demo Data Is Not Your Data',
@@ -101,6 +103,7 @@ const m7: CourseModule = {
     {
       id: 'm7l3',
       title: 'Pushback Your Vendor Should Survive',
+      diagram: 'VendorPushback',
       slides: [
         {
           heading: 'The Hallucination Question',
@@ -147,6 +150,7 @@ const m7: CourseModule = {
     {
       id: 'm7l4',
       title: 'The Business Case, Honestly',
+      diagram: 'HonestBusinessCase',
       slides: [
         {
           heading: 'Do the Analyst-Hour Arithmetic Yourself',
@@ -193,6 +197,7 @@ const m7: CourseModule = {
     {
       id: 'm7l5',
       title: 'Knowing Your Own Situation',
+      diagram: 'BuyerSituations',
       slides: [
         {
           heading: 'The Evaluation Depends on Which Buyer You Are',
@@ -239,6 +244,7 @@ const m7: CourseModule = {
     {
       id: 'm7l6',
       title: 'Prompting for Security Work',
+      diagram: 'SecurityPrompting',
       slides: [
         {
           heading: 'Summarising Incidents and Alerts',

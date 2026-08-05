@@ -49,6 +49,8 @@ import { SycophancyTrapDiagram, ConfidentFabricationDiagram, ModelSimplyWrongDia
 import { OwnMaterialDiagram, PromptingCeilingDiagram, DocAnswerTestingDiagram, MultiStepAgentTestingDiagram } from './course-diagrams-ak';
 import { ScalableHumanReviewDiagram, ProductionTestingDiagram, QualityCostLatencyDiagram, EvalTeamHabitDiagram } from './course-diagrams-al';
 import { LLMGovernanceLayersDiagram, AIMisconceptionsDiagram, LLMInfrastructureDiagram } from './course-diagrams-am';
+import { VendorDueDiligenceDiagram, SkepticalDemoDiagram, VendorPushbackDiagram, HonestBusinessCaseDiagram, BuyerSituationsDiagram, SecurityPromptingDiagram } from './course-diagrams-an';
+import { FirstUseCaseDiagram, ProvingPilotDiagram, SOCMetricsDiagram, AnalystRoleShiftDiagram, StagedAutonomyDiagram } from './course-diagrams-ao';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -299,4 +301,15 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   LLMGovernanceLayers: LLMGovernanceLayersDiagram,
   AIMisconceptions: AIMisconceptionsDiagram,
   LLMInfrastructure: LLMInfrastructureDiagram,
+  VendorDueDiligence: VendorDueDiligenceDiagram,
+  SkepticalDemo: SkepticalDemoDiagram,
+  VendorPushback: VendorPushbackDiagram,
+  HonestBusinessCase: HonestBusinessCaseDiagram,
+  BuyerSituations: BuyerSituationsDiagram,
+  SecurityPrompting: SecurityPromptingDiagram,
+  FirstUseCase: FirstUseCaseDiagram,
+  ProvingPilot: ProvingPilotDiagram,
+  SOCMetrics: SOCMetricsDiagram,
+  AnalystRoleShift: AnalystRoleShiftDiagram,
+  StagedAutonomy: StagedAutonomyDiagram,
 };

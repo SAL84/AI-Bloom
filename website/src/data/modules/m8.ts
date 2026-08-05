@@ -9,6 +9,7 @@ const m8: CourseModule = {
     {
       id: 'm8l1',
       title: 'Picking the First Use Case',
+      diagram: 'FirstUseCase',
       slides: [
         {
           heading: 'Where AI Earns Its Place First',
@@ -55,6 +56,7 @@ const m8: CourseModule = {
     {
       id: 'm8l2',
       title: 'A Pilot That Proves Something',
+      diagram: 'ProvingPilot',
       slides: [
         {
           heading: 'Write the Success Criteria Before the Pilot Starts',
@@ -101,6 +103,7 @@ const m8: CourseModule = {
     {
       id: 'm8l3',
       title: 'Metrics That Survive Contact',
+      diagram: 'SOCMetrics',
       slides: [
         {
           heading: 'The Four Metrics Worth Tracking',
@@ -147,6 +150,7 @@ const m8: CourseModule = {
     {
       id: 'm8l4',
       title: 'The Analyst Role Shifts',
+      diagram: 'AnalystRoleShift',
       slides: [
         {
           heading: 'From Queue-Clearing to Verification',
@@ -193,6 +197,7 @@ const m8: CourseModule = {
     {
       id: 'm8l5',
       title: 'Oversight That Scales With Trust',
+      diagram: 'StagedAutonomy',
       slides: [
         {
           heading: 'Four Stages, Earned Per Action Type',
