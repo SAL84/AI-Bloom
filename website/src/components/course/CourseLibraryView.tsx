@@ -18,28 +18,6 @@ export interface BlogPostMeta {
   date: string;
 }
 
-function JournalStrip({ posts }: { posts: BlogPostMeta[] }) {
-  if (!posts.length) return null;
-  return (
-    <section className="px-4 sm:px-6 lg:px-12 pb-8 lg:pb-10">
-      <div className="flex items-baseline gap-3.5 mb-3.5">
-        <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase whitespace-nowrap">From the journal</div>
-        <div className="flex-1 h-px bg-studio-rule" />
-        <a href="/blog/" className="font-studio-serif italic text-[14px] text-studio-ink-mute whitespace-nowrap no-underline hover:text-studio-ink hover:underline underline-offset-[3px]">All posts →</a>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-        {posts.map((post) => (
-          <a key={post.id} href={`/blog/${post.id}/`}
-            className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 no-underline flex flex-col gap-2 hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200">
-            <div className="font-studio-mono text-[10px] text-studio-ink-mute tracking-[1.2px] uppercase">{post.date}</div>
-            <div className="font-studio-display text-[19px] text-studio-ink leading-[1.15] tracking-[-0.3px]">{post.title}</div>
-            <div className="font-studio-sans text-[12.5px] text-studio-ink-dim leading-[1.5]">{post.description}</div>
-          </a>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function moduleCount(id: CourseId): number {
   return COURSES[id]?.modules.length ?? 0;
@@ -111,58 +89,7 @@ function StudioNav({ setView, onOpenSearch }: { setView: (v: View) => void; onOp
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
 
-const PROFILE_QUESTIONS = [
-  {
-    key: 'role' as const,
-    label: 'I am',
-    options: [
-      { value: 'curious', label: 'curious' },
-      { value: 'parent',  label: 'a parent' },
-      { value: 'builder', label: 'a builder' },
-      { value: 'seller',  label: 'a seller' },
-    ],
-  },
-  {
-    key: 'time' as const,
-    label: 'I have',
-    options: [
-      { value: 'short',  label: '20 minutes' },
-      { value: 'medium', label: 'an evening' },
-      { value: 'long',   label: 'a few weeks' },
-    ],
-  },
-  {
-    key: 'goal' as const,
-    label: 'I want',
-    options: [
-      { value: 'vocab', label: 'vocabulary' },
-      { value: 'depth', label: 'depth' },
-      { value: 'ship',  label: 'to ship something' },
-    ],
-  },
-];
-
-type ProfileAnswers = { role?: string; time?: string; goal?: string };
-
-function recommendCourse(a: ProfileAnswers): { view: View; label: string; why: string } {
-  if (a.role === 'parent')  return { view: { type: 'home', courseId: 'ai-kids' },        label: 'AI for Kids',                 why: 'made to read with an 8–14-year-old' };
-  if (a.role === 'seller')  return { view: { type: 'home', courseId: 'ai-cybersec-se' }, label: 'AI for Cybersecurity Sales',  why: 'for SEs and AEs in security' };
-  if (a.goal === 'ship') {
-    return { view: { type: 'home', courseId: 'ai-vibecoding' }, label: 'Vibecoding', why: 'idea to working prototype, no coding background needed' };
-  }
-  if (a.role === 'builder' || a.goal === 'depth') {
-    return { view: { type: 'home', courseId: 'ai-deep-dive' }, label: 'AI Deep Dive', why: 'transformers, evals, the failure modes' };
-  }
-  if (a.goal === 'vocab' && a.time !== 'short') return { view: { type: 'home', courseId: 'ai-prompting' }, label: 'Prompting', why: 'the skill that improves everything else' };
-  if (a.time === 'short')   return { view: { type: 'home', courseId: 'ai-essentials' }, label: 'AI Essentials',               why: 'shortest path to literacy' };
-  return { view: { type: 'home', courseId: 'ai-essentials' },   label: 'AI Essentials',               why: 'the right starting point if only one' };
-}
-
-function StudioHero({ setView }: { setView: (v: View) => void }) {
-  const [answers, setAnswers] = useState<ProfileAnswers>({});
-  const allAnswered = !!(answers.role && answers.time && answers.goal);
-  const recommendation = allAnswered ? recommendCourse(answers) : null;
-
+function StudioHero({ posts }: { posts: BlogPostMeta[] }) {
   return (
     <section className="px-4 sm:px-6 lg:px-12 pt-10 lg:pt-16 pb-8 lg:pb-12 relative">
       <div className="hidden sm:block absolute top-6 lg:top-9 right-6 lg:right-14 font-studio-mono text-[10px] lg:text-[11px] text-studio-ink-mute tracking-[1.4px] uppercase">
@@ -183,48 +110,26 @@ function StudioHero({ setView }: { setView: (v: View) => void }) {
         </div>
         <aside className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 lg:p-[26px] relative mt-6">
           <div className="absolute -top-3 left-6 bg-studio-kids text-studio-bg font-studio-mono text-[10px] tracking-[1.6px] uppercase px-3 py-1 rounded-[2px]">
-            Today's reading desk
+            From the journal
           </div>
           <h3 className="font-studio-serif italic text-[26px] text-studio-ink mt-1.5 mb-2 font-normal leading-[1.1]">
-            Where do I start?
+            Fresh off the desk
           </h3>
-          <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.5] mb-[18px]">
-            Three quick questions. We'll point you at one of the twelve courses.
+          <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.5] mb-[14px]">
+            Dated essays on the questions people actually search for.
           </p>
-          <div className="flex flex-col gap-2">
-            {PROFILE_QUESTIONS.map(q => (
-              <div key={q.key} className="px-3.5 py-2.5 bg-studio-bg rounded-[4px] border border-studio-rule-soft flex flex-wrap items-center gap-x-2 gap-y-1.5">
-                <div className="font-studio-serif italic text-[15px] text-studio-ink flex-shrink-0">{q.label}…</div>
-                {q.options.map(opt => {
-                  const isSelected = answers[q.key] === opt.value;
-                  return (
-                    <button
-                      key={opt.value}
-                      onClick={() => setAnswers(a => ({ ...a, [q.key]: opt.value }))}
-                      className="font-studio-mono text-[11px] tracking-[0.3px] px-2.5 py-1 rounded-full border transition-colors duration-100"
-                      style={isSelected
-                        ? { background: '#1d1916', color: '#fbf6ec', borderColor: '#1d1916' }
-                        : { background: 'transparent', color: '#8c8273', borderColor: '#e8dfc8' }}
-                    >
-                      {opt.label}
-                    </button>
-                  );
-                })}
-              </div>
+          <div className="flex flex-col divide-y divide-studio-rule-soft">
+            {posts.map((post) => (
+              <a key={post.id} href={`/blog/${post.id}/`} className="py-2.5 no-underline group">
+                <div className="font-studio-mono text-[9.5px] text-studio-ink-mute tracking-[1.2px] uppercase mb-0.5">{post.date}</div>
+                <div className="font-studio-serif italic text-[15.5px] text-studio-ink leading-[1.25] group-hover:underline underline-offset-[3px]">{post.title}</div>
+              </a>
             ))}
           </div>
-          {recommendation && (
-            <div className="mt-3 font-studio-mono text-[10.5px] tracking-[0.6px] text-studio-ink-mute uppercase">
-              Best fit · <span className="text-studio-ink normal-case font-studio-serif italic text-[13px] tracking-normal">{recommendation.why}</span>
-            </div>
-          )}
-          <button
-            onClick={() => recommendation && setView(recommendation.view)}
-            disabled={!recommendation}
-            className="w-full mt-3 font-studio-sans text-[13.5px] font-medium text-studio-bg bg-studio-ink py-[11px] px-4 rounded-[4px] hover:opacity-90 transition-opacity duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
-          >
-            {recommendation ? `Open ${recommendation.label} →` : 'Recommend me a course →'}
-          </button>
+          <a href="/blog/"
+            className="block w-full mt-3.5 font-studio-sans text-[13.5px] font-medium text-center text-studio-bg bg-studio-ink py-[11px] px-4 rounded-[4px] no-underline hover:opacity-90 transition-opacity duration-150">
+            Read the journal →
+          </a>
         </aside>
       </div>
     </section>
@@ -640,8 +545,7 @@ export const CourseLibraryView = ({ setView, completedLessons, posts = [] }: Pro
   return (
     <div className="bg-studio-bg text-studio-ink font-studio-sans min-h-screen">
       <StudioNav setView={setView} onOpenSearch={() => setSearchOpen(true)} />
-      <StudioHero setView={setView} />
-      <JournalStrip posts={posts} />
+      <StudioHero posts={posts} />
       <StudioCatalog setView={setView} completedLessons={completedLessons} />
       <StudioSideStuff setView={setView} />
       <StudioReadingRoom setView={setView} />
