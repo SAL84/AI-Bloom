@@ -74,6 +74,17 @@ const description = firstBody.length <= 155 ? firstBody : firstBody.slice(0, 152
               {slide.bullets.map((b) => <li>{b}</li>)}
             </ul>
           )}
+          {slide.exercise && (
+            <div class="exercise-box">
+              <div class="exercise-label">◆ Try it yourself</div>
+              <p>{slide.exercise.task}</p>
+              {slide.exercise.copyText && <pre>{slide.exercise.copyText}</pre>}
+              <div class="exercise-label check">How you'll know it worked</div>
+              <ul>
+                {slide.exercise.selfCheck.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          )}
         </section>
       ))}
     </div>
@@ -113,4 +124,18 @@ const description = firstBody.length <= 155 ? firstBody : firstBody.slice(0, 152
   .lesson-diagram .bg-slate-50 { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; }
   .lesson-diagram .text-xs { font-size: 12px; color: var(--color-studio-ink-mute); margin-top: 7px; text-align: center; font-style: italic; }
   .inline-art { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; margin: 14px 0; }
+  .exercise-box {
+    border: 1.5px dashed var(--color-studio-kids); border-radius: 4px;
+    background: var(--color-studio-paper); padding: 18px 20px; margin: 18px 0 6px;
+  }
+  .exercise-label {
+    font-family: var(--font-studio-mono); font-size: 10.5px; letter-spacing: 1.6px;
+    text-transform: uppercase; color: var(--color-studio-kids); margin-bottom: 8px;
+  }
+  .exercise-label.check { color: var(--color-studio-ink-mute); margin-top: 14px; letter-spacing: 1.4px; }
+  .exercise-box pre {
+    font-family: var(--font-studio-mono); font-size: 12px; line-height: 1.6;
+    white-space: pre-wrap; background: var(--color-studio-bg);
+    border: 1px solid var(--color-studio-rule); border-radius: 4px; padding: 14px; margin: 10px 0;
+  }
 </style>

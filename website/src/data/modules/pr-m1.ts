@@ -152,6 +152,19 @@ const prM1: CourseModule = {
             'Three lines is roughly forty seconds and eliminates most rewriting',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'Reading about the under-specified one-liner is one thing; catching your own is another. This takes five minutes and one real request you actually sent.',
+          exercise: {
+            task: 'Open your AI tool and find the last real request you sent it. Send it again in a fresh conversation, unchanged. Then send the upgraded version below — the same request plus three lines. Compare the two answers.',
+            copyText: '[your original request]\n\nFor: [who will read or use the answer]\nSo that: [what you will actually do with it]\nKeep it: [length, tone, and format limits]',
+            selfCheck: [
+            'The two answers are noticeably different',
+            'The upgraded answer needed less editing before you could use it',
+            'You can point to which added line changed the answer most',
+            ],
+          },
+        },
       ],
       roleContent: [
         {

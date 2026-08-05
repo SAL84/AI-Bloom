@@ -78,6 +78,19 @@ const prM4: CourseModule = {
             'If an instruction is ignored three times, it is probably ambiguous, conflicting, or impossible',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'The next disappointing answer you get is the exercise. Do not retry it louder — describe the gap once and watch what changes.',
+          exercise: {
+            task: 'Keep working until an answer disappoints you (it will not take long). Instead of rephrasing the request, reply with the three lines below, filled in. One pass only.',
+            copyText: 'That is not quite what I needed.\n\nWhat you gave me: [one line]\nWhat I actually need: [one line]\nThe difference: [name the specific gap]\n\nRevise only that part — keep everything that already works.',
+            selfCheck: [
+            'The revision kept the good parts instead of starting over',
+            'You described the gap without repeating the original request louder',
+            'The second version landed closer than a plain "try again" ever does',
+            ],
+          },
+        },
       ],
     },
     {

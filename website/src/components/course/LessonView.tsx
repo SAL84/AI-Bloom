@@ -4,6 +4,7 @@ import { COURSES } from '../../data/modules';
 import type { CourseModule, CourseId, Lesson, View, RoleKey } from '../../types/course';
 import { DIAGRAM_REGISTRY } from '../diagrams';
 import { InlineSVGDiagram } from '../diagrams/InlineSVGDiagram';
+import { ExercisePanel } from './ExercisePanel';
 import { RoleTabPanel } from './RoleTabPanel';
 import { CourseNav } from './CourseNav';
 import { courseColor } from '../../data/course-colors';
@@ -201,6 +202,7 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
                     ))}
                   </ul>
                 )}
+                {slide!.exercise && <ExercisePanel exercise={slide!.exercise} color={color} dark />}
               </>
             )}
           </div>
@@ -397,6 +399,7 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
                   ))}
                 </ul>
               )}
+              {s.exercise && <ExercisePanel exercise={s.exercise} color={color} />}
             </section>
           ))}
         </div>

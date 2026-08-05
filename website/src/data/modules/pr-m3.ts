@@ -152,6 +152,19 @@ const prM3: CourseModule = {
             'One question at a time matters — a list of twelve questions gets skimmed',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'The highest-leverage habit in this module fits in one sentence: make the model interview you before it answers. Try it on something you genuinely need this week.',
+          exercise: {
+            task: 'Pick a real task where the outcome depends on details only you know — a plan, a message, a decision. Use the prompt below and answer its questions honestly before letting it produce anything.',
+            copyText: 'I want help with [your task].\n\nBefore you answer, ask me the three most useful questions — one at a time, waiting for my reply each time. Then give your best answer using what I told you.',
+            selfCheck: [
+            'It asked at least one thing you had not thought to mention',
+            'The final answer used your replies rather than generic filler',
+            'The result beat what a direct one-shot request usually gets you',
+            ],
+          },
+        },
       ],
       roleContent: [
         {

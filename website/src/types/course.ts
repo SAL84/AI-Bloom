@@ -1,7 +1,14 @@
+export interface SlideExercise {
+  task: string;
+  copyText?: string;
+  selfCheck: string[];
+}
+
 export interface Slide {
   heading: string;
   body: string;
   bullets?: string[];
+  exercise?: SlideExercise;
 }
 
 export interface RoleContent {

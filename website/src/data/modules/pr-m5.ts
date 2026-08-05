@@ -41,6 +41,19 @@ const prM5: CourseModule = {
             'Add an explicit instruction for missing information: "write not stated rather than guessing"',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'A prompt that worked once becomes an asset the moment you add slots. Take the best prompt you have written during this course and make it reusable.',
+          exercise: {
+            task: 'Turn your best prompt from this course into a template: replace everything that changes per use with a [slot], keep everything that should stay fixed, and save it wherever you keep notes you actually reopen.',
+            copyText: 'ROLE: [who the AI should answer as]\nFOR: [who receives the output]\nTASK: [the outcome you want, stated as a result]\nLIMITS: [length · tone · format]\nEXAMPLE: [optional — paste a previous output that was right]',
+            selfCheck: [
+            'A colleague could use the template without asking you anything',
+            'The slots cover exactly what changes each time — nothing else',
+            'It is saved somewhere you will actually look next week',
+            ],
+          },
+        },
       ],
     },
     {

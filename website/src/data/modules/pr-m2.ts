@@ -152,6 +152,19 @@ const prM2: CourseModule = {
             'When the two conflict, trust the example and rewrite the instruction to match',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'Showing beats telling, but you only feel the difference by running both against the same task. Pick something you write often — an email, an update, a product description.',
+          exercise: {
+            task: 'Run the same writing task twice in fresh conversations. First, describe the style you want in adjectives. Then use the version below, pasting a real example of the style instead. Compare which one sounds like you.',
+            copyText: 'Write a [thing you need] for [audience].\n\nMatch the style of this example:\n---\n[paste a short example whose style you like]\n---',
+            selfCheck: [
+            'The with-example version sounds more like the example than any adjective got you',
+            'Something transferred from the example that you never described in words',
+            'You know which example you would keep on file for next time',
+            ],
+          },
+        },
       ],
       roleContent: [
         {
