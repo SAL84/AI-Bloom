@@ -12,3 +12,6 @@ Design_Handoff_Studio/
 /Diagrams/
 CLAUDE.md
 archive/
+
+# atlas Space metadata (machine-local)
+/.space/
