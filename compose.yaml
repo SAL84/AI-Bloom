@@ -48,6 +48,9 @@ services:
       - aibloom-git:/home/dev/.git-secrets
 
     environment:
+      # Persist Claude Code account + onboarding state on the volume. Without this a
+      # container RECREATE wipes ~/.claude.json at HOME root and forces re-auth.
+      CLAUDE_CONFIG_DIR: /home/dev/.claude
       TZ: Asia/Amman
       START_APP: "1"
 
