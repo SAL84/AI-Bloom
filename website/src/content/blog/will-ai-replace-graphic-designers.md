@@ -19,6 +19,36 @@ The economic effect is blunt: clients' willingness to pay for that tier is falli
 
 It's worth sitting with that instead of rushing past it. Real people built real careers on exactly this work. Some of them were good at it, reliable, fast — and none of that protected them, because the thing clients were paying for was output, and output is what these tools produce. When commentators say "AI won't replace designers, it will replace designers who don't use AI," they're skipping over the people it already replaced. The honest framing is narrower and harsher: AI replaces work whose value was the artifact itself, and spares work whose value is the judgment behind the artifact.
 
+<div class="post-figure"><svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+<text x="400" y="26" text-anchor="middle" fill="#0f172a" font-size="14" font-weight="700">The waterline: which design work AI has absorbed</text>
+<rect x="60" y="46" width="680" height="110" rx="8" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+<rect x="60" y="46" width="680" height="22" rx="8" fill="#10b981"/>
+<text x="400" y="61" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">ABOVE THE WATERLINE — THE JUDGEMENT LAYER</text>
+<text x="180" y="95" text-anchor="middle" fill="#334155" font-size="9.5" font-weight="600">Brand thinking</text>
+<text x="180" y="110" text-anchor="middle" fill="#64748b" font-size="8">what should this company look like</text>
+<text x="400" y="95" text-anchor="middle" fill="#334155" font-size="9.5" font-weight="600">Taste and art direction</text>
+<text x="400" y="110" text-anchor="middle" fill="#64748b" font-size="8">knowing why a design works</text>
+<text x="618" y="95" text-anchor="middle" fill="#334155" font-size="9.5" font-weight="600">Accountability</text>
+<text x="618" y="110" text-anchor="middle" fill="#64748b" font-size="8">a human who answers for the result</text>
+<text x="400" y="140" text-anchor="middle" fill="#10b981" font-size="8.5" font-style="italic">a prompt cannot own any of these — this is what clients still pay for</text>
+<rect x="60" y="168" width="680" height="66" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="2"/>
+<rect x="60" y="168" width="680" height="22" rx="8" fill="#f59e0b"/>
+<text x="400" y="183" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">AT THE WATERLINE — CONTESTED CRAFT</text>
+<text x="400" y="207" text-anchor="middle" fill="#334155" font-size="9.5">Typography · brand fidelity · print specs · last-mile precision</text>
+<text x="400" y="222" text-anchor="middle" fill="#64748b" font-size="8.5">current tools still do this badly — but this line has been moving in one direction</text>
+<line x1="40" y1="252" x2="760" y2="252" stroke="#ef4444" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="400" y="246" text-anchor="middle" fill="#ef4444" font-size="8.5" font-weight="700">THE WATERLINE — WHAT CLIENTS NOW EXPECT AI TO COVER</text>
+<rect x="60" y="266" width="680" height="92" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<rect x="60" y="266" width="680" height="22" rx="8" fill="#2563eb"/>
+<text x="400" y="281" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">BELOW THE WATERLINE — ABSORBED</text>
+<text x="180" y="310" text-anchor="middle" fill="#334155" font-size="9.5" font-weight="600">Stock imagery</text>
+<text x="400" y="310" text-anchor="middle" fill="#334155" font-size="9.5" font-weight="600">Simple social assets</text>
+<text x="618" y="310" text-anchor="middle" fill="#334155" font-size="9.5" font-weight="600">First-draft visuals</text>
+<text x="400" y="334" text-anchor="middle" fill="#475569" font-size="8.5">the commodity tier: clients' willingness to pay for this is falling, and it will not come back</text>
+<text x="400" y="384" text-anchor="middle" fill="#475569" font-size="9.5">The junior production rung lived below the line — which is the career-ladder problem the field now has.</text>
+</svg></div>
+<p class="post-figcap">The question is not whether AI replaces designers — it is which side of the waterline your work sits on.</p>
+
 ## What the tools still can't do
 
 Here is what image generators do not do, and show no sign of doing soon: they don't know your business.

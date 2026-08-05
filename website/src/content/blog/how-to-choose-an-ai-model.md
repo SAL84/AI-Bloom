@@ -35,6 +35,49 @@ A simple version of this takes an afternoon:
 
 Deciding what "good" means before you look at outputs matters more than it seems. Without that step, it is easy to be swayed by confident phrasing or sheer length, which are not the same as quality. With it, you are grading against your own standard rather than the model's presentation.
 
+<div class="post-figure"><svg viewBox="0 0 800 310" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="bpcmA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/></marker><marker id="bpcmB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981"/></marker></defs>
+<text x="400" y="26" text-anchor="middle" fill="#0f172a" font-size="14" font-weight="700">The audition method — five steps, repeat next release cycle</text>
+<rect x="30" y="50" width="136" height="78" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+<text x="98" y="72" text-anchor="middle" fill="#2563eb" font-size="10" font-weight="700">1 · PICK TASKS</text>
+<text x="98" y="92" text-anchor="middle" fill="#334155" font-size="8.5">3–5 tasks from your</text>
+<text x="98" y="105" text-anchor="middle" fill="#334155" font-size="8.5">actual work — not</text>
+<text x="98" y="118" text-anchor="middle" fill="#334155" font-size="8.5">someone's benchmark</text>
+<line x1="168" y1="89" x2="186" y2="89" stroke="#2563eb" stroke-width="2" marker-end="url(#bpcmA)"/>
+<rect x="189" y="50" width="136" height="78" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+<text x="257" y="72" text-anchor="middle" fill="#2563eb" font-size="10" font-weight="700">2 · DEFINE GOOD</text>
+<text x="257" y="92" text-anchor="middle" fill="#334155" font-size="8.5">write down what a</text>
+<text x="257" y="105" text-anchor="middle" fill="#334155" font-size="8.5">good result looks like</text>
+<text x="257" y="118" text-anchor="middle" fill="#334155" font-size="8.5">before you look</text>
+<line x1="327" y1="89" x2="345" y2="89" stroke="#2563eb" stroke-width="2" marker-end="url(#bpcmA)"/>
+<rect x="348" y="50" width="136" height="78" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+<text x="416" y="72" text-anchor="middle" fill="#2563eb" font-size="10" font-weight="700">3 · RUN ALL</text>
+<text x="416" y="92" text-anchor="middle" fill="#334155" font-size="8.5">same tasks, every</text>
+<text x="416" y="105" text-anchor="middle" fill="#334155" font-size="8.5">candidate — fresh</text>
+<text x="416" y="118" text-anchor="middle" fill="#334155" font-size="8.5">conversations</text>
+<line x1="486" y1="89" x2="504" y2="89" stroke="#2563eb" stroke-width="2" marker-end="url(#bpcmA)"/>
+<rect x="507" y="50" width="136" height="78" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+<text x="575" y="72" text-anchor="middle" fill="#2563eb" font-size="10" font-weight="700">4 · JUDGE IT</text>
+<text x="575" y="92" text-anchor="middle" fill="#334155" font-size="8.5">against your written</text>
+<text x="575" y="105" text-anchor="middle" fill="#334155" font-size="8.5">bar — you, not a</text>
+<text x="575" y="118" text-anchor="middle" fill="#334155" font-size="8.5">leaderboard</text>
+<line x1="645" y1="89" x2="663" y2="89" stroke="#2563eb" stroke-width="2" marker-end="url(#bpcmA)"/>
+<rect x="666" y="50" width="112" height="78" rx="8" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+<text x="722" y="72" text-anchor="middle" fill="#10b981" font-size="10" font-weight="700">5 · DECIDE</text>
+<text x="722" y="92" text-anchor="middle" fill="#334155" font-size="8.5">then stop</text>
+<text x="722" y="105" text-anchor="middle" fill="#334155" font-size="8.5">reading</text>
+<text x="722" y="118" text-anchor="middle" fill="#334155" font-size="8.5">comparisons</text>
+<path d="M 722 132 L 722 168 L 98 168 L 98 132" fill="none" stroke="#10b981" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#bpcmB)"/>
+<text x="410" y="162" text-anchor="middle" fill="#10b981" font-size="8.5" font-style="italic">next release cycle: rerun the audition — do not re-read the reviews</text>
+<rect x="120" y="196" width="560" height="66" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="2"/>
+<rect x="120" y="196" width="560" height="22" rx="8" fill="#f59e0b"/>
+<text x="400" y="211" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">THE FREQUENT, HONEST OUTCOME</text>
+<text x="400" y="235" text-anchor="middle" fill="#334155" font-size="9.5">Several models clear your bar — at which point the decision is</text>
+<text x="400" y="250" text-anchor="middle" fill="#334155" font-size="9.5" font-weight="600">price and workflow fit, not intelligence</text>
+<text x="400" y="292" text-anchor="middle" fill="#475569" font-size="9.5">An hour of this beats a month of following release announcements.</text>
+</svg></div>
+<p class="post-figcap">The method survives every release cycle; the rankings never do.</p>
+
 ## The dimensions that actually differentiate
 
 Once you have quality on your own tasks as the anchor, a handful of practical dimensions separate the candidates. These are worth comparing deliberately, because they differ far more between providers than benchmark scores do.

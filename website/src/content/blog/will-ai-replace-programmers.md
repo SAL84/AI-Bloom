@@ -33,6 +33,42 @@ And more of the day goes to verifying — testing, checking behavior in the real
 
 None of this is unprecedented. It is worth remembering what happened the last few times programming was supposedly about to end.
 
+<div class="post-figure"><svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="bpwpA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
+<text x="400" y="26" text-anchor="middle" fill="#0f172a" font-size="14" font-weight="700">The job is being rebuilt, not deleted</text>
+<rect x="35" y="46" width="330" height="250" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+<rect x="35" y="46" width="330" height="22" rx="8" fill="#94a3b8"/>
+<text x="200" y="61" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">THE JOB, AS IT WAS</text>
+<text x="55" y="92" fill="#334155" font-size="9">Writing the code, line by line</text>
+<rect x="55" y="100" width="238" height="16" rx="3" fill="#2563eb"/>
+<text x="302" y="112" fill="#64748b" font-size="8.5">~70%</text>
+<text x="55" y="142" fill="#334155" font-size="9">Reviewing and debugging</text>
+<rect x="55" y="150" width="68" height="16" rx="3" fill="#93c5fd"/>
+<text x="132" y="162" fill="#64748b" font-size="8.5">~20%</text>
+<text x="55" y="192" fill="#334155" font-size="9">Deciding what to build, and why</text>
+<rect x="55" y="200" width="34" height="16" rx="3" fill="#cbd5e1"/>
+<text x="98" y="212" fill="#64748b" font-size="8.5">~10%</text>
+<text x="55" y="248" fill="#94a3b8" font-size="8.5" font-style="italic">The big bar is the part AI assistants</text>
+<text x="55" y="262" fill="#94a3b8" font-size="8.5" font-style="italic">now genuinely absorb.</text>
+<line x1="372" y1="170" x2="422" y2="170" stroke="#64748b" stroke-width="2" marker-end="url(#bpwpA)"/>
+<rect x="430" y="46" width="335" height="250" rx="8" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+<rect x="430" y="46" width="335" height="22" rx="8" fill="#10b981"/>
+<text x="597" y="61" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">THE JOB, AS IT IS BECOMING</text>
+<text x="450" y="92" fill="#334155" font-size="9">Specifying: saying precisely what and why</text>
+<rect x="450" y="100" width="105" height="16" rx="3" fill="#10b981"/>
+<text x="565" y="112" fill="#64748b" font-size="8.5">~30%</text>
+<text x="450" y="142" fill="#334155" font-size="9">Reviewing and verifying AI-written code</text>
+<rect x="450" y="150" width="140" height="16" rx="3" fill="#f59e0b"/>
+<text x="600" y="162" fill="#64748b" font-size="8.5">~40%</text>
+<text x="450" y="192" fill="#334155" font-size="9">Writing the hard parts yourself</text>
+<rect x="450" y="200" width="105" height="16" rx="3" fill="#2563eb"/>
+<text x="565" y="212" fill="#64748b" font-size="8.5">~30%</text>
+<text x="450" y="248" fill="#94a3b8" font-size="8.5" font-style="italic">Judgement work grows. It is harder to</text>
+<text x="450" y="262" fill="#94a3b8" font-size="8.5" font-style="italic">learn, and harder to automate.</text>
+<text x="400" y="330" text-anchor="middle" fill="#475569" font-size="9.5">The entry-level rung lived almost entirely inside the left panel's big bar — that is the honest problem.</text>
+</svg></div>
+<p class="post-figcap">Rough proportions, not a study — the shift in what fills a programmer's day.</p>
+
 ## We have panicked about this before
 
 In the 1950s, programmers wrote in raw machine instructions. Then compilers arrived — programs that let people write in friendlier languages and translated the result automatically. Some feared this would eliminate the profession, since the "hard part" was now done by software. Instead, programming became accessible to far more people, software got more ambitious, and the number of programmers grew enormously.
