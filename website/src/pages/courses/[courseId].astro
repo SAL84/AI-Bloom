@@ -42,7 +42,7 @@ const description = course.subtitle.length <= 155
           <p class="font-studio-sans text-[14px] text-studio-ink-dim leading-[1.6] m-0 mb-4">{mod.summary}</p>
           <ol class="m-0 pl-5 font-studio-sans text-[14px] text-studio-ink leading-[1.9]">
             {mod.lessons.map((lesson) => (
-              <li>{lesson.title}</li>
+              <li><a href={`/courses/${courseId}/${lesson.id}/`} class="text-studio-ink no-underline hover:underline underline-offset-2">{lesson.title}</a></li>
             ))}
           </ol>
         </section>

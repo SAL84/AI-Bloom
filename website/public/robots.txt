@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aibloom.io/sitemap-index.xml

@@ -1,0 +1,116 @@
+---
+import { COURSES } from '../../../data/modules';
+import { DIAGRAM_REGISTRY } from '../../../components/diagrams';
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import type { Lesson } from '../../../types/course';
+
+export function getStaticPaths() {
+  const paths: object[] = [];
+  for (const course of Object.values(COURSES)) {
+    const flat = course.modules.flatMap((m) =>
+      m.lessons.map((lesson) => ({ moduleTitle: m.title, lesson }))
+    );
+    flat.forEach((entry, i) => {
+      paths.push({
+        params: { courseId: course.id, lessonId: entry.lesson.id },
+        props: {
+          courseId: course.id,
+          courseTitle: course.title,
+          moduleTitle: entry.moduleTitle,
+          lesson: entry.lesson,
+          prev: flat[i - 1] ? { id: flat[i - 1].lesson.id, title: flat[i - 1].lesson.title } : null,
+          next: flat[i + 1] ? { id: flat[i + 1].lesson.id, title: flat[i + 1].lesson.title } : null,
+        },
+      });
+    });
+  }
+  return paths;
+}
+
+interface Props {
+  courseId: string;
+  courseTitle: string;
+  moduleTitle: string;
+  lesson: Lesson;
+  prev: { id: string; title: string } | null;
+  next: { id: string; title: string } | null;
+}
+const { courseId, courseTitle, moduleTitle, lesson, prev, next } = Astro.props;
+
+const Diagram = lesson.diagram ? DIAGRAM_REGISTRY[lesson.diagram] : null;
+const ExtraDiagram = lesson.extraDiagram ? DIAGRAM_REGISTRY[lesson.extraDiagram] : null;
+const firstBody = lesson.slides[0]?.body ?? '';
+const description = firstBody.length <= 155 ? firstBody : firstBody.slice(0, 152) + '…';
+---
+
+<BlogLayout title={`${lesson.title} — ${courseTitle}`} description={description}>
+  <article>
+    <nav class="font-studio-sans text-[13px] text-studio-ink-dim mb-5">
+      <a href={`/courses/${courseId}/`} class="text-studio-ink-dim underline decoration-studio-rule underline-offset-[3px] hover:text-studio-ink no-underline:hover">{courseTitle}</a>
+      <span class="text-studio-ink-mute mx-1.5">›</span>
+      <span>{moduleTitle}</span>
+    </nav>
+
+    {lesson.sectionLabel && (
+      <div class="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-3">◆ {lesson.sectionLabel}</div>
+    )}
+    <h1 class="font-studio-display text-[32px] sm:text-[40px] text-studio-ink font-normal tracking-[-0.6px] leading-[1.1] mb-6" style="text-wrap: balance">
+      {lesson.title}
+    </h1>
+
+    {Diagram && <div class="lesson-diagram"><Diagram /></div>}
+    {lesson.inlineSvg && !Diagram && (
+      <div class="lesson-diagram inline-art" set:html={lesson.inlineSvg} />
+    )}
+    {lesson.imageUrl && <img src={lesson.imageUrl} alt="" class="max-w-full rounded-[4px] border border-studio-rule my-4" />}
+
+    <div class="lesson-body">
+      {lesson.slides.map((slide) => (
+        <section>
+          <h2>{slide.heading}</h2>
+          <p>{slide.body}</p>
+          {slide.bullets && slide.bullets.length > 0 && (
+            <ul>
+              {slide.bullets.map((b) => <li>{b}</li>)}
+            </ul>
+          )}
+        </section>
+      ))}
+    </div>
+
+    {ExtraDiagram && <div class="lesson-diagram"><ExtraDiagram /></div>}
+
+    <div class="mt-8 px-5 py-4 bg-studio-paper border border-studio-rule rounded-[4px]">
+      <p class="font-studio-sans text-[13.5px] text-studio-ink-dim leading-[1.6] m-0">
+        Prefer slides, quizzes, and saved progress? Read this lesson in the
+        <a href="/" class="text-studio-ink underline underline-offset-2">library</a> — free, no sign-up.
+      </p>
+    </div>
+
+    <nav class="flex justify-between gap-4 mt-8 pt-5 border-t border-studio-rule font-studio-sans text-[13.5px]">
+      {prev
+        ? <a href={`/courses/${courseId}/${prev.id}/`} class="text-studio-ink-dim hover:text-studio-ink no-underline max-w-[45%]">← {prev.title}</a>
+        : <span />}
+      {next
+        ? <a href={`/courses/${courseId}/${next.id}/`} class="text-studio-ink-dim hover:text-studio-ink no-underline text-right max-w-[45%] ml-auto">{next.title} →</a>
+        : <span />}
+    </nav>
+  </article>
+</BlogLayout>
+
+<style is:global>
+  .lesson-body { font-family: var(--font-studio-sans); font-size: 15.5px; line-height: 1.7; color: var(--color-studio-ink); }
+  .lesson-body h2 {
+    font-family: var(--font-studio-display); font-weight: 400; font-size: 24px;
+    letter-spacing: -0.3px; line-height: 1.15; margin: 1.6em 0 0.5em;
+  }
+  .lesson-body section:first-child h2 { margin-top: 0.4em; }
+  .lesson-body p { margin: 0 0 1em; }
+  .lesson-body ul { margin: 0 0 1.2em; padding-left: 1.3em; }
+  .lesson-body li { margin-bottom: 0.35em; }
+  .lesson-diagram svg { width: 100%; height: auto; display: block; }
+  .lesson-diagram .my-4 { margin: 14px 0; }
+  .lesson-diagram .bg-slate-50 { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; }
+  .lesson-diagram .text-xs { font-size: 12px; color: var(--color-studio-ink-mute); margin-top: 7px; text-align: center; font-style: italic; }
+  .inline-art { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; margin: 14px 0; }
+</style>

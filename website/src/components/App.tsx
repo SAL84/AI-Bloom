@@ -31,7 +31,7 @@ const saveProgress = (progress: Progress): void => {
   }
 };
 
-export default function App() {
+export default function App({ posts = [] }: { posts?: import('./course/CourseLibraryView').BlogPostMeta[] }) {
   const [view, setViewRaw] = useState<View>(() => {
     if (typeof window !== 'undefined' && window.history.state?.appView) {
       return window.history.state.appView as View;
@@ -113,7 +113,7 @@ export default function App() {
   return (
     <>
       {view.type === 'library' && (
-        <CourseLibraryView setView={setView} completedLessons={completedLessons} />
+        <CourseLibraryView setView={setView} completedLessons={completedLessons} posts={posts} />
       )}
       {view.type === 'home' && (
         <HomeView setView={setView} course={activeCourse} completedLessons={completedLessons} quizScores={quizScores} savedLessons={savedLessons} toggleSaved={toggleSaved} initialModuleId={view.moduleId} />

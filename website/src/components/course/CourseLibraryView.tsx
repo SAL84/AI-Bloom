@@ -8,6 +8,37 @@ import { EDITORS_DESK, MARGINALIA } from '../../data/reading-room';
 interface Props {
   setView: (view: View) => void;
   completedLessons: Record<string, boolean>;
+  posts?: BlogPostMeta[];
+}
+
+export interface BlogPostMeta {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+}
+
+function JournalStrip({ posts }: { posts: BlogPostMeta[] }) {
+  if (!posts.length) return null;
+  return (
+    <section className="px-4 sm:px-6 lg:px-12 pb-8 lg:pb-10">
+      <div className="flex items-baseline gap-3.5 mb-3.5">
+        <div className="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase whitespace-nowrap">From the journal</div>
+        <div className="flex-1 h-px bg-studio-rule" />
+        <a href="/blog/" className="font-studio-serif italic text-[14px] text-studio-ink-mute whitespace-nowrap no-underline hover:text-studio-ink hover:underline underline-offset-[3px]">All posts →</a>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+        {posts.map((post) => (
+          <a key={post.id} href={`/blog/${post.id}/`}
+            className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 no-underline flex flex-col gap-2 hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200">
+            <div className="font-studio-mono text-[10px] text-studio-ink-mute tracking-[1.2px] uppercase">{post.date}</div>
+            <div className="font-studio-display text-[19px] text-studio-ink leading-[1.15] tracking-[-0.3px]">{post.title}</div>
+            <div className="font-studio-sans text-[12.5px] text-studio-ink-dim leading-[1.5]">{post.description}</div>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 function moduleCount(id: CourseId): number {
@@ -604,12 +635,13 @@ function StudioFooter() {
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 
-export const CourseLibraryView = ({ setView, completedLessons }: Props) => {
+export const CourseLibraryView = ({ setView, completedLessons, posts = [] }: Props) => {
   const [searchOpen, setSearchOpen] = useState(false);
   return (
     <div className="bg-studio-bg text-studio-ink font-studio-sans min-h-screen">
       <StudioNav setView={setView} onOpenSearch={() => setSearchOpen(true)} />
       <StudioHero setView={setView} />
+      <JournalStrip posts={posts} />
       <StudioCatalog setView={setView} completedLessons={completedLessons} />
       <StudioSideStuff setView={setView} />
       <StudioReadingRoom setView={setView} />

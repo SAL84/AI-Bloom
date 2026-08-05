@@ -1,6 +1,17 @@
 ---
 import App from '../components/App.tsx';
+import { getCollection } from 'astro:content';
 import '../styles/global.css';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4)
+  .map((p) => ({
+    id: p.id,
+    title: p.data.title,
+    description: p.data.description,
+    date: p.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }),
+  }));
 ---
 
 <html lang="en">
@@ -28,6 +39,6 @@ import '../styles/global.css';
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Geist:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <App client:load />
+    <App client:load posts={posts} />
   </body>
 </html>
