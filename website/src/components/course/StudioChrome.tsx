@@ -86,7 +86,9 @@ export function StudioFooter() {
         <div className="flex flex-wrap gap-3 sm:gap-5 font-studio-mono text-[11px] text-studio-ink-mute tracking-[1px]">
           <VisitCounter />
           <a href="/blog/" className="text-studio-ink-mute hover:text-studio-ink no-underline">JOURNAL</a>
-          <span>NEWSLETTER</span><span>SOURCE</span><span>EST. MMXXV</span>
+          <span>NEWSLETTER</span>
+          <a href="https://github.com/SAL84/AI-Bloom" target="_blank" rel="noopener" className="text-studio-ink-mute hover:text-studio-ink no-underline">SOURCE</a>
+          <span>EST. MMXXV</span>
         </div>
       </div>
     </footer>
