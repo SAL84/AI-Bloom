@@ -3,7 +3,17 @@ import { ChevronLeft, RotateCcw, User, Bot } from 'lucide-react';
 
 interface SpotTheBotGameProps {
   onBack: () => void;
+  onFinish?: (score: number) => void;
 }
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 
 const MESSAGES = [
   {
@@ -38,14 +48,15 @@ const MESSAGES = [
   },
 ];
 
-export const SpotTheBotGame = ({ onBack }: SpotTheBotGameProps) => {
+export const SpotTheBotGame = ({ onBack, onFinish }: SpotTheBotGameProps) => {
+  const [messages, setMessages] = useState(() => shuffle(MESSAGES));
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<boolean[]>([]);
   const [revealed, setRevealed] = useState(false);
   const [done, setDone] = useState(false);
 
-  const msg = MESSAGES[current];
-  const score = answers.filter((a, i) => a === MESSAGES[i].isBot).length;
+  const msg = messages[current];
+  const score = answers.filter((a, i) => a === messages[i].isBot).length;
   const lastAnswer = answers[answers.length - 1];
   const wasCorrect = revealed && lastAnswer === msg.isBot;
 
@@ -56,24 +67,25 @@ export const SpotTheBotGame = ({ onBack }: SpotTheBotGameProps) => {
 
   const handleNext = () => {
     setRevealed(false);
-    if (current + 1 < MESSAGES.length) {
+    if (current + 1 < messages.length) {
       setCurrent(c => c + 1);
     } else {
+      onFinish?.(answers.filter((a, i) => a === messages[i].isBot).length);
       setDone(true);
     }
   };
 
-  const reset = () => { setCurrent(0); setAnswers([]); setRevealed(false); setDone(false); };
+  const reset = () => { setMessages(shuffle(MESSAGES)); setCurrent(0); setAnswers([]); setRevealed(false); setDone(false); };
 
   if (done) {
-    const pct = Math.round((score / MESSAGES.length) * 100);
+    const pct = Math.round((score / messages.length) * 100);
     return (
       <div className="max-w-2xl mx-auto px-6 py-10 text-center">
         <div className="text-6xl mb-4">{pct >= 80 ? '🕵️' : pct >= 60 ? '🤔' : '🤖'}</div>
         <h2 className="text-2xl font-bold text-slate-900 mb-2">
           {pct >= 80 ? 'AI Detective!' : pct >= 60 ? 'Not bad, detective!' : 'The bots fooled you!'}
         </h2>
-        <p className="text-slate-600 mb-6">You spotted <strong className="text-blue-600">{score} / {MESSAGES.length}</strong> correctly.</p>
+        <p className="text-slate-600 mb-6">You spotted <strong className="text-blue-600">{score} / {messages.length}</strong> correctly.</p>
         <div className="bg-blue-50 rounded-2xl p-5 text-left mb-6 text-sm text-blue-900">
           <strong>The tells 🔍</strong><br />
           AI text is often perfectly grammatical, neutral in tone, and starts with phrases like "Certainly!" or "Great question!" Humans use slang, emotions, imperfect grammar — especially when stressed or excited.
@@ -96,9 +108,9 @@ export const SpotTheBotGame = ({ onBack }: SpotTheBotGameProps) => {
         <ChevronLeft className="w-4 h-4" /> Back to Games
       </button>
       <div className="text-center mb-6">
-        <div className="text-sm font-semibold text-blue-600 mb-1">{current + 1} / {MESSAGES.length}</div>
+        <div className="text-sm font-semibold text-blue-600 mb-1">{current + 1} / {messages.length}</div>
         <div className="w-full bg-slate-100 rounded-full h-2 mb-4">
-          <div className="bg-blue-500 h-2 rounded-full transition-all" style={{ width: `${(current / MESSAGES.length) * 100}%` }} />
+          <div className="bg-blue-500 h-2 rounded-full transition-all" style={{ width: `${(current / messages.length) * 100}%` }} />
         </div>
         <h2 className="text-xl font-bold text-slate-800">Human or Bot? 🤔</h2>
         <p className="text-sm text-slate-500">Who wrote this message?</p>
@@ -123,7 +135,7 @@ export const SpotTheBotGame = ({ onBack }: SpotTheBotGameProps) => {
           </div>
           <p className="text-sm text-slate-600 mb-4">{msg.hint}</p>
           <button onClick={handleNext} className="w-full py-2.5 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition">
-            {current + 1 < MESSAGES.length ? 'Next Message →' : 'See Results'}
+            {current + 1 < messages.length ? 'Next Message →' : 'See Results'}
           </button>
         </div>
       )}

@@ -41,6 +41,7 @@ export default function App({ posts = [] }: { posts?: import('./course/CourseLib
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
   const [quizScores, setQuizScores] = useState<Record<string, number>>({});
   const [savedLessons, setSavedLessons] = useState<Record<string, boolean>>({});
+  const [gameScores, setGameScores] = useState<Record<string, number>>({});
   const [loaded, setLoaded] = useState(false);
 
   const setView = useCallback<React.Dispatch<React.SetStateAction<View>>>((next) => {
@@ -71,12 +72,13 @@ export default function App({ posts = [] }: { posts?: import('./course/CourseLib
     setCompletedLessons(p.completedLessons || {});
     setQuizScores(p.quizScores || {});
     setSavedLessons(p.savedLessons || {});
+    setGameScores(p.gameScores || {});
     setLoaded(true);
   }, []);
 
   useEffect(() => {
-    if (loaded) saveProgress({ completedLessons, quizScores, savedLessons });
-  }, [completedLessons, quizScores, savedLessons, loaded]);
+    if (loaded) saveProgress({ completedLessons, quizScores, savedLessons, gameScores });
+  }, [completedLessons, quizScores, savedLessons, gameScores, loaded]);
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -132,7 +134,7 @@ export default function App({ posts = [] }: { posts?: import('./course/CourseLib
       {view.type === 'shelf' && <ShelfView setView={setView} savedLessons={savedLessons} toggleSaved={toggleSaved} completedLessons={completedLessons} />}
       {view.type === 'playground' && <AIPlaygroundsView setView={setView} initialSection="playgrounds" />}
       {view.type === 'agentic-ai' && <AIPlaygroundsView setView={setView} initialSection="agentic" />}
-      {view.type === 'kids-games' && <KidsGamesView setView={setView} />}
+      {view.type === 'kids-games' && <KidsGamesView setView={setView} gameScores={gameScores} onGameScore={(id, score) => setGameScores(prev => (score > (prev[id] ?? -1) ? { ...prev, [id]: score } : prev))} />}
       {view.type === 'kids-careers' && <KidsCareersView setView={setView} />}
     </>
   );

@@ -3,7 +3,17 @@ import { ChevronLeft, RotateCcw, SendHorizontal } from 'lucide-react';
 
 interface PromptMasterGameProps {
   onBack: () => void;
+  onFinish?: (score: number) => void;
 }
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 
 type ScoreLevel = 'weak' | 'medium' | 'strong';
 
@@ -75,37 +85,39 @@ function scorePrompt(prompt: string, challenge: Challenge): ScoreLevel {
   return 'weak';
 }
 
-export const PromptMasterGame = ({ onBack }: PromptMasterGameProps) => {
+export const PromptMasterGame = ({ onBack, onFinish }: PromptMasterGameProps) => {
+  const [challenges, setChallenges] = useState(() => shuffle(CHALLENGES));
   const [idx, setIdx] = useState(0);
   const [prompt, setPrompt] = useState('');
   const [result, setResult] = useState<{ score: ScoreLevel; response: string } | null>(null);
   const [scores, setScores] = useState<ScoreLevel[]>([]);
   const [done, setDone] = useState(false);
 
-  const challenge = CHALLENGES[idx];
+  const challenge = challenges[idx];
 
   const handleSubmit = () => {
     if (!prompt.trim()) return;
     const score = scorePrompt(prompt, challenge);
     setResult({ score, response: challenge.responses[score] });
-    setScores(prev => [...prev, score]);
+    setScores(prev => { const next = [...prev]; next[idx] = score; return next; });
   };
 
   const handleNext = () => {
     setPrompt('');
     setResult(null);
-    if (idx + 1 < CHALLENGES.length) {
+    if (idx + 1 < challenges.length) {
       setIdx(i => i + 1);
     } else {
+      onFinish?.(scores.reduce((t, sc) => t + (sc === 'strong' ? 3 : sc === 'medium' ? 2 : 1), 0));
       setDone(true);
     }
   };
 
-  const reset = () => { setIdx(0); setPrompt(''); setResult(null); setScores([]); setDone(false); };
+  const reset = () => { setChallenges(shuffle(CHALLENGES)); setIdx(0); setPrompt(''); setResult(null); setScores([]); setDone(false); };
 
   if (done) {
     const stars = scores.reduce((s, sc) => s + (sc === 'strong' ? 3 : sc === 'medium' ? 2 : 1), 0);
-    const max = CHALLENGES.length * 3;
+    const max = challenges.length * 3;
     return (
       <div className="max-w-2xl mx-auto px-6 py-10 text-center">
         <div className="text-6xl mb-4">🪄</div>
@@ -138,9 +150,9 @@ export const PromptMasterGame = ({ onBack }: PromptMasterGameProps) => {
         <ChevronLeft className="w-4 h-4" /> Back to Games
       </button>
       <div className="text-center mb-6">
-        <div className="text-sm font-semibold text-yellow-600 mb-1">Challenge {idx + 1} / {CHALLENGES.length}</div>
+        <div className="text-sm font-semibold text-yellow-600 mb-1">Challenge {idx + 1} / {challenges.length}</div>
         <div className="w-full bg-slate-100 rounded-full h-2 mb-4">
-          <div className="bg-yellow-400 h-2 rounded-full transition-all" style={{ width: `${(idx / CHALLENGES.length) * 100}%` }} />
+          <div className="bg-yellow-400 h-2 rounded-full transition-all" style={{ width: `${(idx / challenges.length) * 100}%` }} />
         </div>
         <h2 className="text-xl font-bold text-slate-800 mb-1">Your Challenge:</h2>
         <p className="text-slate-700 font-medium">{challenge.goal}</p>
@@ -182,7 +194,7 @@ export const PromptMasterGame = ({ onBack }: PromptMasterGameProps) => {
             </button>
           )}
           <button onClick={handleNext} className="w-full py-2.5 bg-yellow-500 text-white rounded-xl font-semibold hover:bg-yellow-600 transition">
-            {idx + 1 < CHALLENGES.length ? 'Next Challenge →' : 'See Results'}
+            {idx + 1 < challenges.length ? 'Next Challenge →' : 'See Results'}
           </button>
         </div>
       )}

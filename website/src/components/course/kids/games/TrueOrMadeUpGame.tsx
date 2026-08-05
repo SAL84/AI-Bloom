@@ -3,6 +3,7 @@ import { ChevronLeft, RotateCcw, CheckCircle2, XCircle } from 'lucide-react';
 
 interface TrueOrMadeUpGameProps {
   onBack: () => void;
+  onFinish?: (score: number) => void;
 }
 
 interface Statement {
@@ -98,7 +99,7 @@ function shuffledRounds(): Statement[] {
   return pool.slice(0, ROUNDS_PER_GAME);
 }
 
-export const TrueOrMadeUpGame = ({ onBack }: TrueOrMadeUpGameProps) => {
+export const TrueOrMadeUpGame = ({ onBack, onFinish }: TrueOrMadeUpGameProps) => {
   const [rounds, setRounds] = useState<Statement[]>(() => shuffledRounds());
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<boolean[]>([]);
@@ -120,6 +121,7 @@ export const TrueOrMadeUpGame = ({ onBack }: TrueOrMadeUpGameProps) => {
     if (current + 1 < rounds.length) {
       setCurrent(c => c + 1);
     } else {
+      onFinish?.(answers.filter((a, i) => a === rounds[i].isTrue).length);
       setDone(true);
     }
   };

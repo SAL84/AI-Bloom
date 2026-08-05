@@ -3,7 +3,17 @@ import { ChevronLeft, RotateCcw } from 'lucide-react';
 
 interface LabelItGameProps {
   onBack: () => void;
+  onFinish?: (score: number) => void;
 }
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 
 type Category = 'Animal' | 'Vehicle' | 'Food';
 
@@ -36,15 +46,16 @@ const CAT_EMOJI: Record<Category, string> = {
   Food: '🍽️ Food',
 };
 
-export const LabelItGame = ({ onBack }: LabelItGameProps) => {
+export const LabelItGame = ({ onBack, onFinish }: LabelItGameProps) => {
+  const [items, setItems] = useState(() => shuffle(ITEMS));
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<Record<number, Category>>({});
   const [done, setDone] = useState(false);
 
-  const item = ITEMS[current];
-  const total = ITEMS.length;
+  const item = items[current];
+  const total = items.length;
   const correct = Object.entries(answers).filter(([id, cat]) =>
-    ITEMS.find(i => i.id === Number(id))?.category === cat
+    items.find(i => i.id === Number(id))?.category === cat
   ).length;
 
   const handlePick = (cat: Category) => {
@@ -53,11 +64,12 @@ export const LabelItGame = ({ onBack }: LabelItGameProps) => {
     if (current + 1 < total) {
       setCurrent(c => c + 1);
     } else {
+      onFinish?.(items.filter(i => updated[i.id] === i.category).length);
       setDone(true);
     }
   };
 
-  const reset = () => { setCurrent(0); setAnswers({}); setDone(false); };
+  const reset = () => { setItems(shuffle(ITEMS)); setCurrent(0); setAnswers({}); setDone(false); };
 
   if (done) {
     return (

@@ -3,6 +3,7 @@ import { ChevronLeft, RotateCcw, ThumbsUp, Users, ShieldAlert } from 'lucide-rea
 
 interface ShareOrNotGameProps {
   onBack: () => void;
+  onFinish?: (score: number) => void;
 }
 
 type Answer = 'fine' | 'grownup' | 'never';
@@ -100,7 +101,7 @@ function shuffledRounds(): Scenario[] {
   return pool.slice(0, ROUNDS_PER_GAME);
 }
 
-export const ShareOrNotGame = ({ onBack }: ShareOrNotGameProps) => {
+export const ShareOrNotGame = ({ onBack, onFinish }: ShareOrNotGameProps) => {
   const [rounds, setRounds] = useState<Scenario[]>(() => shuffledRounds());
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
@@ -122,6 +123,7 @@ export const ShareOrNotGame = ({ onBack }: ShareOrNotGameProps) => {
     if (current + 1 < rounds.length) {
       setCurrent(c => c + 1);
     } else {
+      onFinish?.(answers.filter((a, i) => a === rounds[i].answer).length);
       setDone(true);
     }
   };

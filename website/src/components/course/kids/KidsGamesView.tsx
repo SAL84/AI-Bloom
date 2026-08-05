@@ -9,11 +9,14 @@ import { ShareOrNotGame } from './games/ShareOrNotGame';
 
 interface KidsGamesViewProps {
   setView: (view: View) => void;
+  gameScores?: Record<string, number>;
+  onGameScore?: (gameId: string, score: number) => void;
 }
 
 const GAMES = [
   {
     id: 'label-it' as const,
+    max: 12, unit: 'labels',
     glyph: '◧',
     label: 'Label It!',
     desc: 'Sort examples into categories to teach an AI — just like real AI trainers do.',
@@ -22,6 +25,7 @@ const GAMES = [
   },
   {
     id: 'spot-the-bot' as const,
+    max: 5, unit: 'spotted',
     glyph: '◉',
     label: 'Spot the Bot',
     desc: 'Read 5 messages and decide: was this written by a human or an AI?',
@@ -30,6 +34,7 @@ const GAMES = [
   },
   {
     id: 'prompt-master' as const,
+    max: 9, unit: 'stars',
     glyph: '◈',
     label: 'Prompt Master',
     desc: 'Write the perfect instruction to get exactly what you want from AI.',
@@ -38,6 +43,7 @@ const GAMES = [
   },
   {
     id: 'true-or-made-up' as const,
+    max: 8, unit: 'facts',
     glyph: '◍',
     label: 'True or Made Up?',
     desc: 'An AI wrote these facts — but it makes things up with a straight face. Can you tell?',
@@ -46,6 +52,7 @@ const GAMES = [
   },
   {
     id: 'share-or-not' as const,
+    max: 8, unit: 'scenarios',
     glyph: '◐',
     label: 'Share or Don\'t Share?',
     desc: 'A chatbot is asking questions. Which answers are fine, and which are never OK?',
@@ -56,14 +63,15 @@ const GAMES = [
 
 type GameId = typeof GAMES[number]['id'];
 
-export const KidsGamesView = ({ setView }: KidsGamesViewProps) => {
+export const KidsGamesView = ({ setView, gameScores = {}, onGameScore }: KidsGamesViewProps) => {
   const [activeGame, setActiveGame] = useState<GameId | null>(null);
 
-  if (activeGame === 'label-it')      return <LabelItGame onBack={() => setActiveGame(null)} />;
-  if (activeGame === 'spot-the-bot')  return <SpotTheBotGame onBack={() => setActiveGame(null)} />;
-  if (activeGame === 'prompt-master') return <PromptMasterGame onBack={() => setActiveGame(null)} />;
-  if (activeGame === 'true-or-made-up') return <TrueOrMadeUpGame onBack={() => setActiveGame(null)} />;
-  if (activeGame === 'share-or-not')    return <ShareOrNotGame onBack={() => setActiveGame(null)} />;
+  const finish = (id: string) => (score: number) => onGameScore?.(id, score);
+  if (activeGame === 'label-it')      return <LabelItGame onBack={() => setActiveGame(null)} onFinish={finish('label-it')} />;
+  if (activeGame === 'spot-the-bot')  return <SpotTheBotGame onBack={() => setActiveGame(null)} onFinish={finish('spot-the-bot')} />;
+  if (activeGame === 'prompt-master') return <PromptMasterGame onBack={() => setActiveGame(null)} onFinish={finish('prompt-master')} />;
+  if (activeGame === 'true-or-made-up') return <TrueOrMadeUpGame onBack={() => setActiveGame(null)} onFinish={finish('true-or-made-up')} />;
+  if (activeGame === 'share-or-not')    return <ShareOrNotGame onBack={() => setActiveGame(null)} onFinish={finish('share-or-not')} />;
 
   return (
     <div className="bg-studio-bg min-h-screen">
@@ -98,7 +106,12 @@ export const KidsGamesView = ({ setView }: KidsGamesViewProps) => {
               <div className="px-6 py-5">
                 <div className="font-studio-display text-[22px] font-normal text-studio-ink mb-2 leading-[1.1]">{g.label}</div>
                 <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.55]">{g.desc}</p>
-                <div className="mt-4 font-studio-mono text-[11px] tracking-[0.5px]" style={{ color: g.color }}>Play now →</div>
+                <div className="mt-4 flex items-center justify-between">
+                  <span className="font-studio-mono text-[11px] tracking-[0.5px]" style={{ color: g.color }}>Play now →</span>
+                  {gameScores[g.id] !== undefined && (
+                    <span className="font-studio-mono text-[10.5px] tracking-[0.5px] text-studio-ink-mute">Best: {gameScores[g.id]}/{g.max} {g.unit}</span>
+                  )}
+                </div>
               </div>
             </button>
           ))}

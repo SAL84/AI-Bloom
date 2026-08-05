@@ -80,6 +80,7 @@ export interface Progress {
   completedLessons: Record<string, boolean>;
   quizScores: Record<string, number>;
   savedLessons?: Record<string, boolean>;
+  gameScores?: Record<string, number>;
 }
 
 export type View =
