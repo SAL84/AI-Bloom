@@ -351,9 +351,9 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
                 <span className="text-[34px] leading-none">🎮</span>
               </div>
               <div className="px-6 py-5 flex-1 flex flex-col gap-4">
-                <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.55] m-0 flex-1">Three quick games — Spot the Bot, Prompt Master, and friends — that teach real AI concepts. All in your browser, no setup.</p>
+                <p className="font-studio-sans text-[13px] text-studio-ink-dim leading-[1.55] m-0 flex-1">Five quick games — Spot the Bot, True or Made Up?, Share or Don\'t Share?, and friends — that teach real AI concepts. All in your browser, no setup.</p>
                 <div className="flex justify-between items-center pt-3.5 border-t border-dashed border-studio-rule font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px]">
-                  <span>3 games · ages 8–14</span>
+                  <span>5 games · ages 8–14</span>
                   <span className="text-studio-ink font-medium">Play now →</span>
                 </div>
               </div>

@@ -39,7 +39,7 @@ const ENTRIES: CourseEntry[] = [
   {
     id: 'ai-kids', no: '01', title: 'AI for Kids', track: 'Foundations',
     color: '#d96a3a', status: 'live',
-    note: 'Full course with career explorer and three in-browser games.',
+    note: 'Full course with career explorer and five in-browser games.',
     view: { type: 'home', courseId: 'ai-kids' },
   },
   {

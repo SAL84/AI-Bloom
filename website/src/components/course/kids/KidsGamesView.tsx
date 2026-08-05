@@ -4,6 +4,8 @@ import { StudioNavLite } from '../StudioChrome';
 import { LabelItGame } from './games/LabelItGame';
 import { SpotTheBotGame } from './games/SpotTheBotGame';
 import { PromptMasterGame } from './games/PromptMasterGame';
+import { TrueOrMadeUpGame } from './games/TrueOrMadeUpGame';
+import { ShareOrNotGame } from './games/ShareOrNotGame';
 
 interface KidsGamesViewProps {
   setView: (view: View) => void;
@@ -34,6 +36,22 @@ const GAMES = [
     badge: 'Prompt Engineering',
     color: '#d96a3a',
   },
+  {
+    id: 'true-or-made-up' as const,
+    glyph: '◍',
+    label: 'True or Made Up?',
+    desc: 'An AI wrote these facts — but it makes things up with a straight face. Can you tell?',
+    badge: 'Fact Checking',
+    color: '#8a1e2e',
+  },
+  {
+    id: 'share-or-not' as const,
+    glyph: '◐',
+    label: 'Share or Don\'t Share?',
+    desc: 'A chatbot is asking questions. Which answers are fine, and which are never OK?',
+    badge: 'Staying Safe',
+    color: '#0f8a7a',
+  },
 ];
 
 type GameId = typeof GAMES[number]['id'];
@@ -44,6 +62,8 @@ export const KidsGamesView = ({ setView }: KidsGamesViewProps) => {
   if (activeGame === 'label-it')      return <LabelItGame onBack={() => setActiveGame(null)} />;
   if (activeGame === 'spot-the-bot')  return <SpotTheBotGame onBack={() => setActiveGame(null)} />;
   if (activeGame === 'prompt-master') return <PromptMasterGame onBack={() => setActiveGame(null)} />;
+  if (activeGame === 'true-or-made-up') return <TrueOrMadeUpGame onBack={() => setActiveGame(null)} />;
+  if (activeGame === 'share-or-not')    return <ShareOrNotGame onBack={() => setActiveGame(null)} />;
 
   return (
     <div className="bg-studio-bg min-h-screen">
@@ -57,7 +77,7 @@ export const KidsGamesView = ({ setView }: KidsGamesViewProps) => {
           AI Games
         </h1>
         <p className="font-studio-serif italic text-[16px] lg:text-[18px] leading-[1.5]" style={{ color: 'rgba(255,255,255,0.82)' }}>
-          Each game teaches a real AI concept used by engineers today. Three games, all in your browser.
+          Each game teaches a real AI concept used by engineers today. Five games, all in your browser.
         </p>
       </div>
 
