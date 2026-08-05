@@ -95,7 +95,7 @@ function StudioHero({ posts }: { posts: BlogPostMeta[] }) {
       <div className="hidden sm:block absolute top-6 lg:top-9 right-6 lg:right-14 font-studio-mono text-[10px] lg:text-[11px] text-studio-ink-mute tracking-[1.4px] uppercase">
         Vol. VI · No. 03 — Spring 2026
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8 lg:gap-16 lg:items-end">
+      <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-10 lg:items-end">
         <div>
           <div className="font-studio-mono text-[10.5px] lg:text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-3 lg:mb-[18px]">
             ◆ Open shelves · all welcome
@@ -246,7 +246,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
     onClick: () => setView({ type: 'home', courseId: 'ai-kids' }),
   };
   const teensCard: CardData = {
-    no: '02', title: 'AI for School Students', kicker: 'For ages 14–18', color: '#c4623a',
+    no: '02', title: 'AI for School Students', kicker: 'For ages 14–18', color: '#d96a3a',
     blurb: 'How LLMs actually work, prompting as a real skill, deepfakes, and where the line sits on schoolwork.',
     modules: moduleCount('ai-teens'), level: 'Beginner', progress: pTeens,
     badge: pTeens > 0 ? 'Resume →' : 'Open →',
@@ -258,12 +258,12 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       modules: moduleCount('ai-essentials'), level: 'Beginner', progress: pEss,
       badge: pEss > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-essentials' }) },
-    { no: '04', title: 'AI Deep Dive', kicker: 'For builders', color: '#5a4ec0',
+    { no: '04', title: 'AI Deep Dive', kicker: 'For builders', color: '#3f8a5e',
       blurb: "Transformers, embeddings, fine-tuning, evals. The trade-offs that don't fit on a slide.",
       modules: moduleCount('ai-deep-dive'), level: 'Advanced', progress: pDeep,
       badge: pDeep > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-deep-dive' }) },
-    { no: '05', title: 'Prompting', kicker: 'The everyday skill', color: '#1f7a8c',
+    { no: '05', title: 'Prompting', kicker: 'The everyday skill', color: '#3f8a5e',
       blurb: 'The one skill that improves everything else you do with AI. Built on before-and-after examples, not abstract advice.',
       modules: moduleCount('ai-prompting'), level: 'Beginner', progress: pPrompt,
       badge: pPrompt > 0 ? 'Resume →' : 'Open →',
@@ -278,34 +278,34 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
   ];
 
   const buildTestSecureCards: CardData[] = [
-    { no: '06', title: 'Vibecoding', kicker: '① Build it', color: '#d4711f',
+    { no: '06', title: 'Vibecoding', kicker: '① Build it', color: '#5a4ec0',
       blurb: 'Turn an idea into a working prototype using AI — with no coding background, and knowing what you have actually got.',
       modules: moduleCount('ai-vibecoding'), level: 'Beginner', progress: pVibe,
       badge: pVibe > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-vibecoding' }) },
-    { no: '07', title: 'Agent Engineering', kicker: '② Engineer it', color: '#5d5045',
+    { no: '07', title: 'Agent Engineering', kicker: '② Engineer it', color: '#5a4ec0',
       blurb: 'The scaffolding that turns a model into a working system — loops, context, tools, and the failures that only appear in production.',
       modules: moduleCount('ai-agents'), level: 'Advanced', progress: pAgents,
       badge: pAgents > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-agents' }) },
-    { no: '08', title: 'Does Your AI Actually Work?', kicker: '③ Test it', color: '#c9421f',
+    { no: '08', title: 'Does Your AI Actually Work?', kicker: '③ Test it', color: '#5a4ec0',
       blurb: 'An eval is a test for AI. Build real test cases, judge quality honestly, and catch problems before your users find them.',
       modules: moduleCount('ai-evals'), level: 'Advanced', progress: pEvals,
       badge: pEvals > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-evals' }) },
-    { no: '09', title: 'Securing AI Systems', kicker: '④ Secure it', color: '#8b2f5f',
+    { no: '09', title: 'Securing AI Systems', kicker: '④ Secure it', color: '#5a4ec0',
       blurb: 'Threat-model, harden and red-team AI and agentic systems. The hands-on counterpart to the sales course.',
       modules: moduleCount('ai-secure'), level: 'Advanced', progress: pSecure,
       badge: pSecure > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-secure' }) },
   ];
   const verticalCards: CardData[] = [
-    { no: '11', title: 'AI for Healthcare', kicker: 'For clinical & health-tech', color: '#0f8a7a',
+    { no: '11', title: 'AI for Healthcare', kicker: 'For clinical & health-tech', color: '#2c6db0',
       blurb: 'Where AI actually sits in care, how to read the evidence, and the regulatory reality. Orientation, not clinical guidance.',
       modules: moduleCount('ai-healthcare'), level: 'Intermediate', progress: pHealth,
       badge: pHealth > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-healthcare' }) },
-    { no: '12', title: 'AI for Legal', kicker: 'For legal practice', color: '#5a4ec0',
+    { no: '12', title: 'AI for Legal', kicker: 'For legal practice', color: '#2c6db0',
       blurb: 'Contracts, discovery, and the citation problem that has already cost lawyers their credibility.',
       modules: moduleCount('ai-legal'), level: 'Intermediate', progress: pLegal,
       badge: pLegal > 0 ? 'Resume →' : 'Open →',
