@@ -159,6 +159,7 @@ const secM1: CourseModule = {
             'Every consumer of model output sits across a trust boundary from it',
             'Tool invocation is an authorisation decision, not an internal function call',
             'Improper output handling is a distinct failure class from injection — treat it separately',
+            'On the standard maps: OWASP\'s LLM Top 10 carries improper output handling as its own entry, separate from prompt injection',
           ],
         },
         {

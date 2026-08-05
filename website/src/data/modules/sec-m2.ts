@@ -20,6 +20,7 @@ const secM2: CourseModule = {
             'Instruction hierarchy is learned and probabilistic, not parser-enforced',
             'The model infers roles from patterns — convincing text can shift that inference',
             'Distinguish structural controls from statistical ones when drawing boundaries',
+            'On the standard maps: this is OWASP LLM01 (prompt injection) — useful shorthand in design reviews and vendor conversations',
           ],
         },
         {
@@ -67,6 +68,7 @@ const secM2: CourseModule = {
             'Metadata counts: filenames, headers, alt text, document properties, error strings',
             'Third-party tool responses are attacker-influenceable if their upstream data is',
             'An unlisted channel is an untested channel — the inventory is the deliverable',
+            'OWASP LLM01 (prompt injection) covers this indirect form explicitly; MITRE ATLAS catalogues it among its prompt injection techniques',
           ],
         },
         {
@@ -196,6 +198,7 @@ const secM2: CourseModule = {
             'Name imitation, maintainer change, and post-adoption behaviour change all apply here',
             'Servers can call other servers; the real surface is a graph you have not drawn',
             'Grants are usually per-server while risk is per-tool — that mismatch over-privileges by default',
+            'On the standard maps: OWASP\'s LLM Top 10 supply-chain entry, plus MITRE ATLAS\'s supply chain compromise techniques',
           ],
         },
         {
@@ -243,6 +246,7 @@ const secM2: CourseModule = {
             'Chunking strips the framing that made content look like a quotation or an example',
             'Attackers can shape content toward a topic to control when it surfaces',
             'Require source allowlists, per-chunk provenance, and purge-by-source capability',
+            'OWASP\'s LLM Top 10 covers poisoned retrieval under its data poisoning and vector and embedding weaknesses entries',
           ],
         },
         {
@@ -280,6 +284,7 @@ const secM2: CourseModule = {
             'Permission: credentials broader than the tool requires, usually an inherited service account',
             'Autonomy: consequential actions executed with no check beyond the model\'s decision',
             'Each has a different fix; a gate does not shrink a credential',
+            'On the standard maps: OWASP\'s LLM Top 10 lists this as excessive agency; the leak side is its sensitive information disclosure entry',
           ],
         },
         {
@@ -338,6 +343,7 @@ const secM2: CourseModule = {
             'Hierarchy attacks: override attempts and refusal suppression by format pre-commitment',
             'Multi-turn escalation and long-context pressure exploit accumulated context',
             'Multimodal delivery bypasses anything that only inspects the text path',
+            'MITRE ATLAS catalogues these mechanism families under its LLM jailbreak and prompt injection style techniques',
           ],
         },
         {

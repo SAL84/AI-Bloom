@@ -20,6 +20,7 @@ const secM3: CourseModule = {
             'Purpose-built tools resist argument steering that arbitrary-query tools invite',
             'Separate read tools from write tools and expose write only where needed',
             'Tool lists grow unless someone owns removal; schedule the review',
+            'On the standard maps: OWASP\'s LLM Top 10 frames this risk as excessive agency — least privilege is its first-line mitigation',
           ],
         },
         {
@@ -206,6 +207,7 @@ const secM3: CourseModule = {
             'Encode for the rendering context and disable automatic remote resource fetching',
             'Resolve and authorise identifiers at the consumer, not on arrival',
             'Validate once at the boundary and trust everywhere after is the pattern to avoid',
+            'OWASP\'s LLM Top 10 names this downstream failure improper output handling — treat every consumer as the enforcement point',
           ],
         },
       ],

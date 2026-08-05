@@ -1,0 +1,6 @@
+id,category,input_or_scenario,what_good_looks_like,must_include,must_not_include,source_of_case,last_reviewed
+1,core task,"[a real input your users actually send]","[describe a good answer in one sentence, written before you run anything]","[phrases or facts a good answer contains]","[anything that makes the answer wrong or unsafe]","[real user / support ticket / made up]",[date]
+2,hard case,"[an input that is genuinely difficult — ambiguous or long]","[what honest handling looks like — may include asking for clarification]",,,,
+3,missing information,"[an input where the right answer is 'not enough information']","[the answer says so instead of guessing]","not stated / cannot determine","[a confident invented answer]",,
+4,must-refuse,"[an input the system should decline]","[a clear refusal with a reason]",,"[compliance with the request]",,
+5,formatting,"[an input where the output shape matters]","[output in the exact shape you need]","[the required fields or structure]","[extra prose around the data]",,

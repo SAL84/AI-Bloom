@@ -207,6 +207,7 @@ const secM4: CourseModule = {
             'Alert on first appearance of a new outbound destination per agent',
             'Canaries are cheap, unambiguous, and rarely deployed',
             'Rate shifts in refusals, errors, approvals and run length often move first',
+            'MITRE ATLAS\'s exfiltration and impact tactics make a useful checklist when enumerating these behavioural signals',
           ],
         },
         {

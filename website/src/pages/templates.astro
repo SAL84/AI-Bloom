@@ -1,0 +1,54 @@
+---
+import BlogLayout from '../layouts/BlogLayout.astro';
+
+const templates = [
+  {
+    file: '/templates/plain-language-spec.md',
+    name: 'Plain-Language Spec',
+    from: 'Vibecoding',
+    course: '/courses/ai-vibecoding/',
+    what: 'The description you paste into every AI building session — who it is for, the screens, the unhappy paths, the nevers, and the checkable definition of working.',
+  },
+  {
+    file: '/templates/eval-cases-template.csv',
+    name: 'Eval Cases Sheet (CSV)',
+    from: 'Does Your AI Actually Work?',
+    course: '/courses/ai-evals/',
+    what: 'A starter test set for any AI feature: core tasks, hard cases, missing-information cases, must-refuse cases, and formatting checks — with "good" defined before you run anything.',
+  },
+  {
+    file: '/templates/threat-model-canvas.md',
+    name: 'AI Feature Threat-Model Canvas',
+    from: 'Securing AI Systems',
+    course: '/courses/ai-secure/',
+    what: 'One page per AI feature: the ingestion inventory, the lethal-trifecta check, tools and privileges, the trust boundary, and the risks you consciously accept.',
+  },
+];
+---
+
+<BlogLayout
+  title="Templates"
+  description="Free working templates from the AI Learning Hub courses: a plain-language spec, an eval-case sheet, and an AI threat-model canvas."
+>
+  <div class="font-studio-mono text-[11px] text-studio-kids tracking-[1.6px] uppercase mb-4">◆ Take-away tools</div>
+  <h1 class="font-studio-display text-[36px] sm:text-[44px] text-studio-ink font-normal tracking-[-0.6px] leading-[1.05] mb-3">
+    Templates
+  </h1>
+  <p class="font-studio-serif italic text-[17px] text-studio-ink-dim leading-[1.5] mb-10">
+    The working documents the courses teach you to write — as files you can download, fill in, and keep. Free, like everything here.
+  </p>
+
+  <div class="divide-y divide-studio-rule border-t border-studio-rule">
+    {templates.map((t) => (
+      <article class="py-7">
+        <div class="font-studio-mono text-[11px] text-studio-ink-mute tracking-[1.2px] uppercase mb-2">
+          From <a href={t.course} class="text-studio-ink-dim hover:text-studio-ink">{t.from}</a>
+        </div>
+        <h2 class="font-studio-display text-[24px] sm:text-[27px] font-normal tracking-[-0.4px] leading-[1.15] m-0 mb-2">
+          <a href={t.file} download class="text-studio-ink no-underline hover:underline">{t.name} ↓</a>
+        </h2>
+        <p class="font-studio-sans text-[14px] text-studio-ink-dim leading-[1.6] m-0">{t.what}</p>
+      </article>
+    ))}
+  </div>
+</BlogLayout>
