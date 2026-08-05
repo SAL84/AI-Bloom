@@ -1,6 +1,7 @@
 import m4 from './m4';
 import m5 from './m5';
 import m7 from './m7';
+import m8 from './m8';
 import { GLOSSARY } from '../glossary';
 import aiEssentials from './ai-essentials';
 import aiDeepDive from './ai-deep-dive';
@@ -19,7 +20,7 @@ const CYBERSEC_SE: Course = {
   id: 'ai-cybersec-se',
   title: 'AI for Cybersecurity',
   subtitle: 'Defending with AI, and defending the AI you deploy — for security teams on both sides of the shift',
-  modules: [m4, m5, m7],
+  modules: [m4, m5, m8, m7],
   glossary: GLOSSARY,
 };
 

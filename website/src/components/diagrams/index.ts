@@ -3,9 +3,7 @@ import { AIBasicsOverviewDiagram, NestedAIDiagram, BaseRateDiagram, LearningPara
 import { TokenizationDiagram, EmbeddingsDiagram, RAGFlowDiagram, FTvsPromptingDiagram, HallucinationMitigationDiagram } from './m2-diagrams';
 import { AIStackDiagram, MCPDiagram, AgentTopologyDiagram, AutonomyLevelsDiagram, A2AvsMCPDiagram, SkillsPluginsDiagram, SubagentsDiagram, HooksDiagram, PhishingTriageDiagram } from './m3-diagrams';
 import { SOCArchDiagram, PromptInjectionDiagram, AgentAttackSurfaceDiagram, EDRBehavioralDiagram, EmailIdentityDiagram, AIAttackAccelerationDiagram, SOAREvolutionDiagram, SIEMXDRDiagram } from './m4-diagrams';
-import { DiscoveryFunnelDiagram } from './m5-diagrams';
 import { SOCCopilotsDiagram, ThreatIntelHuntingDiagram, DataGovernanceDiagram, DefenseReframingDiagram } from './soc-ops-diagrams';
-import { DemoFrameworkDiagram, ObjectionHandlingDiagram, ROIComplianceDiagram, CustomerArchetypesDiagram, SEPromptingPlaybookDiagram } from './sales-diagrams';
 import { ScalingLawsDiagram, ComputeStackDiagram, MoEDiagram, InferenceServingDiagram, AIEconomicsDiagram, EvalStackDiagram } from './deep-dive-diagrams-a';
 import { ReasoningComputeDiagram, GenerativeArchitecturesDiagram, MultimodalUnderstandingDiagram, AlignmentStackDiagram, GovernanceLandscapeDiagram, ContextEngineeringDiagram } from './deep-dive-diagrams-b';
 import { AISecurityFrameworksDiagram, SpeechAudioDiagram, ExplainabilityLayersDiagram, AccountabilityChainDiagram, WhyNowDiagram, HorizonMapDiagram } from './course-gap-diagrams';
@@ -87,12 +85,6 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   ThreatIntelHunting: ThreatIntelHuntingDiagram,
   DataGovernance: DataGovernanceDiagram,
   DefenseReframing: DefenseReframingDiagram,
-  DiscoveryFunnel: DiscoveryFunnelDiagram,
-  DemoFramework: DemoFrameworkDiagram,
-  ObjectionHandling: ObjectionHandlingDiagram,
-  ROICompliance: ROIComplianceDiagram,
-  CustomerArchetypes: CustomerArchetypesDiagram,
-  SEPromptingPlaybook: SEPromptingPlaybookDiagram,
   ScalingLaws: ScalingLawsDiagram,
   ComputeStack: ComputeStackDiagram,
   MoE: MoEDiagram,
