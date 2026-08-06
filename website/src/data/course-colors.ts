@@ -10,6 +10,7 @@ export const COURSE_COLORS: Record<CourseId, string> = {
   'ai-evals':       '#c9421f',
   'ai-healthcare':  '#0f8a7a',
   'ai-legal':       '#5a4ec0',
+  'ai-finance':     '#b78320',
   'ai-secure':      '#8b2f5f',
   'ai-vibecoding':  '#d4711f',
   'ai-prompting':   '#1f7a8c',

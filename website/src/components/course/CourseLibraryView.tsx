@@ -299,12 +299,18 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       badge: pSecure > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-secure' }) },
   ];
+  const pFinance = courseProgress('ai-finance', completedLessons);
   const verticalCards: CardData[] = [
     { no: '11', title: 'AI for Healthcare', kicker: 'For clinical & health-tech', color: '#2c6db0',
       blurb: 'Where AI actually sits in care, how to read the evidence, and the regulatory reality. Orientation, not clinical guidance.',
       modules: moduleCount('ai-healthcare'), level: 'Intermediate', progress: pHealth,
       badge: pHealth > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-healthcare' }) },
+    { no: '13', title: 'AI for Finance', kicker: 'For risk, compliance & credit', color: '#2c6db0',
+      blurb: 'AI inside the model risk duties finance already has — explainability, fair lending, and the failure modes that cost money.',
+      modules: moduleCount('ai-finance'), level: 'Intermediate', progress: pFinance,
+      badge: pFinance > 0 ? 'Resume →' : 'Open →',
+      onClick: () => setView({ type: 'home', courseId: 'ai-finance' }) },
     { no: '12', title: 'AI for Legal', kicker: 'For legal practice', color: '#2c6db0',
       blurb: 'Contracts, discovery, and the citation problem that has already cost lawyers their credibility.',
       modules: moduleCount('ai-legal'), level: 'Intermediate', progress: pLegal,

@@ -1,6 +1,6 @@
 # The AI Learning Hub — aibloom.io
 
-A free public library for AI literacy: **twelve courses, ~300 lessons,
+A free public library for AI literacy: **thirteen courses, ~320 lessons,
 ~400 quiz questions, and a teaching diagram on every lesson** — from
 eight-year-olds to regulated industries, plus a dated journal of essays.
 
@@ -22,6 +22,7 @@ Live at **[aibloom.io](https://aibloom.io)**.
 | 10 | AI for Cybersecurity | Security teams, both directions |
 | 11 | AI for Healthcare | Orientation, not clinical guidance |
 | 12 | AI for Legal | Orientation, not legal advice |
+| 13 | AI for Finance | Risk, compliance, credit — orientation only |
 
 ## Stack
 

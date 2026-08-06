@@ -20,6 +20,7 @@ const TRACK_CRUMB: Partial<Record<CourseId, string>> = {
   'ai-cybersec-se': 'Industry',
   'ai-healthcare': 'Industry',
   'ai-legal': 'Industry',
+  'ai-finance': 'Industry',
   'ai-evals': 'Build · Test · Secure',
   'ai-secure': 'Build · Test · Secure',
   'ai-vibecoding': 'Build · Test · Secure',
@@ -164,6 +165,18 @@ const META: Record<CourseId, {
       { no: '03', title: 'AI Essentials', sub: 'Prerequisite vocabulary', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
       { no: '11', title: 'AI for Healthcare', sub: 'The other regulated vertical', color: '#0f8a7a', view: { type: 'home', courseId: 'ai-healthcare' } },
       { no: '05', title: 'Prompting', sub: 'Core skill for supervised work', color: '#1f7a8c', view: { type: 'home', courseId: 'ai-prompting' } },
+    ],
+  },
+  'ai-finance': {
+    color: '#b78320', no: '13', kicker: 'Catalog №13 · Vertical track',
+    level: 'Intermediate', duration: '3h',
+    outcomes: ['Place AI inside the model risk and validation duties your institution already has', 'Answer "explain this decision" for a supervisor, a complaint handler and a declined customer', 'Recognise backtest overfitting, leakage and regime change before they cost money', 'Build the pre-deployment governance case a risk committee will actually accept'],
+    audience: ['◆ Risk, compliance, credit, fraud and model-validation professionals', '◆ Product and executive owners signing off AI in financial services', '◇ Not investment, financial, legal or compliance advice — orientation only'],
+    quote: '"Models have been regulated here for decades. AI does not arrive beside that frame — it lands inside it."',
+    related: [
+      { no: '03', title: 'AI Essentials', sub: 'Prerequisite vocabulary', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
+      { no: '08', title: 'Does Your AI Work?', sub: 'Testing what you deploy', color: '#c9421f', view: { type: 'home', courseId: 'ai-evals' } },
+      { no: '11', title: 'AI for Healthcare', sub: 'The other regulated vertical', color: '#0f8a7a', view: { type: 'home', courseId: 'ai-healthcare' } },
     ],
   },
   'ai-cybersec-se': {

@@ -112,6 +112,13 @@ const ENTRIES: CourseEntry[] = [
     view: { type: 'home', courseId: 'ai-agents' },
   },
   {
+    id: 'ai-finance', no: '13', title: 'AI for Finance', track: 'Vertical',
+    color: '#b78320', status: 'live',
+    note: 'Where AI sits in financial services, model risk and explainability, the failure modes that cost money, and the governance case before a pilot.',
+    gaps: ['Awaiting review by a risk, compliance or model-validation practitioner', 'Insurance underwriting and pricing deliberately out of scope for now'],
+    view: { type: 'home', courseId: 'ai-finance' },
+  },
+  {
     id: 'agentic-ai', no: '¶', title: 'Agentic AI · interactive', track: 'Companion to Agent Engineering',
     color: '#5d5045', status: 'live',
     note: 'The agent-loop anatomy and four step-by-step scenarios. No longer a course-in-waiting — it is the hands-on companion to Agent Engineering.',
@@ -121,7 +128,6 @@ const ENTRIES: CourseEntry[] = [
 
 const PLANNED_COURSES = [
   { no: '13', title: 'AI for Educators', track: 'Vertical', color: '#3f8a5e', target: 'TBD', note: 'Assessment design, academic honesty, and using AI to teach rather than to grade.' },
-  { no: '14', title: 'AI for Finance', track: 'Vertical', color: '#b78320', target: 'TBD', note: 'Risk models, fraud detection, and what regulators expect you to be able to explain.' },
 ];
 
 const PLANNED_FEATURES = [
