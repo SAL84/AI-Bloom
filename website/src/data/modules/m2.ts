@@ -10,6 +10,7 @@ const m2: CourseModule = {
     {
       id: 'm2l0',
       title: 'LLM Landscape',
+      playground: 'nextword',
       inlineSvg: diagram2,
       inlineSvgId: 'd2',
       slides: [
@@ -79,6 +80,7 @@ const m2: CourseModule = {
     {
       id: 'm2l1',
       title: 'LLM Mechanisms',
+      playground: 'tokenizer',
       diagram: 'Tokenization',
       extraDiagram: 'Embeddings',
       slides: [
@@ -181,6 +183,7 @@ const m2: CourseModule = {
     {
       id: 'm2l5',
       title: 'LLM Guardrails',
+      playground: 'temperature',
       diagram: 'HallucinationMitigation',
       slides: [
         { heading: 'Guardrails — The Safety Layer Around Every Deployment', body: 'A raw LLM will produce almost anything — confident, fluent, and potentially wrong or harmful. Guardrails are the runtime constraints added on top to make models safe and scoped for a specific use case. Every enterprise AI product has them. Understanding this layer matters because customers will ask both "how is this safe?" and "why won\'t it do what I asked?"', bullets: [
@@ -257,6 +260,7 @@ const m2: CourseModule = {
     {
       id: 'm2l3',
       title: 'LLM Techniques',
+      playground: 'embeddings',
       diagram: 'RAGFlow',
       extraDiagram: 'FTvsPrompting',
       slides: [
@@ -416,7 +420,7 @@ const m2: CourseModule = {
     { q: 'A team wants an AI assistant that answers questions using their internal documents. What is the right architectural answer?', options: ['Use RAG to retrieve relevant document sections at query time', 'Fine-tune a custom model on the documents', 'Train a model from scratch', 'Just use a larger context window'], correct: 0 },
     { q: 'Why might a 2M-token context window not solve "analyse our entire knowledge base"?', options: ['It is too expensive', 'Models often degrade attention mid-context (lost in the middle)', 'It is technically impossible', 'Tokens are not real'], correct: 1 },
     { q: 'A hallucination is best described as:', options: ['The model intentionally lying', 'A bug in the code', 'Fluent output not grounded in reality — probable tokens, not true facts', 'A jailbreak attempt'], correct: 2 },
-    { q: 'Someone says "we need to fine-tune the AI on our company data." The most likely honest diagnosis is:', options: ['They genuinely need fine-tuning', 'It is a RAG request in disguise — they need knowledge injection, not behaviour change', 'They need RLHF applied to their environment', 'Fine-tuning is always the right choice for domain data'], correct: 1 },
+    { q: 'Someone says "we need to fine-tune the AI on our company data." The most likely honest diagnosis is:', options: ['They genuinely need fine-tuning', 'Fine-tuning is always the right choice for domain data', 'They need RLHF applied to their environment', 'It is a RAG request in disguise — they need knowledge injection, not behaviour change'], correct: 3 },
     { q: 'What does low temperature (near 0) mean for a classification task?', options: ['The model runs faster', 'Responses will be more creative', 'The model uses less GPU', 'Outputs are maximally deterministic — the model always picks the most probable token'], correct: 3 },
     { q: 'Embeddings let a system spot a scam email it has never seen before because:', options: ['They match exact keyword strings', 'Semantically similar concepts cluster together in vector space regardless of exact wording', 'They retrain the model on new patterns', 'They increase the context window'], correct: 1 },
   ],

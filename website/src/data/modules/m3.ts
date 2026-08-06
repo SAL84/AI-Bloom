@@ -506,7 +506,7 @@ const m3: CourseModule = {
     }
   ],
   quiz: [
-    { q: 'What problem does MCP primarily solve?', options: ['Model training cost', 'N×M integration complexity between AI hosts and tools', 'Hallucinations', 'Token pricing'], correct: 1 },
+    { q: 'What problem does MCP primarily solve?', options: ['N×M integration complexity between AI hosts and tools', 'Model training cost', 'Hallucinations', 'Token pricing'], correct: 0 },
     { q: 'A customer wants an "agent" that just summarizes alerts. The honest assessment:', options: ['Yes, it is an agent', 'Only if it uses GPT-4', 'Does not matter', 'It is likely an automated workflow, not really an agent — no goal-directed iteration'], correct: 3 },
     { q: 'For most enterprise security deployments, the right default autonomy level is:', options: ['Level 0 — approve every step', 'Level 1 — approve consequential steps, autonomous on routine', 'Level 3 — full autonomy', 'No autonomy at all'], correct: 1 },
     { q: 'A2A is to ___ as MCP is to ___', options: ['agent-to-agent ; agent-to-tool', 'agent-to-tool ; agent-to-agent', 'training ; inference', 'They are the same protocol'], correct: 0 },

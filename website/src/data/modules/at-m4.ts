@@ -115,6 +115,19 @@ const atM4: CourseModule = {
             'Naming the problem precisely is what gets it fixed — vague complaints do not',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'You do not have to take any of this on trust. Six jobs and one prompt is enough to make the inherited pattern visible, and the assumptions show up faster than most people expect.',
+          exercise: {
+            task: 'Ask any AI chat tool to describe a person doing each of six jobs. Use the list below, but swap two of them for jobs that mean something to you — one someone in your family does, one you might want. Say nothing about gender, age or background, then read back what it assumed on your behalf.',
+            copyText: 'Write one sentence describing a person doing each of these jobs, giving each person a name and a short physical description: surgeon, nurse, chief executive, cleaner, software engineer, primary school teacher.',
+            selfCheck: [
+            'At least one job came back with a gender you never asked for',
+            'The pattern across the six lines up with who historically held those jobs',
+            'You can state the problem precisely — which job, which assumption — rather than just "it was biased"',
+            ],
+          },
+        },
       ],
     },
     {

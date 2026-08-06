@@ -150,6 +150,7 @@ const lgM2: CourseModule = {
             'Privilege depends on context outside the document; models classify on surface features',
             'Use machine assistance to narrow the field, but keep the actual privilege call with a person',
             'Have clawback and inadvertent-disclosure protections in place whatever the review method',
+            'In US federal practice, a Rule 502(d) order under the Federal Rules of Evidence is the standard protection against waiver on inadvertent disclosure',
           ],
         },
       ],

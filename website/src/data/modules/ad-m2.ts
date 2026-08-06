@@ -149,6 +149,20 @@ const adM2: CourseModule = {
             'Tokeniser visualisers are a first-line debugging tool, not a curiosity',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'Everyone quotes the "one token is about four characters" rule of thumb and then budgets as if a token were a word. Measure your own ratio instead — it takes five minutes and it changes your cost model.',
+          exercise: {
+            task: 'Take a real 300–500 word sample of the text your product actually sends — your own writing, a support ticket, a chunk of your code, a document in the language your users write in. Run it through the tokeniser playground on this lesson and record two numbers: W (words, from any word count) and T (tokens). Compute the ratio R = T ÷ W. Then price your real workload with it, using current input pricing from your provider\'s pricing page — prices change often, so look them up rather than reusing a number you remember.',
+            copyText: 'Sample: W = [words] , T = [tokens]\nRatio  R = T ÷ W = [____]\n\nWorkload: [N] requests per month × [P] words of input per request\nInput tokens/month = N × P × R = [____]\nCost/month = (input tokens ÷ 1,000,000) × [price per 1M input tokens] = [____]\n\nNow repeat both lines for output tokens — output is priced separately and usually higher.',
+            selfCheck: [
+              'You have a number for R, not an assumption — ordinary English prose lands near 1.3 tokens per word, but code, rare names and non-English text run higher',
+              'Redo the cost line with R = 1 (one token per word). The gap between that and your real figure is the size of the mistake most budgets contain',
+              'Your total includes output tokens priced at the output rate, not the input rate',
+              'Tokenise the same content in a second vendor\'s tokeniser — if T differs, per-million prices are not directly comparable',
+            ],
+          },
+        },
       ],
     },
     {
@@ -173,6 +187,7 @@ const adM2: CourseModule = {
             'Continuous batching: token-level scheduling — no request waits for a stranger to finish',
             'PagedAttention: paged, on-demand KV allocation — near-zero memory fragmentation',
             'Paged KV enables prefix sharing: identical prompt prefixes across requests reference the same pages',
+            'Primary source: "Efficient Memory Management for Large Language Model Serving with PagedAttention" — the vLLM paper',
           ],
         },
         {
@@ -187,6 +202,21 @@ const adM2: CourseModule = {
             'GPTQ: error-compensating layer-wise quantisation; AWQ: protect activation-critical weights; GGUF: the packaging format behind local inference',
             'Evaluate quantised models on your own tasks — degradation concentrates unpredictably (often math and edge-case reasoning)',
           ],
+        },
+        {
+          heading: 'Try It Yourself',
+          body: 'Serving capacity is usually decided by KV cache memory, not by the model weights — and the arithmetic is small enough to do on paper. Work it once and you will never again be surprised by a concurrency limit.',
+          exercise: {
+            task: 'Compute KV cache size for a hypothetical model: 32 layers, 8 key/value heads, head dimension 128, cache held in FP16 (2 bytes per element), at a context length of 8,192 tokens. Get bytes per token first, then per sequence, then per server at 50 concurrent sequences. Then redo it with the configuration of a model you would actually deploy — an open-weight model card gives you layers, head count and head dimension. Divide bytes by 1,073,741,824 for GiB.',
+            copyText: 'Per token    = 2 × [layers] × [kv_heads] × [head_dim] × [bytes_per_element]\nPer sequence = per-token × [context_tokens]\nPer server   = per-sequence × [concurrent_sequences]\n\nHeadroom check: [accelerator memory] − [model weights] = memory left for KV\nMax concurrency ≈ memory left ÷ per-sequence\n\nSimplifications: the 2 counts K and V; assumes every layer is full attention with the same KV-head count; ignores allocator and paging overhead, sliding-window layers, and any KV compression or cache quantisation.',
+            selfCheck: [
+              'Per token you should get 131,072 bytes — 128 KiB — and per sequence at 8,192 tokens exactly 1 GiB',
+              '50 concurrent sequences is 50 GiB of KV alone; subtract the weights from your accelerator memory and see how little headroom is left',
+              'Set kv_heads to 32 instead of 8 (the no-GQA case): the cache is 4× larger, which is the whole argument for grouped-query attention in one number',
+              'Doubling context doubles the cache and no more — KV grows linearly with length; it is prefill compute, not cache memory, that grows quadratically',
+              'Halving the element size (FP16 to FP8) halves the cache — the same lever as weight quantisation, applied to the other memory consumer',
+            ],
+          },
         },
       ],
     },
@@ -331,6 +361,7 @@ const adM2: CourseModule = {
             'LoRA: freeze the base, train low-rank additions — a fraction of a percent of the parameters',
             'Adapters are small and hot-swappable: one base model, many cheap specialisations',
             'QLoRA: 4-bit frozen base + trained adapters — serious fine-tuning on single-GPU budgets',
+            'Primary sources: "LoRA: Low-Rank Adaptation of Large Language Models" and "QLoRA: Efficient Finetuning of Quantized LLMs"',
           ],
         },
         {

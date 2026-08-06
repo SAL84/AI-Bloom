@@ -88,6 +88,19 @@ const atM2: CourseModule = {
             'Deadline pressure is exactly when the line blurs, so decide your rule in advance',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'The fluency trap is invisible from the inside, so the only way to find out whether you actually know something is to try to produce it. This takes about eight minutes and uses a topic you are revising anyway.',
+          exercise: {
+            task: 'Pick something you are genuinely revising this week. Close everything and write down everything you can remember about it for two minutes — messy notes are fine. Then paste your own version into an AI tool and ask it to mark it, using the prompt below. You do the recalling; it does the marking.',
+            copyText: 'I am revising [topic] at [your year or level]. Below is everything I could remember without notes. Mark it: what I got right, what I left out, and what I got subtly wrong. Do not rewrite it for me — just tell me where the gaps are, and ask me one question about the weakest bit.\n\n[paste your two minutes of recall here]',
+            selfCheck: [
+            'Your two minutes of recall was thinner than you expected before you started',
+            'It named at least one thing you had left out completely',
+            'You can now say which specific part to go back over, instead of "revise the whole topic"',
+            ],
+          },
+        },
       ],
     },
     {

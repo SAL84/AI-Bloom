@@ -62,6 +62,7 @@ const adM1: CourseModule = {
             'Loss falls as a power law in parameters, data, and compute — smooth and forecastable',
             'Predictability is what made frontier-scale investment underwritable',
             'Some capabilities emerge at thresholds rather than improving gradually',
+            'Primary source: "Scaling Laws for Neural Language Models" — the Kaplan paper that established the power-law fit',
           ],
         },
         {
@@ -71,6 +72,7 @@ const adM1: CourseModule = {
             'Chinchilla-optimal: roughly 20 training tokens per parameter for a fixed compute budget',
             'Production models overtrain past optimal because inference cost is paid on every request',
             'Frontier parameter counts are undisclosed — the era of public counts ended with Chinchilla-class models',
+            'Primary source: "Training Compute-Optimal Large Language Models" — the Chinchilla paper',
           ],
         },
         {
@@ -99,6 +101,20 @@ const adM1: CourseModule = {
             'Distillation compresses frontier capability into small, cheap-to-serve models',
             'Net effect: the capability gap between frontier and open-weight models closes faster than compute budgets suggest',
           ],
+        },
+        {
+          heading: 'Try It Yourself',
+          body: 'The 20-tokens-per-parameter figure gets quoted as if it were a physical constant. Do the arithmetic on it, then check it against a model somebody actually trained, and you will see exactly what kind of claim it is.',
+          exercise: {
+            task: 'Step one: for a 7-billion-parameter dense model, compute the compute-optimal training budget using the ~20 tokens-per-parameter heuristic, then estimate the training compute with the standard C ≈ 6ND approximation (6 FLOPs per parameter per token — roughly 2 for the forward pass and 4 for the backward pass). Step two: find an open-weight model whose card or technical report states both its parameter count and its training-token count, and compute its actual tokens-per-parameter ratio. Compare the two numbers and explain the gap using the inference-economics argument from the Chinchilla slide.',
+            copyText: 'Heuristic budget:  D = 20 × N\n  N = 7,000,000,000  →  D = [____] tokens\nTraining compute:  C ≈ 6 × N × D = [____] FLOPs\n\nReal model:  N = [parameters] , D = [training tokens from its card]\n  Actual ratio = D ÷ N = [____] tokens per parameter\n\nSimplifications: 6ND ignores attention FLOPs (which grow with context length) and counts dense parameters — for a mixture-of-experts model substitute active parameters per token, and note whether the card quotes total or active.',
+            selfCheck: [
+              'D = 1.4 × 10^11 — 140 billion tokens — and C ≈ 5.9 × 10^21 FLOPs. If your exponent is off, you dropped a factor of 10 somewhere in the billions',
+              'The model you looked up almost certainly has a ratio well above 20, often in the hundreds — that is deliberate overtraining, not a broken heuristic',
+              'You can say why: 20:1 minimises training compute, and training compute is not what a model that will be served billions of times is optimised for',
+              'Say it out loud once: this is an empirical fit from one family of training runs, not a law — it shifts with data quality, architecture, and which cost you are minimising',
+            ],
+          },
         },
       ],
     },
@@ -305,6 +321,21 @@ const adM1: CourseModule = {
             'Break-even depends on volume shape, latency needs, and data constraints — not ideology',
             'Portfolio strategy plus a model-abstraction layer is the durable architecture',
           ],
+        },
+        {
+          heading: 'Try It Yourself',
+          body: 'Almost every argument about whether an AI feature is worth building dissolves once someone computes the cost of one request and puts it next to the cost of the task it replaces. It is two lines of arithmetic and it is rarely done.',
+          exercise: {
+            task: 'Pick one real task in your organisation that a model could do — triaging a ticket, drafting a first-pass summary, extracting fields from a document. Estimate its token shape: input tokens per request and output tokens per request. Look up current per-million input and output prices on your provider\'s pricing page (do not reuse a remembered number — these change often, almost always downward). Compute cost per request, then cost at your monthly volume, then the cost of a person doing the same task. The comparison, not either number alone, is the decision.',
+            copyText: 'Cost per request = (in_tokens ÷ 1,000,000) × [price per 1M input]\n                 + (out_tokens ÷ 1,000,000) × [price per 1M output]\n  e.g. 3,000 in and 500 out  →  0.003 × [P_in] + 0.0005 × [P_out]\n\nHonest cost   = cost per request × [retry factor, ≥ 1 for rejected or re-run outputs]\nMonthly cost  = honest cost × [requests per month]\n\nHuman cost per task = [fully loaded hourly rate] × [minutes per task] ÷ 60\nMinutes actually saved = [minutes per task] − [minutes of review that remain]\nBreak-even blended price per 1M = human cost per task ÷ (total tokens per request ÷ 1,000,000)',
+            selfCheck: [
+              '3,000 ÷ 1,000,000 = 0.003. If you wrote 0.03 or 3, your whole model is out by 10× or 1000× — this is the single most common slip',
+              'You priced input and output at their separate rates rather than one blended number',
+              'Your retry factor is above 1 and your saved-minutes figure subtracts the review that does not go away — a comparison without both is marketing, not analysis',
+              'The break-even price per million is probably far above what anyone charges today. That headroom, not the absolute cost, is the actual finding',
+              'Write the date next to your prices. Rerun this whenever you revisit the decision — the numbers move fast enough to change the answer',
+            ],
+          },
         },
       ],
       roleContent: [

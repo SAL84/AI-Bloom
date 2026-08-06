@@ -101,6 +101,7 @@ const hcM4: CourseModule = {
             'Anticipated changes, methods, and acceptance criteria can be specified in advance and agreed',
             'The aim is bounded, predictable change rather than a pretence of stasis',
             'Ask what can change, what triggers it, how you are notified, and what evidence comes with each version',
+            'In the US this mechanism is the Predetermined Change Control Plan, which the FDA has addressed in dedicated guidance',
           ],
         },
         {
@@ -196,6 +197,19 @@ const hcM4: CourseModule = {
             'Record permitted and prohibited uses, not just approval',
             'Plan retirement: workflows silently come to depend on tools that were never meant to be permanent',
           ],
+        },
+        {
+          heading: 'Try It Yourself',
+          body: 'Governance becomes real when the questions are written down before anyone is committed to an answer. Draft them for a pilot your institution could plausibly run.',
+          exercise: {
+            task: 'Pick one plausible AI pilot at your institution and write the questions that would have to be answered before it started — at least one for each lifecycle stage in this lesson. This is a paper exercise: no patient data, and no institutional or vendor documents pasted into an AI tool.',
+            copyText: 'Proposed tool and intended use:\nIntake — what is the risk classification, and who assigns it?\nEvidence — what exists, and what are its limits?\nLocal validation — what sample, what comparator, what stop rule?\nApproval — what use is permitted, and what is prohibited?\nDeployment — who is trained, and what is the escalation route?\nMonitoring — which metrics, what cadence, whose desk?\nRetirement — what triggers it, and who decides?',
+            selfCheck: [
+              'Every lifecycle stage has at least one question a named person could be asked to answer',
+              'Your stop rule is written as a specific result, not as an intention to review',
+              'At least one question you wrote has no current answer at your institution',
+            ],
+          },
         },
       ],
       roleContent: [

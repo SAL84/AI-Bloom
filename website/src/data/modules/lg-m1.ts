@@ -88,6 +88,19 @@ const lgM1: CourseModule = {
             'Unauthorised-practice and accountability questions arise fastest exactly where this line is blurred',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'The four categories only earn their keep when you apply them to your own workload. This takes about twenty minutes and no tools at all.',
+          exercise: {
+            task: 'List ten tasks you actually did last month, described generically — no client names, no matter details, nothing confidential. Sort each into one of the four categories from this lesson, and for every task in the top two categories write the specific check that would catch an error. This is a paper exercise: do not put client material into any AI tool.',
+            copyText: 'Task (described generically):\nCategory: strong / strong with supervision / dangerous without verification / not delegable\nHow an error would show itself:\nThe check that would catch it:\nWho performs that check:',
+            selfCheck: [
+              'At least one task changed category once you asked whether you could detect a wrong answer',
+              'Every task in the top two categories has a named check and a named checker',
+              'You can say in one sentence why each not-delegable task stays there',
+            ],
+          },
+        },
       ],
     },
     {
@@ -113,6 +126,7 @@ const lgM1: CourseModule = {
             'The adversarial process guarantees someone is looking for exactly this class of error',
             'The audience holds sanctioning power and the record is usually public and permanent',
             'Deadline pressure attacks the verification step specifically, which is the only control that works',
+            'In US federal court, Rule 11 certifies that legal contentions are warranted by existing law and provides for sanctions',
           ],
         },
         {

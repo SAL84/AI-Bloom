@@ -10,6 +10,7 @@ const atM1: CourseModule = {
       id: 'at1l1',
       diagram: 'NextWordPrediction',
       title: 'Prediction, Not Understanding',
+      playground: 'nextword',
       slides: [
         {
           heading: 'The One Sentence That Explains Most of It',
@@ -47,6 +48,7 @@ const atM1: CourseModule = {
       id: 'at1l2',
       diagram: 'TokensAndContext',
       title: 'Tokens and Context: The Units It Thinks In',
+      playground: 'tokenizer',
       slides: [
         {
           heading: 'It Does Not See Letters or Words',
@@ -121,6 +123,7 @@ const atM1: CourseModule = {
       id: 'at1l4',
       diagram: 'WhyItMakesThingsUp',
       title: 'Why It Makes Things Up',
+      playground: 'temperature',
       slides: [
         {
           heading: 'Hallucination Is the System Working as Designed',
@@ -151,6 +154,19 @@ const atM1: CourseModule = {
             'Ask the model to show its reasoning — errors are easier to spot in steps than in conclusions',
             'If two independent sources cannot confirm it, do not put it in your work',
           ],
+        },
+        {
+          heading: 'Try It Yourself',
+          body: 'Reading about hallucination is not the same as catching one. The quickest way to see it is to ask about something you happen to know better than the model does.',
+          exercise: {
+            task: 'Pick a subject you know inside out — your team\'s last season, a game you play properly, a band, the streets near you. Ask any AI chat tool a detailed question about it, one whose answer has to contain names, dates or numbers. Then read the reply as the expert you are and mark it.',
+            copyText: 'Tell me about [your specific topic]. Be detailed and specific — include names, dates and numbers.',
+            selfCheck: [
+            'At least one detail came back wrong, and you knew it was wrong without looking anything up',
+            'The wrong part was written in exactly the same confident tone as the correct parts',
+            'The errors clustered in the most specific claims — the names, numbers and dates',
+            ],
+          },
         },
       ],
       roleContent: [

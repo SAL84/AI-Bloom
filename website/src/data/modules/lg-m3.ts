@@ -199,6 +199,19 @@ const lgM3: CourseModule = {
             'Sustained attention across many citations is a real limit — split long documents between checkers',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'The four checks are easy to describe and easy to skip. Run them once, in full, on a document that already exists.',
+          exercise: {
+            task: 'Take a document that already contains citations — a filed brief, a published judgment, or a memo of your own — and run all four checks on every citation in it, opening each source yourself. Use a public or already-filed document, or your own de-identified draft. Do not upload it to any AI tool, and do not ask a model to confirm anything.',
+            copyText: 'Citation:\nExists (opened in a primary source or database): yes / no\nCitation details correct — parties, court, year, pinpoint: yes / no\nSupports the proposition as stated: yes / no\nStill good law, subsequent treatment checked: yes / no\nChecked by:            Date:',
+            selfCheck: [
+              'Every citation has all four boxes completed — none left blank or assumed',
+              'You recorded how long the full pass took, so it can be budgeted next time',
+              'You found at least one defect, or can say what would have made one visible',
+            ],
+          },
+        },
       ],
     },
     {
@@ -224,6 +237,7 @@ const lgM3: CourseModule = {
             'An assurance that checking happened is not the same as checking having happened',
             'Independently verify a sample of citations rather than relying solely on the verification record',
             'Specific rules and scope differ by jurisdiction — confirm your own before setting firm policy',
+            'In the US, ABA Model Rules 5.1 and 5.3 frame supervisory responsibility; states adopt their own versions, so check yours',
           ],
         },
         {

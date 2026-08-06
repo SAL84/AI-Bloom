@@ -65,6 +65,7 @@ const hcM1: CourseModule = {
             'Imaging and diagnostics — detection, quantification, and worklist prioritisation',
             'Clinical decision support — risk scores, deterioration prediction, alerting',
             'Operations and triage, plus patient-facing tools such as symptom guidance and messaging',
+            'The FDA publishes a public list of AI-enabled medical devices it has authorised; radiology accounts for the large majority of entries',
           ],
         },
         {
@@ -85,6 +86,19 @@ const hcM1: CourseModule = {
             'Ask what happens downstream when the output is wrong, and who is positioned to notice',
             'Lower risk still requires review, audit, and an owner — it does not mean unmonitored',
           ],
+        },
+        {
+          heading: 'Try It Yourself',
+          body: 'The five-zone map is only useful once you can place a real tool on it. This takes about fifteen minutes, a pathway you already know well, and no patient data at all.',
+          exercise: {
+            task: 'Pick one AI tool in use or proposed in a care pathway you know. On paper, write the pathway as steps, mark where the tool\'s output enters, and name the role accountable at each step after it. Use the general pathway description only — no patient records, no identifiable data, and nothing entered into an AI tool.',
+            copyText: 'Tool and the zone it sits in:\nPathway step where its output appears:\nWho sees the output first:\nWho is accountable for acting on it:\nWhat happens downstream if it is wrong:\nWho would notice, and how:',
+            selfCheck: [
+              'You can name the zone the tool sits in and say why it is not one of the other four',
+              'Every step after the output has a named accountable role, with no gaps',
+              'You can state what goes wrong downstream if the output is wrong, and who would spot it',
+            ],
+          },
         },
       ],
       roleContent: [

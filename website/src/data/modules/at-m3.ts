@@ -152,6 +152,18 @@ const atM3: CourseModule = {
             'A tool that cites sources beats one that does not, but only if you actually read them',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'Tracing an origin sounds tedious until you do it once on something from your own feed. It is usually faster than reading the replies, and it settles the question.',
+          exercise: {
+            task: 'Open whichever feed you actually scroll and keep going until you hit a post making a factual claim — a statistic, a quote, a "scientists say", a screenshot of a headline. Do not evaluate the post. Open a new tab and work backwards: who published this first, on what date, and what did the full version say?',
+            selfCheck: [
+            'You can name where the claim first appeared, or you established that there is no findable origin',
+            'What looked like several independent sources turned out to trace back to one',
+            'You found something the post left out — a date, a caveat, or the rest of the quote',
+            ],
+          },
+        },
       ],
       roleContent: [
         {

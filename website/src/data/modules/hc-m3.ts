@@ -39,7 +39,21 @@ const hcM3: CourseModule = {
             'Patient-level leakage across splits lets the model recognise people, not disease',
             'Labels drawn from the comparator clinicians build circularity into the result',
             'AI-specific reporting guidelines exist — whether a study follows one is a quick quality signal',
+            'Named examples: CONSORT-AI and SPIRIT-AI for trials and protocols, and the TRIPOD standard\'s AI extension for prediction models',
           ],
+        },
+        {
+          heading: 'Try It Yourself',
+          body: 'These checks are worth more applied once than read twice. Take a real claim someone is making in your field and put it through them.',
+          exercise: {
+            task: 'Take one publicly available study or vendor document making a performance claim about an AI tool in your field — published papers, preprints, or public white papers only, never internal or patient data. Work through it and answer in writing: retrospective or prospective, internal or external validation, what the comparator was, how the reference labels were produced, and which cases were excluded.',
+            copyText: 'Claim being made:\nRetrospective or prospective:\nInternal or external validation, and how many sites:\nComparator used:\nHow reference labels were produced:\nCases excluded from the dataset:\nWhat this evidence does NOT establish:',
+            selfCheck: [
+              'You answered all five questions from the document itself, or recorded that it does not say',
+              'You can state in one sentence what the study does not establish about your setting',
+              'You could defend that summary to the person promoting the tool',
+            ],
+          },
         },
       ],
     },
@@ -101,6 +115,7 @@ const hcM3: CourseModule = {
             'The model learned the spending pattern correctly and produced inequitable allocation as a result',
             'Interrogate every proxy: what was actually measured, and what was it standing in for?',
             'This harm was invisible in standard performance metrics — it required a fairness-specific audit',
+            'The case is documented in a peer-reviewed 2019 study in Science by Obermeyer and colleagues',
           ],
         },
         {

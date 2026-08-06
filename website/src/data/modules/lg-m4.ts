@@ -19,6 +19,7 @@ const lgM4: CourseModule = {
             'It predates generative AI — the lineage runs through e-discovery and information security',
             'Understanding AI risk now requires understanding how these systems actually behave',
             'Formulations differ by jurisdiction — check yours rather than assuming a universal standard',
+            'ABA Model Rule 1.1 comment 8 has, since 2012, framed competence as including the benefits and risks of relevant technology',
           ],
         },
         {
@@ -56,6 +57,7 @@ const lgM4: CourseModule = {
             'Consumer and free tiers have historically had the most permissive terms, often including training use',
             'Enterprise agreements typically exclude training and define retention, but only if negotiated and read',
             'Human review for safety or quality is a common term and is a confidentiality question in its own right',
+            'In the US, ABA Model Rule 1.6(c) requires reasonable efforts to prevent inadvertent or unauthorised disclosure of client information',
           ],
         },
         {
@@ -254,6 +256,19 @@ const lgM4: CourseModule = {
             'Name an owner with authority and build artefacts into existing workflow, not a parallel system',
             'Treat the first reported near-miss as the policy\'s most valuable feedback, and respond accordingly',
           ],
+        },
+        {
+          heading: 'Try It Yourself',
+          body: 'A policy is far easier to argue about than to write. Draft one section of it properly and the gaps become obvious.',
+          exercise: {
+            task: 'Write the approved-tools and data-classification section of an AI policy for your firm or team: the sensitivity tiers, which product tier and agreement is permitted at each, and what is prohibited outright. Keep it to one page, describe data categories generically, and put no client material into any tool while drafting.',
+            copyText: 'Tier 1 — public or non-client material. Permitted tools:\nTier 2 — client material, not privileged. Permitted tools:\nTier 3 — privileged or highly sensitive. Permitted tools:\nProhibited outright:\nHow a new tool gets approved, and by whom:\nOwner of this section, and review date:',
+            selfCheck: [
+              'Every tool is identified by product tier and agreement, not by vendor name alone',
+              'Someone reading it cold could tell which tool to use for a given document',
+              'It fits on one page and names an owner and a review date',
+            ],
+          },
         },
       ],
     },

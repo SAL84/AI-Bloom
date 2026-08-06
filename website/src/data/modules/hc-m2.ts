@@ -72,6 +72,7 @@ const hcM2: CourseModule = {
             'Autonomy is tied to a specific intended-use statement in a specific jurisdiction',
             'Moving from aid to autonomous use is a new intended use, not a settings change',
             'There must always be a documented route back to human reading',
+            'The FDA has authorised autonomous diabetic retinopathy screening — a narrow, tightly specified intended use, not a general precedent',
           ],
         },
       ],

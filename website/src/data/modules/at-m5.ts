@@ -152,6 +152,19 @@ const atM5: CourseModule = {
             'If you cannot explain why the output is right, you are not ready to use it',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'Using AI adversarially is the fastest version of the amplifier idea, because you keep the position and it does the attacking. Try it on something you have actually argued about.',
+          exercise: {
+            task: 'Pick an opinion you genuinely hold and have defended out loud — about a game, a film, a rule at your school, a policy. Write it in two or three sentences in your own words, then send the prompt below and read the case against you properly before deciding what you think.',
+            copyText: 'Here is a position I hold:\n\n[your two or three sentences]\n\nMake the strongest possible case against it. Then tell me which single part of my argument is weakest and why. Do not be polite about it, and do not tell me what I should conclude.',
+            selfCheck: [
+            'At least one objection was one you had not thought of yourself',
+            'You can name the weakest part of your own argument in one sentence',
+            'Your position afterwards is either better defended or genuinely changed — not just repeated',
+            ],
+          },
+        },
       ],
       roleContent: [
         {
