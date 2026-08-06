@@ -93,6 +93,7 @@ const m4: CourseModule = {
     {
       id: 'm4l8',
       title: 'Three AI Misconceptions That Cost Security Teams',
+      playground: 'baserate',
       diagram: 'BaseRate',
       slides: [
         {

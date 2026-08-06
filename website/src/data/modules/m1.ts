@@ -353,6 +353,7 @@ const m1: CourseModule = {
     {
       id: 'm1l4',
       title: 'AI Top Misconceptions',
+      playground: 'baserate',
       diagram: 'AIMisconceptions',
       slides: [
         {

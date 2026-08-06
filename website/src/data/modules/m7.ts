@@ -50,6 +50,19 @@ const m7: CourseModule = {
             'Ask for the internal override rate: how often do their analysts overrule the product?',
             'Request a reference call with a practitioner, not a champion curated by sales'
           ]
+        },
+        {
+          heading: 'Try It Yourself',
+          body: 'These questions only work if you actually send them. Pick a product and send them this week — the answers, or the silence, will tell you more than another demo would.',
+          exercise: {
+            task: 'Choose one AI security product your organisation already runs or is currently being pitched. Send the five questions below to the vendor, and write down each answer verbatim — including the ones you do not get.',
+            copyText: '1. Which model or models sit behind this feature, and who operates them?\n2. Is our data used to train or improve any model? Where is that stated contractually?\n3. What does the product do when it is not confident — block, flag, or stay silent?\n4. Show us a case it got wrong, and what happened next.\n5. What does your own security team do with this product internally?',
+            selfCheck: [
+            'Every answer is written down in the vendor\'s words, not your paraphrase',
+            'You can name at least one question the vendor would not answer directly',
+            'Someone else on your team could read the answers and reach the same view you did',
+            ],
+          },
         }
       ]
     },
@@ -191,6 +204,19 @@ const m7: CourseModule = {
             'Ask: which specific control does this satisfy, and what evidence would I show an auditor?',
             'Regulation logos on a slide are marketing until mapped to controls you actually own'
           ]
+        },
+        {
+          heading: 'Try It Yourself',
+          body: 'A business case you did not build yourself is a business case you cannot defend in a budget review. Rebuild one from your own numbers.',
+          exercise: {
+            task: 'Take one ROI claim — from a vendor deck, a published case study, or a draft of your own business case — and redo the arithmetic with your organisation\'s real volumes. Then write the one sentence you would say if a CFO asked where the number comes from.',
+            copyText: 'Alerts per day at our volume:        [number]\nMinutes an analyst spends per alert: [number]\nFully-loaded analyst cost per hour:  [number]\n= Gross hours and money in play:     [work it out]\n\nNow the discounts the deck left out:\n- What share of alerts does it handle unaided?  [%]\n- What review time does its output still need?  [minutes]\n- What does a miss cost, and how likely is one?  [your estimate]\n\nHonest net: [number] — the sentence I would defend it with: [one line]',
+            selfCheck: [
+            'Your net figure is materially different from the vendor\'s headline number',
+            'You can name which assumption in their version does the most work',
+            'The defending sentence survives being read aloud to someone sceptical',
+            ],
+          },
         }
       ]
     },

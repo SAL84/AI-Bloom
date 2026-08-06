@@ -98,6 +98,19 @@ const m8: CourseModule = {
             'Kill criteria written in advance are the only ones that ever fire',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'The hardest part of a pilot is agreeing, in advance, what result would make you walk away. Write that down now, while nothing is at stake.',
+          exercise: {
+            task: 'For a tool you are piloting or about to pilot, fill in the scaffold below and get one other person to agree to it in writing before the pilot starts. Date it.',
+            copyText: 'The pilot: [tool, scope, how long]\n\nBaseline we measured FIRST: [the current number, measured before the tool arrives]\n\nSuccess means: [a specific number or threshold, not a feeling]\n\nWe kill it if: [the result that ends the project — decided now, not later]\n\nWho decides, and when: [name, date]\n\nWhat we will NOT count as evidence: [demo data, a good week, positive impressions]',
+            selfCheck: [
+            'The kill criterion is specific enough that it could actually be met',
+            'The baseline is a number you measured, not one you assumed',
+            'A second person has agreed to the whole thing in writing, before the start',
+            ],
+          },
+        }
       ],
     },
     {

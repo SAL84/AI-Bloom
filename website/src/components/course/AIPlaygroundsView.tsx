@@ -16,6 +16,7 @@ import { RESEARCH_ASSISTANT, TRIP_PLANNER, BUG_INVESTIGATION } from './agentic/g
 interface AIPlaygroundsViewProps {
   setView: (view: View) => void;
   initialSection?: 'playgrounds' | 'agentic';
+  initialTab?: PlaygroundTabId;
 }
 
 // ── Playgrounds tab config ───────────────────────────────────────────────────
@@ -60,9 +61,9 @@ const SECTION_META = {
   },
 } as const;
 
-export const AIPlaygroundsView = ({ setView, initialSection = 'playgrounds' }: AIPlaygroundsViewProps) => {
+export const AIPlaygroundsView = ({ setView, initialSection = 'playgrounds', initialTab = 'tokenizer' }: AIPlaygroundsViewProps) => {
   const [section, setSection] = useState<'playgrounds' | 'agentic'>(initialSection);
-  const [playgroundTab, setPlaygroundTab] = useState<PlaygroundTabId>('tokenizer');
+  const [playgroundTab, setPlaygroundTab] = useState<PlaygroundTabId>(initialTab);
   const [agenticTab, setAgenticTab] = useState<AgenticTabId>('anatomy');
   const meta = SECTION_META[section];
   const activeAgentic = AGENTIC_TABS.find(t => t.id === agenticTab)!;

@@ -4,6 +4,15 @@ export interface SlideExercise {
   selfCheck: string[];
 }
 
+export type PlaygroundId =
+  | 'tokenizer'
+  | 'context'
+  | 'temperature'
+  | 'embeddings'
+  | 'nextword'
+  | 'baserate'
+  | 'evalci';
+
 export interface Slide {
   heading: string;
   body: string;
@@ -38,6 +47,7 @@ export interface Lesson {
   roleContent?: RoleContent[];
   roleDiagrams?: Partial<Record<RoleKey, string>>;
   extraDiagram?: string;
+  playground?: PlaygroundId;
 }
 
 export interface CourseModule {
@@ -92,7 +102,7 @@ export type View =
   | { type: 'glossary'; courseId?: CourseId }
   | { type: 'roadmap' }
   | { type: 'shelf' }
-  | { type: 'playground' }
+  | { type: 'playground'; tab?: PlaygroundId }
   | { type: 'agentic-ai' }
   | { type: 'kids-games' }
   | { type: 'kids-careers' };

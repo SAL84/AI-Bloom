@@ -39,6 +39,16 @@ const { courseId, courseTitle, moduleTitle, lesson, prev, next } = Astro.props;
 
 const Diagram = lesson.diagram ? DIAGRAM_REGISTRY[lesson.diagram] : null;
 const ExtraDiagram = lesson.extraDiagram ? DIAGRAM_REGISTRY[lesson.extraDiagram] : null;
+const PLAYGROUND_META: Record<string, { label: string; blurb: string }> = {
+  tokenizer:   { label: 'the Tokeniser', blurb: 'Paste your own text and watch it split into tokens.' },
+  context:     { label: 'the Context Window', blurb: 'See what fits, what gets dropped, and what that costs.' },
+  temperature: { label: 'the Temperature dial', blurb: 'Turn sampling up and down and watch the output change.' },
+  embeddings:  { label: 'Embeddings Similarity', blurb: 'Compare sentences and see which the model considers close.' },
+  nextword:    { label: 'Next-Word Prediction', blurb: 'Watch the model choose the next word, one at a time.' },
+  baserate:    { label: 'the Base-Rate calculator', blurb: 'Put in your own volumes and see the false-alarm arithmetic.' },
+  evalci:      { label: 'Eval Confidence', blurb: 'See how many test cases you need before a result means anything.' },
+};
+const playground = lesson.playground ? PLAYGROUND_META[lesson.playground] : null;
 const firstBody = lesson.slides[0]?.body ?? '';
 const description = firstBody.length <= 155 ? firstBody : firstBody.slice(0, 152) + '…';
 ---
@@ -90,6 +100,14 @@ const description = firstBody.length <= 155 ? firstBody : firstBody.slice(0, 152
     </div>
 
     {ExtraDiagram && <div class="lesson-diagram"><ExtraDiagram /></div>}
+
+    {playground && (
+      <a href="/" class="block no-underline mt-8 rounded-[4px] border-[1.5px] border-dashed border-studio-kids p-5 bg-studio-paper">
+        <div class="font-studio-mono text-[10.5px] tracking-[1.6px] uppercase mb-2 text-studio-kids">◆ See it for yourself</div>
+        <div class="font-studio-display text-[20px] text-studio-ink leading-[1.15] mb-1">Open {playground.label} in the library →</div>
+        <p class="font-studio-sans text-[13.5px] text-studio-ink-dim leading-[1.6] m-0">{playground.blurb}</p>
+      </a>
+    )}
 
     <div class="mt-8 px-5 py-4 bg-studio-paper border border-studio-rule rounded-[4px]">
       <p class="font-studio-sans text-[13.5px] text-studio-ink-dim leading-[1.6] m-0">

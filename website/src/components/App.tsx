@@ -132,7 +132,7 @@ export default function App({ posts = [] }: { posts?: import('./course/CourseLib
       {view.type === 'glossary' && <GlossaryView setView={setView} courseId={view.courseId} />}
       {view.type === 'roadmap' && <RoadmapView setView={setView} />}
       {view.type === 'shelf' && <ShelfView setView={setView} savedLessons={savedLessons} toggleSaved={toggleSaved} completedLessons={completedLessons} />}
-      {view.type === 'playground' && <AIPlaygroundsView setView={setView} initialSection="playgrounds" />}
+      {view.type === 'playground' && <AIPlaygroundsView setView={setView} initialSection="playgrounds" initialTab={view.tab} />}
       {view.type === 'agentic-ai' && <AIPlaygroundsView setView={setView} initialSection="agentic" />}
       {view.type === 'kids-games' && <KidsGamesView setView={setView} gameScores={gameScores} onGameScore={(id, score) => setGameScores(prev => (score > (prev[id] ?? -1) ? { ...prev, [id]: score } : prev))} />}
       {view.type === 'kids-careers' && <KidsCareersView setView={setView} />}

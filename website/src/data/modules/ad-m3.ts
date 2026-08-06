@@ -313,6 +313,7 @@ const adM3: CourseModule = {
     {
       id: 'ad3l6',
       title: 'Context Engineering',
+      playground: 'context',
       diagram: 'ContextEngineering',
       slides: [
         {
@@ -361,6 +362,7 @@ const adM3: CourseModule = {
       id: 'ad3l7',
       diagram: 'EvalStack',
       title: 'Evaluating LLMs and Agents',
+      playground: 'evalci',
       slides: [
         {
           heading: 'Why Benchmarks Mislead',

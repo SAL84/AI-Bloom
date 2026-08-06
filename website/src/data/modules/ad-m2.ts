@@ -9,6 +9,7 @@ const adM2: CourseModule = {
     {
       id: 'ad2l1',
       title: 'The Transformer Architecture',
+      playground: 'nextword',
       sectionLabel: 'Architecture',
       diagram: 'Embeddings',
       slides: [
@@ -118,6 +119,7 @@ const adM2: CourseModule = {
     {
       id: 'ad2l3',
       title: 'Tokenisation In Depth',
+      playground: 'tokenizer',
       diagram: 'Tokenization',
       slides: [
         {
@@ -153,6 +155,7 @@ const adM2: CourseModule = {
       id: 'ad2l4',
       diagram: 'InferenceServing',
       title: 'Inference & Latency Optimisation',
+      playground: 'temperature',
       slides: [
         {
           heading: 'The Shape of the Problem: Prefill vs Decode',
@@ -219,6 +222,7 @@ const adM2: CourseModule = {
     {
       id: 'ad2l6',
       title: 'RAG Architecture In Depth',
+      playground: 'embeddings',
       diagram: 'RAGFlow',
       slides: [
         {

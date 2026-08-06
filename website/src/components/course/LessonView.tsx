@@ -5,9 +5,20 @@ import type { CourseModule, CourseId, Lesson, View, RoleKey } from '../../types/
 import { DIAGRAM_REGISTRY } from '../diagrams';
 import { InlineSVGDiagram } from '../diagrams/InlineSVGDiagram';
 import { ExercisePanel } from './ExercisePanel';
+
 import { RoleTabPanel } from './RoleTabPanel';
 import { CourseNav } from './CourseNav';
 import { courseColor } from '../../data/course-colors';
+
+const PLAYGROUND_META: Record<string, { label: string; blurb: string }> = {
+  tokenizer:   { label: 'the Tokeniser', blurb: 'Paste your own text and watch it split into tokens.' },
+  context:     { label: 'the Context Window', blurb: 'See what fits, what gets dropped, and what that costs.' },
+  temperature: { label: 'the Temperature dial', blurb: 'Turn sampling up and down and watch the output change.' },
+  embeddings:  { label: 'Embeddings Similarity', blurb: 'Compare sentences and see which the model considers close.' },
+  nextword:    { label: 'Next-Word Prediction', blurb: 'Watch the model choose the next word, one at a time.' },
+  baserate:    { label: 'the Base-Rate calculator', blurb: 'Put in your own volumes and see the false-alarm arithmetic.' },
+  evalci:      { label: 'Eval Confidence', blurb: 'See how many test cases you need before a result means anything.' },
+};
 
 
 // ── Diagram zoom modal ───────────────────────────────────────────────────────
@@ -406,6 +417,24 @@ export const LessonView = ({ module, lesson, modules, courseId, setView, complet
 
         {lesson.roleContent && lesson.roleContent.length > 0 && (
           <RoleTabPanel roleContent={lesson.roleContent} selected={selectedRole} setSelected={setSelectedRole} />
+        )}
+
+        {lesson.playground && PLAYGROUND_META[lesson.playground] && (
+          <button
+            onClick={() => setView({ type: 'playground', tab: lesson.playground })}
+            className="w-full text-left mt-8 rounded-[4px] border-[1.5px] border-dashed p-5 lg:p-6 bg-studio-paper hover:-translate-y-px transition-all duration-200 cursor-pointer"
+            style={{ borderColor: color }}
+          >
+            <div className="font-studio-mono text-[10.5px] tracking-[1.6px] uppercase mb-2" style={{ color }}>
+              ◆ See it for yourself
+            </div>
+            <div className="font-studio-display text-[20px] text-studio-ink leading-[1.15] mb-1">
+              Open {PLAYGROUND_META[lesson.playground].label} →
+            </div>
+            <p className="font-studio-sans text-[13.5px] text-studio-ink-dim leading-[1.6] m-0">
+              {PLAYGROUND_META[lesson.playground].blurb}
+            </p>
+          </button>
         )}
 
         <div className="flex items-center justify-between gap-3 pt-10 mt-10 border-t border-studio-rule">
