@@ -127,6 +127,7 @@ const lgM2: CourseModule = {
           body: 'Discovery is the one area of legal practice with a long, established history of courts accepting machine-assisted review. Technology-assisted review — predictive coding — has been used for well over a decade to prioritise and classify documents for responsiveness, with courts in several jurisdictions accepting it as a reasonable method. That acceptance did not arrive because the technology was impressive. It arrived because practitioners built a defensibility apparatus around it: documented protocols, agreed seed sets, statistical sampling to estimate recall, validation against control sets, and disclosure to opposing parties. The technology was permitted because the method was measurable and could be explained. That is the transferable lesson, and it is a methodological one rather than a technological one.',
           bullets: [
             'Courts have accepted predictive coding in discovery for well over a decade in several jurisdictions',
+            'In US federal practice the landmark is Da Silva Moore v. Publicis Groupe (S.D.N.Y. 2012), the first judicial approval of computer-assisted review',
             'Acceptance followed from measurable, documented, disclosable method — not from technical impressiveness',
             'Seed sets, control sets, sampling, and recall estimation are the apparatus that made it defensible',
             'The transferable lesson is the methodology, not the specific algorithm',

@@ -304,7 +304,7 @@ const lgM4: CourseModule = {
           bullets: [
             'In US federal practice: Mata v. Avianca (S.D.N.Y. 2023) as the canonical fabricated-citation sanction; FRCP Rule 11 on certification and sanctions; and FRE Rule 502(d) orders as the standard protection against waiver',
             'The ABA Model Rules: 1.1 comment 8 on technology competence, 1.6(c) on preventing unauthorised disclosure, 5.1 and 5.3 on supervision, and the rules on reasonable fees and on communicating with clients',
-            'Also on the ABA\'s site: its ethics committee\'s formal opinion on generative AI tools — but the Model Rules are a model, so your state\'s adopted rules and your state bar\'s own AI guidance are what govern you',
+            'Also on the ABA\'s site: Formal Opinion 512 (2024) on generative AI tools — but the Model Rules are a model, so your state\'s adopted rules and your state bar\'s own AI guidance are what govern you',
             'Outside the US: your regulator\'s conduct rules and technology guidance — in England and Wales, the SRA Code of Conduct and Law Society guidance — and any judicial AI guidance, which the England and Wales judiciary has published for judicial office holders',
             'Per forum and per client, and not findable from here: the standing orders and practice directions of the specific court and judge, and any outside counsel guidelines the client imposes',
             'On the tools themselves: independent empirical evaluations of legal AI systems in law reviews, empirical legal studies journals, and preprints — vendor accuracy figures sit a rung below these',

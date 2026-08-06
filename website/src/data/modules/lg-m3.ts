@@ -150,6 +150,7 @@ const lgM3: CourseModule = {
             'Overruled, distinguished, or superseded authority can be retrieved and cited as current',
             'Corpus coverage gaps are silent; the tool answers from what it has without signalling what it lacks',
             'Chunking can separate a passage from the qualification that changes its meaning',
+            'Measured, not asserted: a Stanford RegLab study of leading AI legal research tools (Journal of Empirical Legal Studies, 2025) found hallucination rates from roughly one in six to one in three of the queries tested',
           ],
         },
         {
