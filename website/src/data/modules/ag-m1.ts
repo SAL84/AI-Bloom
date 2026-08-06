@@ -146,6 +146,19 @@ const agM1: CourseModule = {
             'Ceilings should tighten as tools and prompts improve, not drift upward',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'A ceiling you cannot point at in code is a ceiling you do not have, and the same is true of the terminal condition. This takes about half an hour on one agent and leaves you a table worth keeping in the design doc.',
+          exercise: {
+            task: 'Pick one agent you own. If you own none, take an agent product you use regularly and fill this in for the design as you believe it works, or for the system you are currently sketching. Enumerate every way its loop can end: the terminal tools, the four budgets, and the stuck detector if you have one. For each row, write the number and the file and line where your code evaluates it. Then force one ceiling deliberately and check that the recorded reason is the row you predicted.',
+            copyText: 'Agent:\n\nEXITS FROM THE LOOP\nExit | Condition | Value | Enforced at (file:line) | Status returned\nTerminal tool - success    |  |  |  |\nTerminal tool - escalation |  |  |  |\nStep budget                |  |  |  |\nToken budget               |  |  |  |\nWall-clock budget          |  |  |  |\nSpend budget               |  |  |  |\nStuck detector             |  |  |  |\n\nTERMINAL TOOL SCHEMA (required fields only)\nsubmit(\n  result       // the artefact the caller needs\n  evidence     // what was processed, what was checked, what the check returned\n  identifiers  // records touched\n  caveats      // what the caller must not assume\n)\n\nAny row with no file and line is a condition you do not currently enforce.',
+            selfCheck: [
+              'Every row names a file and a line, or is explicitly marked as unenforced',
+              'You can point at the one line of code that ends the loop on success, and it is not a sentence in a prompt',
+              'A deliberate overrun stops at the ceiling you predicted and reports which budget tripped',
+            ],
+          },
+        },
       ],
     },
     {

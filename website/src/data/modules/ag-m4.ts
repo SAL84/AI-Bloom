@@ -79,6 +79,19 @@ const agM4: CourseModule = {
             'Set retention per class before launch — after an incident it is too late',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'The test of a trace is not how much it holds but whether someone can rebuild a run from it after the fact. Run that test on a real failure now, rather than during the incident where it matters.',
+          exercise: {
+            task: 'Find one run of your agent that failed or behaved strangely and try to answer the nine questions below from the stored trace alone - no access to the running system, no re-execution, no asking the engineer who built it. Every question you cannot answer names a field to add. If you have no traces yet, run the list against the trace schema you are designing and mark which fields it would already carry.',
+            copyText: 'Run:        Outcome:\n\nAnswer from the trace alone:\n1. What exact context did the model see at the step where it went wrong?\n2. What arguments were sent to each tool, as sent rather than as intended?\n3. What did each tool return, raw?\n4. Which model, prompt, tool schema and retrieval index versions were in force?\n5. What was the remaining budget at each step?\n6. Which branch of the assembly logic ran, and was anything truncated or compacted?\n7. Did a subagent run, and under which step?\n8. Which gate or policy decisions were evaluated, and what did each return?\n9. Why did the run end, as recorded rather than as inferred?\n\nFor each question you could not answer:\nField to add | Emitted where in the code | Recoverable from anything else? | Retention class',
+            selfCheck: [
+              'You reached a specific verdict on the cause, or you can name the exact question the trace could not answer',
+              'Every gap became a named field with a place in the emitting code, not a note to improve logging',
+              'You can say which gaps were genuinely unrecoverable and which you could have derived from what was already stored',
+            ],
+          },
+        },
       ],
     },
     {

@@ -272,6 +272,19 @@ const agM5: CourseModule = {
             'Test the important prohibitions in the pipeline — an unverified prohibition is a claim',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'This list takes an afternoon and is the quickest way to discover that two people on the same system hold different beliefs about what it may do. Write it for one agent, with the enforcement points named.',
+          exercise: {
+            task: 'Write the prohibition list for one agent you own or are designing. If you own none, write it for an agent your organisation has deployed, from what you can observe. Map every line to its enforcement point, and put the entries you cannot enforce in their own section with a detection and a response beside each. Then take every gated action and classify it by reversibility and reach, naming who approves and what artefact they are shown. Give the finished list to one other engineer on the system and record where you disagreed.',
+            copyText: 'AGENT:\n\nNEVER - each line specific enough to implement, not a principle\n- Actions it will never take:\n- Data it will never read or write:\n- Systems it will never write to:\n- Thresholds it will never exceed without a person:\n- Decisions never delegated at all:\n\nENFORCEMENT\nProhibition | Enforcement point (absent tool / credential scope / validation rule / policy check / hard budget) | Tested in the pipeline?\n\nNOT ENFORCEABLE STRUCTURALLY\nProhibition | Detection | Defined response | Owner\n\nGATED ACTIONS\nAction | Reversible? by whom, in what window | Reach: records, people and systems affected | Approver | Artefact shown (diff, parameters, sources) | Default on timeout\n\nDisagreements found with the second reader:',
+            selfCheck: [
+              'Every prohibition maps to a named enforcement point, or sits in the not-enforceable section with a detection beside it',
+              'Each gated action names an approver who exists, and an artefact they see rather than a generated summary',
+              'You can name at least one boundary where you and the second reader had assumed different things',
+            ],
+          },
+        },
       ],
     },
   ],

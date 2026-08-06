@@ -42,6 +42,19 @@ const agM2: CourseModule = {
             'Without this, every context change is evaluated by guesswork over aggregates',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'The benchmark in this lesson is a one-command answer to what the model actually saw at a given step. This is the exercise that tells you whether you have it.',
+          exercise: {
+            task: 'Take one stored run of an agent you own and print the exact assembled context sent at a middle step - step nine if the run got that far - without re-running anything. Attribute every token to one of the six sections and write down the realised share. If you have no agent, do it ahead of time for the system you are designing: write what the assembly function will emit at step nine and set the nominal allowance per section before any of it is built.',
+            copyText: 'Run:        Step:        Model:        Total input tokens:\n\nSection              | Nominal allowance | Realised tokens | Share | Needed to choose the next action?\nSystem instructions  |  |  |  |\nTool definitions     |  |  |  |\nRetrieved material   |  |  |  |\nConversation history |  |  |  |\nScratchpad           |  |  |  |\nCurrent observations |  |  |  |\nUnaccounted          |  |  |  |\n\nThen answer:\n- Which section is largest, and had you expected it to be?\n- Which sections rendered empty or truncated, and would you have noticed from the output?\n- Would a careful person given only this context have chosen the same next action?',
+            selfCheck: [
+              'You produced the step\'s exact context from stored state, with no agent execution',
+              'Every token is attributed to a named section and the unaccounted row is zero',
+              'You can name the largest section and say whether the model needed it to choose that step\'s action',
+            ],
+          },
+        },
       ],
     },
     {

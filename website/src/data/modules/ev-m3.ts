@@ -170,6 +170,19 @@ const evM3: CourseModule = {
             'Quarantine genuinely broken cases; never delete a case that merely fails often',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'One run is a story, not a measurement. This is the cheapest way to find out how much your system moves on its own before you credit a change with moving it.',
+          exercise: {
+            task: 'Take one scenario from your case sheet on a feature you ship, are building, or use daily — with no feature of your own, use a prompt you send often to an AI product you rely on. Write down what counts as a pass, then run the scenario ten times unchanged and count the passes. Now make one change you genuinely believe in — prompt wording, model, retrieval setting — and run the same scenario ten more times. Compare the two counts using the arithmetic below before you tell anyone the change worked. Reporting "too close to call" is a real result and is what keeps the number believable next time.',
+            copyText: 'Scenario: [one real input]\nCounts as a pass when: [written before any run]\n\nBefore the change: passes out of 10 = __\nAfter the change:  passes out of 10 = __\nDifference:        __ out of 10\n\nHow much wobble to expect: roughly 1 divided by the square root of the number of runs.\nTen runs: 1 divided by 3.16 is about 0.3 — so about 3 in 10.\nA difference smaller than that is noise, not evidence.\n\nVerdict: real move / too close to call / worth more runs',
+            selfCheck: [
+              'The pass condition was written down before the first of the twenty runs',
+              'You have two counts out of ten and the difference written as a number, not two impressions',
+              'Your verdict is one of the honest options: a real move, or too close to call at ten runs',
+            ],
+          },
+        },
       ],
     },
     {

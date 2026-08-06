@@ -272,6 +272,56 @@ const lgM4: CourseModule = {
         },
       ],
     },
+    {
+      id: 'lg4l6',
+      diagram: 'LegalSourceLadder',
+      title: 'Checking This Course Against the Sources',
+      sectionLabel: 'References',
+      slides: [
+        {
+          heading: 'How This Course Was Made',
+          body: 'This course was drafted by an AI model working to an editorial brief and then edited. It has not been reviewed by a practising lawyer in any jurisdiction, and it claims no authority. That matters more here than almost anywhere: a course that spends a module on the consequences of relying on unverified AI output would refute itself if it asked you to rely on its own. So do not. Use it to orient, to build vocabulary, and to work out which questions to put to a source that carries professional responsibility for the answer — never as the basis for advice, a filing, or a compliance position. It is also why the lessons say plainly where the position is unsettled: on waiver, on disclosure, and on billing, a confident answer would be the inaccurate one.',
+          bullets: [
+            'Model-drafted to an editorial brief and edited — not reviewed by a practising lawyer in any jurisdiction',
+            'A course about the cost of unverified AI output cannot ask you to rely on its own unverified output',
+            'Use it to orient and to form questions; never as the basis for advice, a filing, or a compliance position',
+            'Where it says the position is unsettled — waiver, disclosure, billing — that is accuracy, not hedging',
+          ],
+        },
+        {
+          heading: 'The Source Ladder',
+          body: 'When you read anything about AI in practice, including this, the useful first question is which rung it came from. Primary law and the conduct rules sit at the top: they are what a court applies and what binds you personally, whether or not you have read them. Below that, guidance from the bodies that judge your work — regulators, bars, and the courts themselves — which is the only rung that can tell you whether this judge wants disclosure. Below that, independent evaluation and scholarship: disinterested and method-transparent, but general rather than about your matter. Then practitioner commentary, which reaches you first and has no checking behind it. Vendor material sits last, and its accuracy claims are claims to test.',
+          bullets: [
+            'Primary law and conduct rules bind you; everything below them is somebody reading them',
+            'Regulator, bar, and court guidance is the only rung that answers what your specific forum requires',
+            'Independent evaluation and scholarship are disinterested and method-transparent, but general',
+            'Commentary is fast and unreviewed; vendor accuracy claims are claims to test, never evidence',
+          ],
+        },
+        {
+          heading: 'The Sources This Course Rests On',
+          body: 'These are the anchors the lessons were written against, grouped by rung. They are named without links, because deep links rot and the issuing body\'s own site is where the current text lives. Two caveats are worth more than the list itself. Everything below is scoped: the US federal items say nothing about what applies in any other jurisdiction, and the ABA Model Rules bind nobody anywhere until a state adopts a version of them. And the sources that will actually decide a question in front of you — this court\'s standing order, your state\'s rule, this client\'s guidelines — are not findable from a course page at all.',
+          bullets: [
+            'In US federal practice: Mata v. Avianca (S.D.N.Y. 2023) as the canonical fabricated-citation sanction; FRCP Rule 11 on certification and sanctions; and FRE Rule 502(d) orders as the standard protection against waiver',
+            'The ABA Model Rules: 1.1 comment 8 on technology competence, 1.6(c) on preventing unauthorised disclosure, 5.1 and 5.3 on supervision, and the rules on reasonable fees and on communicating with clients',
+            'Also on the ABA\'s site: its ethics committee\'s formal opinion on generative AI tools — but the Model Rules are a model, so your state\'s adopted rules and your state bar\'s own AI guidance are what govern you',
+            'Outside the US: your regulator\'s conduct rules and technology guidance — in England and Wales, the SRA Code of Conduct and Law Society guidance — and any judicial AI guidance, which the England and Wales judiciary has published for judicial office holders',
+            'Per forum and per client, and not findable from here: the standing orders and practice directions of the specific court and judge, and any outside counsel guidelines the client imposes',
+            'On the tools themselves: independent empirical evaluations of legal AI systems in law reviews, empirical legal studies journals, and preprints — vendor accuracy figures sit a rung below these',
+          ],
+        },
+        {
+          heading: 'Keeping Current, and What to Do When This Is Wrong',
+          body: 'This is among the faster-moving areas of professional regulation, and the fastest-moving part of it is the part no course can hold: an individual judge\'s standing order. State bars continue to issue AI guidance and ethics opinions. The reported sanctions decisions keep accumulating and refining what courts treat as the failure. Waiver analysis for AI vendors is still being worked out. Anything here that reads as settled should be checked against the current text on the issuing body\'s own site before you rely on it. And if you find a claim in this course that is wrong, superseded, or misdescribed, please report it — given the subject, an unchecked citation on this page would demonstrate the problem better than the lessons do.',
+          bullets: [
+            'Standing orders and practice directions change per judge — check the forum before filing, not once a year',
+            'State bar opinions, reported sanctions decisions, and waiver analysis are all still accumulating',
+            'Check anything that reads as settled against the current text on the issuing body\'s own site',
+            'Report an error here — on this subject above all, an unchecked citation would prove the course\'s own point',
+          ],
+        },
+      ],
+    },
   ],
   quiz: [
     {

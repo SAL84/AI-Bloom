@@ -172,6 +172,19 @@ const secM3: CourseModule = {
             'A model judging an action is a signal with an error rate, not a boundary',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'A gate list is quick to write and easy to over-credit. This exercise checks the two things that decide whether a gate is real: what it is placed on, and whether anyone is reading it.',
+          exercise: {
+            task: 'Pull the live tool list for one agent your organisation runs or is designing, including anything a registered server added, and build the table: what each tool can do, whose identity it acts as, whether its effect is reversible and by whom and how quickly, and whether it is gated. Section 4 of the AI Feature Threat-Model Canvas at /templates/threat-model-canvas.md is this table. Then answer three things the table does not. Which ungated actions are irreversible in the sense that a third party has already been affected? For each existing gate, what is the approver actually shown — the exact parameters, or a generated summary of intent? And what have the approval rate and the median decision time been over the last month? If you want to test whether a gated effect can be reached by an alternative code path, do that only against a system you own or are authorised in writing to test, in a non-production environment with synthetic data and dedicated accounts. If you own no such agent, build the table for an AI feature in a product you use from its documentation and its permission prompts, and record every unknown as ungated.',
+            copyText: 'Agent:\nTool list source: [live configuration, pulled on DATE]\n\nTool | What it can do | Acts as | Reversible by whom, how fast | Gated?\n1.\n2.\n3.\n\nIrreversible and ungated today:\nGated but reachable by another code path:\nFor each gate — what the approver sees: [exact parameters / generated summary]\nApproval rate, last 30 days:        Median decision time:\nDefault on timeout: [abandon / proceed]',
+            selfCheck: [
+              'Every tool has an acting identity and a reversibility answer, with no cells left blank',
+              'You can name at least one irreversible action that is currently ungated, or produce the list that shows there is none',
+              'For each existing gate you can state what the approver sees and the median decision time, and say whether that time is long enough to have read it',
+            ],
+          },
+        },
       ],
     },
     {

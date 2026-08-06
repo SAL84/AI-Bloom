@@ -52,6 +52,7 @@ import { LLMGovernanceLayersDiagram, AIMisconceptionsDiagram, LLMInfrastructureD
 import { VendorDueDiligenceDiagram, SkepticalDemoDiagram, VendorPushbackDiagram, HonestBusinessCaseDiagram, BuyerSituationsDiagram, SecurityPromptingDiagram } from './course-diagrams-an';
 import { FirstUseCaseDiagram, ProvingPilotDiagram, SOCMetricsDiagram, AnalystRoleShiftDiagram, StagedAutonomyDiagram } from './course-diagrams-ao';
 import { CapstoneWalkthroughDiagram } from './course-diagrams-ap';
+import { HealthSourceLadderDiagram, LegalSourceLadderDiagram } from './course-diagrams-aq';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -314,4 +315,6 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AnalystRoleShift: AnalystRoleShiftDiagram,
   StagedAutonomy: StagedAutonomyDiagram,
   CapstoneWalkthrough: CapstoneWalkthroughDiagram,
+  HealthSourceLadder: HealthSourceLadderDiagram,
+  LegalSourceLadder: LegalSourceLadderDiagram,
 };

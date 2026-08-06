@@ -144,6 +144,19 @@ const secM1: CourseModule = {
             'Temporary scope widening for a demo is the most common permanent change there is',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'Reading a list of components is not the same as producing one for a system you own. This takes about an hour on a single feature, and the value is in the channels that turn out not to be in the design document.',
+          exercise: {
+            task: 'Pick one AI feature your organisation runs or is designing — one owner, one data set, one tool list. Working from configuration and code rather than design documents, list every channel through which content reaches the model: retrieved documents and their metadata, fetched pages, ticket and email text, filenames and document properties, tool responses including error strings, memory entries, and anything templated into the system prompt. Mark each channel trusted or untrusted, name the concrete code path that writes to it, and note whether any test exercises it. Section 2 of the AI Feature Threat-Model Canvas at /templates/threat-model-canvas.md is this table, so start from it rather than building a scaffold. If your organisation ships no AI feature yet, build the same inventory for an AI feature in a product you use, from its published documentation, and record every channel you cannot confirm as unknown rather than trusted. This is a configuration and documentation review only — do not probe any system you are not authorised in writing to test.',
+            copyText: 'Feature:\nOwner:\nInventory built from: [configuration and code, on DATE]\n\nChannel | Trusted or untrusted | Code path that writes to it | Exercised by a test?\n1.\n2.\n3.\n\nChannels found that were not in the design document:\nChannels nobody could name a write path for:\nUntrusted channels no test currently exercises:',
+            selfCheck: [
+              'Your inventory contains at least one channel that was not in the feature\'s design document',
+              'Every channel has a named write path, or is recorded as one nobody could name',
+              'You can point to at least one untrusted channel that no existing test exercises',
+            ],
+          },
+        },
       ],
     },
     {

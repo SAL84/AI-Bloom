@@ -158,6 +158,18 @@ const evM1: CourseModule = {
             'Treat eval-set growth as a health metric for the team, not just the product',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'Everything in this lesson rests on having cases that came from reality rather than from memory. Ten is enough to start, and this is the afternoon that decides whether the rest of the course is theory or work.',
+          exercise: {
+            task: 'Pick one AI feature you ship, are building, or use every day — if you have none, pick an AI product you rely on and treat your own last two weeks of use as the log. Collect ten real inputs from logs, support tickets, or your own recent sessions, and write down what a good answer looks like for each one before you run anything. Use the Eval Cases Sheet at /templates/eval-cases-template.csv so you are not inventing the columns; its starter rows cover a core task, a hard case, a missing-information case, a must-refuse case, and a formatting case. Then run all ten and count how many come back acceptable. Cases written after you have seen the output only describe what you got, which is why the order matters more than the number.',
+            selfCheck: [
+              'All ten inputs are copied from real usage — logs, tickets, or your own sessions — none invented at the desk',
+              'Every what-good-looks-like line was written before the system was run on that case',
+              'You can state the result as a count out of ten and name at least one case it failed',
+            ],
+          },
+        },
       ],
       roleContent: [
         {

@@ -128,6 +128,19 @@ const secM2: CourseModule = {
             'A clean trifecta result is not a clean threat model',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'The test only earns its keep when the three answers come from configuration rather than from what the design intended. One component, half an hour, and the outcome is either a leg you can remove or a risk you have written down.',
+          exercise: {
+            task: 'Take one component of an AI feature your organisation runs or is designing — one process on the diagram, not the whole system — and answer the three questions with evidence. What private data can it reach, according to the resolved effective permissions of the credential behind each tool rather than the role name? What untrusted content reaches it, including content laundered through an earlier summary or case note? And every way bytes it produces can reach somewhere an attacker can observe: network calls, rendered remote resources, writes to shared stores, messages, third-party query strings, logs and error strings. Then name the leg you could actually remove and what removing it would cost the feature. Section 3 of the AI Feature Threat-Model Canvas at /templates/threat-model-canvas.md is this check. If your organisation has no such feature, run it against an AI feature in a product you use, from its published documentation, and mark each answer as evidenced or assumed. Everything here is answerable by reading configuration; if you want to confirm the egress answer by routing a benign marker, do that only on a system you own or are authorised in writing to test, in a non-production environment with synthetic data.',
+            copyText: 'Component: [one process, not the whole feature]\n\nTrifecta check — evidence, not intent\n  Private data reachable: [resolved permission set, not role name]\n  Untrusted content reaching it: [channel, including content laundered via an earlier step]\n  Outbound paths: [network / rendered resource / shared write / message / query string / log / error string]\n\nAll three present? [y/n]\n  Leg we can remove:\n  What removing it costs the feature:\n  Owner and date:\n\nSecond pass — what this component can destroy, spend, or send:\nThird pass — what a confidently wrong answer costs in this domain:',
+            selfCheck: [
+              'Each of the three answers cites a configuration source — a resolved permission set, an ingestion path, an egress rule — not a design intention',
+              'Your outbound list includes at least one path that is not a direct network call',
+              'The component ends with either a named removable leg and its cost, or — if it came out clean — a written note of what it can still destroy, spend, or send',
+            ],
+          },
+        },
       ],
       roleContent: [
         {

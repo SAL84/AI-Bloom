@@ -161,6 +161,19 @@ const agM3: CourseModule = {
             'Write large artefacts to an addressable location and return a reference',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'A tool definition is read once by a consumer that cannot ask what you meant and cannot experiment to find out. Take one of yours and rewrite it for that reader, description through return values.',
+          exercise: {
+            task: 'Pick the tool in your system with the highest argument-error or misselection rate. If you have no traces yet, pick the one whose side effect you would least like performed twice. Rewrite its definition against the template below, including the return value for success and for each of the three error classes. If you own no tools, do this for one tool an agent product exposes to you, written from its observable behaviour, and note what you had to guess.',
+            copyText: 'TOOL:\n\nDESCRIPTION\n- What it does to the world:\n- When to use it:\n- When NOT to use it, and which sibling tool to prefer instead:\n- Preconditions that must hold:\n- Cost or latency, if it should affect selection:\n- Example call:\n\nSCHEMA - one row per field\nfield | type | required | allowed values (enumerate fixed sets) | format and units | description\n\nRETURNS\n- Success: outcome stated explicitly, resulting state after the mutation, identifiers a follow-up call needs\n- Empty result: distinguishable from failure, with the total count\n- Transient error: says it is transient and how long to wait\n- Correctable error: says what was wrong and what would be valid\n- Terminal error: says that retrying will not help, and what route remains\n- Bounds: page size, total count, and the handle for retrieving the rest',
+            selfCheck: [
+              'The description names at least one situation where this tool is the wrong choice and says which tool to use there instead',
+              'No field with a fixed set of legal values is typed as a free string',
+              'For each of the three error strings you can state what the model\'s next action would be after reading it',
+            ],
+          },
+        },
       ],
     },
     {

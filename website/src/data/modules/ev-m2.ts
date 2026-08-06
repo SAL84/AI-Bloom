@@ -227,6 +227,19 @@ const evM2: CourseModule = {
             'Pin the judge model where the platform allows; silent updates move your metric',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'Calibration sounds like a project and is really one afternoon with twenty cases. It is also the only step that turns a judge score from an opinion into a measurement.',
+          exercise: {
+            task: 'Take twenty outputs from an AI feature you ship, are building, or use daily — with none of your own, collect twenty answers from an AI product you rely on. Choose one binary criterion from your rubric, label all twenty yourself first, then run the judge prompt below over the same twenty and compare. Count the disagreements in two directions: how many the judge passed and you failed, and how many it failed and you passed. Then read every disagreement and say what wording in the criterion allowed two honest readings — almost all of them are a rubric bug, not a judge bug.',
+            copyText: 'You are grading one criterion only.\n\nCriterion: [one yes/no criterion, in observable terms]\nClearly passes: [an example, and why]\nClearly fails: [an example, and why]\nBorderline: [a case near the line, with the ruling and the reason]\n\nInput the system was given:\n[paste]\n\nOutput to grade:\n[paste]\n\nWrite two sentences of reasoning first. Then put the verdict on the last line, as exactly PASS or FAIL.',
+            selfCheck: [
+              'Each of the twenty items carries two recorded labels — yours, written before you saw the judge\'s',
+              'The disagreements are reported as two counts, not one: judge-passed-you-failed and judge-failed-you-passed',
+              'At least one disagreement produced an edit to the criterion wording or a new anchor example',
+            ],
+          },
+        },
       ],
       roleContent: [
         {

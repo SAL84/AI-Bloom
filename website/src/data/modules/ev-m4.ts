@@ -322,6 +322,19 @@ const evM4: CourseModule = {
             'The real metric is whether a decision changed because of the suite',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'A gate nobody wrote down is a gate that gets argued about at the worst possible moment. Write yours now, while nothing is on fire.',
+          exercise: {
+            task: 'For an AI feature you ship, are building, or use daily — with none of your own, for a product your team depends on and would one day have to make this call about — write the release gate on one page: which checks block a release outright, which are posted as warnings only, who may override a block, and what they must record when they do. Keep the blocking list to checks that settle an argument rather than start one. Then write the part teams skip: a short paragraph saying exactly what happens the first Friday afternoon the gate fires on a release someone has already promised.',
+            copyText: 'BLOCKS the release:\n- [safety criterion]\n- [schema or format validity]\n- [floor on the slice where failure costs most: __ %]\n- [every case protecting a past incident]\n\nWARNS ONLY (posted in the pull request, does not block):\n- [aggregate movement inside the noise band]\n- [judge-score wobble]\n\nOverride: [who may approve] records [what], which creates [what follow-up]\n\nFriday, 4pm, the gate fires and the release was promised. We: [what actually happens]',
+            selfCheck: [
+              'Every blocking check can be settled by pointing at a result, with no discussion needed',
+              'At least one check sits on the warn list, and you can say why it is not a blocker',
+              'The Friday paragraph names who decides and what gets written down, not a general intention',
+            ],
+          },
+        },
       ],
       roleContent: [
         {

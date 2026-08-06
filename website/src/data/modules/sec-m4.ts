@@ -267,6 +267,19 @@ const secM4: CourseModule = {
             'Disclosure obligations follow the data reached, not the novelty of the vector',
           ],
         },
+        {
+          heading: 'Try It Yourself',
+          body: 'A finding that closes without a test reopens quietly, and a response plan written during an incident is written under pressure. This produces both from one finding.',
+          exercise: {
+            task: 'Take one finding — from your own testing, from an incident in your organisation, or a published class of finding that matches your architecture — and do two things for an AI feature your organisation runs or is designing. First, write it as a regression test that asserts on the trace rather than on output text: that no privileged tool call appears in a run that ingested externally sourced content, that a canary record never reaches a destination, that no request goes to a non-allowlisted host. Make it an invariant asserted across repeated runs, and decide whether it blocks the build or raises a review. Second, write the response steps for the case where the failing component is the model: which tools you would narrow first and whether that is possible without a deployment, which credentials you would revoke, which content source you would quarantine, how far back you would extend the trace search given that planting and activation are separated in time, and which derived artefacts — embeddings, caches, summaries, memory entries — a purge has to clear. Run the test only against a system you own or are authorised in writing to test, in a non-production environment configured like production with synthetic data and dedicated accounts, using benign markers rather than real harm. If your organisation runs no AI feature yet, write both against an AI feature in a product you use and mark every step you could not perform yourself as a dependency on that supplier.',
+            copyText: 'Finding: [what an attacker achieves, and against whom]\nCondition to test, not the attempt: [the property that must always hold]\n\nRegression test\n  Asserts on: [trace field — tools called, acting identity, destination contacted]\n  Runs per change: [n]   Tolerance: [zero occurrences / threshold + trend]\n  Environment: [non-production, synthetic data, guardrails as deployed]\n  On failure: [block the build / raise for review]\n\nIf this fires in production\n  Narrow or revoke first: [tools]   Deployment required? [y/n]\n  Credentials to revoke:\n  Source to quarantine:\n  Trace search window: back to [when the content could have been planted]\n  Derived artefacts to purge: embeddings / caches / summaries / memory\n  Verified closed when: [the path fails, not just the original attempt]',
+            selfCheck: [
+              'The test asserts on a trace field and would still mean the same thing after a model or prompt change',
+              'The assertion covers repeated runs, and you have decided whether it blocks the build or raises a review',
+              'Your response steps name a containment action that needs no deployment, and a purge that covers derived artefacts as well as the source',
+            ],
+          },
+        },
       ],
     },
     {

@@ -259,6 +259,56 @@ const hcM4: CourseModule = {
         },
       ],
     },
+    {
+      id: 'hc4l6',
+      diagram: 'HealthSourceLadder',
+      title: 'Checking This Course Against the Sources',
+      sectionLabel: 'References',
+      slides: [
+        {
+          heading: 'How This Course Was Made',
+          body: 'This course was drafted by an AI model working to an editorial brief and then edited. It has not been reviewed by a practising clinician, a regulatory affairs professional, or a lawyer, and it claims no authority. What it can do is orient you: give you the vocabulary, the shape of the arguments, and the questions worth asking before anyone commits to anything. What it cannot do is settle a question. Use it to form questions, never as the basis for a clinical, procurement, or compliance decision — each of those needs a source that carries responsibility for being right, and this page does not. That is also why the lessons keep saying where the evidence is thin: a model-drafted course that sounded equally confident everywhere would mislead you most in the places that matter most.',
+          bullets: [
+            'Model-drafted to an editorial brief and edited — not reviewed by a practising clinician or regulator',
+            'It carries no authority, so treat each claim as a prompt to check a source rather than as a finding',
+            'Use it to orient and to form questions; never as the basis for a clinical or compliance decision',
+            'Where a lesson says the evidence is thin, that is the content — uniform confidence would be the bigger error',
+          ],
+        },
+        {
+          heading: 'The Source Ladder',
+          body: 'When you read anything about AI in healthcare, including this, it helps to know which rung it came from. At the top sits primary regulation and the professional rules that bind you: they are the text everything else is describing, and readings drift from the text over time. Below that, official guidance from the body that enforces the rules — not law, but the nearest thing to knowing how the law will be applied. Below that, reporting standards and peer-reviewed evidence: disinterested, with the method on the page, but slow, and about populations rather than your patient. Then practitioner commentary, which is fast and concrete but reviewed by nobody. Vendor material sits last: it is the only source for what a product actually does, and the least disinterested one you will read.',
+          bullets: [
+            'Regulation and professional rules come first — everything below is somebody reading them, and readings drift',
+            'Regulator guidance next: not law, but the closest thing to how the rules will actually be applied',
+            'Standards and peer-reviewed evidence are disinterested and method-transparent, but general and slow',
+            'Commentary is fast and unreviewed; vendor material tells you most about the product and is least disinterested',
+          ],
+        },
+        {
+          heading: 'The Sources This Course Rests On',
+          body: 'These are the anchors the lessons were written against, grouped by rung, and named so you can read them rather than take this course\'s word for anything. They are deliberately unlinked: deep links rot, and the issuing body\'s own site is where the current version lives. Two caveats. Everything jurisdictional is scoped — the US and EU instruments below say nothing about obligations anywhere else. And the last group matters most for any real decision, because it is the only one that knows your population, your workflow, and your institution. No reference list substitutes for it.',
+          bullets: [
+            'In the US: HIPAA; the FDA\'s public list of AI-enabled medical devices, and its guidance on Predetermined Change Control Plans — both published on the FDA\'s website',
+            'In the EU: the Medical Device Regulation and its in vitro diagnostic counterpart, the EU AI Act, and the GDPR treatment of health data as special-category data',
+            'International framing: the International Medical Device Regulators Forum\'s documents on Software as a Medical Device, and the World Health Organization\'s guidance on the ethics and governance of AI for health',
+            'Reporting standards: CONSORT-AI and SPIRIT-AI for trials and protocols, the TRIPOD statement\'s AI extension for prediction models, STARD for diagnostic accuracy studies, and PROBAST for risk of bias — the EQUATOR Network indexes reporting guidelines of this kind',
+            'Named evidence: the 2019 study in Science by Obermeyer and colleagues, the worked example behind this course\'s treatment of a cost proxy encoding unequal access as lower need',
+            'Closest to you, and not on this page: your national regulator (the MHRA, Health Canada, the TGA and their equivalents), your specialty college\'s position statements, and your own institution\'s governance committee and local validation reports',
+          ],
+        },
+        {
+          heading: 'Keeping Current, and What to Do When This Is Wrong',
+          body: 'Everything above moves. The FDA\'s device list grows continuously. The EU AI Act\'s obligations phase in over time rather than arriving at once. Reporting standards get revised and extended, and guidance documents are reissued. A statement that was correct when written can become wrong without anything being retracted, which is why the habit worth keeping is to check the issuing body\'s own site for the current text rather than trusting a summary — including this one. Several questions this course raises have no general answer at all: whether a given tool is a regulated device, what basis permits secondary use of data, and who must be told about an incident are all per-jurisdiction. And if you find something here that is wrong or superseded, please report it.',
+          bullets: [
+            'Check the issuing body\'s own site for the current text — summaries, this one included, date faster than sources',
+            'Device classification, lawful basis for secondary use, and incident reporting duties are per-jurisdiction answers',
+            'Phased regulation and revised standards can make a correct statement wrong with nothing being retracted',
+            'Report an error you find here — naming the sources is an invitation to check them, not a claim to have got them right',
+          ],
+        },
+      ],
+    },
   ],
   quiz: [
     { q: 'What primarily determines whether software is regulated as a medical device?', options: ['Its intended purpose — what it claims to do, for whom, in what role', 'Whether it uses machine learning', 'The size of the model', 'Whether it processes patient data'], correct: 0 },
