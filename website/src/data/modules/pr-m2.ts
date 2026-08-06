@@ -254,7 +254,7 @@ const prM2: CourseModule = {
         'It gives the model access to specialised knowledge it otherwise withholds',
         'It switches the model into a different underlying system',
         'It increases the accuracy of factual claims in that field',
-        'It selects vocabulary, depth and priorities from general capability it already has',
+        'It selects vocabulary, depth and priorities it already has',
       ],
       correct: 3,
     },
@@ -262,7 +262,7 @@ const prM2: CourseModule = {
       q: 'Which is generally the more useful thing to specify?',
       options: [
         'The writer\'s job title, since it sets expertise',
-        'The reader and what they already know, since it determines what needs to be said',
+        'The reader and what they already know',
         'The word count, since everything else follows from length',
         'The date, so the model knows how current to be',
       ],
@@ -271,9 +271,9 @@ const prM2: CourseModule = {
     {
       q: 'You want genuinely useful feedback on a proposal. Which prompt is most likely to deliver it?',
       options: [
-        '"What do you think of this proposal?"',
+        '"What do you honestly think of this proposal?"',
         '"Please give me honest feedback on this proposal."',
-        '"You are the budget holder looking for a reason to reject this. Give your three strongest objections, ranked."',
+        '"You are the budget holder. Give your three strongest objections."',
         '"Rate this proposal out of ten and explain the score."',
       ],
       correct: 2,
@@ -281,10 +281,10 @@ const prM2: CourseModule = {
     {
       q: 'Why does stating constraints up front beat correcting the answer afterwards?',
       options: [
-        'They rule out whole categories of unusable answers before they are generated',
+        'They rule out unusable answers before they are generated',
         'Constraints make the model process the request faster',
         'Later messages are given less weight than earlier ones',
-        'Constraints reduce the cost of each request',
+        'Constraints reduce the cost of every request',
       ],
       correct: 0,
     },
@@ -303,7 +303,7 @@ const prM2: CourseModule = {
       options: [
         'The model ignores opening style and focuses on content',
         'It averages the openings out across your examples',
-        'It treats "begins with a rhetorical question" as a rule you intended',
+        'It treats the rhetorical question as a rule you intended',
         'It asks you to clarify whether that pattern is deliberate',
       ],
       correct: 2,
@@ -314,7 +314,7 @@ const prM2: CourseModule = {
         'Leave it — the explicit instruction always wins over the example',
         'Repeat the word limit three times to reinforce it',
         'Fix the example to match, since the example does most of the work',
-        'Remove all examples, as they conflict with instructions by nature',
+        'Remove all examples, as they conflict with instructions by their nature',
       ],
       correct: 2,
     },
@@ -323,7 +323,7 @@ const prM2: CourseModule = {
       options: [
         'Negative instructions are ignored entirely by language models',
         'Positive instructions are processed earlier in the prompt',
-        'A negative rules one thing out but leaves everything else open, while a positive names the target',
+        'A negative rules one thing out; a positive names the target',
         'Bullet points are a special case that cannot be suppressed',
       ],
       correct: 2,

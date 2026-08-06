@@ -183,8 +183,8 @@ const atM4: CourseModule = {
       q: 'Which is the most reliable rule for what to type into a chatbot?',
       options: [
         'Anything is fine as long as you delete the chat afterwards',
-        'Only avoid passwords; everything else is safe',
-        'Nothing you would be uncomfortable having sit on a company server indefinitely',
+        'Only avoid passwords, since everything else is perfectly safe',
+        'Nothing you would mind sitting on a company server forever',
         'Anything is fine if the tool is from a large, well-known company',
       ],
       correct: 2,
@@ -192,9 +192,9 @@ const atM4: CourseModule = {
     {
       q: 'Why does it matter how a free AI product makes money?',
       options: [
-        'Free products are always worse at their core task',
-        'The funding model tells you what the product is designed to optimise for',
-        'Paid products never use your data',
+        'Free products are always much worse at their core task',
+        'The funding model tells you what it optimises for',
+        'Paid products never use your data for anything',
         'It determines whether the model hallucinates',
       ],
       correct: 1,
@@ -204,17 +204,17 @@ const atM4: CourseModule = {
       options: [
         'Deleted posts can now be fully recovered by anyone',
         'Social platforms are required to keep everything permanently',
-        'Private accounts are no longer private',
-        'Scattered public fragments can be gathered and assembled into a profile cheaply and automatically',
+        'Private accounts are no longer private at all',
+        'Public fragments can be gathered into a profile cheaply',
       ],
       correct: 3,
     },
     {
       q: 'Where does bias in an AI system usually originate?',
       options: [
-        'Patterns in the training data, which reflect the world including its inequalities',
+        'Patterns in the training data, which reflect an unequal world',
         'Deliberate choices by the engineers who wrote the code',
-        'Random errors introduced during inference',
+        'Random errors introduced while the model runs',
         'Users deliberately trying to make the model behave badly',
       ],
       correct: 0,
@@ -223,7 +223,7 @@ const atM4: CourseModule = {
       q: 'Why is a single overall accuracy figure a misleading way to judge fairness?',
       options: [
         'Accuracy is impossible to measure for language models',
-        'Overall accuracy can look good while performance is much worse for specific groups',
+        'Overall accuracy can hide worse results for some groups',
         'It only applies to image systems, not text systems',
         'Accuracy figures are usually estimated rather than measured',
       ],
@@ -234,18 +234,18 @@ const atM4: CourseModule = {
       options: [
         'Nothing — the harm depends on whether the image is authentic',
         'It is wrong only if the image is shared publicly',
-        'The image is identifiable as a real person and the humiliation and harm are entirely real',
-        'It is wrong only where a specific law exists',
+        'The person is identifiable and the humiliation is real',
+        'It is wrong only where a specific law already exists',
       ],
       correct: 2,
     },
     {
       q: 'What is the correct first step if a non-consensual synthetic image of you is circulating?',
       options: [
-        'Ask the person who made it to delete it and say nothing else',
+        'Ask the person who made it to delete it',
         'Wait to see whether it spreads before acting',
-        'Delete your own accounts so it cannot be linked to you',
-        'Preserve evidence with screenshots, then report to the platform and tell a trusted adult',
+        'Delete your accounts so it cannot be linked to you',
+        'Save screenshots, report it, and tell a trusted adult',
       ],
       correct: 3,
     },

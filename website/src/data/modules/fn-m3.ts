@@ -59,6 +59,7 @@ const fnM3: CourseModule = {
     {
       id: 'fn3l2',
       title: 'Backtest Overfitting and the Illusion of Alpha',
+      playground: 'evalci',
       slides: [
         {
           heading: 'How a Strategy Becomes Beautiful',
@@ -215,10 +216,10 @@ const fnM3: CourseModule = {
     {
       q: 'A model produces a leverage ratio to two decimal places and attributes it to a named note in a filing. What does the precision tell you?',
       options: [
-        'That the figure was retrieved from that note',
+        'That the figure was retrieved from the note it is attributed to, since it is quoted to two places',
         'Nothing about the source — precision is a property of the output format',
         'That the model has higher confidence in this figure than in a rounded one',
-        'That the figure has been checked against the filing',
+        'That the figure has already been checked against the filing it names',
       ],
       correct: 1,
     },
@@ -245,10 +246,10 @@ const fnM3: CourseModule = {
     {
       q: 'Why does an unadjusted significance threshold mislead after many trials?',
       options: [
-        'Statistical tests become unstable on long time series',
-        'Backtesting software accumulates rounding errors',
+        'Statistical tests become unstable when they are run on long financial time series',
+        'Backtesting software accumulates rounding errors across many repeated runs',
         'The threshold was calibrated to be crossed occasionally by noise, so many attempts make crossing it likely',
-        'Significance thresholds do not apply to financial data at all',
+        'Significance thresholds were designed for controlled experiments and do not transfer to financial data at all, whatever the sample size',
       ],
       correct: 2,
     },
@@ -265,20 +266,20 @@ const fnM3: CourseModule = {
     {
       q: 'Why is a random train-test split wrong for credit or market data?',
       options: [
-        'Random splits produce test sets that are too small',
+        'Random splits produce test sets that are too small to be informative',
         'It lets the model train on periods after the test period, and correlated records to straddle the split',
-        'Random number generators are not reproducible across systems',
-        'Chronological splits always yield higher accuracy',
+        'Random number generators are not reproducible across systems, so the split cannot be repeated',
+        'A chronological split always yields higher accuracy than a random one, so it is preferred for that reason',
       ],
       correct: 1,
     },
     {
       q: 'A credit model built on data from an unusually benign period is deployed. When is it most likely to be badly wrong?',
       options: [
-        'Gradually and evenly, throughout its deployed life',
-        'Immediately at launch, before any drift can occur',
+        'Gradually and evenly across the whole of its deployed life',
+        'Immediately at launch, before any drift has had time to occur',
         'During the first genuine downturn — when being wrong is most expensive',
-        'Only if the underlying code is changed',
+        'Only if the underlying code or its parameters are changed',
       ],
       correct: 2,
     },
@@ -286,9 +287,9 @@ const fnM3: CourseModule = {
       q: 'Two competitors independently license the same data and build on the same provider\'s model. What risk does a single-firm risk view miss?',
       options: [
         'Correlated decisions and correlated exits that neither firm can observe from inside its own boundary',
-        'That the licence fees may be renegotiated',
-        'That the data will be of lower quality than proprietary data',
-        'That the provider will disclose one firm\'s positions to the other',
+        'That the licence fees may be renegotiated on unfavourable terms at renewal',
+        'That the shared data will be of lower quality than proprietary data would be',
+        'That the provider will disclose one firm\'s positions to the other, in breach of its confidentiality terms',
       ],
       correct: 0,
     },

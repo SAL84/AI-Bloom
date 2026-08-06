@@ -434,9 +434,9 @@ const m1: CourseModule = {
     },
   ],
   quiz: [
-    { q: 'A product page says "we use AI." What is the smartest first question?', options: ['Assume it uses the most advanced model available', 'Treat all AI products as roughly equivalent', 'Choose the product with the most AI features listed', 'Ask what specifically the AI does — which tasks it handles and how it is evaluated'], correct: 3 },
+    { q: 'A product page says "we use AI." What is the smartest first question?', options: ['Assume it runs on the most advanced model available and judge it on that basis', 'Treat all AI products as roughly equivalent, since they draw on the same underlying models', 'Compare products on the number of AI features listed and pick the longest list', 'Ask what specifically the AI does — which tasks it handles and how it is evaluated'], correct: 3 },
     { q: 'Which paradigm is most associated with anomaly detection in messy data?', options: ['Supervised', 'Reinforcement', 'Unsupervised', 'Generative'], correct: 2 },
-    { q: 'A trained neural network is fundamentally:', options: ['A database of facts', 'A set of weights plus an architecture', 'A reasoning engine', 'A search index'], correct: 1 },
+    { q: 'A trained neural network is fundamentally:', options: ['A database of facts looked up at answer time', 'A set of weights plus an architecture', 'A reasoning engine applying logical rules', 'A search index over training text'], correct: 1 },
     { q: 'A detector is 99.9% accurate but the target base rate is 1 in 10,000. What happens?', options: ['Users get ~10 false positives for every real hit', 'The system works perfectly because 99.9% is very high', 'False positives are eliminated', 'Base rate has no effect on alert volume'], correct: 0 },
   ],
 };

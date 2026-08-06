@@ -214,7 +214,7 @@ const prM3: CourseModule = {
     {
       q: 'Why does asking for a table instead of prose improve quality control?',
       options: [
-        'Gaps, contradictions and missing items become visible instead of being smoothed over',
+        'Gaps and contradictions become visible instead of smoothed over',
         'Tables are generated more accurately than paragraphs',
         'Tables use fewer tokens, leaving more room for reasoning',
         'The model checks its own tables before returning them',
@@ -234,10 +234,10 @@ const prM3: CourseModule = {
     {
       q: 'You keep deleting the same opening paragraph restating your question. What is the fix?',
       options: [
-        'Ask the question more directly so there is nothing to restate',
+        'Ask the question more directly so there is nothing left to restate',
         'Use shorter prompts so the model has less to echo back',
         'Regenerate until an answer comes back without it',
-        'Add "start with the answer — no preamble, no closing summary" to your standing instructions',
+        'Add "start with the answer, no preamble" to your instructions',
       ],
       correct: 3,
     },
@@ -245,7 +245,7 @@ const prM3: CourseModule = {
       q: 'What is the advantage of asking for three short, clearly different options rather than one full answer?',
       options: [
         'Three attempts are more likely to contain a correct one',
-        'It avoids anchoring on the first direction and stops you polishing the wrong thing',
+        'It avoids anchoring on the first direction you see',
         'Shorter outputs are always more accurate',
         'It forces the model to reason step by step',
       ],
@@ -254,10 +254,10 @@ const prM3: CourseModule = {
     {
       q: 'Why is it better to fix the structure at outline stage than after a full draft?',
       options: [
-        'Outlines are generated with more care than drafts',
+        'Outlines are generated with far more care than drafts',
         'The model cannot edit text it has already produced',
-        'A structural fix costs one line at outline stage and a full regeneration afterwards',
-        'Outlines are more accurate because they contain fewer claims',
+        'A structural fix costs one line now and a full rewrite later',
+        'Outlines are more accurate because they contain far fewer claims',
       ],
       correct: 2,
     },
@@ -265,7 +265,7 @@ const prM3: CourseModule = {
       q: 'What is the main value of "before you answer, ask me up to five questions"?',
       options: [
         'It makes the model think longer, which improves accuracy',
-        'It reveals which parts of your prompt were missing, including things you had not decided',
+        'It reveals which parts of your prompt were missing',
         'It is the only way to get the model to use context you provided',
         'It stops the model from making assumptions of any kind',
       ],
@@ -277,7 +277,7 @@ const prM3: CourseModule = {
         'It reliably catches factual errors in its own output',
         'Self-critique makes the second draft objectively correct',
         'Self-critique produces no useful improvement at all',
-        'It is useful on structure and clarity but not a dependable check on truth',
+        'It is useful on structure but not a check on truth',
       ],
       correct: 3,
     },

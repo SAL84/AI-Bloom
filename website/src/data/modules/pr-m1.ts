@@ -214,9 +214,9 @@ const prM1: CourseModule = {
     {
       q: 'Which of these best describes what a "prompt" includes?',
       options: [
-        'Only the question you type in the box',
+        'Only the question you type into the box',
         'The question plus any settings you have chosen in the app',
-        'Everything sent in one request: instruction, context, examples and data',
+        'Everything in one request: instruction, context and data',
         'The full history of everything you have ever asked the model',
       ],
       correct: 2,
@@ -224,8 +224,8 @@ const prM1: CourseModule = {
     {
       q: 'Within a single conversation, why does the model appear to remember what you said earlier?',
       options: [
-        'It stores a summary of you and updates it as you talk',
-        'The earlier messages are resent with each new message as part of the prompt',
+        'It stores a summary of you and keeps updating it as you talk',
+        'The earlier messages are resent with each new message',
         'It has been fine-tuned on your previous conversations',
         'It keeps a private index of your account history',
       ],
@@ -237,7 +237,7 @@ const prM1: CourseModule = {
         'The model updates itself gradually from frequent users',
         'Style preferences are the one thing models retain permanently',
         'It only remembers style if you used the same device',
-        'Nothing carries across chats unless the app stores that text and re-sends it',
+        'Nothing carries across chats unless the app re-sends that text',
       ],
       correct: 3,
     },
@@ -246,7 +246,7 @@ const prM1: CourseModule = {
       options: [
         'It is too short for the model to process properly',
         'It uses a topic the model has no information about',
-        'It bakes the conclusion into the question, so you get your own assumption back',
+        'It bakes the conclusion into the question',
         'Questions beginning with "explain" are always answered less accurately',
       ],
       correct: 2,
@@ -254,9 +254,9 @@ const prM1: CourseModule = {
     {
       q: 'You send the exact same prompt twice and get two differently worded answers. What does this tell you?',
       options: [
-        'Some variation between runs is normal, so judge a prompt over several attempts',
+        'Some variation between runs is completely normal',
         'Your account settings changed between the two requests',
-        'The first answer must have been wrong',
+        'The first answer must have been the wrong one',
         'The model has started learning from your feedback',
       ],
       correct: 0,
@@ -274,19 +274,19 @@ const prM1: CourseModule = {
     {
       q: 'Why is "be more specific" poor advice on its own?',
       options: [
-        'Specificity actually makes outputs worse',
-        'Models are trained to prefer short prompts',
+        'Specificity actually makes the outputs worse',
+        'Models are trained to prefer shorter prompts',
         'It only applies to creative writing tasks',
-        'It does not say which dimensions to be specific about, so people just write longer vague prompts',
+        'It does not say which dimensions to be specific about',
       ],
       correct: 3,
     },
     {
       q: 'You paste a long document into a prompt with your instructions and get a confused answer. What is the most likely structural fix?',
       options: [
-        'Shorten the document until the answer improves',
+        'Shorten the document until the answer starts improving',
         'Ask the question again in a new chat with no changes',
-        'Label the sections so the task, constraints and pasted material are clearly separated',
+        'Label the sections so task and pasted material are separated',
         'Move the instructions to the very end and remove all headings',
       ],
       correct: 2,

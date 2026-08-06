@@ -218,10 +218,10 @@ const fnM4: CourseModule = {
     {
       q: 'A US lender automates a credit decision that an underwriter used to make by hand. What changes about the adverse-action duty?',
       options: [
-        'It transfers to the model provider under the service agreement',
-        'It applies only where the applicant asks for a reason in writing',
+        'It transfers to the model provider under the terms of the service agreement',
+        'It applies only where the declined applicant asks for a reason in writing',
         'Nothing — specific principal reasons and a route to challenge are still owed to the applicant',
-        'It is replaced by the documentation obligations of whichever AI regime applies',
+        'It is replaced by the documentation obligations of whichever AI-specific regime applies to the model',
       ],
       correct: 2,
     },
@@ -238,9 +238,9 @@ const fnM4: CourseModule = {
     {
       q: 'An analyst pastes a draft deal announcement into a consumer AI tool to tidy up the wording. What is the primary exposure?',
       options: [
-        'The output may be poorly written',
-        'The tool may charge a subscription fee',
-        'The model may have been trained on competitors\' announcements',
+        'The output may be poorly written, and a tidied draft could still need a full rewrite by the deal team before issue',
+        'The tool may charge a subscription fee that was never budgeted for',
+        'The model may have been trained on competitors\' past announcements and could echo their wording back',
         'Inside information has been disclosed to an unassessed third party, engaging market abuse rules as well as confidentiality',
       ],
       correct: 3,
@@ -248,20 +248,20 @@ const fnM4: CourseModule = {
     {
       q: 'Why does a prohibition on AI use, issued without a permitted alternative, tend to fail?',
       options: [
-        'Prohibitions are unenforceable under data protection law',
+        'Prohibitions of this kind are unenforceable under data protection law',
         'It produces quiet unapproved use, which is unmonitored use',
-        'Staff will use less capable tools and productivity will fall',
-        'Regulators require every firm to permit at least one AI tool',
+        'Staff will fall back on less capable tools and productivity will fall',
+        'Regulators require every firm to permit at least one approved AI tool',
       ],
       correct: 1,
     },
     {
       q: 'A client-facing message is drafted by a model and edited by a person before sending. How do record-keeping obligations apply?',
       options: [
-        'They do not apply, because the model is not a person',
-        'They apply only if the message was sent without editing',
+        'They do not apply, because a model is not a person and cannot create a record of the firm',
+        'They apply only where the message was sent exactly as the model drafted it, with no human editing in between',
         'Identically — retention and supervision duties attach to the communication, not to how it was drafted',
-        'They apply only to messages containing a recommendation',
+        'They apply only to messages that contain a recommendation to the client',
       ],
       correct: 2,
     },
@@ -278,19 +278,19 @@ const fnM4: CourseModule = {
     {
       q: 'A pilot passes its review date unnoticed and the manual process it replaced has been wound down. What has gone wrong?',
       options: [
-        'Nothing — continued use is evidence the pilot succeeded',
+        'Nothing — continued use past the review date is evidence that the pilot succeeded',
         'The tool has become load-bearing without ever being approved as such, and the fallback no longer exists',
-        'The vendor should have raised the review date',
-        'The pilot should have been run for longer before any decision',
+        'The vendor should have raised the review date with the firm before it passed',
+        'The pilot should have been allowed to run for longer before any decision was taken about the manual process',
       ],
       correct: 1,
     },
     {
       q: 'What most reliably establishes accountability for an AI-assisted decision inside a financial institution?',
       options: [
-        'A vendor contract that assigns liability to the provider',
-        'Approval of the tool by a risk committee',
-        'Documentation showing the model was independently validated',
+        'A vendor contract that assigns liability for wrong outputs to the provider',
+        'Approval of the tool by a risk committee with senior representation',
+        'Documentation showing that the model was independently validated and approved before it went into use',
         'A named individual who is answerable for the outcome and can describe the basis of the decision',
       ],
       correct: 3,

@@ -23,32 +23,32 @@ const fnM1: CourseModule = {
         },
         {
           heading: 'Requirements Vary by Jurisdiction, Institution and Licence',
-          body: 'There is no single set of rules for AI in finance, and pretending otherwise would make this course useless outside one country. Obligations differ by jurisdiction: US banking supervision, EU financial regulation, UK conduct and prudential rules and the many regimes elsewhere overlap in principle and diverge sharply in detail. They differ by institution type — a deposit-taking bank, an insurer, an asset manager, a broker-dealer and a payments firm carry different duties over the same technology. They differ by licence, by whether you are supervised at group or entity level, and by whether the activity is regulated at all. Where this course names a regime, it says which jurisdiction it belongs to; treat everything else as a principle to check locally.',
+          body: 'There is no single set of rules for AI in finance, and pretending otherwise would make this course useless outside one country. Obligations differ by jurisdiction: US banking supervision, EU financial regulation, UK conduct and prudential rules and the many regimes elsewhere overlap in principle and diverge sharply in detail. They differ by institution type — a deposit-taking bank, a consumer lender, an asset manager, a broker-dealer and a payments firm carry different duties over the same technology. They differ by licence, by whether you are supervised at group or entity level, and by whether the activity is regulated at all. Where this course names a regime, it says which jurisdiction it belongs to; treat everything else as a principle to check locally.',
           bullets: [
             'Jurisdictions overlap in principle and diverge in detail — this course scopes each claim it makes',
-            'Bank, insurer, asset manager, broker-dealer and payments firm carry different duties over identical technology',
+            'Bank, consumer lender, asset manager, broker-dealer and payments firm carry different duties over identical technology',
             'Licence conditions and group-versus-entity supervision change the answer for the same use case',
             'Anything consequential gets checked against your own rulebook and your own supervisor, not against a lesson',
           ],
         },
         {
           heading: 'Where This Course Is Deliberately Thin',
-          body: 'Some gaps are chosen and you should know about them. There are no thresholds, cut-offs, model specifications or parameter choices here, because a general course is the wrong place for anything a reader might apply to a live book. No product, vendor or model version is named or recommended. Signal construction and strategy design are not taught — that is a specialism with its own literature — although module 3 does examine how strategy research goes wrong under evaluation, because those failures generalise widely. Insurance underwriting and market-abuse surveillance appear only to illustrate a wider point. One limitation is worth stating: the evidence base for language-model deployments in finance is young and heavily vendor-reported, and the lessons say so where practice is unsettled.',
+          body: 'Some gaps are chosen, and you should know which. There are no thresholds, cut-offs, model specifications or parameter choices here, because a general course is the wrong place for anything a reader might apply to a live book. No product, vendor or model version is named or recommended. Signal construction and strategy design are not taught, though module 3 examines how strategy research fails under evaluation. Insurance is out of scope: underwriting, pricing and claims decisioning are their own regulatory domain with their own supervisors, and the EU AI Act puts life and health insurance risk assessment and pricing in its high-risk annex alongside credit scoring — a pointer to what you must find elsewhere. The deployment evidence base here is young and heavily vendor-reported.',
           bullets: [
             'No thresholds, cut-offs, model specifications or parameter choices — those belong to your own validation',
             'No vendors, products or model versions are named, compared or recommended anywhere',
-            'Signal construction and strategy design are not taught; module 3 covers how strategy research fails under evaluation',
-            'The deployment evidence base is young and mostly vendor-reported — the course flags where it is thin',
+            'Insurance underwriting, pricing and claims are not covered: a separate regulatory domain, not an appendix to banking',
+            'Signal design is not taught either, and the deployment evidence base is young and mostly vendor-reported',
           ],
         },
         {
           heading: 'Who This Is For, and What It Assumes',
-          body: 'This is written for risk and compliance officers, credit professionals, fraud and financial-crime teams, quants and model validators, product owners, and the executives who ultimately sign. It assumes you understand your own domain and does not assume you understand machine learning. It also does not re-teach material that sits better elsewhere in this library: how a language model actually works, tokenisation and transformer mechanics are covered in the AI Essentials and AI Deep Dive courses; prompt injection, hardening and threat modelling in Securing AI Systems; general evaluation methodology in Does Your AI Actually Work? This course covers only what is specific to a regulated financial institution, and leans on those courses rather than repeating them.',
+          body: 'This is written for people in banking and markets: risk and compliance officers, credit professionals, fraud and financial-crime teams, quants and model validators, product owners, and the executives who ultimately sign. It assumes you understand your own domain and does not assume you understand machine learning. It also does not re-teach material that sits better elsewhere in this library: how a language model actually works, tokenisation and transformer mechanics are covered in the AI Essentials and AI Deep Dive courses; prompt injection, hardening and threat modelling in Securing AI Systems; general evaluation methodology in Does Your AI Actually Work? This course covers only what is specific to a regulated bank, broker or asset manager, and leans on them rather than repeating them.',
           bullets: [
-            'Written for risk, compliance, credit, financial crime, quant, product and the executives who sign off',
+            'Written for banking and markets: risk, compliance, credit, financial crime, quant, product and the executives who sign off',
             'Assumes domain fluency, not machine-learning fluency — the mechanics live in AI Essentials and AI Deep Dive',
             'Security and adversarial concerns live in Securing AI Systems; evaluation method lives in Does Your AI Actually Work?',
-            'What remains here is the part that is specific to a supervised financial institution and nothing else',
+            'What remains here is the part that is specific to a supervised bank, broker or asset manager and nothing else',
           ],
         },
       ],
@@ -102,6 +102,7 @@ const fnM1: CourseModule = {
     {
       id: 'fn1l3',
       title: 'Where It Genuinely Helps Today',
+      playground: 'baserate',
       slides: [
         {
           heading: 'The Shape That Works: Documents In, Structure Out',
@@ -124,10 +125,10 @@ const fnM1: CourseModule = {
           ],
         },
         {
-          heading: 'Claims, Contracts and Research Summarisation',
-          body: 'The same shape recurs across the institution. Insurance claims handling is document intake, extraction and consistency checking before a human adjudicates. Credit agreements and derivative contracts contain covenants, definitions and terms that teams currently locate by hand across hundreds of pages. Research and market summarisation compresses filings, transcripts and reports that an analyst would otherwise skim. Client-service drafting turns a query and the relevant policy text into a first-pass reply. In each case the model is compressing or locating text that you supplied, a person reviews before anything leaves the building, and errors are visible to that person. Note also that anything sent to a client is usually a business communication subject to retention and supervision.',
+          heading: 'Disputes, Contracts and Research Summarisation',
+          body: 'The same shape recurs across the institution. Dispute and chargeback handling is document intake, extraction and consistency checking before a person adjudicates. Credit agreements and derivative contracts contain covenants, definitions and terms that teams currently locate by hand across hundreds of pages. Research and market summarisation compresses filings, transcripts and reports that an analyst would otherwise skim. Client-service drafting turns a query and the relevant policy text into a first-pass reply. In each case the model is compressing or locating text that you supplied, a person reviews before anything leaves the building, and errors are visible to that person. Note also that anything sent to a client is usually a business communication subject to retention and supervision.',
           bullets: [
-            'Claims and contract work: intake, extraction, covenant and clause location, consistency checking',
+            'Dispute and contract work: intake, extraction, covenant and clause location, consistency checking',
             'Research: compressing filings, transcripts and reports an analyst would otherwise read at speed',
             'Client-service drafting is a first pass — and the sent message is a retained, supervised communication',
             'In all four, the human review that already existed is what makes the risk acceptable',
@@ -236,29 +237,29 @@ const fnM1: CourseModule = {
     {
       q: 'A business unit argues that AI governance should sit outside the model risk framework because language models are a different kind of thing. What is the strongest response?',
       options: [
-        'Agree — a separate parallel regime avoids polluting existing model validation metrics',
-        'Agree, but only for uses that touch customers directly',
+        'Agree — a separate parallel regime keeps existing model validation metrics clean of outputs they were never designed to score',
+        'Agree, but only for uses whose output reaches a customer directly, since internal uses cannot cause supervisory harm',
         'Extend the existing framework: the obligations attach to the use and the outcome, not to the architecture',
-        'Wait for the vendor to confirm which framework its product falls under',
+        'Wait for the vendor to confirm which framework its product falls under before classifying it',
       ],
       correct: 2,
     },
     {
       q: 'A team proposes two pilots: summarising loan agreements a reviewer already reads, and answering staff policy questions from the model\'s own knowledge. Which is the safer place to start, and why?',
       options: [
-        'The policy questions — general knowledge tasks carry lower stakes than contract work',
+        'The policy questions — a general knowledge task is lower stakes than contract work, and a wrong policy answer is easy for staff to notice',
         'The loan agreements — the source text sits in front of the model and the reviewer can detect an error against it',
-        'Neither differs materially, since both are text tasks with similar risk',
-        'The policy questions — handling no documents means no data protection exposure',
+        'Neither differs materially, since both are text tasks handled by the same underlying model',
+        'The policy questions — no document is uploaded, so no data protection exposure arises',
       ],
       correct: 1,
     },
     {
       q: 'An AML team wants an assistant to summarise alerts and draft first-pass narratives. What must stay unambiguously human?',
       options: [
-        'Retrieving prior alerts on the same customer',
-        'Extracting counterparty names from statements',
-        'Formatting the case file for the investigator',
+        'Retrieving prior alerts on the same customer and assembling them into the case file',
+        'Extracting counterparty names and addresses from the transaction statements attached to the alert',
+        'Formatting the case file so the investigator sees the alert history in date order',
         'The escalation or filing decision and the recorded rationale behind it',
       ],
       correct: 3,
@@ -266,29 +267,29 @@ const fnM1: CourseModule = {
     {
       q: 'A pilot performs well on a hand-cleaned data extract. What does that result actually establish?',
       options: [
-        'That the use case is ready for a limited production release',
+        'That the use case is ready for a limited production release, with the remaining work being integration rather than modelling',
         'Very little — production data quality and lineage are the untested part, and usually the fatal one',
-        'That the model architecture has been validated',
-        'That integration work can be deferred to a later phase',
+        'That the model architecture has been validated for this use',
+        'That integration work can safely be deferred to a later phase of the programme',
       ],
       correct: 1,
     },
     {
       q: 'The same summarisation tool is proposed for client messaging and for internal reconciliation. Why do these need different treatment?',
       options: [
-        'Client-facing systems require more computing capacity',
-        'Internal systems are exempt from firm policy',
+        'Client-facing systems carry heavier capacity and infrastructure demands, and that is what justifies giving them a fuller review',
+        'Internal reconciliation sits outside firm policy, since nothing produced there reaches a customer',
         'Consequence and accountability differ: one is a conduct and communications matter, the other an operations and reporting one',
-        'Only client-facing tools count as models',
+        'Only client-facing tools meet the definition of a model in the first place',
       ],
       correct: 2,
     },
     {
       q: 'Which statement about what generative AI changed in finance is stated correctly here?',
       options: [
-        'It removed the requirement for independent validation of low-materiality models',
-        'It replaced the need for a model inventory with vendor attestations',
-        'It created a supervisory exemption for tools that only produce text',
+        'It removed the requirement for independent validation of low-materiality models, provided a person reviews the output before it is used',
+        'It replaced the need for a model inventory with attestations obtained from the provider',
+        'It created a supervisory exemption for tools whose only output is text',
         'It made unstructured text tractable at volume, while validation duties and accountability were untouched',
       ],
       correct: 3,
@@ -297,9 +298,9 @@ const fnM1: CourseModule = {
       q: 'A proposal notes that the model provider will push updates automatically, at no cost, with no action needed from the firm. How should that be read?',
       options: [
         'As a change-control problem: an updated model is a change your firm must detect and re-assess',
-        'As a benefit, since the provider maintains model quality on your behalf',
-        'As irrelevant, because the firm did not build the model',
-        'As acceptable provided the contract includes an uptime commitment',
+        'As a benefit, since the provider maintains model quality on your behalf and carries the testing burden that would otherwise fall on your validators',
+        'As irrelevant, because the firm did not build the model and cannot influence it',
+        'As acceptable, provided the contract includes an uptime commitment and a support channel',
       ],
       correct: 0,
     },

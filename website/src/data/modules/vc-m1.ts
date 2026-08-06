@@ -303,17 +303,17 @@ const vcM1: CourseModule = {
     {
       q: 'What is the most accurate description of vibecoding?',
       options: [
-        'Using AI to write code for you by describing in plain language what you want it to do',
-        'Copying code from forums until something works',
-        'A programming language designed for non-technical users',
-        'Letting an AI run your business decisions automatically',
+        'Describing in plain language what you want AI to build',
+        'Copying code from online forums until something finally works',
+        'A programming language designed for people who are not technical',
+        'Letting an AI make your business decisions for you automatically',
       ],
       correct: 0,
     },
     {
       q: 'Which project is the best fit for a non-engineer building alone this weekend?',
       options: [
-        'A pharmacy tool that checks whether two medicines interact',
+        'A tool that checks whether two medicines interact',
         'An internal tracker that replaces a messy team spreadsheet',
         'A system that holds customer card details and takes payments directly',
         'A platform expected to handle fifty thousand simultaneous users',
@@ -333,10 +333,10 @@ const vcM1: CourseModule = {
     {
       q: 'Why is compliance a poor thing to add after the build is finished?',
       options: [
-        'Regulators only inspect finished software',
+        'Regulators only inspect software once it is finished',
         'It requires a paid subscription to a compliance tool',
-        'Compliance is purely a documentation exercise',
-        'It constrains where data lives, who can see it and what you must prove, so it shapes the design itself',
+        'Compliance is purely a paperwork exercise at the end',
+        'It decides where data lives and who can see it, so it shapes the design',
       ],
       correct: 3,
     },
@@ -345,7 +345,7 @@ const vcM1: CourseModule = {
       options: [
         'It makes the app look more complete than it is to investors',
         'It avoids paying for AI tools during the build',
-        'Doing the job by hand teaches you what the automated version actually needs to do',
+        'Doing the job by hand teaches you what to automate',
         'Manual steps are always faster than automated ones',
       ],
       correct: 2,
@@ -354,19 +354,19 @@ const vcM1: CourseModule = {
       q: 'Which single question best sorts safe projects from ones needing professional help?',
       options: [
         'Can the AI produce working code for it on the first attempt?',
-        'If this is wrong at 3am and nobody notices for a week, what happens?',
-        'How many screens does the app have?',
-        'Will it look good on a phone?',
+        'If this is wrong at 3am, what happens?',
+        'How many screens does the finished app have?',
+        'Will it look good on a phone or tablet?',
       ],
       correct: 1,
     },
     {
       q: 'What mainly separates "something friends can try" from a real product?',
       options: [
-        'A more polished visual design and a logo',
-        'Being written in a more professional programming language',
+        'A more polished visual design and a proper logo',
+        'Being built with a more professional programming language and framework',
         'Having more features on the home screen',
-        'Monitoring, backups, cost limits, security, and a plan for when it breaks unattended',
+        'Monitoring, backups, cost limits, security, and a recovery plan',
       ],
       correct: 3,
     },
@@ -375,8 +375,8 @@ const vcM1: CourseModule = {
       options: [
         'Prototypes are legally a different category of software',
         'It lowers expectations so you can charge more later',
-        'Because the expectation gap between a finished-looking demo and a product is where trust is lost',
-        'Investors prefer the word prototype',
+        'A finished-looking demo sets expectations you cannot meet',
+        'Investors simply prefer the word prototype',
       ],
       correct: 2,
     },

@@ -259,17 +259,17 @@ const m8: CourseModule = {
     {
       q: 'A SOC is choosing its first AI use case. The vendor demo of autonomous host containment impressed leadership, but the team also has a phishing queue of 300 alerts a day with documented triage times. The better first choice is:',
       options: [
-        'Autonomous containment — it delivers the most visible value fastest',
+        'Autonomous containment — it delivers visible value fastest',
         'Both at once, to maximize learning from the pilot period',
-        'Phishing triage — high volume, a measurable baseline, and failures that are cheap and catchable',
-        'Neither — wait until the tools mature further before starting anything',
+        'Phishing triage — high volume, measurable baseline, cheap failures',
+        'Neither — wait until the tools mature further',
       ],
       correct: 2,
     },
     {
       q: 'A pilot reports strong results: triage time down 60%. It ran during the six quietest weeks of the year, on one team, with no control queue, and success criteria were drafted after the results came in. What is the most serious problem?',
       options: [
-        'Success criteria written after seeing results — the pilot could not have failed, so it proved nothing',
+        'Success criteria written after seeing results — the pilot could not fail',
         'The 60% figure is too low to justify the license cost',
         'Six weeks is too long for a pilot; two would have sufficed',
         'Running on only one team made the pilot too small to be visible to leadership',
@@ -280,9 +280,9 @@ const m8: CourseModule = {
       q: 'A vendor reports its triage AI cut your alert volume by 70% in the first month. Before celebrating, the most important question to answer is:',
       options: [
         'Whether competing products achieve higher reduction percentages',
-        'Whether analysts find the new interface easier to use than the old one',
+        'Whether analysts find the new interface easier to use than the old console',
         'Whether the reduction can reach 90% with more aggressive tuning',
-        'How the reduction was achieved, and what a sample of the dismissed alerts actually contained',
+        'How the reduction was achieved, and what the dismissed alerts contained',
       ],
       correct: 3,
     },
@@ -290,7 +290,7 @@ const m8: CourseModule = {
       q: 'Three months into assisted triage, one analyst has approved 100% of the AI\'s recommendations — zero overrides. The most likely interpretation is:',
       options: [
         'The AI has reached a level of accuracy where oversight is no longer needed',
-        'Probable automation bias — approval has become reflex, so check this analyst\'s work against sampled ground truth',
+        'Probable automation bias — approval has become reflex',
         'The analyst is exceptionally skilled at selecting correct recommendations',
         'The override mechanism is likely broken and should be re-tested',
       ],
@@ -299,7 +299,7 @@ const m8: CourseModule = {
     {
       q: 'Which action type is the strongest candidate to stay human-gated indefinitely, regardless of how accurate the AI becomes?',
       options: [
-        'Deleting user mailboxes flagged as phishing — the action is irreversible and no autonomous error rate is acceptable',
+        'Deleting user mailboxes flagged as phishing — the action is irreversible',
         'Enriching alerts with asset context before an analyst opens them',
         'Drafting the timeline section of an incident report for analyst review',
         'Grouping related alerts from one campaign into a single case',
@@ -311,7 +311,7 @@ const m8: CourseModule = {
       options: [
         'Accept — six months of flawless performance has earned platform-wide autonomy',
         'Decline all autonomy increases — act-with-review should be the permanent ceiling',
-        'Promote only enrichment to act-alone against your written criteria — trust is earned per action type, and account disablement has its own ladder to climb',
+        'Promote only enrichment to act-alone — trust is earned per action type',
         'Enable full autonomy for a 30-day trial across all action types and watch the dashboards',
       ],
       correct: 2,

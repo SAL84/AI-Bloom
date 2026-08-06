@@ -217,7 +217,7 @@ const atM1: CourseModule = {
     {
       q: 'What is a language model fundamentally doing when it writes an answer?',
       options: [
-        'Looking up the closest matching document in its training data',
+        'Looking up the closest matching document it stored',
         'Predicting likely next chunks of text, one after another',
         'Reasoning from a stored set of verified facts',
         'Searching the live internet and summarising the results',
@@ -227,20 +227,20 @@ const atM1: CourseModule = {
     {
       q: 'Why do models struggle with questions like "how many letters are in this word"?',
       options: [
-        'They deliberately refuse tasks that are too simple',
-        'Counting requires a bigger context window than most models have',
-        'They process text as tokens, so individual letters are not separate units to them',
-        'Their training data contained very few words',
+        'They are trained to refuse tasks that seem too simple',
+        'Counting needs a far bigger context window than models have',
+        'It reads text in tokens, not in individual letters',
+        'Their training data contained very few spelled-out words',
       ],
       correct: 2,
     },
     {
       q: 'What is the context window?',
       options: [
-        'The maximum amount of text the model can hold in view for a single response',
+        'The maximum amount of text the model can hold in view at once',
         'The period of time a chat session stays open before it expires',
         'The part of the training data most relevant to your question',
-        'The number of messages the company stores about you',
+        'The number of past messages the company keeps on file',
       ],
       correct: 0,
     },
@@ -248,18 +248,18 @@ const atM1: CourseModule = {
       q: 'Your conversation with a chatbot today will most likely:',
       options: [
         'Immediately update the model\'s weights so it gets smarter',
-        'Retrain the model overnight for all users',
+        'Retrain the model overnight for every other user',
         'Be added directly to the next version\'s knowledge automatically',
-        'Leave the model itself unchanged, since you are using an already-trained system',
+        'Leave the model itself unchanged, since it is already trained',
       ],
       correct: 3,
     },
     {
       q: 'What does "learning from data" produce at the end of training?',
       options: [
-        'A searchable copy of everything the model read',
-        'A set of numerical weights that encode statistical patterns',
-        'A list of verified facts with sources attached',
+        'A searchable archive of the documents it read',
+        'A set of numbers, called weights, that encode patterns',
+        'A list of verified facts with their sources',
         'A database of question and answer pairs',
       ],
       correct: 1,
@@ -267,20 +267,20 @@ const atM1: CourseModule = {
     {
       q: 'A model gives you a citation with a real-sounding author, year and title. What should you assume?',
       options: [
-        'It is real, because inventing a full citation is beyond what models do',
-        'It is real if the model sounded confident about it',
-        'It might not exist, so you need to find the source yourself before using it',
-        'It is definitely fake, since models cannot reproduce real references',
+        'It is real, since models cannot invent a citation',
+        'It is real, since the model gave a specific year and title',
+        'It might not exist, so check the source yourself first',
+        'It is definitely fake, since models cannot reproduce references',
       ],
       correct: 2,
     },
     {
       q: 'When an assistant appears to remember your name from last week, what is usually happening?',
       options: [
-        'The model has permanently learned who you are',
-        'The app stored that text and inserts it into the context window again',
-        'Your account is running a personalised copy of the model',
-        'The model retrained itself on your conversations',
+        'The model has permanently memorised who you are',
+        'The app stored that text and adds it again',
+        'Your account runs a personalised copy of the model',
+        'The model retrained itself on your past conversations',
       ],
       correct: 1,
     },

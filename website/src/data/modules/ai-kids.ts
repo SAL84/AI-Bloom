@@ -140,9 +140,9 @@ const aiKids: Course = {
         },
       ],
       quiz: [
-        { q: 'How does AI learn?', options: ['It is programmed with all the answers', 'It learns from millions of examples and corrects its mistakes', 'It reads books on its own', 'Scientists tell it what to do every time'], correct: 1 },
-        { q: 'AI has been around for a long time. What made it suddenly so much better in recent years?', options: ['Computers got much faster and AI could learn from way more examples', 'Scientists finally wrote down all the answers', 'The internet was invented', 'Robots started building other robots'], correct: 0 },
-        { q: 'Which of these best describes the relationship between AI, ML, and Deep Learning?', options: ['They are three different names for the same thing', 'ML is inside AI, Deep Learning is inside ML', 'Deep Learning came before AI', 'They are completely unrelated fields'], correct: 1 },
+        { q: 'How does AI learn?', options: ['Someone types in every answer before it starts', 'It learns from examples and fixes its mistakes', 'It reads all the books by itself', 'A scientist tells it what to say'], correct: 1 },
+        { q: 'AI has been around for a long time. What made it suddenly so much better in recent years?', options: ['Faster computers and far more examples', 'Scientists wrote down all the answers', 'The internet was invented', 'Robots started building other robots'], correct: 0 },
+        { q: 'Which of these best describes the relationship between AI, ML, and Deep Learning?', options: ['Three different names for the same thing', 'ML is inside AI, Deep Learning is inside ML', 'Deep Learning came before AI', 'They are completely unrelated fields'], correct: 1 },
       ],
     },
     {
@@ -296,9 +296,9 @@ const aiKids: Course = {
       ],
       quiz: [
         { q: 'What does LLM stand for?', options: ['Logic Learning Machine', 'Language Learning Mechanism', 'Layered Logic Module', 'Large Language Model'], correct: 3 },
-        { q: 'What is an AI "hallucination"?', options: ['When the AI sees images that aren\'t there', 'When the AI makes up a confident-sounding but incorrect answer', 'When the AI refuses to answer a question', 'When the AI generates weird images'], correct: 1 },
-        { q: 'What is "prompting" when talking to AI?', options: ['Choosing how to ask your question to get a better answer', 'Restarting the AI when it gets stuck', 'Giving the AI a personality', 'Uploading files to the AI'], correct: 0 },
-        { q: 'When AI makes a picture or a song, where do the ideas come from?', options: ['It copies one picture from the internet', 'It imagines things the way people do', 'It mixes patterns it learned from millions of examples into something new', 'An artist secretly draws it'], correct: 2 },
+        { q: 'What is an AI "hallucination"?', options: ['When the AI sees pictures that are not really there', 'When the AI confidently makes up a wrong answer', 'When the AI refuses to answer at all', 'When the AI makes a very strange picture'], correct: 1 },
+        { q: 'What is "prompting" when talking to AI?', options: ['Choosing how to ask to get a better answer', 'Restarting the AI when it gets stuck', 'Giving the AI a name and a personality', 'Uploading your files for the AI to read'], correct: 0 },
+        { q: 'When AI makes a picture or a song, where do the ideas come from?', options: ['It copies a picture from the internet', 'It daydreams and imagines things like a person does', 'It mixes patterns it learned into something new', 'A real artist draws it in secret'], correct: 2 },
       ],
     },
     {
@@ -386,9 +386,9 @@ const aiKids: Course = {
         },
       ],
       quiz: [
-        { q: 'What makes an AI agent different from a chatbot?', options: ['Agents are smarter than chatbots', 'Agents can take actions in the world, not just answer questions', 'Agents never make mistakes', 'Agents don\'t need the internet'], correct: 1 },
-        { q: 'An agent follows a loop when it works. What are the three steps?', options: ['Guess, hope, repeat', 'Ask, wait, forget', 'Download, install, restart', 'Think, try, look at what happened'], correct: 3 },
-        { q: 'Which decision should ALWAYS involve a human?', options: ['Picking a playlist', 'Organising a to-do list', 'Decisions that could hurt someone', 'Setting a morning alarm'], correct: 2 },
+        { q: 'What makes an AI agent different from a chatbot?', options: ['Agents are much smarter than chatbots at everything', 'Agents can do things, not just answer questions', 'Agents never get anything wrong', 'Agents work without the internet'], correct: 1 },
+        { q: 'An agent follows a loop when it works. What are the three steps?', options: ['Guess, hope for the best, then repeat', 'Ask, wait, then forget', 'Download, install, then restart', 'Think, try, look at what happened'], correct: 3 },
+        { q: 'Which decision should ALWAYS involve a human?', options: ['Picking the next song on a playlist', 'Sorting your to-do list into order', 'Decisions that could hurt someone', 'Setting an alarm for tomorrow morning'], correct: 2 },
       ],
     },
     {
@@ -478,9 +478,9 @@ const aiKids: Course = {
         },
       ],
       quiz: [
-        { q: 'An AI can see a photo and describe it out loud. What is this ability called?', options: ['Multimodal AI — working with images, sound, and words together', 'Deep dreaming', 'Photo mode', 'Robot vision 2.0'], correct: 0 },
-        { q: 'What is "bias" in AI?', options: ['When AI gets tired from too much use', 'When AI picks up and repeats unfair patterns from its training data', 'When AI prefers certain users over others intentionally', 'When AI\'s code has programming errors'], correct: 1 },
-        { q: 'What does an AI Ethicist do?', options: ['Builds robots', 'Fixes broken computers', 'Sells AI to companies', 'Makes sure AI treats people fairly and safely'], correct: 3 },
+        { q: 'An AI can see a photo and describe it out loud. What is this ability called?', options: ['Multimodal AI', 'Deep dreaming mode', 'Picture and sound mode', 'Robot vision 2.0'], correct: 0 },
+        { q: 'What is "bias" in AI?', options: ['When AI gets tired from too much use', 'When AI learns unfair patterns and repeats them', 'When AI decides on purpose to like some people more', 'When there is a mistake in the AI code'], correct: 1 },
+        { q: 'What does an AI Ethicist do?', options: ['Builds robots', 'Fixes broken computers and phones', 'Sells AI to companies', 'Checks that AI treats people fairly and safely'], correct: 3 },
       ],
     },
     {
@@ -595,10 +595,10 @@ const aiKids: Course = {
         },
       ],
       quiz: [
-        { q: 'Which of these is safe to share with an AI chatbot?', options: ['Your home address', 'Your school name', 'A question about your homework topic', 'Your phone number'], correct: 2 },
-        { q: 'What is a "deepfake"?', options: ['A very deep photo filter', 'AI-generated media showing real people doing things they never did', 'A type of AI chatbot that refuses to answer', 'A fake AI company'], correct: 1 },
-        { q: 'If you get a message saying "Act NOW or your account will be deleted!" — what should you do?', options: ['Slow down, verify the message is real before doing anything', 'Act immediately — it must be important', 'Share it with friends so they know too', 'Reply to ask for more information'], correct: 0 },
-        { q: 'A video shows a famous person saying something shocking. What is the smart first move?', options: ['Believe it — videos can\'t lie', 'Share it right away', 'Check if a trusted news source also reports it — it could be a deepfake', 'Ask the AI if it made the video'], correct: 2 },
+        { q: 'Which of these is safe to share with an AI chatbot?', options: ['The street address where you live', 'The name of the school you go to', 'A question about your homework', 'The phone number for your house'], correct: 2 },
+        { q: 'What is a "deepfake"?', options: ['A photo filter that makes pictures look deeper', 'An AI-made fake video of a real person', 'A chatbot that refuses to answer questions', 'A fake company that sells AI'], correct: 1 },
+        { q: 'If you get a message saying "Act NOW or your account will be deleted!" — what should you do?', options: ['Slow down and check if it is real', 'Act straight away, it sounds important', 'Send it to your friends as a warning', 'Reply and ask for more information'], correct: 0 },
+        { q: 'A video shows a famous person saying something shocking. What is the smart first move?', options: ['Believe it, because videos cannot lie', 'Share it right away with your friends', 'Check if a real news site reports it too', 'Ask an AI if it made the video'], correct: 2 },
       ],
     },
   ],

@@ -183,20 +183,20 @@ const lgM1: CourseModule = {
     {
       q: 'A colleague says an AI tool "cleared" a contract set because it flagged no unusual clauses. What is the main problem with that reading?',
       options: [
-        'Flagging tools always over-flag, so the absence of flags is unusual',
+        'Flagging tools always over-flag, so an absence of flags is itself unusual',
         'The tool needs a larger context window to process contracts',
         'Contracts should be reviewed alphabetically to avoid ordering bias',
-        'False negatives are silent — an unflagged set has not been reviewed, only unflagged',
+        'False negatives are silent — an unflagged set has not been reviewed',
       ],
       correct: 3,
     },
     {
       q: 'Which task sits in the "strong fit" category with the least verification overhead?',
       options: [
-        'Identifying controlling authority on a novel point',
-        'Advising a client whether to accept a settlement offer',
+        'Identifying the controlling authority on a novel point of law',
+        'Advising a client whether to accept a settlement offer on the table',
         'Summarising a transcript you already have in front of you',
-        'Determining whether a cited case is still good law',
+        'Determining whether a cited case is still good law today',
       ],
       correct: 2,
     },
@@ -204,16 +204,16 @@ const lgM1: CourseModule = {
       q: 'Why is legal writing especially prone to convincing fabrication?',
       options: [
         'Legal databases are smaller than other professional corpora',
-        'Models are trained mainly on litigation documents',
-        'Its formulaic conventions are exactly what a next-token predictor reproduces perfectly',
-        'Courts publish judgments too slowly for models to keep up',
+        'Models are trained mainly on litigation documents rather than statutes',
+        'Its formulaic conventions are what a next-token predictor reproduces well',
+        'Courts publish judgments too slowly for any model to keep pace',
       ],
       correct: 2,
     },
     {
       q: 'What best describes what AI does to the total work in a drafting task?',
       options: [
-        'It shifts work from production to verification, which is harder to sustain and to estimate',
+        'It shifts work from production to verification',
         'It removes the work entirely if the prompt is good enough',
         'It leaves the work identical but makes it faster to type',
         'It moves the work to the vendor under the service agreement',
@@ -223,8 +223,8 @@ const lgM1: CourseModule = {
     {
       q: 'A tool has been accurate on a practitioner\'s last fifty tasks. What risk does that record create?',
       options: [
-        'None — a strong track record is exactly what justifies reduced checking',
-        'It increases automation bias, making the eventual error more likely to pass unchallenged',
+        'None — a strong track record is what justifies reduced checking',
+        'It increases automation bias, so the eventual error passes unchallenged',
         'It indicates the model has been fine-tuned on the practitioner\'s data',
         'It means the remaining tasks are statistically more likely to fail',
       ],
@@ -235,8 +235,8 @@ const lgM1: CourseModule = {
       options: [
         'Duties are uniform across jurisdictions, so one firm policy fits everywhere',
         'Using a vendor-certified tool transfers responsibility for the output to the vendor',
-        'Disclosure of AI use is universally required in all courts',
-        'Common principles recur across jurisdictions, but the binding rules and duties differ and must be checked locally',
+        'Disclosure of AI use is required in every court without exception',
+        'Common principles recur, but binding rules differ by jurisdiction',
       ],
       correct: 3,
     },
@@ -244,7 +244,7 @@ const lgM1: CourseModule = {
       q: 'Why is "advice and judgement" treated as non-delegable rather than merely high-risk?',
       options: [
         'Models are not fast enough to keep up with client deadlines',
-        'The output is professional judgement exercised by an accountable person, not text to be generated',
+        'The output is judgement exercised by an accountable person, not text',
         'Advice always requires access to confidential data the model cannot see',
         'It will become delegable once accuracy benchmarks improve',
       ],
