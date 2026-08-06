@@ -9,6 +9,7 @@ const fnM2: CourseModule = {
     {
       id: 'fn2l1',
       title: 'The Model Risk Frame You Already Have',
+      diagram: 'ModelRiskFrame',
       slides: [
         {
           heading: 'Model Risk Was Defined Long Before AI',
@@ -45,6 +46,7 @@ const fnM2: CourseModule = {
     {
       id: 'fn2l2',
       title: '"Explain This Decision"',
+      diagram: 'ExplainThisDecision',
       slides: [
         {
           heading: 'Three People Ask, and They Want Different Things',
@@ -95,6 +97,7 @@ const fnM2: CourseModule = {
     {
       id: 'fn2l3',
       title: 'Fair Lending and Proxy Discrimination',
+      diagram: 'ProxyDiscrimination',
       slides: [
         {
           heading: 'Removing the Variable Does Not Remove the Effect',
@@ -141,6 +144,7 @@ const fnM2: CourseModule = {
     {
       id: 'fn2l4',
       title: 'Inventory, Documentation and Change Control',
+      diagram: 'ModelInventory',
       slides: [
         {
           heading: 'If It Is Not in the Inventory, It Is Not Managed',
@@ -177,6 +181,7 @@ const fnM2: CourseModule = {
     {
       id: 'fn2l5',
       title: 'Third-Party Models and Vendor Risk',
+      diagram: 'VendorModelRisk',
       slides: [
         {
           heading: 'Outsourcing the Build Does Not Outsource the Accountability',

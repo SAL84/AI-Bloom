@@ -9,6 +9,7 @@ const fnM3: CourseModule = {
     {
       id: 'fn3l1',
       title: 'Confident Numbers That Are Wrong',
+      diagram: 'ConfidentWrongNumbers',
       slides: [
         {
           heading: 'Fluent, Precise, and Wrong',
@@ -59,6 +60,7 @@ const fnM3: CourseModule = {
     {
       id: 'fn3l2',
       title: 'Backtest Overfitting and the Illusion of Alpha',
+      diagram: 'BacktestOverfitting',
       playground: 'evalci',
       slides: [
         {
@@ -106,6 +108,7 @@ const fnM3: CourseModule = {
     {
       id: 'fn3l3',
       title: 'Leakage and Look-Ahead Bias',
+      diagram: 'LeakageLookAhead',
       slides: [
         {
           heading: 'Information That Would Not Have Been There',
@@ -142,6 +145,7 @@ const fnM3: CourseModule = {
     {
       id: 'fn3l4',
       title: 'When the Regime Changes',
+      diagram: 'RegimeChange',
       slides: [
         {
           heading: 'A Model Learns an Environment, Not a Law',
@@ -178,6 +182,7 @@ const fnM3: CourseModule = {
     {
       id: 'fn3l5',
       title: 'Everyone Using the Same Model',
+      diagram: 'CorrelatedModels',
       slides: [
         {
           heading: 'Different Institutions, Correlated Behaviour',

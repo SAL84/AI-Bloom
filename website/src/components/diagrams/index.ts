@@ -53,6 +53,8 @@ import { VendorDueDiligenceDiagram, SkepticalDemoDiagram, VendorPushbackDiagram,
 import { FirstUseCaseDiagram, ProvingPilotDiagram, SOCMetricsDiagram, AnalystRoleShiftDiagram, StagedAutonomyDiagram } from './course-diagrams-ao';
 import { CapstoneWalkthroughDiagram } from './course-diagrams-ap';
 import { HealthSourceLadderDiagram, LegalSourceLadderDiagram } from './course-diagrams-aq';
+import { HonestMapFinanceDiagram, ModelsNotNewDiagram, WhereItHelpsFinanceDiagram, WherePilotsDieDiagram, OfficeRiskProfileDiagram, ModelRiskFrameDiagram, ExplainThisDecisionDiagram, ProxyDiscriminationDiagram, ModelInventoryDiagram, VendorModelRiskDiagram } from './course-diagrams-ar';
+import { ConfidentWrongNumbersDiagram, BacktestOverfittingDiagram, LeakageLookAheadDiagram, RegimeChangeDiagram, CorrelatedModelsDiagram, HumanInTheDecisionDiagram, WhatYouPasteFinanceDiagram, RecordsSupervisionDiagram, GovernanceCaseDiagram, FinanceSourceLadderDiagram } from './course-diagrams-as';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -317,4 +319,24 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   CapstoneWalkthrough: CapstoneWalkthroughDiagram,
   HealthSourceLadder: HealthSourceLadderDiagram,
   LegalSourceLadder: LegalSourceLadderDiagram,
+  HonestMapFinance: HonestMapFinanceDiagram,
+  ModelsNotNew: ModelsNotNewDiagram,
+  WhereItHelpsFinance: WhereItHelpsFinanceDiagram,
+  WherePilotsDie: WherePilotsDieDiagram,
+  OfficeRiskProfile: OfficeRiskProfileDiagram,
+  ModelRiskFrame: ModelRiskFrameDiagram,
+  ExplainThisDecision: ExplainThisDecisionDiagram,
+  ProxyDiscrimination: ProxyDiscriminationDiagram,
+  ModelInventory: ModelInventoryDiagram,
+  VendorModelRisk: VendorModelRiskDiagram,
+  ConfidentWrongNumbers: ConfidentWrongNumbersDiagram,
+  BacktestOverfitting: BacktestOverfittingDiagram,
+  LeakageLookAhead: LeakageLookAheadDiagram,
+  RegimeChange: RegimeChangeDiagram,
+  CorrelatedModels: CorrelatedModelsDiagram,
+  HumanInTheDecision: HumanInTheDecisionDiagram,
+  WhatYouPasteFinance: WhatYouPasteFinanceDiagram,
+  RecordsSupervision: RecordsSupervisionDiagram,
+  GovernanceCase: GovernanceCaseDiagram,
+  FinanceSourceLadder: FinanceSourceLadderDiagram,
 };

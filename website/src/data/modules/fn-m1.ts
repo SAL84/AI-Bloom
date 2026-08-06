@@ -9,6 +9,7 @@ const fnM1: CourseModule = {
     {
       id: 'fn1l1',
       title: 'Scope, and What This Course Is Not',
+      diagram: 'HonestMapFinance',
       sectionLabel: 'Start here',
       slides: [
         {
@@ -56,6 +57,7 @@ const fnM1: CourseModule = {
     {
       id: 'fn1l2',
       title: 'Models Are Not New Here',
+      diagram: 'ModelsNotNew',
       slides: [
         {
           heading: 'Finance Has Been a Model Industry for Decades',
@@ -102,6 +104,7 @@ const fnM1: CourseModule = {
     {
       id: 'fn1l3',
       title: 'Where It Genuinely Helps Today',
+      diagram: 'WhereItHelpsFinance',
       playground: 'baserate',
       slides: [
         {
@@ -149,6 +152,7 @@ const fnM1: CourseModule = {
     {
       id: 'fn1l4',
       title: 'Where the Pilots Die',
+      diagram: 'WherePilotsDie',
       slides: [
         {
           heading: 'Data Quality and Lineage Beat Model Quality',
@@ -199,6 +203,7 @@ const fnM1: CourseModule = {
     {
       id: 'fn1l5',
       title: 'Front, Middle and Back Office',
+      diagram: 'OfficeRiskProfile',
       slides: [
         {
           heading: 'Same Technology, Three Different Risk Profiles',

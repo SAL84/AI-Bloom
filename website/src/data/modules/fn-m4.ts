@@ -9,6 +9,7 @@ const fnM4: CourseModule = {
     {
       id: 'fn4l1',
       title: 'Where a Human Must Stay in the Decision',
+      diagram: 'HumanInTheDecision',
       slides: [
         {
           heading: 'Decisions That Carry a Duty to Explain',
@@ -45,6 +46,7 @@ const fnM4: CourseModule = {
     {
       id: 'fn4l2',
       title: 'Confidentiality and What You Paste',
+      diagram: 'WhatYouPasteFinance',
       slides: [
         {
           heading: 'What Actually Leaves the Building',
@@ -81,6 +83,7 @@ const fnM4: CourseModule = {
     {
       id: 'fn4l3',
       title: 'Records, Communications and Supervision',
+      diagram: 'RecordsSupervision',
       slides: [
         {
           heading: 'An AI-Drafted Message Is Still a Business Communication',
@@ -117,6 +120,7 @@ const fnM4: CourseModule = {
     {
       id: 'fn4l4',
       title: 'The Governance Case Before the Pilot',
+      diagram: 'GovernanceCase',
       slides: [
         {
           heading: 'Answer These Before Anything Touches a Customer',
@@ -167,6 +171,7 @@ const fnM4: CourseModule = {
     {
       id: 'fn4l5',
       title: 'Checking This Course Against the Sources',
+      diagram: 'FinanceSourceLadder',
       sectionLabel: 'References',
       slides: [
         {
