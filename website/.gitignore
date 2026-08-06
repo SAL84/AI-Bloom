@@ -25,4 +25,4 @@ pnpm-debug.log*
 .idea/
 
 # project-local
-README.md
+/README.md

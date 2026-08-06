@@ -59,7 +59,7 @@ services:
       # identity and every commit would fail with "Author identity unknown".
       # The entrypoint re-applies these on every start.
       GIT_USER_NAME: "Salih A"
-      GIT_USER_EMAIL: "salih.me20@outlook.com"
+      GIT_USER_EMAIL: "90107378+SAL84@users.noreply.github.com"
 
       # gh's auth (hosts.yml) lives on the aibloom-git volume, not in the
       # writable layer — otherwise a rebuild silently logs GitHub out. All

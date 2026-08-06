@@ -7,11 +7,13 @@ dist/
 *.db
 .DS_Store
 .gstack/
-elements-of-ai-course.md
-Design_Handoff_Studio/
+/Content/
+/Design_Handoff_Studio/
 /Diagrams/
-CLAUDE.md
-archive/
+/CLAUDE.md
+/archive/
+*.log
+.vscode/
 
 # atlas Space metadata (machine-local)
 /.space/
