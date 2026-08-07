@@ -215,8 +215,8 @@ const prM2: CourseModule = {
       diagram: 'ReasoningFirst',
       slides: [
         {
-          heading: 'Ask for the Working Before the Answer',
-          body: 'On problems with several steps — comparisons, calculations, anything where a conclusion depends on a chain of logic — asking the model to work through it before stating the answer generally improves the result. The mechanism is not mysterious: the intermediate steps become part of the text the model is conditioning on, so the conclusion is drawn from worked reasoning rather than produced cold. Frontier models increasingly do some of this by default, but making it explicit still helps, and it has a second benefit that matters more. You can read the working. A wrong answer with visible steps is debuggable; a wrong answer on its own is just a wrong answer.',
+          heading: 'Ask for Working You Can Check',
+          body: 'On problems with several steps — comparisons, calculations, anything where a conclusion depends on a chain of logic — asking the model to show its working generally improves the result. The mechanism is not mysterious: the intermediate steps become part of the text the model is conditioning on, so the conclusion is drawn from worked reasoning rather than produced cold. Frontier models increasingly reason before answering by default, sometimes invisibly — so the deeper reason to ask is not to cause thinking but to get an account you can check: the numbers, the assumptions, the evidence a conclusion rests on. You can read the working. A wrong answer with visible steps is debuggable; a wrong answer on its own is just a wrong answer.',
           bullets: [
             'Weak: "Which of these three options is cheapest overall?"',
             'Strong: "Work out the three-year total cost for each option, showing the numbers, then state which is cheapest and why"',

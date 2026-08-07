@@ -291,15 +291,15 @@ export const DefenseInDepthAIDiagram = () => {
     'approval events as displayed', 'memory writes with their context',
   ];
   const table = [
-    { c: 'least privilege', g: 'misuse within the granted scope remains', by: 'gates + deterministic policy checks' },
-    { c: 'sandbox', g: 'legitimate tool calls sit outside it', by: 'least privilege · approval gates' },
-    { c: 'default-deny egress', g: 'delete, spend, send need no egress', by: 'gates on irreversible actions' },
-    { c: 'approval gates', g: 'splitting, fatigue, misleading rationale', by: 'policy checks · gate metrics watched' },
-    { c: 'constrained decoding', g: 'shapes structure, not intent or values', by: 'validation + authz at every consumer' },
-    { c: 'guardrail classifiers', g: 'error rates; an evadable input surface', by: 'the structural layers beneath it' },
+    { c: 'least privilege [S]', g: 'misuse within the granted scope remains', by: 'gates + deterministic policy checks' },
+    { c: 'sandbox [S]', g: 'legitimate tool calls sit outside it', by: 'least privilege · approval gates' },
+    { c: 'default-deny egress [S]', g: 'delete, spend, send need no egress', by: 'gates on irreversible actions' },
+    { c: 'approval gates [H]', g: 'splitting, fatigue, misleading rationale', by: 'policy checks · gate metrics watched' },
+    { c: 'constrained decoding [S]', g: 'shapes structure, not intent or values', by: 'validation + authz at every consumer' },
+    { c: 'guardrail classifiers [P]', g: 'error rates; an evadable input surface', by: 'the structural layers beneath it' },
   ];
   return (
-    <DiagramFrame viewBox="0 0 800 514" caption="Give each agent an identity and a full trace, then layer individually defeatable controls so no single failure is sufficient — and document each control's gap alongside the control that covers it.">
+    <DiagramFrame viewBox="0 0 800 548" caption="Give each agent an identity and a full trace, then layer individually defeatable controls so no single failure is sufficient — and know which kind of control each one is before you lean on it.">
       <text x="400" y="24" textAnchor="middle" fill={COLORS.slate900} fontSize="14" fontWeight="700">Every layer has a gap — the arrangement is the defence</text>
       <text x="400" y="42" textAnchor="middle" fill={COLORS.slate500} fontSize="10">attribution, a full trace, and detection are what turn six defeatable controls into a position</text>
 
@@ -348,9 +348,16 @@ export const DefenseInDepthAIDiagram = () => {
         );
       })}
 
-      <rect x="30" y="450" width="740" height="48" rx="10" fill={COLORS.slate900} />
-      <text x="400" y="470" textAnchor="middle" fill={COLORS.white} fontSize="10.5" fontWeight="700">NO SINGLE FAILURE IS SUFFICIENT — WRITE DOWN EACH GAP AND NAME WHAT COVERS IT</text>
-      <text x="400" y="487" textAnchor="middle" fill={COLORS.white} fontSize="9" opacity="0.9">a stack described without its gaps is marketing, not a security position</text>
+      <rect x="30" y="444" width="236" height="22" rx="5" fill={COLORS.white} stroke={COLORS.emerald} strokeWidth="1.4" />
+      <text x="148" y="458" textAnchor="middle" fill={COLORS.slate700} fontSize="6.6"><tspan fontWeight="700" fill={COLORS.emerald}>[S] STRUCTURAL</tspan> — holds by construction</text>
+      <rect x="282" y="444" width="236" height="22" rx="5" fill={COLORS.white} stroke={COLORS.amber} strokeWidth="1.4" />
+      <text x="400" y="458" textAnchor="middle" fill={COLORS.slate700} fontSize="6.6"><tspan fontWeight="700" fill={COLORS.amber}>[P] PROBABILISTIC</tspan> — error rates; evadable</text>
+      <rect x="534" y="444" width="236" height="22" rx="5" fill={COLORS.white} stroke={COLORS.blue} strokeWidth="1.4" />
+      <text x="652" y="458" textAnchor="middle" fill={COLORS.slate700} fontSize="6.6"><tspan fontWeight="700" fill={COLORS.blue}>[H] HUMAN</tspan> — depends on attention</text>
+
+      <rect x="30" y="480" width="740" height="48" rx="10" fill={COLORS.slate900} />
+      <text x="400" y="500" textAnchor="middle" fill={COLORS.white} fontSize="10.5" fontWeight="700">NO SINGLE FAILURE IS SUFFICIENT — WRITE DOWN EACH GAP AND NAME WHAT COVERS IT</text>
+      <text x="400" y="517" textAnchor="middle" fill={COLORS.white} fontSize="9" opacity="0.9">never weight a probabilistic control like a structural one — a stack described without its gaps is marketing</text>
     </DiagramFrame>
   );
 };

@@ -193,13 +193,13 @@ export const ReasoningFirstDiagram = () => {
     { x: 518, w: 156, t: 'only then, the recommendation' },
   ];
   return (
-    <DiagramFrame viewBox="0 0 800 512" caption="Ask for the working before the answer and name your own steps — and pair every 'do not' with the 'do' you actually want.">
+    <DiagramFrame viewBox="0 0 800 512" caption="Ask for the working you need to check the answer — numbers, assumptions, evidence — and pair every 'do not' with the 'do' you actually want.">
       <defs>
         <marker id="arrowREFa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
           <path d="M 0 0 L 10 5 L 0 10 z" fill={COLORS.blue} />
         </marker>
       </defs>
-      <text x="400" y="24" textAnchor="middle" fill={COLORS.slate900} fontSize="14" fontWeight="700">Ask for the working first — and say what to do, not what to avoid</text>
+      <text x="400" y="24" textAnchor="middle" fill={COLORS.slate900} fontSize="14" fontWeight="700">Ask for working you can check — and say what to do, not what to avoid</text>
       <text x="400" y="42" textAnchor="middle" fill={COLORS.slate500} fontSize="10">visible steps make a wrong answer debuggable, and a named target beats a named ban</text>
 
       <rect x="30" y="58" width="360" height="104" rx="9" fill={COLORS.white} stroke={COLORS.red} strokeWidth="2" />
