@@ -25,6 +25,7 @@ const TRACK_CRUMB: Partial<Record<CourseId, string>> = {
   'ai-secure': 'Build · Test · Secure',
   'ai-vibecoding': 'Build · Test · Secure',
   'ai-agents': 'Build · Test · Secure',
+  'ai-real-product': 'Build · Test · Secure',
 };
 
 const META: Record<CourseId, {
@@ -44,7 +45,7 @@ const META: Record<CourseId, {
     related: [
       { no: '03', title: 'AI Essentials', sub: 'The grown-up version', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
       { no: '§', title: 'AI Playgrounds', sub: 'Try things, break things', color: '#3f8a5e', view: { type: 'playground' } },
-      { no: '10', title: 'AI for Cybersecurity', sub: 'When the kid grows up', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
+      { no: '11', title: 'AI for Cybersecurity', sub: 'When the kid grows up', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
     ],
   },
   'ai-essentials': {
@@ -92,7 +93,7 @@ const META: Record<CourseId, {
     related: [
       { no: '04', title: 'AI Deep Dive', sub: 'The engineering foundation', color: '#5a4ec0', view: { type: 'home', courseId: 'ai-deep-dive' } },
       { no: '¶', title: 'Agentic AI', sub: 'What you will be testing', color: '#5d5045', view: { type: 'agentic-ai' } },
-      { no: '10', title: 'AI for Cybersecurity', sub: 'The adversarial view', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
+      { no: '11', title: 'AI for Cybersecurity', sub: 'The adversarial view', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
     ],
   },
   'ai-vibecoding': {
@@ -115,7 +116,7 @@ const META: Record<CourseId, {
     quote: '"The sales course teaches you to talk about this. This one teaches you to do it."',
     related: [
       { no: '08', title: 'Does Your AI Work?', sub: 'Testing, the sibling discipline', color: '#c9421f', view: { type: 'home', courseId: 'ai-evals' } },
-      { no: '10', title: 'AI for Cybersecurity', sub: 'The operational view', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
+      { no: '11', title: 'AI for Cybersecurity', sub: 'The operational view', color: '#2c6db0', view: { type: 'home', courseId: 'ai-cybersec-se' } },
       { no: '¶', title: 'Agentic AI', sub: 'What you are defending', color: '#5d5045', view: { type: 'agentic-ai' } },
     ],
   },
@@ -143,8 +144,20 @@ const META: Record<CourseId, {
       { no: '09', title: 'Securing AI Systems', sub: 'Defending what you built', color: '#8b2f5f', view: { type: 'home', courseId: 'ai-secure' } },
     ],
   },
+  'ai-real-product': {
+    color: '#556b2f', no: '10', kicker: 'Catalog №10 · Build · Test · Secure',
+    level: 'Beginner', duration: '4h',
+    outcomes: ['See exactly how much of a real product the demo actually is — counted in days, not vibes', 'Understand the parts of the product that are not the screen: data, accounts, and the services underneath', 'Ship changes calmly, find out when it broke, and know what it costs at real usage', 'Make an honest ship-or-not decision on your own project, and know when to bring in help'],
+    audience: ['◆ Vibecoding graduates holding a working prototype', '◆ Founders and small-business owners deciding whether to ship what they built', '◇ Not for: engineers running production systems — this assumes no coding background'],
+    quote: '"The demo was always the easy part. AI made it cheap — it did not make the rest of the product appear."',
+    related: [
+      { no: '06', title: 'Vibecoding', sub: 'The first half of this story', color: '#d4711f', view: { type: 'home', courseId: 'ai-vibecoding' } },
+      { no: '08', title: 'Does Your AI Work?', sub: 'When your product includes AI', color: '#c9421f', view: { type: 'home', courseId: 'ai-evals' } },
+      { no: '09', title: 'Securing AI Systems', sub: 'When an engineer joins', color: '#8b2f5f', view: { type: 'home', courseId: 'ai-secure' } },
+    ],
+  },
   'ai-healthcare': {
-    color: '#0f8a7a', no: '11', kicker: 'Catalog №11 · Vertical track',
+    color: '#0f8a7a', no: '12', kicker: 'Catalog №12 · Vertical track',
     level: 'Intermediate', duration: '3h',
     outcomes: ['Map where AI genuinely helps in care — and where pilots die', 'Read an AI clinical study critically', 'Recognise how dataset bias causes documented harm in health', 'Navigate SaMD, privacy, and institutional governance'],
     audience: ['◆ Clinicians and administrators evaluating AI tools', '◆ Health-tech builders who need the regulatory picture', '◇ Not clinical guidance — orientation only, never a substitute for professional judgement'],
@@ -152,23 +165,23 @@ const META: Record<CourseId, {
     related: [
       { no: '03', title: 'AI Essentials', sub: 'Prerequisite vocabulary', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
       { no: '08', title: 'Does Your AI Work?', sub: 'Testing what you built', color: '#c9421f', view: { type: 'home', courseId: 'ai-evals' } },
-      { no: '12', title: 'AI for Legal', sub: 'The other regulated vertical', color: '#5a4ec0', view: { type: 'home', courseId: 'ai-legal' } },
+      { no: '13', title: 'AI for Legal', sub: 'The other regulated vertical', color: '#5a4ec0', view: { type: 'home', courseId: 'ai-legal' } },
     ],
   },
   'ai-legal': {
-    color: '#5a4ec0', no: '12', kicker: 'Catalog №12 · Vertical track',
+    color: '#5a4ec0', no: '13', kicker: 'Catalog №13 · Vertical track',
     level: 'Intermediate', duration: '3h',
     outcomes: ['Sort legal tasks by how safely AI can touch them', 'Run contract review and discovery with a real supervision protocol', 'Never file a hallucinated citation — and know why they happen', 'Handle confidentiality, competence, and firm AI policy'],
     audience: ['◆ Lawyers, paralegals, and legal ops adopting AI tools', '◆ Legal-tech builders who need the professional-duty picture', '◇ Not legal advice — obligations vary by jurisdiction and bar'],
     quote: '"The citation problem is not a quirk to work around. It is the whole reason this course exists."',
     related: [
       { no: '03', title: 'AI Essentials', sub: 'Prerequisite vocabulary', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
-      { no: '11', title: 'AI for Healthcare', sub: 'The other regulated vertical', color: '#0f8a7a', view: { type: 'home', courseId: 'ai-healthcare' } },
+      { no: '12', title: 'AI for Healthcare', sub: 'The other regulated vertical', color: '#0f8a7a', view: { type: 'home', courseId: 'ai-healthcare' } },
       { no: '05', title: 'Prompting', sub: 'Core skill for supervised work', color: '#1f7a8c', view: { type: 'home', courseId: 'ai-prompting' } },
     ],
   },
   'ai-finance': {
-    color: '#b78320', no: '13', kicker: 'Catalog №13 · Vertical track',
+    color: '#b78320', no: '14', kicker: 'Catalog №14 · Vertical track',
     level: 'Intermediate', duration: '3h',
     outcomes: ['Place AI inside the model risk and validation duties your institution already has', 'Answer "explain this decision" for a supervisor, a complaint handler and a declined customer', 'Recognise backtest overfitting, leakage and regime change before they cost money', 'Build the pre-deployment governance case a risk committee will actually accept'],
     audience: ['◆ Risk, compliance, credit, fraud and model-validation professionals', '◆ Product and executive owners signing off AI in financial services', '◇ Not investment, financial, legal or compliance advice — orientation only'],
@@ -176,11 +189,11 @@ const META: Record<CourseId, {
     related: [
       { no: '03', title: 'AI Essentials', sub: 'Prerequisite vocabulary', color: '#3f8a5e', view: { type: 'home', courseId: 'ai-essentials' } },
       { no: '08', title: 'Does Your AI Work?', sub: 'Testing what you deploy', color: '#c9421f', view: { type: 'home', courseId: 'ai-evals' } },
-      { no: '11', title: 'AI for Healthcare', sub: 'The other regulated vertical', color: '#0f8a7a', view: { type: 'home', courseId: 'ai-healthcare' } },
+      { no: '12', title: 'AI for Healthcare', sub: 'The other regulated vertical', color: '#0f8a7a', view: { type: 'home', courseId: 'ai-healthcare' } },
     ],
   },
   'ai-cybersec-se': {
-    color: '#2c6db0', no: '10', kicker: 'Catalog №10 · Vertical track',
+    color: '#2c6db0', no: '11', kicker: 'Catalog №11 · Vertical track',
     level: 'Intermediate', duration: '3h',
     outcomes: ['Map where AI actually sits in the security stack — SIEM, XDR, EDR, SOC copilots', 'Understand how attackers use AI, and how AI systems get attacked', 'Evaluate AI security products with due-diligence questions, not vendor demos', 'Know when to go deeper: the bridge into hands-on AI security engineering'],
     audience: ['◆ Security analysts, engineers and leaders watching AI enter their stack', '◆ CISOs and architects evaluating AI-powered security products', '◇ Not for: hands-on hardening of AI systems (try Securing AI Systems)'],

@@ -105,7 +105,7 @@ function StudioHero({ posts }: { posts: BlogPostMeta[] }) {
             <span className="font-studio-serif italic text-studio-kids font-normal">about </span>AI?
           </h1>
           <p className="font-studio-serif italic text-[17px] sm:text-[20px] lg:text-[24px] leading-[1.4] text-studio-ink-dim mt-5 lg:mt-7 max-w-[520px] font-normal">
-            Twelve courses. From eight-year-olds to regulated industries. Everything is free, everything is real, nothing's on a corporate calendar.
+            Fourteen courses. From eight-year-olds to regulated industries. Everything is free, everything is real, nothing's on a corporate calendar.
           </p>
         </div>
         <aside className="bg-studio-paper border border-studio-rule rounded-[4px] p-5 lg:p-[26px] relative mt-6">
@@ -237,6 +237,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
   const pVibe = courseProgress('ai-vibecoding', completedLessons);
   const pPrompt = courseProgress('ai-prompting', completedLessons);
   const pAgents = courseProgress('ai-agents', completedLessons);
+  const pRealProduct = courseProgress('ai-real-product', completedLessons);
 
   const kidsCard: CardData = {
     no: '01', title: 'AI for Kids', kicker: 'For ages 8–14', color: '#d96a3a',
@@ -270,7 +271,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       onClick: () => setView({ type: 'home', courseId: 'ai-prompting' }) },
   ];
   const industryCards: CardData[] = [
-    { no: '10', title: 'AI for Cybersecurity', kicker: 'For security teams', color: '#2c6db0',
+    { no: '11', title: 'AI for Cybersecurity', kicker: 'For security teams', color: '#2c6db0',
       blurb: 'AI in the security stack and the security of AI itself — defence, the adversarial side, and how to evaluate the products.',
       modules: moduleCount('ai-cybersec-se'), level: 'Intermediate', progress: pCyber,
       badge: pCyber > 0 ? 'Resume →' : 'Open →',
@@ -298,24 +299,29 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
       modules: moduleCount('ai-secure'), level: 'Advanced', progress: pSecure,
       badge: pSecure > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-secure' }) },
+    { no: '10', title: 'From Prototype to Real Product', kicker: '⑤ Run it', color: '#8a1e2e',
+      blurb: 'The honest second half. Data, accounts, shipping, cost, support and the second year — with the effort counted at every stage.',
+      modules: moduleCount('ai-real-product'), level: 'Beginner', progress: pRealProduct,
+      badge: pRealProduct > 0 ? 'Resume →' : 'Open →',
+      onClick: () => setView({ type: 'home', courseId: 'ai-real-product' }) },
   ];
   const pFinance = courseProgress('ai-finance', completedLessons);
   const verticalCards: CardData[] = [
-    { no: '11', title: 'AI for Healthcare', kicker: 'For clinical & health-tech', color: '#2c6db0',
+    { no: '12', title: 'AI for Healthcare', kicker: 'For clinical & health-tech', color: '#2c6db0',
       blurb: 'Where AI actually sits in care, how to read the evidence, and the regulatory reality. Orientation, not clinical guidance.',
       modules: moduleCount('ai-healthcare'), level: 'Intermediate', progress: pHealth,
       badge: pHealth > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-healthcare' }) },
-    { no: '13', title: 'AI for Finance', kicker: 'For risk, compliance & credit', color: '#2c6db0',
-      blurb: 'AI inside the model risk duties finance already has — explainability, fair lending, and the failure modes that cost money.',
-      modules: moduleCount('ai-finance'), level: 'Intermediate', progress: pFinance,
-      badge: pFinance > 0 ? 'Resume →' : 'Open →',
-      onClick: () => setView({ type: 'home', courseId: 'ai-finance' }) },
-    { no: '12', title: 'AI for Legal', kicker: 'For legal practice', color: '#2c6db0',
+    { no: '13', title: 'AI for Legal', kicker: 'For legal practice', color: '#2c6db0',
       blurb: 'Contracts, discovery, and the citation problem that has already cost lawyers their credibility.',
       modules: moduleCount('ai-legal'), level: 'Intermediate', progress: pLegal,
       badge: pLegal > 0 ? 'Resume →' : 'Open →',
       onClick: () => setView({ type: 'home', courseId: 'ai-legal' }) },
+    { no: '14', title: 'AI for Finance', kicker: 'For risk, compliance & credit', color: '#2c6db0',
+      blurb: 'AI inside the model risk duties finance already has — explainability, fair lending, and the failure modes that cost money.',
+      modules: moduleCount('ai-finance'), level: 'Intermediate', progress: pFinance,
+      badge: pFinance > 0 ? 'Resume →' : 'Open →',
+      onClick: () => setView({ type: 'home', courseId: 'ai-finance' }) },
   ];
 
   const filterBtns: Array<{ key: Filter; label: string }> = [
@@ -327,7 +333,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
     <section className="px-4 sm:px-6 lg:px-12 pt-6 pb-10 lg:pb-14">
       <header className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4 mb-6 lg:mb-7">
         <h2 className="font-studio-display text-[32px] sm:text-[38px] lg:text-[44px] text-studio-ink m-0 font-normal tracking-[-0.6px] lg:tracking-[-0.8px]">
-          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— twelve on the shelf</span>
+          The catalog<span className="hidden sm:inline font-studio-serif italic font-normal text-studio-ink-dim text-[20px] lg:text-[28px] ml-3">— fourteen on the shelf</span>
         </h2>
         <div className="flex flex-wrap gap-2">
           {filterBtns.map(({ key, label }) => (
@@ -380,6 +386,16 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
           <RowLabel sub="Read in order — this is the path from idea to something real people use">Build · Test · Secure</RowLabel>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
             {buildTestSecureCards.map(c => <CatalogCard key={c.no} {...c} />)}
+            <button
+              onClick={() => setView({ type: 'home', courseId: 'ai-real-product' })}
+              className="border-[1.5px] border-dashed rounded-[4px] p-7 flex flex-col justify-center gap-2 text-left cursor-pointer hover:-translate-y-px transition-all duration-200"
+              style={{ borderColor: '#8a1e2e66' }}
+            >
+              <div className="font-studio-mono text-[11px] tracking-[1.4px] uppercase" style={{ color: '#8a1e2e' }}>The running exercise</div>
+              <div className="font-studio-serif italic text-[22px] text-studio-ink-dim leading-[1.2]">Carry your own project</div>
+              <div className="font-studio-sans text-[13px] text-studio-ink-mute leading-[1.5]">Every module of №10 ends with an exercise that moves your own prototype through the same stage — finishing with the honest ship-or-not call.</div>
+              <div className="font-studio-mono text-[11px] text-studio-ink-mute tracking-[0.6px] pt-2">5 exercises · one per module <span className="text-studio-ink font-medium ml-2">Start →</span></div>
+            </button>
           </div>
         </div>
       )}

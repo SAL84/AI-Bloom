@@ -62,7 +62,7 @@ const ENTRIES: CourseEntry[] = [
     view: { type: 'home', courseId: 'ai-deep-dive' },
   },
   {
-    id: 'ai-cybersec-se', no: '10', title: 'AI for Cybersecurity', track: 'Vertical',
+    id: 'ai-cybersec-se', no: '11', title: 'AI for Cybersecurity', track: 'Vertical',
     color: '#2c6db0', status: 'live',
     note: 'Reshaped from the sales course: AI in the security stack, the adversarial side, adopting AI in the SOC, and evaluating the products.',
     view: { type: 'home', courseId: 'ai-cybersec-se' },
@@ -74,14 +74,14 @@ const ENTRIES: CourseEntry[] = [
     view: { type: 'home', courseId: 'ai-evals' },
   },
   {
-    id: 'ai-healthcare', no: '11', title: 'AI for Healthcare', track: 'Vertical',
+    id: 'ai-healthcare', no: '12', title: 'AI for Healthcare', track: 'Vertical',
     color: '#0f8a7a', status: 'live',
     note: 'Orientation, not clinical guidance — where AI sits in care, reading the evidence, bias, and regulation.',
     gaps: ['Awaiting review by a practising clinician'],
     view: { type: 'home', courseId: 'ai-healthcare' },
   },
   {
-    id: 'ai-legal', no: '12', title: 'AI for Legal', track: 'Vertical',
+    id: 'ai-legal', no: '13', title: 'AI for Legal', track: 'Vertical',
     color: '#5a4ec0', status: 'live',
     note: 'Not legal advice — task suitability, contracts and discovery, the citation problem, and professional duties.',
     gaps: ['Awaiting review by a practising lawyer', 'Jurisdiction-specific detail kept deliberately general'],
@@ -112,11 +112,17 @@ const ENTRIES: CourseEntry[] = [
     view: { type: 'home', courseId: 'ai-agents' },
   },
   {
-    id: 'ai-finance', no: '13', title: 'AI for Finance', track: 'Vertical',
+    id: 'ai-finance', no: '14', title: 'AI for Finance', track: 'Vertical',
     color: '#b78320', status: 'live',
     note: 'Where AI sits in financial services, model risk and explainability, the failure modes that cost money, and the governance case before a pilot.',
     gaps: ['Awaiting review by a risk, compliance or model-validation practitioner', 'Insurance underwriting and pricing deliberately out of scope for now'],
     view: { type: 'home', courseId: 'ai-finance' },
+  },
+  {
+    id: 'ai-real-product', no: '10', title: 'From Prototype to Real Product', track: 'Build · Test · Secure',
+    color: '#556b2f', status: 'live',
+    note: 'The honest second half of Vibecoding — one worked example carried from prototype to real product, with the effort counted at every stage: data, accounts, shipping, cost, support, and the second year.',
+    view: { type: 'home', courseId: 'ai-real-product' },
   },
   {
     id: 'agentic-ai', no: '¶', title: 'Agentic AI · interactive', track: 'Companion to Agent Engineering',
@@ -127,7 +133,7 @@ const ENTRIES: CourseEntry[] = [
 ];
 
 const PLANNED_COURSES = [
-  { no: '13', title: 'AI for Educators', track: 'Vertical', color: '#3f8a5e', target: 'TBD', note: 'Assessment design, academic honesty, and using AI to teach rather than to grade.' },
+  { no: '15', title: 'AI for Educators', track: 'Vertical', color: '#3f8a5e', target: 'TBD', note: 'Assessment design, academic honesty, and using AI to teach rather than to grade.' },
 ];
 
 const PLANNED_FEATURES = [

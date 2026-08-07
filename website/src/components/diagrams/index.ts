@@ -55,6 +55,11 @@ import { CapstoneWalkthroughDiagram } from './course-diagrams-ap';
 import { HealthSourceLadderDiagram, LegalSourceLadderDiagram } from './course-diagrams-aq';
 import { HonestMapFinanceDiagram, ModelsNotNewDiagram, WhereItHelpsFinanceDiagram, WherePilotsDieDiagram, OfficeRiskProfileDiagram, ModelRiskFrameDiagram, ExplainThisDecisionDiagram, ProxyDiscriminationDiagram, ModelInventoryDiagram, VendorModelRiskDiagram } from './course-diagrams-ar';
 import { ConfidentWrongNumbersDiagram, BacktestOverfittingDiagram, LeakageLookAheadDiagram, RegimeChangeDiagram, CorrelatedModelsDiagram, HumanInTheDecisionDiagram, WhatYouPasteFinanceDiagram, RecordsSupervisionDiagram, GovernanceCaseDiagram, FinanceSourceLadderDiagram } from './course-diagrams-as';
+import { ProductBehindTheDemoDiagram, AskDontImagineDiagram, NotListDiagram, StagePlanLedgerDiagram } from './course-diagrams-at';
+import { CollapsedSliceDiagram, DemoVsProductWorksDiagram, ChecksWhileYouSleepDiagram, LedgerAfterDemoDiagram } from './course-diagrams-au';
+import { WhereDataLivesDiagram, MigrationsBackupsDiagram, AccountsAndResetsDiagram, HiddenServicesDiagram, BelowScreenLedgerDiagram } from './course-diagrams-av';
+import { DeployRollbackDiagram, ShippingPipelinePlainDiagram, KnowingItBrokeDiagram, CostAtRealUsageDiagram, ElevenPmEmailDiagram } from './course-diagrams-aw';
+import { SoftwareRotDiagram, HandoverTestDiagram, WeekendVsRealProductDiagram, GenuinelyShippableDiagram } from './course-diagrams-ax';
 
 export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   AIBasicsOverview: AIBasicsOverviewDiagram,
@@ -339,4 +344,26 @@ export const DIAGRAM_REGISTRY: Record<string, React.ComponentType> = {
   RecordsSupervision: RecordsSupervisionDiagram,
   GovernanceCase: GovernanceCaseDiagram,
   FinanceSourceLadder: FinanceSourceLadderDiagram,
+  ProductBehindTheDemo: ProductBehindTheDemoDiagram,
+  AskDontImagine: AskDontImagineDiagram,
+  NotList: NotListDiagram,
+  StagePlanLedger: StagePlanLedgerDiagram,
+  CollapsedSlice: CollapsedSliceDiagram,
+  DemoVsProductWorks: DemoVsProductWorksDiagram,
+  ChecksWhileYouSleep: ChecksWhileYouSleepDiagram,
+  LedgerAfterDemo: LedgerAfterDemoDiagram,
+  WhereDataLives: WhereDataLivesDiagram,
+  MigrationsBackups: MigrationsBackupsDiagram,
+  AccountsAndResets: AccountsAndResetsDiagram,
+  HiddenServices: HiddenServicesDiagram,
+  BelowScreenLedger: BelowScreenLedgerDiagram,
+  DeployRollback: DeployRollbackDiagram,
+  ShippingPipelinePlain: ShippingPipelinePlainDiagram,
+  KnowingItBroke: KnowingItBrokeDiagram,
+  CostAtRealUsage: CostAtRealUsageDiagram,
+  ElevenPmEmail: ElevenPmEmailDiagram,
+  SoftwareRot: SoftwareRotDiagram,
+  HandoverTest: HandoverTestDiagram,
+  WeekendVsRealProduct: WeekendVsRealProductDiagram,
+  GenuinelyShippable: GenuinelyShippableDiagram,
 };
