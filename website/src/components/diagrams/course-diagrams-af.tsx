@@ -286,7 +286,7 @@ export const ModelIncidentResponseDiagram = () => {
           <path d="M 0 0 L 10 5 L 0 10 z" fill={COLORS.emerald} />
         </marker>
       </defs>
-      <text x="400" y="24" textAnchor="middle" fill={COLORS.slate900} fontSize="14" fontWeight="700">There is no patch — remove the input, close the capability</text>
+      <text x="400" y="24" textAnchor="middle" fill={COLORS.slate900} fontSize="14" fontWeight="700">There is no patch to wait for — remove the input, close the capability</text>
       <text x="400" y="42" textAnchor="middle" fill={COLORS.slate500} fontSize="10">the model will behave the same way again given the same context; what changed is what reached it and what it could do</text>
 
       {pairs.map((p, i) => {

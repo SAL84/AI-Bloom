@@ -449,7 +449,7 @@ const adM2: CourseModule = {
           bullets: [
             'Output filters: block unsafe, harmful, or off-policy content at runtime — the last check before a response reaches the user',
             'Scope and policy limits: define what the model is and is not allowed to do in this specific deployment',
-            'Prompt injection defence: prevents adversarial inputs from hijacking model behaviour — critical in security contexts where user-supplied data enters prompts',
+            'Prompt injection defence: reduces the odds of adversarial inputs steering model behaviour — it limits risk rather than creating a hard boundary, so pair it with least privilege',
             'PII and data privacy: detects and redacts sensitive personal data in both inputs and outputs',
           ],
         },

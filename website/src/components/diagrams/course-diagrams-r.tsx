@@ -145,7 +145,7 @@ export const ContextOrderingDiagram = () => {
   return (
     <DiagramFrame viewBox="0 0 800 476" caption="Run-wide constraints go early, next-action material and restated constraints go last, and the middle gets only what can afford to be ignored">
       <text x="400" y="24" textAnchor="middle" fill={COLORS.slate900} fontSize="14" fontWeight="700">Position is not neutral</text>
-      <text x="400" y="42" textAnchor="middle" fill={COLORS.slate500} fontSize="10">models attend unevenly — beginning and end are used reliably; the middle is where material goes to be ignored</text>
+      <text x="400" y="42" textAnchor="middle" fill={COLORS.slate500} fontSize="10">models attend unevenly — beginning and end are used reliably; the middle is where material is most often missed</text>
 
       <text x="160" y="60" textAnchor="middle" fill={COLORS.slate400} fontSize="7.5" fontWeight="700">THE ASSEMBLED CONTEXT</text>
       <text x="296" y="60" textAnchor="middle" fill={COLORS.slate400} fontSize="7.5" fontWeight="700">ATTENTION</text>

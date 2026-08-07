@@ -201,7 +201,7 @@ export const LLMInfrastructureDiagram = () => {
     {
       y: 306, c: COLORS.blue, h: 'LAYER 1 — HARDWARE · THE PHYSICAL COMPUTE',
       items: [
-        'GPUs and TPUs — NVIDIA H100 / A100, Google TPUv4 clusters',
+        'GPUs and TPUs — NVIDIA and Google data-centre accelerator clusters',
         'distributed training — a frontier model cannot fit on one machine',
         'cloud (AWS · Azure · GCP) rents the compute on demand',
         'on-premise — you buy the hardware: more control, far more cost',
@@ -212,7 +212,7 @@ export const LLMInfrastructureDiagram = () => {
   const notes = [
     { y: 122, c: COLORS.emerald, lines: ['latency spikes usually happen', 'here, not inside the model —', 'SLA requirements shape this layer'] },
     { y: 228, c: COLORS.cyan, lines: ['ask: full model or an optimised', 'variant — and what quality', 'tradeoffs apply?'] },
-    { y: 334, c: COLORS.blue, lines: ['H100s run ~$30K each — a small', 'inference cluster is significant', 'capital; quantify before on-prem'] },
+    { y: 334, c: COLORS.blue, lines: ['top accelerators cost tens of', 'thousands each — a cluster is real', 'capital; quantify before on-prem'] },
   ];
   return (
     <DiagramFrame viewBox="0 0 800 518" caption="Three infrastructure layers stand between a trained model and its users — hardware runs it, optimisation makes it affordable, serving makes it reliable.">
