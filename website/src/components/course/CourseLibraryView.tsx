@@ -158,7 +158,7 @@ function CatalogCard({ no, title, kicker, blurb, modules, unit = 'modules', leve
   return (
     <article onClick={onClick}
       className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden flex flex-col cursor-pointer hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200">
-      <div className="px-6 py-[22px] flex justify-between items-start" style={{ background: color }}>
+      <div className="px-6 py-[22px] flex justify-between items-start min-h-[130px]" style={{ background: color }}>
         <div>
           <div className="font-studio-mono text-[10.5px] tracking-[1.4px] uppercase" style={{ color: 'rgba(255,255,255,0.85)' }}>{kicker}</div>
           <h3 className="font-studio-display text-[30px] text-white mt-1.5 leading-[1.04] font-normal tracking-[-0.5px]">{title}</h3>
@@ -355,7 +355,7 @@ function StudioCatalog({ setView, completedLessons }: { setView: (v: View) => vo
               onClick={() => setView({ type: 'kids-games' })}
               className="bg-studio-paper border border-studio-rule rounded-[4px] overflow-hidden text-left cursor-pointer flex flex-col hover:-translate-y-px hover:border-studio-ink-dim transition-all duration-200"
             >
-              <div className="px-6 py-[22px] flex justify-between items-start" style={{ background: '#d96a3a' }}>
+              <div className="px-6 py-[22px] flex justify-between items-start min-h-[130px]" style={{ background: '#d96a3a' }}>
                 <div>
                   <div className="font-studio-mono text-[10.5px] tracking-[1.4px] uppercase" style={{ color: 'rgba(255,255,255,0.85)' }}>Learn by playing</div>
                   <h3 className="font-studio-display text-[30px] text-white mt-1.5 leading-[1.04] font-normal tracking-[-0.5px]">AI Games</h3>
